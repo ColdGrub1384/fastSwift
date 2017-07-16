@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="17A291m" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Menlo.ttc">
+            <string>Menlo-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="fastSwift_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="FfM-IT-F1u">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1482854784" green="0.1484311223" blue="0.1483080685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="FfM-IT-F1u" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Oun-kE-RW8"/>
+                            <constraint firstItem="FfM-IT-F1u" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xGb-eD-VZr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="e3x-33-7A3" kind="presentation" identifier="swift" id="rA7-xT-2uw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="316" y="106"/>
+        </scene>
+        <!--mobile@localhost-->
+        <scene sceneID="8x1-cb-WWk">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="e3x-33-7A3" customClass="NMTerminalViewController" customModule="fastSwift_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NvD-8C-Ibc"/>
+                        <viewControllerLayoutGuide type="bottom" id="gtn-NX-B0m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bpb-A1-V1a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Wgs-Pw-eND">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.1482854784" green="0.1484311223" blue="0.1483080685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="Ph5-EM-0Z2">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="0.1482854784" green="0.1484311223" blue="0.1483080685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem id="1XY-Zp-Lt2">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="YBq-mV-vEI">
+                                            <connections>
+                                                <action selector="disconnect:" destination="e3x-33-7A3" id="QWS-Ip-mng"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Ph5-EM-0Z2" firstAttribute="leading" secondItem="Wgs-Pw-eND" secondAttribute="leading" id="DZk-pY-D8g"/>
+                            <constraint firstItem="Wgs-Pw-eND" firstAttribute="bottom" secondItem="gtn-NX-B0m" secondAttribute="top" id="LGW-mB-uim"/>
+                            <constraint firstItem="Ph5-EM-0Z2" firstAttribute="trailing" secondItem="Wgs-Pw-eND" secondAttribute="trailing" id="bU3-7c-ikI"/>
+                            <constraint firstItem="Wgs-Pw-eND" firstAttribute="top" secondItem="Ph5-EM-0Z2" secondAttribute="bottom" id="e1C-EE-1PC"/>
+                            <constraint firstAttribute="trailing" secondItem="Ph5-EM-0Z2" secondAttribute="trailing" id="gBG-vF-9RE"/>
+                            <constraint firstItem="Ph5-EM-0Z2" firstAttribute="leading" secondItem="Bpb-A1-V1a" secondAttribute="leading" id="hDN-a4-7aH"/>
+                            <constraint firstItem="Ph5-EM-0Z2" firstAttribute="top" secondItem="NvD-8C-Ibc" secondAttribute="bottom" id="p2M-8s-3qP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="mobile@localhost" id="XHj-AX-Fwt"/>
+                    <connections>
+                        <outlet property="navBar" destination="Ph5-EM-0Z2" id="JhC-N9-gzC"/>
+                        <outlet property="terminal" destination="Wgs-Pw-eND" id="YdS-Lu-WQI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="77s-yU-8ec" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="998" y="106"/>
+        </scene>
+    </scenes>
+</document>

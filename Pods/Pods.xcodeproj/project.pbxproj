@@ -1,0 +1,2242 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00228406F4E8D0671A7D743375020165 /* go.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 965941ECCDDCA49D752F9045589D5A2F /* go.min.js */; };
+		057761850056DAD8090B38120DA35761 /* profile.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 3F8655BF5AD8987B2D75FDD970BB8E3E /* profile.min.js */; };
+		06BF246754153A49E2E1B80F221C7619 /* tomorrow-night.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 7856D5BA5CDA1778BCF2870FCCFE1F3D /* tomorrow-night.min.css */; };
+		07D2684521173BD7BC2CF7CDC756355C /* vs.min.css in Resources */ = {isa = PBXBuildFile; fileRef = AF726FAF77FD619E5486D4203328809D /* vs.min.css */; };
+		07E67C8910EDA45209DDA6296A0104AC /* HTMLUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A166C269EC6008B1FAB8A961CE281556 /* HTMLUtils.swift */; };
+		08B74670689FE316D2EE6A217BFEF65A /* cs.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 8B80376707D4B580EE60B82E8DF051B8 /* cs.min.js */; };
+		08E8C4FE575092478C379147CDD7AA72 /* ini.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 92D452786053A4E3B54B11930FE14963 /* ini.min.js */; };
+		09C6A3B7EA925F3BA175430C7DF18782 /* cpp.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 99CC29DF0EF634DC643635096606A714 /* cpp.min.js */; };
+		09DE75B190EE5892D92F929F2BABFAD8 /* NMSSHSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E307C5630CC3397039A711C59FDCC /* NMSSHSession.m */; };
+		0C3A397286D323FCADFD4E7BDD3B43D1 /* subunit.min.js in Resources */ = {isa = PBXBuildFile; fileRef = D194F8E32B529A784BDBD543277BDA0C /* subunit.min.js */; };
+		0C55608B20D0611BD965FC8A069E80D2 /* 1c.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 3B532D13B16DC2580248BAA97E5E54D9 /* 1c.min.js */; };
+		0C5BECA6229670BE3441255EB2ACE868 /* puppet.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E68B39A4D1EBB04852B810C758646852 /* puppet.min.js */; };
+		0E3CFA38C61C2A046E346379CB8A939D /* atelier-lakeside-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 11EDF37ACC21FE5A08BE024E8853C806 /* atelier-lakeside-dark.min.css */; };
+		0F850C133F6F9412546FB4603F512F6D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BB22CD2AAE4F062A7CDA2E213C68442 /* CFNetwork.framework */; };
+		1031E8032CA8927A3A3EFED8D0A573FA /* rust.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 5ACD6E777F53B757C67F4F76B0D8370F /* rust.min.js */; };
+		10D52433629A50A9725C59AB07A25E6A /* fortran.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1C9A889DEF1CD400D703A913A1A98BF0 /* fortran.min.js */; };
+		10F459C8304ECA78A27C06F2E6755FAF /* crystal.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 3985CA26B8158E87C88E9200A933CC60 /* crystal.min.js */; };
+		1166B018D283C17064554C6B47EEE7D3 /* delphi.min.js in Resources */ = {isa = PBXBuildFile; fileRef = FA4D1161B131D3AA9008A97A0ABC2A8D /* delphi.min.js */; };
+		118C36EA1F540CD0CF0771511974C6AC /* atelier-plateau-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 5EC46F284423E796C1A7BE465D59997A /* atelier-plateau-dark.min.css */; };
+		129442825DB211B3A99A502F00D9971F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDF8D75AA654F65ACE2125C52AFAAD2 /* Foundation.framework */; };
+		159DD9B43C4D84E135EC9ABE1EA95D2E /* autoit.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 2A3AD1D48CE01EDB9E937E7F3E014358 /* autoit.min.js */; };
+		159E87586AF471246660C4B70B45D040 /* coffeescript.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 70833685C95C0C19D63B8C9517B13B15 /* coffeescript.min.js */; };
+		16569E7FB41A9AAC5496195EF727CEC7 /* color-brewer.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 4C48573BEFC7FCBC44E5FA24AF94D69C /* color-brewer.min.css */; };
+		1672970595A9BAD6C42F2232DE72B8C4 /* TZKeyboardPop.h in Headers */ = {isa = PBXBuildFile; fileRef = EFAB22303CEC9B52AD456A3EC7AC5A41 /* TZKeyboardPop.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		19A7D1D7CA87128BFFE63290FCF838CE /* arduino-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 21B5BF6184C2405EDA6E9E2742F7DB32 /* arduino-light.min.css */; };
+		19BDAF579483BC3FE3D2D88CB130537E /* less.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1E4DFC48C9D1A5BA80D05225933C5BA6 /* less.min.js */; };
+		1AF3279FDC8DDE320299B689E2B01450 /* axapta.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 463C54802716554D28B841AB6FA608AF /* axapta.min.js */; };
+		1BFA71E17965F07A89E77607F8759502 /* actionscript.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 15E05215667B57F8593BA8FD6F03A63A /* actionscript.min.js */; };
+		1C71628FEE185A283D1341DA07E382FC /* sqf.min.js in Resources */ = {isa = PBXBuildFile; fileRef = DEB413B3B938242FD2BC9B8CFC7F5A55 /* sqf.min.js */; };
+		1CD220C0C5CB0A23E19C2C2B0B7F41E9 /* NMSSHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BC5B4C1A7D0044746AB319CFAA561C /* NMSSHChannel.m */; };
+		1CD7409C6BEB744CDE3E5E4CAEEBD8ED /* perl.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EEEE4540FBDA04DA5C87311C98CC406D /* perl.min.js */; };
+		1F17E61F38F98CDAC28855A795EC19E4 /* pojoaque.min.css in Resources */ = {isa = PBXBuildFile; fileRef = A06DC6C26FD16D183FD108EECA7BF8FE /* pojoaque.min.css */; };
+		1F7EBA2692F94B152369A7992E1C63C4 /* Zip-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A35C2FEC419EEC436D965A0260F2FB /* Zip-dummy.m */; };
+		20229483D16D9B6A8E6908F96E8A5081 /* tomorrow-night-blue.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 9C30C1456D58BDB02EF2ABBD9F2AC54D /* tomorrow-night-blue.min.css */; };
+		20CE4EF6DC092B93D73FAF6F949811A3 /* ruby.min.js in Resources */ = {isa = PBXBuildFile; fileRef = B8AE48416D264DCAE3093690DA175C09 /* ruby.min.js */; };
+		2155E2F27DCA8D5195CE086D15690A1E /* javascript.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 93D5CF86E3AF5085B6FB47C4FAD1C559 /* javascript.min.js */; };
+		216CFADE2B85A59D84E8DCDBF81A6450 /* lsl.min.js in Resources */ = {isa = PBXBuildFile; fileRef = FCEF8567F60CA43FAB092AE5E2DB64AF /* lsl.min.js */; };
+		21BB009BD854FE3D760FE0449F95DC5D /* NMSSHChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 857DC0DDD9FED875A45EF6A9A980DFDA /* NMSSHChannel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22B91496352570F20E30BA1ED442D03E /* yaml.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 5B2EC551D31A08A29E4BC1D9C0D2D624 /* yaml.min.js */; };
+		22C7ECF59059FA681544262C3FCD2DBB /* scss.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 6453A55AA74BA365BDCCCA6C242CDD6F /* scss.min.js */; };
+		23B637CBA0BCB38F354152539DA32DFF /* bash.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1BBC83B74C39947872EA644D955DE912 /* bash.min.js */; };
+		2495241CE243DDD72752C7B1FDF20554 /* llvm.min.js in Resources */ = {isa = PBXBuildFile; fileRef = CD0F6DC07ECC9B01F5C31B93EB5A3B6E /* llvm.min.js */; };
+		24A13C329A1ADCF7F03582BE97A4C610 /* hybrid.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 91F0A2C4DD9F73FC6F45583BB1D179E7 /* hybrid.min.css */; };
+		24C90EB6AD5CAB2EAD07ACB0ED81AE45 /* haml.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 13A3F511903F97185E10A1C6749FC3DB /* haml.min.js */; };
+		258832A286EB9ED0D96CE0D01900BB6F /* school-book.min.css in Resources */ = {isa = PBXBuildFile; fileRef = A3AC8A5DB6EE260137A94FC7FD0D4A54 /* school-book.min.css */; };
+		262F40A0C18DE13CDFC892D83137B161 /* handlebars.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 20351871E03B60BE704ACE7759F5B9AB /* handlebars.min.js */; };
+		2726A89A4671876D47F01EC1DAD4BA67 /* nginx.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 17C40A74C3C09A53B15945654990AB6F /* nginx.min.js */; };
+		2773911979B38F916EAF9755B9237273 /* libssh2.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B4FF005DA4F5D47E5EA4629248D84 /* libssh2.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		28F0F914FC337741BF8B5A743B27CC9B /* monkey.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 00EF6B0705A4F786D196CB4400E8C7A0 /* monkey.min.js */; };
+		28F51F7FA5E0FEA3D4C2BFA1BC27BB05 /* qtcreator_light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 60147FC39176EA96C8533F5A77C771B9 /* qtcreator_light.min.css */; };
+		28FA21EF97EBBC2913237DC5B5499818 /* gruvbox-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = BA7A82A1DD89D29A3E76E86189A99356 /* gruvbox-light.min.css */; };
+		299C0DC608F11828E664F822B494BFEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDF8D75AA654F65ACE2125C52AFAAD2 /* Foundation.framework */; };
+		2A0A712BD1A0FC7827642E042A833062 /* TZKeyboardPop-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EE9E6D6478802914F52B168C4F1EBD0 /* TZKeyboardPop-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2A97F738867429B44E222575B40465FC /* far.min.css in Resources */ = {isa = PBXBuildFile; fileRef = C63A118081F83B8A048CB415F01E6927 /* far.min.css */; };
+		2AC6CCC7C7B97B1EBCBF1D2CF45965F0 /* atelier-plateau-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 711BAE335E2AB7A90837F1C489A74526 /* atelier-plateau-light.min.css */; };
+		2C092726BAAD3FBBA99C0B43D412FD9E /* rib.min.js in Resources */ = {isa = PBXBuildFile; fileRef = B466FB1594D51531BD65079092FD341C /* rib.min.js */; };
+		2C28CE796ECE6C9211768048EBC03542 /* http.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1C8D97A56C3F2B571D91281B0E84A395 /* http.min.js */; };
+		2CFC9885B7E0952E7DE87F6500290481 /* NMSFTP.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CC88947E2ED2780DB871EFA57D90EBE /* NMSFTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D66E65BA8C40469BDD0B65ABC6F1216 /* ebnf.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 3902E44D434A5AA3BD6A7BB00A387251 /* ebnf.min.js */; };
+		30DC5C7CD3E92A56407111FCC81759FB /* TZKeyboardPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A74DA06AB93B10A4272A3DBA714DE59 /* TZKeyboardPop.m */; };
+		31B439FFB14F8B2CAA5BB96C8647B88B /* tomorrow-night-eighties.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 4E41701505FE42BDAFAE48819E530225 /* tomorrow-night-eighties.min.css */; };
+		330F947AE5EB6C1EAE50909A75E735E8 /* qml.min.js in Resources */ = {isa = PBXBuildFile; fileRef = AD1D92FF450D21F35096A7461D47A18A /* qml.min.js */; };
+		34CAC5ADA3BEE92D91E319F1AFB2148C /* dust.min.js in Resources */ = {isa = PBXBuildFile; fileRef = D7BED3929175A67E308A758A232C7415 /* dust.min.js */; };
+		364CD47AC2287EDEF37167219D6A04B5 /* moonscript.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 94C185DF524841F32B451F25D3C40DDD /* moonscript.min.js */; };
+		36A2A254B30E539101A53EF4F3EA907F /* arduino.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 258621379A36457C24C895774A464407 /* arduino.min.js */; };
+		36B93F2A2C4145C1C82A8E0B9CC30632 /* NMSFTPFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 739FA5265B14AAC7ADD999793546D8AC /* NMSFTPFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		36F29CEAAD003E680EF9187933589985 /* xcode.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 6368A5FF5DF9A60BB1B6690201D17E8D /* xcode.min.css */; };
+		372CC7F6F172576C1B1E45D50D35A226 /* twig.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 2BFFFC5A020C055949697E5298F40448 /* twig.min.js */; };
+		381DCF0B2F439F677F1AB441CFC08AC2 /* NMSFTPFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C5AA151419F6995F6474A16F604B31 /* NMSFTPFile.m */; };
+		38727574B971B5F3F7DE6354CA70A0B3 /* taggerscript.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E2687205E6AAA3D1B262007CFD6FC95E /* taggerscript.min.js */; };
+		38C23F80C08B3D94A304DA24E9E15DEA /* libssh2_publickey.h in Headers */ = {isa = PBXBuildFile; fileRef = AE96EDCC2839A92BAF9C24D713446335 /* libssh2_publickey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38ED9DDE7FA27715EDA051C0B50709AC /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = B773BFC0BBAAA484F931629F57D476C4 /* zip.c */; };
+		39212AC549C5F2D7A33FCD281CD12080 /* dockerfile.min.js in Resources */ = {isa = PBXBuildFile; fileRef = D1BF968BA69878688D416F973412F201 /* dockerfile.min.js */; };
+		39BDA61804D088F44069B46BFB29E011 /* basic.min.js in Resources */ = {isa = PBXBuildFile; fileRef = ADF6CF9B7EF47D4444209A98DF4C79E1 /* basic.min.js */; };
+		39F1CF57B3584AC37AD9CE9D250C11FC /* armasm.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 2B2ECE2BFD81777BE1EDE12049728B67 /* armasm.min.js */; };
+		3A3E4790571F92E5C074591D5B7CBAAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDF8D75AA654F65ACE2125C52AFAAD2 /* Foundation.framework */; };
+		3B53A8F3D599F7E50EC583F1B5F1C165 /* json.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1B1AE398419B6DCA240E2991FFFFA9D4 /* json.min.js */; };
+		3B72F0074961A8A1E257BBB90395FD93 /* atelier-estuary-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1BDEF49B71576AE15ABD3E5A25D61 /* atelier-estuary-light.min.css */; };
+		3C4AD3767E4369E05402B53DB39FAB6B /* verilog.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 9D3A5D11A3887B850AE3F5F276E7FC7F /* verilog.min.js */; };
+		3C83214289EEA5B45F4A9F83249F439F /* ascetic.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 381179505BF1A271230B1D5C4A74C932 /* ascetic.min.css */; };
+		3CCF20DCB88F20DD59966E0BEDAA14E9 /* NMSSH.h in Headers */ = {isa = PBXBuildFile; fileRef = A103E254734F287AFF1D09E09F1D309A /* NMSSH.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E3E1A7CB5A979C24A4B9B82836997D1 /* stan.min.js in Resources */ = {isa = PBXBuildFile; fileRef = C31B162790EDFD8BC51FF213F5C59EF8 /* stan.min.js */; };
+		41647DDB37415EA7F8618AD67596EE9F /* livescript.min.js in Resources */ = {isa = PBXBuildFile; fileRef = FB6057A7E82707A810AF1DC4B86C5FC8 /* livescript.min.js */; };
+		43AB2A41E063FF1780C8CC33F7306F74 /* capnproto.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 69034627C59ABD8CEA99F04F23CD9E16 /* capnproto.min.js */; };
+		442A7B4EF448F321028FFF9DEE47B7A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDF8D75AA654F65ACE2125C52AFAAD2 /* Foundation.framework */; };
+		4523A8C66A4613D4B656B0F6C4843884 /* highlight.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 82704F9FB681715C132DA156377ED7F0 /* highlight.min.js */; };
+		45E6AA3FAC3E7E9FF606E42ADD770D4A /* default.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 4EDBACC612BEEDE8D3E84CC30FA7EC01 /* default.min.css */; };
+		476D16B22FA23E73699EA9184B99F07B /* smali.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 24EFBE497F630EDD191E8B9A0D12398D /* smali.min.js */; };
+		48D365850521554036626C28070D8FDA /* markdown.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 8ABDE2688C72E154C241F72DFCECB044 /* markdown.min.js */; };
+		4B56AA380D79086437502F4C70909BFC /* prolog.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 3AE44958B17D160BBA6F2ADB8C165534 /* prolog.min.js */; };
+		4BD5F0E34AA1D766679FD81507205E44 /* qtcreator_dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 468688E68503787D869450ABB538B3CD /* qtcreator_dark.min.css */; };
+		4CCFAE8B120982293AEABC0BF1853C1A /* solarized-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F1A9F582DDE875AC7A9DA444220CFCB7 /* solarized-light.min.css */; };
+		4E98FEAAAAC115A32009AF8D8B53684C /* hsp.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 23398BFF8FE3D7260F516D40EBC1CA09 /* hsp.min.js */; };
+		502CFF5323F58A3B9A026EF2A46A315A /* NMSSH-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A2FFDD043F73272FDC1340B68F835C /* NMSSH-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		508570157600007FD4BD093238108D61 /* atelier-savanna-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = B526992FE73ECBB79F0AC4D629B0C586 /* atelier-savanna-dark.min.css */; };
+		50E5DFAF68AC133CB4DC014DF0025B0D /* glsl.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 6D73643850FBF09EA089744991905921 /* glsl.min.js */; };
+		51CD1387E872DC36F4FE7DD4E4790532 /* grayscale.min.css in Resources */ = {isa = PBXBuildFile; fileRef = FB9FB0051063BA72F736AF88BB843CE1 /* grayscale.min.css */; };
+		51E8714E9C28CD2797A0710A9F80311E /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9681FB0378900898B721639168437AA1 /* crypt.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5245D512283D3DD96B29BC724D715597 /* htmlbars.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 6B47E0CA834752D33E292B826155BB13 /* htmlbars.min.js */; };
+		528FE22C8A9B18C1A167519D15135AB5 /* atelier-estuary-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8B5D493366D9F96123D4C4B106F7B7A5 /* atelier-estuary-dark.min.css */; };
+		533730D0129E8C7692836C2C1DDF72BD /* monokai-sublime.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 59C2BFFA0F60CB453C2F5902FC3B9C86 /* monokai-sublime.min.css */; };
+		533E949135CCE59EBF48C4F8F3034233 /* zenburn.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F73E252E24FBBE639C9035294A61F2C2 /* zenburn.min.css */; };
+		56365ABA23D2137B3842DF3416BCC1F7 /* solarized-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F0FA60998792BB4CFCE1EE05ACA97439 /* solarized-dark.min.css */; };
+		56A23EF1046D103BF4CCB83C03233C3D /* flix.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E3E1524F59ECEB869B8823BB30A7E03D /* flix.min.js */; };
+		572D767E980CB8C5430ABD109CC20374 /* atelier-forest-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 08B67D9BF90FC8569DD718F71B546773 /* atelier-forest-light.min.css */; };
+		57425E9E6978C2FF46D6A57FB78EB073 /* sql.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 40AE70E3451D2B214FC02DA696DCEFE1 /* sql.min.js */; };
+		5798AA39697563BE79B481F95175A0FF /* Highlightr.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82343EB8F564851B2616BC3E5EC27F4 /* Highlightr.swift */; };
+		581FA086386178120C0B183E15312EE7 /* abnf.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9629072DE6A687AEEB65B7F63BA58B4 /* abnf.min.js */; };
+		593B2D2621A75891374E9F9E15404EFA /* androidstudio.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 49B3839616C21718B3E65FA69045A23F /* androidstudio.min.css */; };
+		5961A10BF22A3C6A01B9402AE45B8989 /* tomorrow-night-bright.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 4DB8DE6DC7101EF33379CB5D91277CD0 /* tomorrow-night-bright.min.css */; };
+		5A84F20BFCB7A6D42383A46DB35D1FEB /* atelier-dune-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 15480286F027A50487B9549228FA72A2 /* atelier-dune-dark.min.css */; };
+		5AE42AA9DDC49A6888C212A5D2BADC6A /* xl.min.js in Resources */ = {isa = PBXBuildFile; fileRef = AFC24C25B20AC7022EC3961971E0AA2C /* xl.min.js */; };
+		5BE49F90D68779E986F40B02E945F5A3 /* darcula.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 9B8D0FEEAFE26D52EFA93D7C6E74EE57 /* darcula.min.css */; };
+		5BF4EAF830E212E5ABBFD14DE1BA3CB4 /* obsidian.min.css in Resources */ = {isa = PBXBuildFile; fileRef = E908F5DF54D5118286C94F5C297FA95F /* obsidian.min.css */; };
+		5BFE34936B673E3800863193391DF092 /* socket_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4065927F7A6865C25AA02F5BFCB31D58 /* socket_helper.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		5C079287E3E8922508B9D4777D8FE89D /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A217DD8028440B8B2BD40E6CE76C51B /* ioapi.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5CCD3E543B21B4EB9E61BACEDFFDCE82 /* brainfuck.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A66BBA56B5AF797D2AE76D30815BAD52 /* brainfuck.min.js */; };
+		5D899416C412046E637E3CFFF5B2DCF0 /* lisp.min.js in Resources */ = {isa = PBXBuildFile; fileRef = FA643F866D51F6EA7045FED45F83A045 /* lisp.min.js */; };
+		5EBD7726506A4BCEC6C4C2CF2AAEE1E5 /* docco.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8B241C360CDDC39FA3A98C982CC5FE53 /* docco.min.css */; };
+		5F12B66A9154FD9482497FC039E4D224 /* dracula.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 2819E20CDBF6008EACA292540A2CDB50 /* dracula.min.css */; };
+		6042912B6C79F160C6F89239902D9A61 /* xquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 27DBC010AD4713A1C8C4B77607859517 /* xquery.min.js */; };
+		6065CED2B71827A1BD6A10ED6D9E326D /* paraiso-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = C8C33D7BAB50A863F4BEDCCE0A56BB41 /* paraiso-dark.min.css */; };
+		6066B9248A5321ECCD6DADC087C1D156 /* clojure.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 36CF872A73982D4194954E8788A7EC2B /* clojure.min.js */; };
+		616EAB9D6E4B1ED672997C6B29A7FFC8 /* monokai.min.css in Resources */ = {isa = PBXBuildFile; fileRef = B311F727A0422DE595F40DC688357A2B /* monokai.min.css */; };
+		643C6AB479A31EFFDAB566FED69E7991 /* agate.min.css in Resources */ = {isa = PBXBuildFile; fileRef = D46ECDCEB6786FE8A4CB3488A5E0F293 /* agate.min.css */; };
+		646577B03E696CBE3F414CA9B717ECDE /* NMSSH.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAF6A71901FE899A20AE4B142DD1E2E /* NMSSH.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		647185EE96E0B4F08A9925C90C371F23 /* NMSSHConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F762D07A08A500904F9F23E6466A3D6 /* NMSSHConfig.m */; };
+		65A8850A6F60BC65F14348CD446E5651 /* vala.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F9DEB7BDF7D02803E175C9EB2EB38F73 /* vala.min.js */; };
+		65AF5F4E6F583BAEE6285A3A70B285FA /* Highlightr-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EC7F0045C63CE9DCB152E0B6EFA4B99 /* Highlightr-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6653E22AD9232021B707EA6FB8A844A8 /* mipsasm.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 4D7025AC2BF122F134DD6C1D1AE83D8E /* mipsasm.min.js */; };
+		66C8EE5E51373671744572AB2F739263 /* avrasm.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 762384BF1C22C752F638A81C0BE4B751 /* avrasm.min.js */; };
+		66D75696B7490F4C5464D5213E43E54C /* codepen-embed.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 3BB488838CAF27A6AFA27E7896D2CF2D /* codepen-embed.min.css */; };
+		68499E612D8F0A42455B0DCBDF207E23 /* java.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 7B7EBD2120C30CE6FF2737B36374F3B9 /* java.min.js */; };
+		68ACAAFCF4551B8D52DB95FC58C59FF5 /* mono-blue.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 4D30F3F3CCB48603F9A57039019B6D90 /* mono-blue.min.css */; };
+		68D0F18ACC34D57D822845CC7A89C79C /* typescript.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 7FF60C16C5A1284B5F3BD253CFAD41C9 /* typescript.min.js */; };
+		68D51E7A4FF7DC63A213DDD5C70C2924 /* julia.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 6FA0E0CC5C738989461E3630DB6B645F /* julia.min.js */; };
+		69128C124AD2D7EBE8507976E668A5AB /* Pods-fastSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 51785F83112CBB7741C07BA37D77C5DA /* Pods-fastSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B5364DF5995891C849286815DF3913C /* step21.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 4A749DA74C74C276AFB512AE4B27FFAD /* step21.min.js */; };
+		6C70441EE69A37A2EB7638DBDD1AEC8F /* livecodeserver.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 5ACD9987B6277C4A882A5F80808F05C7 /* livecodeserver.min.js */; };
+		6E979220FD7F4202CC8665708B831C11 /* NMSSH+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B35CD7B94C5DFA42E396656A335036B /* NMSSH+Protected.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		6EC6FDB1B69475F355B7FC2909C92584 /* atelier-cave-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 689F2BA691A8ECB14E08EA2B3DACF18E /* atelier-cave-dark.min.css */; };
+		6F619CFAC0B96E2A2BCA69F3A4CCBE0D /* tap.min.js in Resources */ = {isa = PBXBuildFile; fileRef = ADF03E98693EAD266F3CDE2D37ED3134 /* tap.min.js */; };
+		7051DB947AE45922A0261CF5626D9135 /* makefile.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 758FA967D7CD1027B34ED1A077A2F7A5 /* makefile.min.js */; };
+		722786F99B270EA72744827CA6AC9A9A /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519A56833182395F2C77CDA04BC08679 /* Zip.swift */; };
+		72E6230EBD221F298E2072F34E26D77A /* groovy.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 824B494D490D551275F7A0F90F1C6952 /* groovy.min.js */; };
+		72F5CBC78D3182CB9CC1FF86C023560D /* scilab.min.js in Resources */ = {isa = PBXBuildFile; fileRef = AD4E9C56F2B67942BA0F582BDCABD4E8 /* scilab.min.js */; };
+		7309B5F524DBF742292F23F618972D6C /* django.min.js in Resources */ = {isa = PBXBuildFile; fileRef = CD100DB453FCA460E6974F618CE2CA28 /* django.min.js */; };
+		7390EA09A2F3CBB28D3B20B89473EF1E /* csp.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 71AA03405C2377DDB9519C72462C7E80 /* csp.min.js */; };
+		73B0382C4EC0A97BE8565CD106C58F59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDF8D75AA654F65ACE2125C52AFAAD2 /* Foundation.framework */; };
+		74CDCC6E9AE244DC50DE93FA111DE384 /* NMSFTP.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4B68D791E31340CB8F048BAC06551 /* NMSFTP.m */; };
+		7640505CDB0CD0F37B5A51DF7B865EFF /* NMSSHLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 45634AC4BDA75FE8057E0228B9676216 /* NMSSHLogger.m */; };
+		78AA6E8F1392AFE4EA3DFB75146C182E /* mathematica.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 688AEED0F41753D3AE3443A947AFBCE8 /* mathematica.min.js */; };
+		79A1BA3EBA825869DD465F59197DB516 /* atelier-seaside-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 8474F8926079D8F3578F6EA5766EC01E /* atelier-seaside-light.min.css */; };
+		79A2392E648C01DF2EA439BF29E0D822 /* oxygene.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 29B0FDAEE5FFC732348B3764B58EFE66 /* oxygene.min.js */; };
+		79AFBDD794F53E473EA7C6C08304D5B8 /* mel.min.js in Resources */ = {isa = PBXBuildFile; fileRef = CDE463E616CFA54040D9C1A0AB9B6AEE /* mel.min.js */; };
+		7C03B71ACD3CC680F7738253572B22A8 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = A1EA26DDCA684B79556E41FB63510FB8 /* unzip.c */; };
+		7D3341C4E9A6959854E1A4BB07FA9FE0 /* matlab.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 83C87AEC753D9146DC812A236C52A42D /* matlab.min.js */; };
+		7DD03BCDAD2AC95408F49B4070CE1CC4 /* haskell.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F7C04FAFDC17B6B3238243D5272EB9DC /* haskell.min.js */; };
+		8091DC4E63757BE27513F61DD79AB456 /* gruvbox-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = B081A1A834178DA13DE875652980B1DF /* gruvbox-dark.min.css */; };
+		813A53998873195ADD9731CEFBB427ED /* atelier-heath-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 0A711CDDA94AC3A6440B3F061AA48472 /* atelier-heath-dark.min.css */; };
+		82890C9CED42D9A02B4202B1223BDDF7 /* inform7.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 4CFFED40707BE5823A63528CB236BF55 /* inform7.min.js */; };
+		83301C9E3C574260D29CA24701E17957 /* powershell.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 77A4114A47AE6A93B1CC3EC317028C30 /* powershell.min.js */; };
+		846D1B82BA4FD881BBA9890682C6A491 /* css.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 9B3369111603B8350DD3C8A28334CF3C /* css.min.js */; };
+		84C32C0FC17B224383F8F8814CEEC57F /* sml.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 2CE3ED973A07BF263D6F5911BDB8B2B6 /* sml.min.js */; };
+		8588321A63336CEAE3C6AAA06CB314D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321DA4FBF5721A7FB806D2982ED127C8 /* UIKit.framework */; };
+		873CA0C095FD8DEFBEB4061AA744E5EF /* hopscotch.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 2246025C189CA309C86100644D584BF5 /* hopscotch.min.css */; };
+		878BFBC0F90E7913BEEB56DB4C521501 /* Highlightr-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 119369080CD5B56897DE9629F88A648B /* Highlightr-dummy.m */; };
+		878C2F77AF6C4FD0F595F5C1150EF24F /* ZipUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC464B7F011305331E40ACCE852F4D5 /* ZipUtilities.swift */; };
+		89E630D1659F2300821DD5A22485184B /* sunburst.min.css in Resources */ = {isa = PBXBuildFile; fileRef = B333447C63633B0525F2DA107DB66849 /* sunburst.min.css */; };
+		8B87306AD08E205D9CA13B424682FB9A /* kimbie.dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 760233C11E26CFDF4855414739989424 /* kimbie.dark.min.css */; };
+		8C610AEC4427E8254CB96D2AF197BF17 /* tp.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E8E67C778B7352CB9CD088629B199FC9 /* tp.min.js */; };
+		8C838F0B7CB6864EB4581608E31F2986 /* atelier-dune-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = B3E779EF36F24FB8FE000D3042307D8F /* atelier-dune-light.min.css */; };
+		8CBF2EBF0F7A9E3F5B0C4EBCB37CC2A6 /* ocaml.min.js in Resources */ = {isa = PBXBuildFile; fileRef = D20EAA2FB078F3B7A822C57B850DC1E7 /* ocaml.min.js */; };
+		8D57D14B582884ACA1C747002519A672 /* erlang-repl.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F957C8B37FBA92D7015C7044781560DE /* erlang-repl.min.js */; };
+		8D66A06DAAA82E2CADABC426B1DC93E9 /* mizar.min.js in Resources */ = {isa = PBXBuildFile; fileRef = B2F3B1A2E762CA817C2970DB8F8C2B3C /* mizar.min.js */; };
+		8F91F2B443813BBC44B4A805F04A39C4 /* NMSSHHostConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8DBAD5D8F2E6C835E320C220E50D7 /* NMSSHHostConfig.m */; };
+		8FA67EAF0E55FD4E52C08792D0E41C74 /* vim.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 400D06CF24A673401C43799231E9084B /* vim.min.js */; };
+		9076A134622B7F8F3761F09D8732D645 /* nix.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 5D2948A7BC67ADC27FB68ACD170B2EB7 /* nix.min.js */; };
+		90E11C12DCEEB22EBD662975DC88D4E9 /* processing.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 848F0A70BAD7E2E09F55675527A6B56E /* processing.min.js */; };
+		922868FC8545055AF825BCB9BC287432 /* NMSSHConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = DD24D017BE592ACABD6896E049D2DCBA /* NMSSHConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		922B46ABB2F668E3362BD264CEB12D57 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = AD7E603913CE3CF0368D055F151D636B /* ioapi.c */; };
+		92A1C5830B5AAB1EB6E636FD84F02BE0 /* atom-one-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 993E4A0A4258B37760C7C78E9A3F6F2E /* atom-one-dark.min.css */; };
+		940E08F7A53BECD2ADE78737734D6712 /* clean.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 709A97BFF3F6599C7AEFCAB8A1C7A44C /* clean.min.js */; };
+		94EF088F32EBD8403B6164C759CF2AD9 /* roboconf.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 9D8E4CBF5E3D2F7FA475BD00C8B89452 /* roboconf.min.js */; };
+		971CCE4F952C9539E228BD7B71AE258F /* kotlin.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 63B1020853671DB3A556C67EFD6BD89A /* kotlin.min.js */; };
+		97279CDD4CF6084A2C9BE642095AC6FB /* tomorrow.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 89C5B5B5CA5F1D41C9C4E180CBCF75D4 /* tomorrow.min.css */; };
+		9759D554A6BEEAD4176ED3BA00524A63 /* aspectj.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 61F328543CAD1A7AB1C51E0EB6938EAE /* aspectj.min.js */; };
+		97C3B809ED2CBDD31B8EB3FCC69AEA74 /* gradle.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 32E61D36DC8E73D0C3CBF5B2973F349E /* gradle.min.js */; };
+		98285BDD5A82494B74FEA65CC3081232 /* xt256.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 46BC42C214FF9F1F53F3506B4A3B65B0 /* xt256.min.css */; };
+		98869EBAA2C102537C0D5DBCEFC56CBC /* atelier-lakeside-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 82982ADBBC1E77B9708FFCB347859F17 /* atelier-lakeside-light.min.css */; };
+		9967DA2746DF27D47FF85155643502F1 /* vbnet.min.js in Resources */ = {isa = PBXBuildFile; fileRef = D3C7469E7B75647D490E14DB11FD53CD /* vbnet.min.js */; };
+		99A3094F4711F9C1B3C1796D5A4B7EE0 /* coq.min.js in Resources */ = {isa = PBXBuildFile; fileRef = BA9FD9205CD611C063BFB545183E2B80 /* coq.min.js */; };
+		9C2442248BA06F4229DA721AEB59B84E /* fix.min.js in Resources */ = {isa = PBXBuildFile; fileRef = C6CD25D3CABD0BD42D161E04D442A211 /* fix.min.js */; };
+		9CBBDCF3CAFC52383F3D8F2BD59A7BAB /* vhdl.min.js in Resources */ = {isa = PBXBuildFile; fileRef = D9BE50BE99B55DA60BDCA993D317FF43 /* vhdl.min.js */; };
+		9CD30492305EDFBAB42C95BB07D5A0BD /* gcode.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 62BACF5627477F62715239F50F0C2D86 /* gcode.min.js */; };
+		9D1451D859323EBD3339239BE2DF0DC7 /* python.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F3929EF8FDBBEE07733E3DD496A82B1C /* python.min.js */; };
+		9D6DF810816B289D959084C437365200 /* clojure-repl.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 5BBFDC61D69FE3373C5536A76DAFB077 /* clojure-repl.min.js */; };
+		9DAD4E177C507BC8D27E145D5ABD4E5C /* applescript.min.js in Resources */ = {isa = PBXBuildFile; fileRef = D4B2157785704212185686F53A9A1D7B /* applescript.min.js */; };
+		9DD3691F841BD042997F8307578EAA7C /* QuickZip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DAD50E8CA7C37300079C2F2E32B51 /* QuickZip.swift */; };
+		9E8D4A908A907AA0B962F7D8277284BB /* ocean.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F8E58BA8659F33D45735867CDDE9879F /* ocean.min.css */; };
+		9FE1D60D5195B28E0F61BB32BDCC177F /* brown-paper.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 6B097459C843B8E6AD11D788CE8C4079 /* brown-paper.min.css */; };
+		A097F77013A653F44E4F6A407234803A /* stata.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E8A4E00C6D2BD3CE60B704215EF364E /* stata.min.js */; };
+		A0CD71E57C8488EDFBE8F779656BE75F /* ldif.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 4611FE53BB2260FA4C68035259EE1F82 /* ldif.min.js */; };
+		A2017260C0A1ADCB5186B6D35BBBBD90 /* swift.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A0C81FF67BA87052E3378C93F22D81E9 /* swift.min.js */; };
+		A23486E356D191BB84742BE98367324A /* atom-one-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 08628BFCCE05FBB441110941E30DE7E1 /* atom-one-light.min.css */; };
+		A3789C0BB67DB9695ED2EE1245BCA0D5 /* unzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D26504F6878163F6F994FAD6C050ADC /* unzip.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A3927A5A515022BCEB496FD2E7B69795 /* idea.min.css in Resources */ = {isa = PBXBuildFile; fileRef = A9077234207FA2FD4247C4BA0409CE10 /* idea.min.css */; };
+		A3D461E5019B99B34386F6D05E72578D /* erlang.min.js in Resources */ = {isa = PBXBuildFile; fileRef = D6FB06FE48F0891E51822750C3A5E43D /* erlang.min.js */; };
+		A525538CC4A19BDCE982F47E47A7F049 /* lasso.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 5CCBE92EAA67D3FDFB2D1D9DFB6F18F1 /* lasso.min.js */; };
+		A697B0787DD14D7343FF635B35AB11A4 /* parser3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = FF32C151888C50EBCD049BA659AF2533 /* parser3.min.js */; };
+		A7C9011853CFB759F5672B4432B07BC9 /* pf.min.js in Resources */ = {isa = PBXBuildFile; fileRef = C35F9B986186448A14EE1FF7F8D9A348 /* pf.min.js */; };
+		A7F024DDCDDAF5357F1972D28B7BCA53 /* nsis.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9CED375061DD10D9EB1ED33E5E7AB20 /* nsis.min.js */; };
+		A848172F9E30DBB55E1A99BECEA285CA /* dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 81B402749627CA342C41EA7237313C9F /* dark.min.css */; };
+		AA7C8BE9D18926E5C48D86BB1B9941A2 /* paraiso-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 5C18DBF55B0254D2A76461C3091C6BF7 /* paraiso-light.min.css */; };
+		AAC2AB6307EA2D46A8C61DDA76682D12 /* golo.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1B61669D45C322B44278C1EADEB5CDD3 /* golo.min.js */; };
+		AAC8BB1DB26EA83309BD9E37670B1B06 /* github.min.css in Resources */ = {isa = PBXBuildFile; fileRef = A6F087AC85A08E6E09874BD7F411F8EE /* github.min.css */; };
+		ACCA760C7808C8C17D9D559F02E6DE21 /* ruleslanguage.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 72F5BB7E3EF254E3C745217F35A7CD1C /* ruleslanguage.min.js */; };
+		AF766E616C7548F74C8E8AA48CE8F501 /* NMSSHChannelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6256D0D61C64CB1D2146175C38AB0455 /* NMSSHChannelDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AF9933C2337992A2F1CB147903A8E439 /* excel.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 4683D67041A1C1F9ED64AF539C2ED4E9 /* excel.min.js */; };
+		B03F29ADE0128BCCB3657D0226FDB8D3 /* ceylon.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 4B70C49D7E2DF39CD1BB4FB9BA891162 /* ceylon.min.js */; };
+		B1A58F27D2E9C921D90A52D5019DE3C4 /* gherkin.min.js in Resources */ = {isa = PBXBuildFile; fileRef = FAA4CD5A516BE94CA9B996F9839E759C /* gherkin.min.js */; };
+		B1B3E424712504F54E600B3BE29F2CA2 /* xml.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F3ED79B6EC78D141E856F2B03851B735 /* xml.min.js */; };
+		B28931CE6C0B6CF4DF87947D487B02AE /* TZKeyboardPop-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E6FFA9ED54BD1261C2FD36AB4FEEBCF /* TZKeyboardPop-dummy.m */; };
+		B2C7AFDF91F89699DD5D6E8A1F924CD7 /* dos.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 9459DA92B668F926B882A1D6B9FF7557 /* dos.min.js */; };
+		B40C5DFF7E01C15D738FBFB1641F683E /* socket_helper.m in Sources */ = {isa = PBXBuildFile; fileRef = F669F2BBE04BA8C7AA493B43EC9C8A7B /* socket_helper.m */; };
+		B43EF3A39D7A82534979DA7517520DE3 /* github-gist.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 412DB2A1FF1CD035FE8BAA691D877742 /* github-gist.min.css */; };
+		B622AC8CE74439ADDECC3E9A5C62E159 /* atelier-sulphurpool-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F7FECFA7118E3F1E39D1EE4C94B2CD4E /* atelier-sulphurpool-dark.min.css */; };
+		B64C41D225C2322DF320940AE86F9EE3 /* objectivec.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A13828BE769F747BF8A4F44E3B8C6 /* objectivec.min.js */; };
+		B8243038A06AFC674582FEB6B5E67A3E /* dns.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 0873BA4DB1A6057430E3E16FCABB7C85 /* dns.min.js */; };
+		B8E7B70DA773DC0AC237CABFCB0979A2 /* crmsh.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1161F666C09FF79AC5E788848086F51A /* crmsh.min.js */; };
+		B958D03E1D716CDC351FCD05FFD2E4F2 /* tex.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 49C67DE48F97047E9D799CFC9F7D9C38 /* tex.min.js */; };
+		B9918C77EC480F06AE3ACF81BF71A526 /* openscad.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 61B9902F5B8CDCACC7844588F064E583 /* openscad.min.js */; };
+		BA6CC7E0F672575D404D2D07FF9C6A0B /* erb.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 71D57B36F64579DB120F9A5752837305 /* erb.min.js */; };
+		BC87FC1FC1D3CAA5AC78F1DC9D75280A /* ir-black.min.css in Resources */ = {isa = PBXBuildFile; fileRef = BE5915AD68AE0FB15D2EC3EF5F5E221E /* ir-black.min.css */; };
+		BCD63730AE649C55F5CF7E282A1CA5FD /* nimrod.min.js in Resources */ = {isa = PBXBuildFile; fileRef = D2175C2E89EC066DBE9164255077F189 /* nimrod.min.js */; };
+		BDE8BF253347305A99138206FC108EF3 /* dsconfig.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 42277B3AFD33B764911922BBF592D866 /* dsconfig.min.js */; };
+		BF9747632AF0F16009077C34D46FF407 /* elixir.min.js in Resources */ = {isa = PBXBuildFile; fileRef = C337CA7F84E8E526C923F7EA432E5188 /* elixir.min.js */; };
+		C02189007D2D884456D28C5702F9E04A /* x86asm.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 3B4CCEDC76D10137BEE5EF68CD415AFB /* x86asm.min.js */; };
+		C0A664B3C66E29459D5CC8B8961B50D5 /* lua.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F3EAF765AB736750070302D8FE8760BB /* lua.min.js */; };
+		C0F220004E9D2CFA917EDC3680E29A4E /* vbscript.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 6CB92E8A36A754A5F34A9E62C0D2D955 /* vbscript.min.js */; };
+		C15BD09B13A30C3AC111F97109712355 /* kimbie.light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = FD586A852C967487F9A7BCD5F1817BB8 /* kimbie.light.min.css */; };
+		C28ACD4C291F838428F964D18E385F78 /* gauss.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 7F18AD6E24EA7B3820FD0E634255E472 /* gauss.min.js */; };
+		C4B214A5F0CCD5E0026BD733CC07C24D /* dts.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 984A5758C7BFBB07AD9DFEC69BBB0711 /* dts.min.js */; };
+		C525CECB2634081E2C3A6BE5ED7F74B7 /* zephir.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 547AABE320F9CA317F094DD62E5F137A /* zephir.min.js */; };
+		C60CB9D1054B960478580B10AC0276F0 /* purebasic.min.js in Resources */ = {isa = PBXBuildFile; fileRef = ABF166F8C1CC711348860BE14E597C27 /* purebasic.min.js */; };
+		C6299B158B1B34CE1D745A93E87F95E9 /* r.min.js in Resources */ = {isa = PBXBuildFile; fileRef = D670174567A440696D8963574116AB49 /* r.min.js */; };
+		C6C9468D1747D33F962CCFBF7B188AA6 /* protobuf.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 9E9FE765E669D84EEDA4B0B7BC0E2A7F /* protobuf.min.js */; };
+		C772AFE3C7DEF121909A14D87A6D9543 /* tcl.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 2B32AE15D72073081CC09913EDC2D56D /* tcl.min.js */; };
+		C79E102AD4FEFDF9C839EF02953F2254 /* atelier-heath-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = E35028F3B3582D1FB8C4AE1709F384A6 /* atelier-heath-light.min.css */; };
+		C8627BCAE52D7BB82A695F6AE2D7BCD4 /* scheme.min.js in Resources */ = {isa = PBXBuildFile; fileRef = AEEA1F4B8FFC4F7DAC1FCA06B2AD9136 /* scheme.min.js */; };
+		C896FC7CE844E58FA71376C966BA2608 /* irpf90.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E6C9EF7799818440131C52BDCB8B1015 /* irpf90.min.js */; };
+		C8BA826C3D15E5ED5F1A5141E9084468 /* diff.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 692DE69EC1FF96AAAB69A501EFF1D537 /* diff.min.js */; };
+		C8C98378579D83992F90613290235F06 /* darkula.min.css in Resources */ = {isa = PBXBuildFile; fileRef = BE675ABB16BA3F3567125B4EA92C617A /* darkula.min.css */; };
+		C9D80147D5DE0D44525CFE9F009126DE /* d.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 4FD44DE5B4F6B0B16AB2ED87F2E7AFB7 /* d.min.js */; };
+		CA48637B516449879E0E067AA319588D /* mercury.min.js in Resources */ = {isa = PBXBuildFile; fileRef = ADFCCA0097590D369D35F4586905D70D /* mercury.min.js */; };
+		CAD7212EBA0F634B430DEAF630C1BE77 /* rsl.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 8C338EBAA99A632E09DFEA9D61D9A04D /* rsl.min.js */; };
+		CC449DF2D6469C6AC8B023DE510B302E /* q.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 2AF780D1BCD175ACF09087D53CACA2B4 /* q.min.js */; };
+		CC64A86346189873439FEDCAC5E76A8A /* elm.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E3516E7A358AB9CA441F5FBF96E9CE7D /* elm.min.js */; };
+		CDDDDDD4D620445E3D3C7460033FB1CE /* Zip-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D964FC401819CBB586993789701A1AC8 /* Zip-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CF5DFD741F1AD648652D31F12D18A340 /* googlecode.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 11600E6D6FD63A34D5B88DC4E2293174 /* googlecode.min.css */; };
+		D0103D2E66D03C0BA07BE4BD53DECAEF /* NMSSHSessionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CBF9AE2E13D8CDAB6EB0F03534831D7 /* NMSSHSessionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0EE1133C03AC34F87E21809FBF72E35 /* cmake.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F50D4D855EE2786E3F37F6A047E7829F /* cmake.min.js */; };
+		D135DCEDCF345F1ED6AD64813F6E609A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FCFD333786871CE3161414FC63A7F4 /* Theme.swift */; };
+		D1C50851B15C9DEC723448806611B1E5 /* apache.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 5B7EDDB14E9ED2E3F2B01B0C5EE9DDE6 /* apache.min.js */; };
+		D3AEDF6FD08AF9083D38E5C40CB86BE9 /* stylus.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 2401DB5921B9560C88D68B70279E86BE /* stylus.min.js */; };
+		D665B74E49381E0ACDF940F52A2C45D9 /* atelier-savanna-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 52004793E1E487DD37F7003E818B11BB /* atelier-savanna-light.min.css */; };
+		D68F2CF3702164B5966D7862F54097B5 /* php.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 0128B52314D9F0F3CCD91B77432EA4CE /* php.min.js */; };
+		D6B9B41FA6F5B7127786E1C2C5FAE402 /* scala.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 2AED0EA556230191797CA5487562BE9D /* scala.min.js */; };
+		D759A9482F70788702E66AED83E74A1B /* asciidoc.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 53019F482D0DEEE7871014CFF6647135 /* asciidoc.min.js */; };
+		D79AA295E990D87D6B39B37BD50DD1DE /* rainbow.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 2A315AC1EC5CCBB8F8245045C54294DB /* rainbow.min.css */; };
+		DA85BB3FC6D0E25EAE9AABACEDEA2A40 /* NMSSHLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = ABC814981AB012A786F721DD0762D942 /* NMSSHLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DAA1D56D1E0A91EAF69B1C2064A7A3AC /* ada.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A0DC43BC5989C6113BEA815BC7B17110 /* ada.min.js */; };
+		DAF21E5A3353EB1F748457628E681A10 /* railscasts.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 966D496F3E91AD85AE0EF45D3638F123 /* railscasts.min.css */; };
+		DB1D71BEF6D9EA40E869F4ED60396320 /* vbscript-html.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 6EB1016E005716EAEC89E29DC2F0490A /* vbscript-html.min.js */; };
+		DC0B793022B4FDEF9BA61BD27F235FFB /* pony.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A179D2DE6B95BF50338CACD77B5C30B4 /* pony.min.js */; };
+		E1E0D71A14FA3FF998E665DD163CFB65 /* cos.min.js in Resources */ = {isa = PBXBuildFile; fileRef = AFA70833FC5F18A73C6A63D8CD8BA7B4 /* cos.min.js */; };
+		E2565B0E235B63C39C2BF5307DA12D93 /* atelier-sulphurpool-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 26C5789E4C6012254A733335F84C0866 /* atelier-sulphurpool-light.min.css */; };
+		E25A65C6063BCE9CC584FBA22D7C2678 /* mojolicious.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 78FD6BBDC9D2D900BF887E8D835205AE /* mojolicious.min.js */; };
+		E267A6AC47A179C6749F64BEC0A21AC5 /* dart.min.js in Resources */ = {isa = PBXBuildFile; fileRef = D1D85DC51D6F03FF73B00B78AB7D6305 /* dart.min.js */; };
+		E2ACA6D94E4F4823832F0FAA1BE0A444 /* foundation.min.css in Resources */ = {isa = PBXBuildFile; fileRef = B128DA8523F9C76437C6056AEE71EF05 /* foundation.min.css */; };
+		E325B473256B452B23D808FAE16ED00B /* NMSSHHostConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 31D0661D6F3FBB0C3DE57C80C11F2DDF /* NMSSHHostConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E333555C379FEDBBCAD202DC0C33025C /* Pods-fastSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC747AA900416BCD1B3E301D0BB31F8 /* Pods-fastSwift-dummy.m */; };
+		E3DC73ABA490EF1BBF36D4A6565CDB1C /* atelier-forest-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 1CF6494E4E05D7E6E83472EA3124703C /* atelier-forest-dark.min.css */; };
+		E492F9301A28A6F0E197558C25C8493D /* NMSSH-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D6BE6DB8F60131C8E458AF9B87905 /* NMSSH-dummy.m */; };
+		E54EED20B6BC49A60C8AC570E8F42FDF /* bnf.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F687636710EDEB70FDE334AFFBC538DA /* bnf.min.js */; };
+		E58C905BD3140A91F7D8A07BA30B0B5B /* atelier-seaside-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 77C3B9CB4ADCEE0B9B7044BF402EF473 /* atelier-seaside-dark.min.css */; };
+		E798AA5DA9BD567FC1A21A27B2D17151 /* cal.min.js in Resources */ = {isa = PBXBuildFile; fileRef = CC88669A623E6AE3E04E097F29D32C97 /* cal.min.js */; };
+		E89B392BD3CCEE0470EE659720994423 /* accesslog.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E643F262C29E53933A198DD707A9A90 /* accesslog.min.js */; };
+		ECC6D7C16E3F719ADC77B6CD03A8B6CF /* purebasic.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 9E301B5AB2702CCA5C81E506D7F6A8B8 /* purebasic.min.css */; };
+		EE72538AB92C44455881404252CCEC4F /* CodeAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F374FC1DCF861C9F02A870FFF239A9E9 /* CodeAttributedString.swift */; };
+		EF7C229E3B973EF2F125F6DB22B35F7E /* awk.min.js in Resources */ = {isa = PBXBuildFile; fileRef = ABD91B0B53BFDBEBD7872F4379BE9C26 /* awk.min.js */; };
+		EF9D7FEBB8001ED6E7697C184808C108 /* thrift.min.js in Resources */ = {isa = PBXBuildFile; fileRef = C2E4A00A1504072B194F2A008ACE8513 /* thrift.min.js */; };
+		EFD6226B7482C8944BF4DE1485AD7A5F /* atelier-cave-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 26698484A0C463E0B1CCACA751D86E4F /* atelier-cave-light.min.css */; };
+		F01E4ED0D9FD785080F4634EFE48705B /* Zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DACEABF8E2E03C32004D1F45F192CF7 /* Zip.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F0547C7D19EE3C50AA678E9360AEF7BB /* arta.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 58833559D1F820BAB6ACA62E25C2198F /* arta.min.css */; };
+		F1ED611162E0FEBBFDEACD3D26995682 /* smalltalk.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 5791912654E13E457974B1CD2C031AB7 /* smalltalk.min.js */; };
+		F3D5B42858E3C610FE6400C8948B12FB /* autohotkey.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 2AB1B243E2153A12B6A31FAB2AF8D606 /* autohotkey.min.js */; };
+		F45E543EA311E6D1F1926F2F645D736D /* libssh2_sftp.h in Headers */ = {isa = PBXBuildFile; fileRef = 707BF3085DB3608585540EC3CE5183D3 /* libssh2_sftp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC31FF653E1B7BD2E09F2A3241EAF244 /* gams.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 834E2E7F60DB81A8CBAEBE446D98D35A /* gams.min.js */; };
+		FC4041E14EC85D5FF3060D606C31E5CA /* NMSSHSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 8810AC5615522ABCCF277B8DCCC08267 /* NMSSHSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC6B2027268E6A812BD1F0687685888F /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AEE9389F62A09F15F11E07AF1C13788 /* zip.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FDD68C2725CE06A3CE30913F7C5FF5E8 /* fsharp.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 12BB535B10077EFB5DA3B5F1C33BCD29 /* fsharp.min.js */; };
+		FEF19C521E0F3334A6515876B0F08BB6 /* magula.min.css in Resources */ = {isa = PBXBuildFile; fileRef = C16D6644CDCB40F8516B079AC2E57EF5 /* magula.min.css */; };
+		FF2282251D208FBA8DD7120049B1BFAC /* haxe.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EAD4087B2F0163EFCA8DD655B0FC2E5E /* haxe.min.js */; };
+		FFC9B601322FFCB121E3807E539BB564 /* maxima.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 7F964D40887D514A4555AB7772D41FFE /* maxima.min.js */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		24C1C193275A0D5C0ED74B919AF65FCC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 215D3232F1F6549F2E898A121973AED8;
+			remoteInfo = NMSSH;
+		};
+		3B6B1106A63FCB1B227F1E58B9A1FB18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C9ABFCA2B8BFB8BD4BAA30C9B9712B74;
+			remoteInfo = Highlightr;
+		};
+		B9DE427AF696A7D9395F94CD2BF632D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A170BD7773DD723350E0B8187059DD8;
+			remoteInfo = Zip;
+		};
+		F0527E2335298D6C261F398569F33CAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 194979075283092A2E49812950E345A2;
+			remoteInfo = TZKeyboardPop;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00EF6B0705A4F786D196CB4400E8C7A0 /* monkey.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = monkey.min.js; path = Pod/Assets/Highlighter/languages/monkey.min.js; sourceTree = "<group>"; };
+		0128B52314D9F0F3CCD91B77432EA4CE /* php.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = php.min.js; path = Pod/Assets/Highlighter/languages/php.min.js; sourceTree = "<group>"; };
+		01D25A75C50BFDDA1E8DCCDB6EC969DA /* Pods-fastSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-fastSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		06A23C8A02AB665764FF6517FE9435FF /* Pods-fastSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-fastSwift.release.xcconfig"; sourceTree = "<group>"; };
+		08628BFCCE05FBB441110941E30DE7E1 /* atom-one-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atom-one-light.min.css"; path = "Pod/Assets/styles/atom-one-light.min.css"; sourceTree = "<group>"; };
+		0873BA4DB1A6057430E3E16FCABB7C85 /* dns.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = dns.min.js; path = Pod/Assets/Highlighter/languages/dns.min.js; sourceTree = "<group>"; };
+		08B67D9BF90FC8569DD718F71B546773 /* atelier-forest-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-forest-light.min.css"; path = "Pod/Assets/styles/atelier-forest-light.min.css"; sourceTree = "<group>"; };
+		0997D9B9DCFB9A93589C2ABC8AFD45F5 /* Zip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Zip.framework; path = Zip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A711CDDA94AC3A6440B3F061AA48472 /* atelier-heath-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-heath-dark.min.css"; path = "Pod/Assets/styles/atelier-heath-dark.min.css"; sourceTree = "<group>"; };
+		0E6FFA9ED54BD1261C2FD36AB4FEEBCF /* TZKeyboardPop-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TZKeyboardPop-dummy.m"; sourceTree = "<group>"; };
+		0EC747AA900416BCD1B3E301D0BB31F8 /* Pods-fastSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-fastSwift-dummy.m"; sourceTree = "<group>"; };
+		11600E6D6FD63A34D5B88DC4E2293174 /* googlecode.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = googlecode.min.css; path = Pod/Assets/styles/googlecode.min.css; sourceTree = "<group>"; };
+		1161F666C09FF79AC5E788848086F51A /* crmsh.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = crmsh.min.js; path = Pod/Assets/Highlighter/languages/crmsh.min.js; sourceTree = "<group>"; };
+		119369080CD5B56897DE9629F88A648B /* Highlightr-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Highlightr-dummy.m"; sourceTree = "<group>"; };
+		11EDF37ACC21FE5A08BE024E8853C806 /* atelier-lakeside-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-lakeside-dark.min.css"; path = "Pod/Assets/styles/atelier-lakeside-dark.min.css"; sourceTree = "<group>"; };
+		12BB535B10077EFB5DA3B5F1C33BCD29 /* fsharp.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = fsharp.min.js; path = Pod/Assets/Highlighter/languages/fsharp.min.js; sourceTree = "<group>"; };
+		13A3F511903F97185E10A1C6749FC3DB /* haml.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = haml.min.js; path = Pod/Assets/Highlighter/languages/haml.min.js; sourceTree = "<group>"; };
+		14993A290F5E9DEA82D7C39EB4D69FCD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15480286F027A50487B9549228FA72A2 /* atelier-dune-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-dune-dark.min.css"; path = "Pod/Assets/styles/atelier-dune-dark.min.css"; sourceTree = "<group>"; };
+		15E05215667B57F8593BA8FD6F03A63A /* actionscript.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = actionscript.min.js; path = Pod/Assets/Highlighter/languages/actionscript.min.js; sourceTree = "<group>"; };
+		17C40A74C3C09A53B15945654990AB6F /* nginx.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = nginx.min.js; path = Pod/Assets/Highlighter/languages/nginx.min.js; sourceTree = "<group>"; };
+		1AB93D918740EB71FE663777E41D95A9 /* Pods-fastSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-fastSwift.modulemap"; sourceTree = "<group>"; };
+		1B1AE398419B6DCA240E2991FFFFA9D4 /* json.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = json.min.js; path = Pod/Assets/Highlighter/languages/json.min.js; sourceTree = "<group>"; };
+		1B61669D45C322B44278C1EADEB5CDD3 /* golo.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = golo.min.js; path = Pod/Assets/Highlighter/languages/golo.min.js; sourceTree = "<group>"; };
+		1BBC83B74C39947872EA644D955DE912 /* bash.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = bash.min.js; path = Pod/Assets/Highlighter/languages/bash.min.js; sourceTree = "<group>"; };
+		1C8D97A56C3F2B571D91281B0E84A395 /* http.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = http.min.js; path = Pod/Assets/Highlighter/languages/http.min.js; sourceTree = "<group>"; };
+		1C9A889DEF1CD400D703A913A1A98BF0 /* fortran.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = fortran.min.js; path = Pod/Assets/Highlighter/languages/fortran.min.js; sourceTree = "<group>"; };
+		1CC88947E2ED2780DB871EFA57D90EBE /* NMSFTP.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSFTP.h; path = NMSSH/NMSFTP.h; sourceTree = "<group>"; };
+		1CF6494E4E05D7E6E83472EA3124703C /* atelier-forest-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-forest-dark.min.css"; path = "Pod/Assets/styles/atelier-forest-dark.min.css"; sourceTree = "<group>"; };
+		1DACEABF8E2E03C32004D1F45F192CF7 /* Zip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Zip.h; path = Zip/Zip.h; sourceTree = "<group>"; };
+		1E4DFC48C9D1A5BA80D05225933C5BA6 /* less.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = less.min.js; path = Pod/Assets/Highlighter/languages/less.min.js; sourceTree = "<group>"; };
+		20351871E03B60BE704ACE7759F5B9AB /* handlebars.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = handlebars.min.js; path = Pod/Assets/Highlighter/languages/handlebars.min.js; sourceTree = "<group>"; };
+		21B5BF6184C2405EDA6E9E2742F7DB32 /* arduino-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "arduino-light.min.css"; path = "Pod/Assets/styles/arduino-light.min.css"; sourceTree = "<group>"; };
+		2246025C189CA309C86100644D584BF5 /* hopscotch.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = hopscotch.min.css; path = Pod/Assets/styles/hopscotch.min.css; sourceTree = "<group>"; };
+		23398BFF8FE3D7260F516D40EBC1CA09 /* hsp.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = hsp.min.js; path = Pod/Assets/Highlighter/languages/hsp.min.js; sourceTree = "<group>"; };
+		2401DB5921B9560C88D68B70279E86BE /* stylus.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = stylus.min.js; path = Pod/Assets/Highlighter/languages/stylus.min.js; sourceTree = "<group>"; };
+		24EFBE497F630EDD191E8B9A0D12398D /* smali.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = smali.min.js; path = Pod/Assets/Highlighter/languages/smali.min.js; sourceTree = "<group>"; };
+		258621379A36457C24C895774A464407 /* arduino.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = arduino.min.js; path = Pod/Assets/Highlighter/languages/arduino.min.js; sourceTree = "<group>"; };
+		26698484A0C463E0B1CCACA751D86E4F /* atelier-cave-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-cave-light.min.css"; path = "Pod/Assets/styles/atelier-cave-light.min.css"; sourceTree = "<group>"; };
+		26C5789E4C6012254A733335F84C0866 /* atelier-sulphurpool-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-sulphurpool-light.min.css"; path = "Pod/Assets/styles/atelier-sulphurpool-light.min.css"; sourceTree = "<group>"; };
+		27A2FFDD043F73272FDC1340B68F835C /* NMSSH-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NMSSH-umbrella.h"; sourceTree = "<group>"; };
+		27DBC010AD4713A1C8C4B77607859517 /* xquery.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = xquery.min.js; path = Pod/Assets/Highlighter/languages/xquery.min.js; sourceTree = "<group>"; };
+		2819E20CDBF6008EACA292540A2CDB50 /* dracula.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = dracula.min.css; path = Pod/Assets/styles/dracula.min.css; sourceTree = "<group>"; };
+		29B0FDAEE5FFC732348B3764B58EFE66 /* oxygene.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = oxygene.min.js; path = Pod/Assets/Highlighter/languages/oxygene.min.js; sourceTree = "<group>"; };
+		2A315AC1EC5CCBB8F8245045C54294DB /* rainbow.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = rainbow.min.css; path = Pod/Assets/styles/rainbow.min.css; sourceTree = "<group>"; };
+		2A3AD1D48CE01EDB9E937E7F3E014358 /* autoit.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = autoit.min.js; path = Pod/Assets/Highlighter/languages/autoit.min.js; sourceTree = "<group>"; };
+		2AB1B243E2153A12B6A31FAB2AF8D606 /* autohotkey.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = autohotkey.min.js; path = Pod/Assets/Highlighter/languages/autohotkey.min.js; sourceTree = "<group>"; };
+		2AED0EA556230191797CA5487562BE9D /* scala.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = scala.min.js; path = Pod/Assets/Highlighter/languages/scala.min.js; sourceTree = "<group>"; };
+		2AF780D1BCD175ACF09087D53CACA2B4 /* q.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = q.min.js; path = Pod/Assets/Highlighter/languages/q.min.js; sourceTree = "<group>"; };
+		2B2ECE2BFD81777BE1EDE12049728B67 /* armasm.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = armasm.min.js; path = Pod/Assets/Highlighter/languages/armasm.min.js; sourceTree = "<group>"; };
+		2B32AE15D72073081CC09913EDC2D56D /* tcl.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = tcl.min.js; path = Pod/Assets/Highlighter/languages/tcl.min.js; sourceTree = "<group>"; };
+		2B35CD7B94C5DFA42E396656A335036B /* NMSSH+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NMSSH+Protected.h"; path = "NMSSH/Config/NMSSH+Protected.h"; sourceTree = "<group>"; };
+		2BD1BDEF49B71576AE15ABD3E5A25D61 /* atelier-estuary-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-estuary-light.min.css"; path = "Pod/Assets/styles/atelier-estuary-light.min.css"; sourceTree = "<group>"; };
+		2BFFFC5A020C055949697E5298F40448 /* twig.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = twig.min.js; path = Pod/Assets/Highlighter/languages/twig.min.js; sourceTree = "<group>"; };
+		2CE3ED973A07BF263D6F5911BDB8B2B6 /* sml.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = sml.min.js; path = Pod/Assets/Highlighter/languages/sml.min.js; sourceTree = "<group>"; };
+		31D0661D6F3FBB0C3DE57C80C11F2DDF /* NMSSHHostConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHHostConfig.h; path = NMSSH/NMSSHHostConfig.h; sourceTree = "<group>"; };
+		321DA4FBF5721A7FB806D2982ED127C8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		32E61D36DC8E73D0C3CBF5B2973F349E /* gradle.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = gradle.min.js; path = Pod/Assets/Highlighter/languages/gradle.min.js; sourceTree = "<group>"; };
+		35ADE91A6FF3EBB379E2E634A3E71B4A /* Pods_fastSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_fastSwift.framework; path = "Pods-fastSwift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		36CF872A73982D4194954E8788A7EC2B /* clojure.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = clojure.min.js; path = Pod/Assets/Highlighter/languages/clojure.min.js; sourceTree = "<group>"; };
+		381179505BF1A271230B1D5C4A74C932 /* ascetic.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = ascetic.min.css; path = Pod/Assets/styles/ascetic.min.css; sourceTree = "<group>"; };
+		3902E44D434A5AA3BD6A7BB00A387251 /* ebnf.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = ebnf.min.js; path = Pod/Assets/Highlighter/languages/ebnf.min.js; sourceTree = "<group>"; };
+		3985CA26B8158E87C88E9200A933CC60 /* crystal.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = crystal.min.js; path = Pod/Assets/Highlighter/languages/crystal.min.js; sourceTree = "<group>"; };
+		3A8589C17085AB9867F6FA873B85AE7D /* libcrypto.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libcrypto.a; path = "NMSSH-iOS/Libraries/lib/libcrypto.a"; sourceTree = "<group>"; };
+		3AC464B7F011305331E40ACCE852F4D5 /* ZipUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZipUtilities.swift; path = Zip/ZipUtilities.swift; sourceTree = "<group>"; };
+		3AE44958B17D160BBA6F2ADB8C165534 /* prolog.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = prolog.min.js; path = Pod/Assets/Highlighter/languages/prolog.min.js; sourceTree = "<group>"; };
+		3B4CCEDC76D10137BEE5EF68CD415AFB /* x86asm.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = x86asm.min.js; path = Pod/Assets/Highlighter/languages/x86asm.min.js; sourceTree = "<group>"; };
+		3B532D13B16DC2580248BAA97E5E54D9 /* 1c.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = 1c.min.js; path = Pod/Assets/Highlighter/languages/1c.min.js; sourceTree = "<group>"; };
+		3BB488838CAF27A6AFA27E7896D2CF2D /* codepen-embed.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "codepen-embed.min.css"; path = "Pod/Assets/styles/codepen-embed.min.css"; sourceTree = "<group>"; };
+		3F8655BF5AD8987B2D75FDD970BB8E3E /* profile.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = profile.min.js; path = Pod/Assets/Highlighter/languages/profile.min.js; sourceTree = "<group>"; };
+		400D06CF24A673401C43799231E9084B /* vim.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = vim.min.js; path = Pod/Assets/Highlighter/languages/vim.min.js; sourceTree = "<group>"; };
+		4065927F7A6865C25AA02F5BFCB31D58 /* socket_helper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = socket_helper.h; path = NMSSH/Config/socket_helper.h; sourceTree = "<group>"; };
+		40A35C2FEC419EEC436D965A0260F2FB /* Zip-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Zip-dummy.m"; sourceTree = "<group>"; };
+		40AE70E3451D2B214FC02DA696DCEFE1 /* sql.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = sql.min.js; path = Pod/Assets/Highlighter/languages/sql.min.js; sourceTree = "<group>"; };
+		412DB2A1FF1CD035FE8BAA691D877742 /* github-gist.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "github-gist.min.css"; path = "Pod/Assets/styles/github-gist.min.css"; sourceTree = "<group>"; };
+		42277B3AFD33B764911922BBF592D866 /* dsconfig.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = dsconfig.min.js; path = Pod/Assets/Highlighter/languages/dsconfig.min.js; sourceTree = "<group>"; };
+		42C48ED33D1544CDB05BA445AC665D0F /* Pods-fastSwift-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-fastSwift-frameworks.sh"; sourceTree = "<group>"; };
+		45634AC4BDA75FE8057E0228B9676216 /* NMSSHLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHLogger.m; path = NMSSH/Config/NMSSHLogger.m; sourceTree = "<group>"; };
+		4611FE53BB2260FA4C68035259EE1F82 /* ldif.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = ldif.min.js; path = Pod/Assets/Highlighter/languages/ldif.min.js; sourceTree = "<group>"; };
+		463C54802716554D28B841AB6FA608AF /* axapta.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = axapta.min.js; path = Pod/Assets/Highlighter/languages/axapta.min.js; sourceTree = "<group>"; };
+		4683D67041A1C1F9ED64AF539C2ED4E9 /* excel.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = excel.min.js; path = Pod/Assets/Highlighter/languages/excel.min.js; sourceTree = "<group>"; };
+		468688E68503787D869450ABB538B3CD /* qtcreator_dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = qtcreator_dark.min.css; path = Pod/Assets/styles/qtcreator_dark.min.css; sourceTree = "<group>"; };
+		46BC42C214FF9F1F53F3506B4A3B65B0 /* xt256.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = xt256.min.css; path = Pod/Assets/styles/xt256.min.css; sourceTree = "<group>"; };
+		49B3839616C21718B3E65FA69045A23F /* androidstudio.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = androidstudio.min.css; path = Pod/Assets/styles/androidstudio.min.css; sourceTree = "<group>"; };
+		49C67DE48F97047E9D799CFC9F7D9C38 /* tex.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = tex.min.js; path = Pod/Assets/Highlighter/languages/tex.min.js; sourceTree = "<group>"; };
+		4A749DA74C74C276AFB512AE4B27FFAD /* step21.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = step21.min.js; path = Pod/Assets/Highlighter/languages/step21.min.js; sourceTree = "<group>"; };
+		4B70C49D7E2DF39CD1BB4FB9BA891162 /* ceylon.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = ceylon.min.js; path = Pod/Assets/Highlighter/languages/ceylon.min.js; sourceTree = "<group>"; };
+		4C48573BEFC7FCBC44E5FA24AF94D69C /* color-brewer.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "color-brewer.min.css"; path = "Pod/Assets/styles/color-brewer.min.css"; sourceTree = "<group>"; };
+		4CFFED40707BE5823A63528CB236BF55 /* inform7.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = inform7.min.js; path = Pod/Assets/Highlighter/languages/inform7.min.js; sourceTree = "<group>"; };
+		4D30F3F3CCB48603F9A57039019B6D90 /* mono-blue.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "mono-blue.min.css"; path = "Pod/Assets/styles/mono-blue.min.css"; sourceTree = "<group>"; };
+		4D7025AC2BF122F134DD6C1D1AE83D8E /* mipsasm.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = mipsasm.min.js; path = Pod/Assets/Highlighter/languages/mipsasm.min.js; sourceTree = "<group>"; };
+		4DB8DE6DC7101EF33379CB5D91277CD0 /* tomorrow-night-bright.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "tomorrow-night-bright.min.css"; path = "Pod/Assets/styles/tomorrow-night-bright.min.css"; sourceTree = "<group>"; };
+		4E41701505FE42BDAFAE48819E530225 /* tomorrow-night-eighties.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "tomorrow-night-eighties.min.css"; path = "Pod/Assets/styles/tomorrow-night-eighties.min.css"; sourceTree = "<group>"; };
+		4EA2203D72462D4D859C6778F4CC4B3D /* libssh2.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libssh2.a; path = "NMSSH-iOS/Libraries/lib/libssh2.a"; sourceTree = "<group>"; };
+		4EDBACC612BEEDE8D3E84CC30FA7EC01 /* default.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = default.min.css; path = Pod/Assets/styles/default.min.css; sourceTree = "<group>"; };
+		4FD44DE5B4F6B0B16AB2ED87F2E7AFB7 /* d.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = d.min.js; path = Pod/Assets/Highlighter/languages/d.min.js; sourceTree = "<group>"; };
+		507087925B0FB07F662BD78C4D337AD0 /* Highlightr.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Highlightr.modulemap; sourceTree = "<group>"; };
+		51785F83112CBB7741C07BA37D77C5DA /* Pods-fastSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-fastSwift-umbrella.h"; sourceTree = "<group>"; };
+		519A56833182395F2C77CDA04BC08679 /* Zip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Zip.swift; path = Zip/Zip.swift; sourceTree = "<group>"; };
+		52004793E1E487DD37F7003E818B11BB /* atelier-savanna-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-savanna-light.min.css"; path = "Pod/Assets/styles/atelier-savanna-light.min.css"; sourceTree = "<group>"; };
+		520E800F435B13A6889CE09BE2E6DF48 /* libssl.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libssl.a; path = "NMSSH-iOS/Libraries/lib/libssl.a"; sourceTree = "<group>"; };
+		53019F482D0DEEE7871014CFF6647135 /* asciidoc.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = asciidoc.min.js; path = Pod/Assets/Highlighter/languages/asciidoc.min.js; sourceTree = "<group>"; };
+		547AABE320F9CA317F094DD62E5F137A /* zephir.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = zephir.min.js; path = Pod/Assets/Highlighter/languages/zephir.min.js; sourceTree = "<group>"; };
+		554A4B24029D804BD6270FE62592A9F8 /* Highlightr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Highlightr.framework; path = Highlightr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55CF6F10696FC34365EC932839174CBF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5791912654E13E457974B1CD2C031AB7 /* smalltalk.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = smalltalk.min.js; path = Pod/Assets/Highlighter/languages/smalltalk.min.js; sourceTree = "<group>"; };
+		586C701F90327BF01FC0B624DE53AC1D /* TZKeyboardPop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TZKeyboardPop.framework; path = TZKeyboardPop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58833559D1F820BAB6ACA62E25C2198F /* arta.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = arta.min.css; path = Pod/Assets/styles/arta.min.css; sourceTree = "<group>"; };
+		59C2BFFA0F60CB453C2F5902FC3B9C86 /* monokai-sublime.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "monokai-sublime.min.css"; path = "Pod/Assets/styles/monokai-sublime.min.css"; sourceTree = "<group>"; };
+		5A74DA06AB93B10A4272A3DBA714DE59 /* TZKeyboardPop.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TZKeyboardPop.m; sourceTree = "<group>"; };
+		5ACD6E777F53B757C67F4F76B0D8370F /* rust.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = rust.min.js; path = Pod/Assets/Highlighter/languages/rust.min.js; sourceTree = "<group>"; };
+		5ACD9987B6277C4A882A5F80808F05C7 /* livecodeserver.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = livecodeserver.min.js; path = Pod/Assets/Highlighter/languages/livecodeserver.min.js; sourceTree = "<group>"; };
+		5B2EC551D31A08A29E4BC1D9C0D2D624 /* yaml.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = yaml.min.js; path = Pod/Assets/Highlighter/languages/yaml.min.js; sourceTree = "<group>"; };
+		5B7EDDB14E9ED2E3F2B01B0C5EE9DDE6 /* apache.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = apache.min.js; path = Pod/Assets/Highlighter/languages/apache.min.js; sourceTree = "<group>"; };
+		5BBFDC61D69FE3373C5536A76DAFB077 /* clojure-repl.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = "clojure-repl.min.js"; path = "Pod/Assets/Highlighter/languages/clojure-repl.min.js"; sourceTree = "<group>"; };
+		5BC8DBAD5D8F2E6C835E320C220E50D7 /* NMSSHHostConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHHostConfig.m; path = NMSSH/NMSSHHostConfig.m; sourceTree = "<group>"; };
+		5C18DBF55B0254D2A76461C3091C6BF7 /* paraiso-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "paraiso-light.min.css"; path = "Pod/Assets/styles/paraiso-light.min.css"; sourceTree = "<group>"; };
+		5CBF9AE2E13D8CDAB6EB0F03534831D7 /* NMSSHSessionDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHSessionDelegate.h; path = NMSSH/Protocols/NMSSHSessionDelegate.h; sourceTree = "<group>"; };
+		5CCBE92EAA67D3FDFB2D1D9DFB6F18F1 /* lasso.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lasso.min.js; path = Pod/Assets/Highlighter/languages/lasso.min.js; sourceTree = "<group>"; };
+		5D2948A7BC67ADC27FB68ACD170B2EB7 /* nix.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = nix.min.js; path = Pod/Assets/Highlighter/languages/nix.min.js; sourceTree = "<group>"; };
+		5E4D6BE6DB8F60131C8E458AF9B87905 /* NMSSH-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NMSSH-dummy.m"; sourceTree = "<group>"; };
+		5E643F262C29E53933A198DD707A9A90 /* accesslog.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = accesslog.min.js; path = Pod/Assets/Highlighter/languages/accesslog.min.js; sourceTree = "<group>"; };
+		5E8A4E00C6D2BD3CE60B704215EF364E /* stata.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = stata.min.js; path = Pod/Assets/Highlighter/languages/stata.min.js; sourceTree = "<group>"; };
+		5EC46F284423E796C1A7BE465D59997A /* atelier-plateau-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-plateau-dark.min.css"; path = "Pod/Assets/styles/atelier-plateau-dark.min.css"; sourceTree = "<group>"; };
+		60147FC39176EA96C8533F5A77C771B9 /* qtcreator_light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = qtcreator_light.min.css; path = Pod/Assets/styles/qtcreator_light.min.css; sourceTree = "<group>"; };
+		61B9902F5B8CDCACC7844588F064E583 /* openscad.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = openscad.min.js; path = Pod/Assets/Highlighter/languages/openscad.min.js; sourceTree = "<group>"; };
+		61F328543CAD1A7AB1C51E0EB6938EAE /* aspectj.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = aspectj.min.js; path = Pod/Assets/Highlighter/languages/aspectj.min.js; sourceTree = "<group>"; };
+		6256D0D61C64CB1D2146175C38AB0455 /* NMSSHChannelDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHChannelDelegate.h; path = NMSSH/Protocols/NMSSHChannelDelegate.h; sourceTree = "<group>"; };
+		62BACF5627477F62715239F50F0C2D86 /* gcode.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = gcode.min.js; path = Pod/Assets/Highlighter/languages/gcode.min.js; sourceTree = "<group>"; };
+		6368A5FF5DF9A60BB1B6690201D17E8D /* xcode.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = xcode.min.css; path = Pod/Assets/styles/xcode.min.css; sourceTree = "<group>"; };
+		63B1020853671DB3A556C67EFD6BD89A /* kotlin.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = kotlin.min.js; path = Pod/Assets/Highlighter/languages/kotlin.min.js; sourceTree = "<group>"; };
+		6453A55AA74BA365BDCCCA6C242CDD6F /* scss.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = scss.min.js; path = Pod/Assets/Highlighter/languages/scss.min.js; sourceTree = "<group>"; };
+		656EAF2D135FEB6F723FD490147208B4 /* Pods-fastSwift-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-fastSwift-acknowledgements.markdown"; sourceTree = "<group>"; };
+		688AEED0F41753D3AE3443A947AFBCE8 /* mathematica.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = mathematica.min.js; path = Pod/Assets/Highlighter/languages/mathematica.min.js; sourceTree = "<group>"; };
+		689F2BA691A8ECB14E08EA2B3DACF18E /* atelier-cave-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-cave-dark.min.css"; path = "Pod/Assets/styles/atelier-cave-dark.min.css"; sourceTree = "<group>"; };
+		69034627C59ABD8CEA99F04F23CD9E16 /* capnproto.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = capnproto.min.js; path = Pod/Assets/Highlighter/languages/capnproto.min.js; sourceTree = "<group>"; };
+		692DE69EC1FF96AAAB69A501EFF1D537 /* diff.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = diff.min.js; path = Pod/Assets/Highlighter/languages/diff.min.js; sourceTree = "<group>"; };
+		6B097459C843B8E6AD11D788CE8C4079 /* brown-paper.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "brown-paper.min.css"; path = "Pod/Assets/styles/brown-paper.min.css"; sourceTree = "<group>"; };
+		6B47E0CA834752D33E292B826155BB13 /* htmlbars.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = htmlbars.min.js; path = Pod/Assets/Highlighter/languages/htmlbars.min.js; sourceTree = "<group>"; };
+		6BB22CD2AAE4F062A7CDA2E213C68442 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		6CB92E8A36A754A5F34A9E62C0D2D955 /* vbscript.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = vbscript.min.js; path = Pod/Assets/Highlighter/languages/vbscript.min.js; sourceTree = "<group>"; };
+		6D73643850FBF09EA089744991905921 /* glsl.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = glsl.min.js; path = Pod/Assets/Highlighter/languages/glsl.min.js; sourceTree = "<group>"; };
+		6EB1016E005716EAEC89E29DC2F0490A /* vbscript-html.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = "vbscript-html.min.js"; path = "Pod/Assets/Highlighter/languages/vbscript-html.min.js"; sourceTree = "<group>"; };
+		6EBFE89900719BDD37CEDC680EC70FF7 /* Pods-fastSwift-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-fastSwift-acknowledgements.plist"; sourceTree = "<group>"; };
+		6FA0E0CC5C738989461E3630DB6B645F /* julia.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = julia.min.js; path = Pod/Assets/Highlighter/languages/julia.min.js; sourceTree = "<group>"; };
+		707BF3085DB3608585540EC3CE5183D3 /* libssh2_sftp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2_sftp.h; path = "NMSSH-iOS/Libraries/include/libssh2/libssh2_sftp.h"; sourceTree = "<group>"; };
+		70833685C95C0C19D63B8C9517B13B15 /* coffeescript.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = coffeescript.min.js; path = Pod/Assets/Highlighter/languages/coffeescript.min.js; sourceTree = "<group>"; };
+		709A97BFF3F6599C7AEFCAB8A1C7A44C /* clean.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = clean.min.js; path = Pod/Assets/Highlighter/languages/clean.min.js; sourceTree = "<group>"; };
+		711BAE335E2AB7A90837F1C489A74526 /* atelier-plateau-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-plateau-light.min.css"; path = "Pod/Assets/styles/atelier-plateau-light.min.css"; sourceTree = "<group>"; };
+		71AA03405C2377DDB9519C72462C7E80 /* csp.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = csp.min.js; path = Pod/Assets/Highlighter/languages/csp.min.js; sourceTree = "<group>"; };
+		71D57B36F64579DB120F9A5752837305 /* erb.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = erb.min.js; path = Pod/Assets/Highlighter/languages/erb.min.js; sourceTree = "<group>"; };
+		72F5BB7E3EF254E3C745217F35A7CD1C /* ruleslanguage.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = ruleslanguage.min.js; path = Pod/Assets/Highlighter/languages/ruleslanguage.min.js; sourceTree = "<group>"; };
+		739FA5265B14AAC7ADD999793546D8AC /* NMSFTPFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSFTPFile.h; path = NMSSH/NMSFTPFile.h; sourceTree = "<group>"; };
+		758FA967D7CD1027B34ED1A077A2F7A5 /* makefile.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = makefile.min.js; path = Pod/Assets/Highlighter/languages/makefile.min.js; sourceTree = "<group>"; };
+		75D0320AFD38547462208EDC53389624 /* NMSSH-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NMSSH-prefix.pch"; sourceTree = "<group>"; };
+		760233C11E26CFDF4855414739989424 /* kimbie.dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = kimbie.dark.min.css; path = Pod/Assets/styles/kimbie.dark.min.css; sourceTree = "<group>"; };
+		762384BF1C22C752F638A81C0BE4B751 /* avrasm.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = avrasm.min.js; path = Pod/Assets/Highlighter/languages/avrasm.min.js; sourceTree = "<group>"; };
+		77A4114A47AE6A93B1CC3EC317028C30 /* powershell.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = powershell.min.js; path = Pod/Assets/Highlighter/languages/powershell.min.js; sourceTree = "<group>"; };
+		77C3B9CB4ADCEE0B9B7044BF402EF473 /* atelier-seaside-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-seaside-dark.min.css"; path = "Pod/Assets/styles/atelier-seaside-dark.min.css"; sourceTree = "<group>"; };
+		7856D5BA5CDA1778BCF2870FCCFE1F3D /* tomorrow-night.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "tomorrow-night.min.css"; path = "Pod/Assets/styles/tomorrow-night.min.css"; sourceTree = "<group>"; };
+		78FD6BBDC9D2D900BF887E8D835205AE /* mojolicious.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = mojolicious.min.js; path = Pod/Assets/Highlighter/languages/mojolicious.min.js; sourceTree = "<group>"; };
+		7B7EBD2120C30CE6FF2737B36374F3B9 /* java.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = java.min.js; path = Pod/Assets/Highlighter/languages/java.min.js; sourceTree = "<group>"; };
+		7C7A13828BE769F747BF8A4F44E3B8C6 /* objectivec.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = objectivec.min.js; path = Pod/Assets/Highlighter/languages/objectivec.min.js; sourceTree = "<group>"; };
+		7D04934CBC8E979367B066F52BE345E2 /* NMSSH.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NMSSH.xcconfig; sourceTree = "<group>"; };
+		7D26504F6878163F6F994FAD6C050ADC /* unzip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = unzip.h; path = Zip/minizip/unzip.h; sourceTree = "<group>"; };
+		7F18AD6E24EA7B3820FD0E634255E472 /* gauss.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = gauss.min.js; path = Pod/Assets/Highlighter/languages/gauss.min.js; sourceTree = "<group>"; };
+		7F8D9B500143B3CCADEC3BCA5B7A8EFF /* TZKeyboardPop.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TZKeyboardPop.modulemap; sourceTree = "<group>"; };
+		7F964D40887D514A4555AB7772D41FFE /* maxima.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = maxima.min.js; path = Pod/Assets/Highlighter/languages/maxima.min.js; sourceTree = "<group>"; };
+		7FF60C16C5A1284B5F3BD253CFAD41C9 /* typescript.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = typescript.min.js; path = Pod/Assets/Highlighter/languages/typescript.min.js; sourceTree = "<group>"; };
+		813C2E83B6AFBB2078BD39F8E6124870 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81B402749627CA342C41EA7237313C9F /* dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = dark.min.css; path = Pod/Assets/styles/dark.min.css; sourceTree = "<group>"; };
+		824B494D490D551275F7A0F90F1C6952 /* groovy.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = groovy.min.js; path = Pod/Assets/Highlighter/languages/groovy.min.js; sourceTree = "<group>"; };
+		82704F9FB681715C132DA156377ED7F0 /* highlight.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = highlight.min.js; path = Pod/Assets/Highlighter/highlight.min.js; sourceTree = "<group>"; };
+		82982ADBBC1E77B9708FFCB347859F17 /* atelier-lakeside-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-lakeside-light.min.css"; path = "Pod/Assets/styles/atelier-lakeside-light.min.css"; sourceTree = "<group>"; };
+		834E2E7F60DB81A8CBAEBE446D98D35A /* gams.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = gams.min.js; path = Pod/Assets/Highlighter/languages/gams.min.js; sourceTree = "<group>"; };
+		83C87AEC753D9146DC812A236C52A42D /* matlab.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = matlab.min.js; path = Pod/Assets/Highlighter/languages/matlab.min.js; sourceTree = "<group>"; };
+		8474F8926079D8F3578F6EA5766EC01E /* atelier-seaside-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-seaside-light.min.css"; path = "Pod/Assets/styles/atelier-seaside-light.min.css"; sourceTree = "<group>"; };
+		847DAD50E8CA7C37300079C2F2E32B51 /* QuickZip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuickZip.swift; path = Zip/QuickZip.swift; sourceTree = "<group>"; };
+		848F0A70BAD7E2E09F55675527A6B56E /* processing.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = processing.min.js; path = Pod/Assets/Highlighter/languages/processing.min.js; sourceTree = "<group>"; };
+		857DC0DDD9FED875A45EF6A9A980DFDA /* NMSSHChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHChannel.h; path = NMSSH/NMSSHChannel.h; sourceTree = "<group>"; };
+		8810AC5615522ABCCF277B8DCCC08267 /* NMSSHSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHSession.h; path = NMSSH/NMSSHSession.h; sourceTree = "<group>"; };
+		89C5AA151419F6995F6474A16F604B31 /* NMSFTPFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSFTPFile.m; path = NMSSH/NMSFTPFile.m; sourceTree = "<group>"; };
+		89C5B5B5CA5F1D41C9C4E180CBCF75D4 /* tomorrow.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = tomorrow.min.css; path = Pod/Assets/styles/tomorrow.min.css; sourceTree = "<group>"; };
+		8A217DD8028440B8B2BD40E6CE76C51B /* ioapi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = Zip/minizip/ioapi.h; sourceTree = "<group>"; };
+		8ABDE2688C72E154C241F72DFCECB044 /* markdown.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = markdown.min.js; path = Pod/Assets/Highlighter/languages/markdown.min.js; sourceTree = "<group>"; };
+		8AEE9389F62A09F15F11E07AF1C13788 /* zip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = zip.h; path = Zip/minizip/zip.h; sourceTree = "<group>"; };
+		8B241C360CDDC39FA3A98C982CC5FE53 /* docco.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = docco.min.css; path = Pod/Assets/styles/docco.min.css; sourceTree = "<group>"; };
+		8B5D493366D9F96123D4C4B106F7B7A5 /* atelier-estuary-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-estuary-dark.min.css"; path = "Pod/Assets/styles/atelier-estuary-dark.min.css"; sourceTree = "<group>"; };
+		8B80376707D4B580EE60B82E8DF051B8 /* cs.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = cs.min.js; path = Pod/Assets/Highlighter/languages/cs.min.js; sourceTree = "<group>"; };
+		8C338EBAA99A632E09DFEA9D61D9A04D /* rsl.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = rsl.min.js; path = Pod/Assets/Highlighter/languages/rsl.min.js; sourceTree = "<group>"; };
+		8E7E307C5630CC3397039A711C59FDCC /* NMSSHSession.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHSession.m; path = NMSSH/NMSSHSession.m; sourceTree = "<group>"; };
+		8F762D07A08A500904F9F23E6466A3D6 /* NMSSHConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHConfig.m; path = NMSSH/NMSSHConfig.m; sourceTree = "<group>"; };
+		91F0A2C4DD9F73FC6F45583BB1D179E7 /* hybrid.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = hybrid.min.css; path = Pod/Assets/styles/hybrid.min.css; sourceTree = "<group>"; };
+		92D452786053A4E3B54B11930FE14963 /* ini.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = ini.min.js; path = Pod/Assets/Highlighter/languages/ini.min.js; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93D5CF86E3AF5085B6FB47C4FAD1C559 /* javascript.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = javascript.min.js; path = Pod/Assets/Highlighter/languages/javascript.min.js; sourceTree = "<group>"; };
+		9459DA92B668F926B882A1D6B9FF7557 /* dos.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = dos.min.js; path = Pod/Assets/Highlighter/languages/dos.min.js; sourceTree = "<group>"; };
+		94C185DF524841F32B451F25D3C40DDD /* moonscript.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = moonscript.min.js; path = Pod/Assets/Highlighter/languages/moonscript.min.js; sourceTree = "<group>"; };
+		965941ECCDDCA49D752F9045589D5A2F /* go.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = go.min.js; path = Pod/Assets/Highlighter/languages/go.min.js; sourceTree = "<group>"; };
+		966D496F3E91AD85AE0EF45D3638F123 /* railscasts.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = railscasts.min.css; path = Pod/Assets/styles/railscasts.min.css; sourceTree = "<group>"; };
+		9681FB0378900898B721639168437AA1 /* crypt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = Zip/minizip/crypt.h; sourceTree = "<group>"; };
+		984A5758C7BFBB07AD9DFEC69BBB0711 /* dts.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = dts.min.js; path = Pod/Assets/Highlighter/languages/dts.min.js; sourceTree = "<group>"; };
+		986123BB0F45F574BD079974B4A79134 /* TZKeyboardPop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TZKeyboardPop.xcconfig; sourceTree = "<group>"; };
+		99339E57F36931F99DD346AC799D2825 /* Zip.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Zip.modulemap; sourceTree = "<group>"; };
+		993E4A0A4258B37760C7C78E9A3F6F2E /* atom-one-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atom-one-dark.min.css"; path = "Pod/Assets/styles/atom-one-dark.min.css"; sourceTree = "<group>"; };
+		99CC29DF0EF634DC643635096606A714 /* cpp.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = cpp.min.js; path = Pod/Assets/Highlighter/languages/cpp.min.js; sourceTree = "<group>"; };
+		9AAF6A71901FE899A20AE4B142DD1E2E /* NMSSH.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSH.h; path = NMSSH/NMSSH.h; sourceTree = "<group>"; };
+		9B3369111603B8350DD3C8A28334CF3C /* css.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = css.min.js; path = Pod/Assets/Highlighter/languages/css.min.js; sourceTree = "<group>"; };
+		9B8D0FEEAFE26D52EFA93D7C6E74EE57 /* darcula.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = darcula.min.css; path = Pod/Assets/styles/darcula.min.css; sourceTree = "<group>"; };
+		9C30C1456D58BDB02EF2ABBD9F2AC54D /* tomorrow-night-blue.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "tomorrow-night-blue.min.css"; path = "Pod/Assets/styles/tomorrow-night-blue.min.css"; sourceTree = "<group>"; };
+		9D3A5D11A3887B850AE3F5F276E7FC7F /* verilog.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = verilog.min.js; path = Pod/Assets/Highlighter/languages/verilog.min.js; sourceTree = "<group>"; };
+		9D3D7BAD208BC15F61581CFC06239A57 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D8E4CBF5E3D2F7FA475BD00C8B89452 /* roboconf.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = roboconf.min.js; path = Pod/Assets/Highlighter/languages/roboconf.min.js; sourceTree = "<group>"; };
+		9E301B5AB2702CCA5C81E506D7F6A8B8 /* purebasic.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = purebasic.min.css; path = Pod/Assets/styles/purebasic.min.css; sourceTree = "<group>"; };
+		9E9FE765E669D84EEDA4B0B7BC0E2A7F /* protobuf.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = protobuf.min.js; path = Pod/Assets/Highlighter/languages/protobuf.min.js; sourceTree = "<group>"; };
+		9EC7F0045C63CE9DCB152E0B6EFA4B99 /* Highlightr-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Highlightr-umbrella.h"; sourceTree = "<group>"; };
+		9EE9E6D6478802914F52B168C4F1EBD0 /* TZKeyboardPop-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TZKeyboardPop-umbrella.h"; sourceTree = "<group>"; };
+		A06DC6C26FD16D183FD108EECA7BF8FE /* pojoaque.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = pojoaque.min.css; path = Pod/Assets/styles/pojoaque.min.css; sourceTree = "<group>"; };
+		A0C81FF67BA87052E3378C93F22D81E9 /* swift.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = swift.min.js; path = Pod/Assets/Highlighter/languages/swift.min.js; sourceTree = "<group>"; };
+		A0DC43BC5989C6113BEA815BC7B17110 /* ada.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = ada.min.js; path = Pod/Assets/Highlighter/languages/ada.min.js; sourceTree = "<group>"; };
+		A103E254734F287AFF1D09E09F1D309A /* NMSSH.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSH.h; path = "NMSSH-iOS/NMSSH.h"; sourceTree = "<group>"; };
+		A166C269EC6008B1FAB8A961CE281556 /* HTMLUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HTMLUtils.swift; path = Pod/Classes/HTMLUtils.swift; sourceTree = "<group>"; };
+		A179D2DE6B95BF50338CACD77B5C30B4 /* pony.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = pony.min.js; path = Pod/Assets/Highlighter/languages/pony.min.js; sourceTree = "<group>"; };
+		A1EA26DDCA684B79556E41FB63510FB8 /* unzip.c */ = {isa = PBXFileReference; includeInIndex = 1; name = unzip.c; path = Zip/minizip/unzip.c; sourceTree = "<group>"; };
+		A3AC8A5DB6EE260137A94FC7FD0D4A54 /* school-book.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "school-book.min.css"; path = "Pod/Assets/styles/school-book.min.css"; sourceTree = "<group>"; };
+		A43F7331AD035DF812BE8A1A5B0B4125 /* TZKeyboardPop-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TZKeyboardPop-prefix.pch"; sourceTree = "<group>"; };
+		A66BBA56B5AF797D2AE76D30815BAD52 /* brainfuck.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = brainfuck.min.js; path = Pod/Assets/Highlighter/languages/brainfuck.min.js; sourceTree = "<group>"; };
+		A6F087AC85A08E6E09874BD7F411F8EE /* github.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = github.min.css; path = Pod/Assets/styles/github.min.css; sourceTree = "<group>"; };
+		A7FCFD333786871CE3161414FC63A7F4 /* Theme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Theme.swift; path = Pod/Classes/Theme.swift; sourceTree = "<group>"; };
+		A9077234207FA2FD4247C4BA0409CE10 /* idea.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = idea.min.css; path = Pod/Assets/styles/idea.min.css; sourceTree = "<group>"; };
+		A92D3517B38DED92C04B092989C6D808 /* Pods-fastSwift-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-fastSwift-resources.sh"; sourceTree = "<group>"; };
+		ABC814981AB012A786F721DD0762D942 /* NMSSHLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHLogger.h; path = NMSSH/Config/NMSSHLogger.h; sourceTree = "<group>"; };
+		ABD91B0B53BFDBEBD7872F4379BE9C26 /* awk.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = awk.min.js; path = Pod/Assets/Highlighter/languages/awk.min.js; sourceTree = "<group>"; };
+		ABF166F8C1CC711348860BE14E597C27 /* purebasic.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = purebasic.min.js; path = Pod/Assets/Highlighter/languages/purebasic.min.js; sourceTree = "<group>"; };
+		AD1D92FF450D21F35096A7461D47A18A /* qml.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = qml.min.js; path = Pod/Assets/Highlighter/languages/qml.min.js; sourceTree = "<group>"; };
+		AD339AD1457D7501FC79058DB86EE8DD /* Zip.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Zip.xcconfig; sourceTree = "<group>"; };
+		AD4E9C56F2B67942BA0F582BDCABD4E8 /* scilab.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = scilab.min.js; path = Pod/Assets/Highlighter/languages/scilab.min.js; sourceTree = "<group>"; };
+		AD7E603913CE3CF0368D055F151D636B /* ioapi.c */ = {isa = PBXFileReference; includeInIndex = 1; name = ioapi.c; path = Zip/minizip/ioapi.c; sourceTree = "<group>"; };
+		ADF03E98693EAD266F3CDE2D37ED3134 /* tap.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = tap.min.js; path = Pod/Assets/Highlighter/languages/tap.min.js; sourceTree = "<group>"; };
+		ADF6CF9B7EF47D4444209A98DF4C79E1 /* basic.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = basic.min.js; path = Pod/Assets/Highlighter/languages/basic.min.js; sourceTree = "<group>"; };
+		ADFCCA0097590D369D35F4586905D70D /* mercury.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = mercury.min.js; path = Pod/Assets/Highlighter/languages/mercury.min.js; sourceTree = "<group>"; };
+		AE96EDCC2839A92BAF9C24D713446335 /* libssh2_publickey.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2_publickey.h; path = "NMSSH-iOS/Libraries/include/libssh2/libssh2_publickey.h"; sourceTree = "<group>"; };
+		AEEA1F4B8FFC4F7DAC1FCA06B2AD9136 /* scheme.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = scheme.min.js; path = Pod/Assets/Highlighter/languages/scheme.min.js; sourceTree = "<group>"; };
+		AF726FAF77FD619E5486D4203328809D /* vs.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = vs.min.css; path = Pod/Assets/styles/vs.min.css; sourceTree = "<group>"; };
+		AFA70833FC5F18A73C6A63D8CD8BA7B4 /* cos.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = cos.min.js; path = Pod/Assets/Highlighter/languages/cos.min.js; sourceTree = "<group>"; };
+		AFC24C25B20AC7022EC3961971E0AA2C /* xl.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = xl.min.js; path = Pod/Assets/Highlighter/languages/xl.min.js; sourceTree = "<group>"; };
+		B081A1A834178DA13DE875652980B1DF /* gruvbox-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "gruvbox-dark.min.css"; path = "Pod/Assets/styles/gruvbox-dark.min.css"; sourceTree = "<group>"; };
+		B128DA8523F9C76437C6056AEE71EF05 /* foundation.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = foundation.min.css; path = Pod/Assets/styles/foundation.min.css; sourceTree = "<group>"; };
+		B2F3B1A2E762CA817C2970DB8F8C2B3C /* mizar.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = mizar.min.js; path = Pod/Assets/Highlighter/languages/mizar.min.js; sourceTree = "<group>"; };
+		B311F727A0422DE595F40DC688357A2B /* monokai.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = monokai.min.css; path = Pod/Assets/styles/monokai.min.css; sourceTree = "<group>"; };
+		B333447C63633B0525F2DA107DB66849 /* sunburst.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = sunburst.min.css; path = Pod/Assets/styles/sunburst.min.css; sourceTree = "<group>"; };
+		B3E779EF36F24FB8FE000D3042307D8F /* atelier-dune-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-dune-light.min.css"; path = "Pod/Assets/styles/atelier-dune-light.min.css"; sourceTree = "<group>"; };
+		B466FB1594D51531BD65079092FD341C /* rib.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = rib.min.js; path = Pod/Assets/Highlighter/languages/rib.min.js; sourceTree = "<group>"; };
+		B526992FE73ECBB79F0AC4D629B0C586 /* atelier-savanna-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-savanna-dark.min.css"; path = "Pod/Assets/styles/atelier-savanna-dark.min.css"; sourceTree = "<group>"; };
+		B773BFC0BBAAA484F931629F57D476C4 /* zip.c */ = {isa = PBXFileReference; includeInIndex = 1; name = zip.c; path = Zip/minizip/zip.c; sourceTree = "<group>"; };
+		B82343EB8F564851B2616BC3E5EC27F4 /* Highlightr.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Highlightr.swift; path = Pod/Classes/Highlightr.swift; sourceTree = "<group>"; };
+		B8AE48416D264DCAE3093690DA175C09 /* ruby.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = ruby.min.js; path = Pod/Assets/Highlighter/languages/ruby.min.js; sourceTree = "<group>"; };
+		BA7A82A1DD89D29A3E76E86189A99356 /* gruvbox-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "gruvbox-light.min.css"; path = "Pod/Assets/styles/gruvbox-light.min.css"; sourceTree = "<group>"; };
+		BA9FD9205CD611C063BFB545183E2B80 /* coq.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = coq.min.js; path = Pod/Assets/Highlighter/languages/coq.min.js; sourceTree = "<group>"; };
+		BC658443ACA6184D5CB16F19868F0720 /* NMSSH.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NMSSH.framework; path = NMSSH.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE5915AD68AE0FB15D2EC3EF5F5E221E /* ir-black.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "ir-black.min.css"; path = "Pod/Assets/styles/ir-black.min.css"; sourceTree = "<group>"; };
+		BE675ABB16BA3F3567125B4EA92C617A /* darkula.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = darkula.min.css; path = Pod/Assets/styles/darkula.min.css; sourceTree = "<group>"; };
+		C16D6644CDCB40F8516B079AC2E57EF5 /* magula.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = magula.min.css; path = Pod/Assets/styles/magula.min.css; sourceTree = "<group>"; };
+		C2E4A00A1504072B194F2A008ACE8513 /* thrift.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = thrift.min.js; path = Pod/Assets/Highlighter/languages/thrift.min.js; sourceTree = "<group>"; };
+		C31B162790EDFD8BC51FF213F5C59EF8 /* stan.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = stan.min.js; path = Pod/Assets/Highlighter/languages/stan.min.js; sourceTree = "<group>"; };
+		C337CA7F84E8E526C923F7EA432E5188 /* elixir.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = elixir.min.js; path = Pod/Assets/Highlighter/languages/elixir.min.js; sourceTree = "<group>"; };
+		C35F9B986186448A14EE1FF7F8D9A348 /* pf.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = pf.min.js; path = Pod/Assets/Highlighter/languages/pf.min.js; sourceTree = "<group>"; };
+		C3EDFC9C579A2D85098D39D8DEDF7C80 /* NMSSH.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = NMSSH.modulemap; sourceTree = "<group>"; };
+		C5DF518E7004C70C4D5B5F9E757BE398 /* Highlightr.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Highlightr.xcconfig; sourceTree = "<group>"; };
+		C63A118081F83B8A048CB415F01E6927 /* far.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = far.min.css; path = Pod/Assets/styles/far.min.css; sourceTree = "<group>"; };
+		C6CD25D3CABD0BD42D161E04D442A211 /* fix.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = fix.min.js; path = Pod/Assets/Highlighter/languages/fix.min.js; sourceTree = "<group>"; };
+		C8C33D7BAB50A863F4BEDCCE0A56BB41 /* paraiso-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "paraiso-dark.min.css"; path = "Pod/Assets/styles/paraiso-dark.min.css"; sourceTree = "<group>"; };
+		CA1CE7643B4CAFD477E6092EFBA147E1 /* Zip-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Zip-prefix.pch"; sourceTree = "<group>"; };
+		CC88669A623E6AE3E04E097F29D32C97 /* cal.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = cal.min.js; path = Pod/Assets/Highlighter/languages/cal.min.js; sourceTree = "<group>"; };
+		CD0F6DC07ECC9B01F5C31B93EB5A3B6E /* llvm.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = llvm.min.js; path = Pod/Assets/Highlighter/languages/llvm.min.js; sourceTree = "<group>"; };
+		CD100DB453FCA460E6974F618CE2CA28 /* django.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = django.min.js; path = Pod/Assets/Highlighter/languages/django.min.js; sourceTree = "<group>"; };
+		CDE463E616CFA54040D9C1A0AB9B6AEE /* mel.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = mel.min.js; path = Pod/Assets/Highlighter/languages/mel.min.js; sourceTree = "<group>"; };
+		D194F8E32B529A784BDBD543277BDA0C /* subunit.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = subunit.min.js; path = Pod/Assets/Highlighter/languages/subunit.min.js; sourceTree = "<group>"; };
+		D1BF968BA69878688D416F973412F201 /* dockerfile.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = dockerfile.min.js; path = Pod/Assets/Highlighter/languages/dockerfile.min.js; sourceTree = "<group>"; };
+		D1D85DC51D6F03FF73B00B78AB7D6305 /* dart.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = dart.min.js; path = Pod/Assets/Highlighter/languages/dart.min.js; sourceTree = "<group>"; };
+		D20EAA2FB078F3B7A822C57B850DC1E7 /* ocaml.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = ocaml.min.js; path = Pod/Assets/Highlighter/languages/ocaml.min.js; sourceTree = "<group>"; };
+		D2175C2E89EC066DBE9164255077F189 /* nimrod.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = nimrod.min.js; path = Pod/Assets/Highlighter/languages/nimrod.min.js; sourceTree = "<group>"; };
+		D3C7469E7B75647D490E14DB11FD53CD /* vbnet.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = vbnet.min.js; path = Pod/Assets/Highlighter/languages/vbnet.min.js; sourceTree = "<group>"; };
+		D46ECDCEB6786FE8A4CB3488A5E0F293 /* agate.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = agate.min.css; path = Pod/Assets/styles/agate.min.css; sourceTree = "<group>"; };
+		D4B2157785704212185686F53A9A1D7B /* applescript.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = applescript.min.js; path = Pod/Assets/Highlighter/languages/applescript.min.js; sourceTree = "<group>"; };
+		D670174567A440696D8963574116AB49 /* r.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = r.min.js; path = Pod/Assets/Highlighter/languages/r.min.js; sourceTree = "<group>"; };
+		D6FB06FE48F0891E51822750C3A5E43D /* erlang.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = erlang.min.js; path = Pod/Assets/Highlighter/languages/erlang.min.js; sourceTree = "<group>"; };
+		D7BED3929175A67E308A758A232C7415 /* dust.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = dust.min.js; path = Pod/Assets/Highlighter/languages/dust.min.js; sourceTree = "<group>"; };
+		D964FC401819CBB586993789701A1AC8 /* Zip-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Zip-umbrella.h"; sourceTree = "<group>"; };
+		D9BE50BE99B55DA60BDCA993D317FF43 /* vhdl.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = vhdl.min.js; path = Pod/Assets/Highlighter/languages/vhdl.min.js; sourceTree = "<group>"; };
+		DD24D017BE592ACABD6896E049D2DCBA /* NMSSHConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHConfig.h; path = NMSSH/NMSSHConfig.h; sourceTree = "<group>"; };
+		DEB413B3B938242FD2BC9B8CFC7F5A55 /* sqf.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = sqf.min.js; path = Pod/Assets/Highlighter/languages/sqf.min.js; sourceTree = "<group>"; };
+		DF124654B7868AECC8EC12ADD92D4731 /* Highlightr-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Highlightr-prefix.pch"; sourceTree = "<group>"; };
+		E2687205E6AAA3D1B262007CFD6FC95E /* taggerscript.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = taggerscript.min.js; path = Pod/Assets/Highlighter/languages/taggerscript.min.js; sourceTree = "<group>"; };
+		E35028F3B3582D1FB8C4AE1709F384A6 /* atelier-heath-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-heath-light.min.css"; path = "Pod/Assets/styles/atelier-heath-light.min.css"; sourceTree = "<group>"; };
+		E3516E7A358AB9CA441F5FBF96E9CE7D /* elm.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = elm.min.js; path = Pod/Assets/Highlighter/languages/elm.min.js; sourceTree = "<group>"; };
+		E3A4B68D791E31340CB8F048BAC06551 /* NMSFTP.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSFTP.m; path = NMSSH/NMSFTP.m; sourceTree = "<group>"; };
+		E3E1524F59ECEB869B8823BB30A7E03D /* flix.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = flix.min.js; path = Pod/Assets/Highlighter/languages/flix.min.js; sourceTree = "<group>"; };
+		E68B39A4D1EBB04852B810C758646852 /* puppet.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = puppet.min.js; path = Pod/Assets/Highlighter/languages/puppet.min.js; sourceTree = "<group>"; };
+		E6C9EF7799818440131C52BDCB8B1015 /* irpf90.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = irpf90.min.js; path = Pod/Assets/Highlighter/languages/irpf90.min.js; sourceTree = "<group>"; };
+		E8BC5B4C1A7D0044746AB319CFAA561C /* NMSSHChannel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHChannel.m; path = NMSSH/NMSSHChannel.m; sourceTree = "<group>"; };
+		E8E67C778B7352CB9CD088629B199FC9 /* tp.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = tp.min.js; path = Pod/Assets/Highlighter/languages/tp.min.js; sourceTree = "<group>"; };
+		E908F5DF54D5118286C94F5C297FA95F /* obsidian.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = obsidian.min.css; path = Pod/Assets/styles/obsidian.min.css; sourceTree = "<group>"; };
+		E9629072DE6A687AEEB65B7F63BA58B4 /* abnf.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = abnf.min.js; path = Pod/Assets/Highlighter/languages/abnf.min.js; sourceTree = "<group>"; };
+		E9CED375061DD10D9EB1ED33E5E7AB20 /* nsis.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = nsis.min.js; path = Pod/Assets/Highlighter/languages/nsis.min.js; sourceTree = "<group>"; };
+		EAD4087B2F0163EFCA8DD655B0FC2E5E /* haxe.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = haxe.min.js; path = Pod/Assets/Highlighter/languages/haxe.min.js; sourceTree = "<group>"; };
+		EC5B4FF005DA4F5D47E5EA4629248D84 /* libssh2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2.h; path = "NMSSH-iOS/Libraries/include/libssh2/libssh2.h"; sourceTree = "<group>"; };
+		EDDF8D75AA654F65ACE2125C52AFAAD2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		EEEE4540FBDA04DA5C87311C98CC406D /* perl.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = perl.min.js; path = Pod/Assets/Highlighter/languages/perl.min.js; sourceTree = "<group>"; };
+		EFAB22303CEC9B52AD456A3EC7AC5A41 /* TZKeyboardPop.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TZKeyboardPop.h; sourceTree = "<group>"; };
+		F0FA60998792BB4CFCE1EE05ACA97439 /* solarized-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "solarized-dark.min.css"; path = "Pod/Assets/styles/solarized-dark.min.css"; sourceTree = "<group>"; };
+		F1A9F582DDE875AC7A9DA444220CFCB7 /* solarized-light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "solarized-light.min.css"; path = "Pod/Assets/styles/solarized-light.min.css"; sourceTree = "<group>"; };
+		F374FC1DCF861C9F02A870FFF239A9E9 /* CodeAttributedString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CodeAttributedString.swift; path = Pod/Classes/CodeAttributedString.swift; sourceTree = "<group>"; };
+		F3929EF8FDBBEE07733E3DD496A82B1C /* python.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = python.min.js; path = Pod/Assets/Highlighter/languages/python.min.js; sourceTree = "<group>"; };
+		F3EAF765AB736750070302D8FE8760BB /* lua.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lua.min.js; path = Pod/Assets/Highlighter/languages/lua.min.js; sourceTree = "<group>"; };
+		F3ED79B6EC78D141E856F2B03851B735 /* xml.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = xml.min.js; path = Pod/Assets/Highlighter/languages/xml.min.js; sourceTree = "<group>"; };
+		F50D4D855EE2786E3F37F6A047E7829F /* cmake.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = cmake.min.js; path = Pod/Assets/Highlighter/languages/cmake.min.js; sourceTree = "<group>"; };
+		F669F2BBE04BA8C7AA493B43EC9C8A7B /* socket_helper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = socket_helper.m; path = NMSSH/Config/socket_helper.m; sourceTree = "<group>"; };
+		F687636710EDEB70FDE334AFFBC538DA /* bnf.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = bnf.min.js; path = Pod/Assets/Highlighter/languages/bnf.min.js; sourceTree = "<group>"; };
+		F73E252E24FBBE639C9035294A61F2C2 /* zenburn.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = zenburn.min.css; path = Pod/Assets/styles/zenburn.min.css; sourceTree = "<group>"; };
+		F7C04FAFDC17B6B3238243D5272EB9DC /* haskell.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = haskell.min.js; path = Pod/Assets/Highlighter/languages/haskell.min.js; sourceTree = "<group>"; };
+		F7FECFA7118E3F1E39D1EE4C94B2CD4E /* atelier-sulphurpool-dark.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = "atelier-sulphurpool-dark.min.css"; path = "Pod/Assets/styles/atelier-sulphurpool-dark.min.css"; sourceTree = "<group>"; };
+		F8E58BA8659F33D45735867CDDE9879F /* ocean.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = ocean.min.css; path = Pod/Assets/styles/ocean.min.css; sourceTree = "<group>"; };
+		F957C8B37FBA92D7015C7044781560DE /* erlang-repl.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = "erlang-repl.min.js"; path = "Pod/Assets/Highlighter/languages/erlang-repl.min.js"; sourceTree = "<group>"; };
+		F9B9681A336F5244B8AAA948C26552AB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9DEB7BDF7D02803E175C9EB2EB38F73 /* vala.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = vala.min.js; path = Pod/Assets/Highlighter/languages/vala.min.js; sourceTree = "<group>"; };
+		FA4D1161B131D3AA9008A97A0ABC2A8D /* delphi.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = delphi.min.js; path = Pod/Assets/Highlighter/languages/delphi.min.js; sourceTree = "<group>"; };
+		FA643F866D51F6EA7045FED45F83A045 /* lisp.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lisp.min.js; path = Pod/Assets/Highlighter/languages/lisp.min.js; sourceTree = "<group>"; };
+		FAA4CD5A516BE94CA9B996F9839E759C /* gherkin.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = gherkin.min.js; path = Pod/Assets/Highlighter/languages/gherkin.min.js; sourceTree = "<group>"; };
+		FB6057A7E82707A810AF1DC4B86C5FC8 /* livescript.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = livescript.min.js; path = Pod/Assets/Highlighter/languages/livescript.min.js; sourceTree = "<group>"; };
+		FB9FB0051063BA72F736AF88BB843CE1 /* grayscale.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = grayscale.min.css; path = Pod/Assets/styles/grayscale.min.css; sourceTree = "<group>"; };
+		FCEF8567F60CA43FAB092AE5E2DB64AF /* lsl.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lsl.min.js; path = Pod/Assets/Highlighter/languages/lsl.min.js; sourceTree = "<group>"; };
+		FD586A852C967487F9A7BCD5F1817BB8 /* kimbie.light.min.css */ = {isa = PBXFileReference; includeInIndex = 1; name = kimbie.light.min.css; path = Pod/Assets/styles/kimbie.light.min.css; sourceTree = "<group>"; };
+		FF32C151888C50EBCD049BA659AF2533 /* parser3.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = parser3.min.js; path = Pod/Assets/Highlighter/languages/parser3.min.js; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		67599850772588524A903F7C8C54D352 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73B0382C4EC0A97BE8565CD106C58F59 /* Foundation.framework in Frameworks */,
+				8588321A63336CEAE3C6AAA06CB314D6 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		878C87DA86CEE4C05CCDB80579276A3A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A3E4790571F92E5C074591D5B7CBAAA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5FD1D0D92C5C47BC51416E3B576A968 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				299C0DC608F11828E664F822B494BFEC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B370BD359BC29CF9EC54C59D0F168154 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				129442825DB211B3A99A502F00D9971F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFA4F7CA0DCE647E8309C585F0B2307A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F850C133F6F9412546FB4603F512F6D /* CFNetwork.framework in Frameworks */,
+				442A7B4EF448F321028FFF9DEE47B7A0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0159B4CB93075F5A988ED6B2294D8088 /* Highlightr */ = {
+			isa = PBXGroup;
+			children = (
+				F374FC1DCF861C9F02A870FFF239A9E9 /* CodeAttributedString.swift */,
+				B82343EB8F564851B2616BC3E5EC27F4 /* Highlightr.swift */,
+				A166C269EC6008B1FAB8A961CE281556 /* HTMLUtils.swift */,
+				A7FCFD333786871CE3161414FC63A7F4 /* Theme.swift */,
+				70362D046267E853BCEAA8069735F121 /* Resources */,
+				B65AFD982160B8722C8F722F61CB52D2 /* Support Files */,
+			);
+			name = Highlightr;
+			path = Highlightr;
+			sourceTree = "<group>";
+		};
+		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3DC5782D19BF047DFAEB491A596E0F0 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		29DE4A6ACC2BDE5B11CD0F55FDF7043F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				554A4B24029D804BD6270FE62592A9F8 /* Highlightr.framework */,
+				BC658443ACA6184D5CB16F19868F0720 /* NMSSH.framework */,
+				35ADE91A6FF3EBB379E2E634A3E71B4A /* Pods_fastSwift.framework */,
+				586C701F90327BF01FC0B624DE53AC1D /* TZKeyboardPop.framework */,
+				0997D9B9DCFB9A93589C2ABC8AFD45F5 /* Zip.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3826F8D9361F2A81D73FEC233B5EB906 /* Pods-fastSwift */ = {
+			isa = PBXGroup;
+			children = (
+				F9B9681A336F5244B8AAA948C26552AB /* Info.plist */,
+				1AB93D918740EB71FE663777E41D95A9 /* Pods-fastSwift.modulemap */,
+				656EAF2D135FEB6F723FD490147208B4 /* Pods-fastSwift-acknowledgements.markdown */,
+				6EBFE89900719BDD37CEDC680EC70FF7 /* Pods-fastSwift-acknowledgements.plist */,
+				0EC747AA900416BCD1B3E301D0BB31F8 /* Pods-fastSwift-dummy.m */,
+				42C48ED33D1544CDB05BA445AC665D0F /* Pods-fastSwift-frameworks.sh */,
+				A92D3517B38DED92C04B092989C6D808 /* Pods-fastSwift-resources.sh */,
+				51785F83112CBB7741C07BA37D77C5DA /* Pods-fastSwift-umbrella.h */,
+				01D25A75C50BFDDA1E8DCCDB6EC969DA /* Pods-fastSwift.debug.xcconfig */,
+				06A23C8A02AB665764FF6517FE9435FF /* Pods-fastSwift.release.xcconfig */,
+			);
+			name = "Pods-fastSwift";
+			path = "Target Support Files/Pods-fastSwift";
+			sourceTree = "<group>";
+		};
+		424E6BB1E121BBF4591EDEE384AF3BEA /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3826F8D9361F2A81D73FEC233B5EB906 /* Pods-fastSwift */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		4B1FE4CF40AC122CAF3D75DD766DD40E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0159B4CB93075F5A988ED6B2294D8088 /* Highlightr */,
+				CF808664D56E5E767542AF08F43AC6BC /* NMSSH */,
+				9609490C64B2048A397527ECD0D591A0 /* TZKeyboardPop */,
+				DDCB873EBF12C2C3FD99D7B2BEB69E76 /* Zip */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4CCF3D2CA9DE934A5BECC81317B485F5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9D3D7BAD208BC15F61581CFC06239A57 /* Info.plist */,
+				C3EDFC9C579A2D85098D39D8DEDF7C80 /* NMSSH.modulemap */,
+				7D04934CBC8E979367B066F52BE345E2 /* NMSSH.xcconfig */,
+				5E4D6BE6DB8F60131C8E458AF9B87905 /* NMSSH-dummy.m */,
+				75D0320AFD38547462208EDC53389624 /* NMSSH-prefix.pch */,
+				27A2FFDD043F73272FDC1340B68F835C /* NMSSH-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/NMSSH";
+			sourceTree = "<group>";
+		};
+		61D81AC6FBFF5A240C1AD0177450FBC9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				55CF6F10696FC34365EC932839174CBF /* Info.plist */,
+				7F8D9B500143B3CCADEC3BCA5B7A8EFF /* TZKeyboardPop.modulemap */,
+				986123BB0F45F574BD079974B4A79134 /* TZKeyboardPop.xcconfig */,
+				0E6FFA9ED54BD1261C2FD36AB4FEEBCF /* TZKeyboardPop-dummy.m */,
+				A43F7331AD035DF812BE8A1A5B0B4125 /* TZKeyboardPop-prefix.pch */,
+				9EE9E6D6478802914F52B168C4F1EBD0 /* TZKeyboardPop-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TZKeyboardPop";
+			sourceTree = "<group>";
+		};
+		70362D046267E853BCEAA8069735F121 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3B532D13B16DC2580248BAA97E5E54D9 /* 1c.min.js */,
+				E9629072DE6A687AEEB65B7F63BA58B4 /* abnf.min.js */,
+				5E643F262C29E53933A198DD707A9A90 /* accesslog.min.js */,
+				15E05215667B57F8593BA8FD6F03A63A /* actionscript.min.js */,
+				A0DC43BC5989C6113BEA815BC7B17110 /* ada.min.js */,
+				D46ECDCEB6786FE8A4CB3488A5E0F293 /* agate.min.css */,
+				49B3839616C21718B3E65FA69045A23F /* androidstudio.min.css */,
+				5B7EDDB14E9ED2E3F2B01B0C5EE9DDE6 /* apache.min.js */,
+				D4B2157785704212185686F53A9A1D7B /* applescript.min.js */,
+				21B5BF6184C2405EDA6E9E2742F7DB32 /* arduino-light.min.css */,
+				258621379A36457C24C895774A464407 /* arduino.min.js */,
+				2B2ECE2BFD81777BE1EDE12049728B67 /* armasm.min.js */,
+				58833559D1F820BAB6ACA62E25C2198F /* arta.min.css */,
+				381179505BF1A271230B1D5C4A74C932 /* ascetic.min.css */,
+				53019F482D0DEEE7871014CFF6647135 /* asciidoc.min.js */,
+				61F328543CAD1A7AB1C51E0EB6938EAE /* aspectj.min.js */,
+				689F2BA691A8ECB14E08EA2B3DACF18E /* atelier-cave-dark.min.css */,
+				26698484A0C463E0B1CCACA751D86E4F /* atelier-cave-light.min.css */,
+				15480286F027A50487B9549228FA72A2 /* atelier-dune-dark.min.css */,
+				B3E779EF36F24FB8FE000D3042307D8F /* atelier-dune-light.min.css */,
+				8B5D493366D9F96123D4C4B106F7B7A5 /* atelier-estuary-dark.min.css */,
+				2BD1BDEF49B71576AE15ABD3E5A25D61 /* atelier-estuary-light.min.css */,
+				1CF6494E4E05D7E6E83472EA3124703C /* atelier-forest-dark.min.css */,
+				08B67D9BF90FC8569DD718F71B546773 /* atelier-forest-light.min.css */,
+				0A711CDDA94AC3A6440B3F061AA48472 /* atelier-heath-dark.min.css */,
+				E35028F3B3582D1FB8C4AE1709F384A6 /* atelier-heath-light.min.css */,
+				11EDF37ACC21FE5A08BE024E8853C806 /* atelier-lakeside-dark.min.css */,
+				82982ADBBC1E77B9708FFCB347859F17 /* atelier-lakeside-light.min.css */,
+				5EC46F284423E796C1A7BE465D59997A /* atelier-plateau-dark.min.css */,
+				711BAE335E2AB7A90837F1C489A74526 /* atelier-plateau-light.min.css */,
+				B526992FE73ECBB79F0AC4D629B0C586 /* atelier-savanna-dark.min.css */,
+				52004793E1E487DD37F7003E818B11BB /* atelier-savanna-light.min.css */,
+				77C3B9CB4ADCEE0B9B7044BF402EF473 /* atelier-seaside-dark.min.css */,
+				8474F8926079D8F3578F6EA5766EC01E /* atelier-seaside-light.min.css */,
+				F7FECFA7118E3F1E39D1EE4C94B2CD4E /* atelier-sulphurpool-dark.min.css */,
+				26C5789E4C6012254A733335F84C0866 /* atelier-sulphurpool-light.min.css */,
+				993E4A0A4258B37760C7C78E9A3F6F2E /* atom-one-dark.min.css */,
+				08628BFCCE05FBB441110941E30DE7E1 /* atom-one-light.min.css */,
+				2AB1B243E2153A12B6A31FAB2AF8D606 /* autohotkey.min.js */,
+				2A3AD1D48CE01EDB9E937E7F3E014358 /* autoit.min.js */,
+				762384BF1C22C752F638A81C0BE4B751 /* avrasm.min.js */,
+				ABD91B0B53BFDBEBD7872F4379BE9C26 /* awk.min.js */,
+				463C54802716554D28B841AB6FA608AF /* axapta.min.js */,
+				1BBC83B74C39947872EA644D955DE912 /* bash.min.js */,
+				ADF6CF9B7EF47D4444209A98DF4C79E1 /* basic.min.js */,
+				F687636710EDEB70FDE334AFFBC538DA /* bnf.min.js */,
+				A66BBA56B5AF797D2AE76D30815BAD52 /* brainfuck.min.js */,
+				6B097459C843B8E6AD11D788CE8C4079 /* brown-paper.min.css */,
+				CC88669A623E6AE3E04E097F29D32C97 /* cal.min.js */,
+				69034627C59ABD8CEA99F04F23CD9E16 /* capnproto.min.js */,
+				4B70C49D7E2DF39CD1BB4FB9BA891162 /* ceylon.min.js */,
+				709A97BFF3F6599C7AEFCAB8A1C7A44C /* clean.min.js */,
+				5BBFDC61D69FE3373C5536A76DAFB077 /* clojure-repl.min.js */,
+				36CF872A73982D4194954E8788A7EC2B /* clojure.min.js */,
+				F50D4D855EE2786E3F37F6A047E7829F /* cmake.min.js */,
+				3BB488838CAF27A6AFA27E7896D2CF2D /* codepen-embed.min.css */,
+				70833685C95C0C19D63B8C9517B13B15 /* coffeescript.min.js */,
+				4C48573BEFC7FCBC44E5FA24AF94D69C /* color-brewer.min.css */,
+				BA9FD9205CD611C063BFB545183E2B80 /* coq.min.js */,
+				AFA70833FC5F18A73C6A63D8CD8BA7B4 /* cos.min.js */,
+				99CC29DF0EF634DC643635096606A714 /* cpp.min.js */,
+				1161F666C09FF79AC5E788848086F51A /* crmsh.min.js */,
+				3985CA26B8158E87C88E9200A933CC60 /* crystal.min.js */,
+				8B80376707D4B580EE60B82E8DF051B8 /* cs.min.js */,
+				71AA03405C2377DDB9519C72462C7E80 /* csp.min.js */,
+				9B3369111603B8350DD3C8A28334CF3C /* css.min.js */,
+				4FD44DE5B4F6B0B16AB2ED87F2E7AFB7 /* d.min.js */,
+				9B8D0FEEAFE26D52EFA93D7C6E74EE57 /* darcula.min.css */,
+				81B402749627CA342C41EA7237313C9F /* dark.min.css */,
+				BE675ABB16BA3F3567125B4EA92C617A /* darkula.min.css */,
+				D1D85DC51D6F03FF73B00B78AB7D6305 /* dart.min.js */,
+				4EDBACC612BEEDE8D3E84CC30FA7EC01 /* default.min.css */,
+				FA4D1161B131D3AA9008A97A0ABC2A8D /* delphi.min.js */,
+				692DE69EC1FF96AAAB69A501EFF1D537 /* diff.min.js */,
+				CD100DB453FCA460E6974F618CE2CA28 /* django.min.js */,
+				0873BA4DB1A6057430E3E16FCABB7C85 /* dns.min.js */,
+				8B241C360CDDC39FA3A98C982CC5FE53 /* docco.min.css */,
+				D1BF968BA69878688D416F973412F201 /* dockerfile.min.js */,
+				9459DA92B668F926B882A1D6B9FF7557 /* dos.min.js */,
+				2819E20CDBF6008EACA292540A2CDB50 /* dracula.min.css */,
+				42277B3AFD33B764911922BBF592D866 /* dsconfig.min.js */,
+				984A5758C7BFBB07AD9DFEC69BBB0711 /* dts.min.js */,
+				D7BED3929175A67E308A758A232C7415 /* dust.min.js */,
+				3902E44D434A5AA3BD6A7BB00A387251 /* ebnf.min.js */,
+				C337CA7F84E8E526C923F7EA432E5188 /* elixir.min.js */,
+				E3516E7A358AB9CA441F5FBF96E9CE7D /* elm.min.js */,
+				71D57B36F64579DB120F9A5752837305 /* erb.min.js */,
+				F957C8B37FBA92D7015C7044781560DE /* erlang-repl.min.js */,
+				D6FB06FE48F0891E51822750C3A5E43D /* erlang.min.js */,
+				4683D67041A1C1F9ED64AF539C2ED4E9 /* excel.min.js */,
+				C63A118081F83B8A048CB415F01E6927 /* far.min.css */,
+				C6CD25D3CABD0BD42D161E04D442A211 /* fix.min.js */,
+				E3E1524F59ECEB869B8823BB30A7E03D /* flix.min.js */,
+				1C9A889DEF1CD400D703A913A1A98BF0 /* fortran.min.js */,
+				B128DA8523F9C76437C6056AEE71EF05 /* foundation.min.css */,
+				12BB535B10077EFB5DA3B5F1C33BCD29 /* fsharp.min.js */,
+				834E2E7F60DB81A8CBAEBE446D98D35A /* gams.min.js */,
+				7F18AD6E24EA7B3820FD0E634255E472 /* gauss.min.js */,
+				62BACF5627477F62715239F50F0C2D86 /* gcode.min.js */,
+				FAA4CD5A516BE94CA9B996F9839E759C /* gherkin.min.js */,
+				412DB2A1FF1CD035FE8BAA691D877742 /* github-gist.min.css */,
+				A6F087AC85A08E6E09874BD7F411F8EE /* github.min.css */,
+				6D73643850FBF09EA089744991905921 /* glsl.min.js */,
+				965941ECCDDCA49D752F9045589D5A2F /* go.min.js */,
+				1B61669D45C322B44278C1EADEB5CDD3 /* golo.min.js */,
+				11600E6D6FD63A34D5B88DC4E2293174 /* googlecode.min.css */,
+				32E61D36DC8E73D0C3CBF5B2973F349E /* gradle.min.js */,
+				FB9FB0051063BA72F736AF88BB843CE1 /* grayscale.min.css */,
+				824B494D490D551275F7A0F90F1C6952 /* groovy.min.js */,
+				B081A1A834178DA13DE875652980B1DF /* gruvbox-dark.min.css */,
+				BA7A82A1DD89D29A3E76E86189A99356 /* gruvbox-light.min.css */,
+				13A3F511903F97185E10A1C6749FC3DB /* haml.min.js */,
+				20351871E03B60BE704ACE7759F5B9AB /* handlebars.min.js */,
+				F7C04FAFDC17B6B3238243D5272EB9DC /* haskell.min.js */,
+				EAD4087B2F0163EFCA8DD655B0FC2E5E /* haxe.min.js */,
+				82704F9FB681715C132DA156377ED7F0 /* highlight.min.js */,
+				2246025C189CA309C86100644D584BF5 /* hopscotch.min.css */,
+				23398BFF8FE3D7260F516D40EBC1CA09 /* hsp.min.js */,
+				6B47E0CA834752D33E292B826155BB13 /* htmlbars.min.js */,
+				1C8D97A56C3F2B571D91281B0E84A395 /* http.min.js */,
+				91F0A2C4DD9F73FC6F45583BB1D179E7 /* hybrid.min.css */,
+				A9077234207FA2FD4247C4BA0409CE10 /* idea.min.css */,
+				4CFFED40707BE5823A63528CB236BF55 /* inform7.min.js */,
+				92D452786053A4E3B54B11930FE14963 /* ini.min.js */,
+				BE5915AD68AE0FB15D2EC3EF5F5E221E /* ir-black.min.css */,
+				E6C9EF7799818440131C52BDCB8B1015 /* irpf90.min.js */,
+				7B7EBD2120C30CE6FF2737B36374F3B9 /* java.min.js */,
+				93D5CF86E3AF5085B6FB47C4FAD1C559 /* javascript.min.js */,
+				1B1AE398419B6DCA240E2991FFFFA9D4 /* json.min.js */,
+				6FA0E0CC5C738989461E3630DB6B645F /* julia.min.js */,
+				760233C11E26CFDF4855414739989424 /* kimbie.dark.min.css */,
+				FD586A852C967487F9A7BCD5F1817BB8 /* kimbie.light.min.css */,
+				63B1020853671DB3A556C67EFD6BD89A /* kotlin.min.js */,
+				5CCBE92EAA67D3FDFB2D1D9DFB6F18F1 /* lasso.min.js */,
+				4611FE53BB2260FA4C68035259EE1F82 /* ldif.min.js */,
+				1E4DFC48C9D1A5BA80D05225933C5BA6 /* less.min.js */,
+				FA643F866D51F6EA7045FED45F83A045 /* lisp.min.js */,
+				5ACD9987B6277C4A882A5F80808F05C7 /* livecodeserver.min.js */,
+				FB6057A7E82707A810AF1DC4B86C5FC8 /* livescript.min.js */,
+				CD0F6DC07ECC9B01F5C31B93EB5A3B6E /* llvm.min.js */,
+				FCEF8567F60CA43FAB092AE5E2DB64AF /* lsl.min.js */,
+				F3EAF765AB736750070302D8FE8760BB /* lua.min.js */,
+				C16D6644CDCB40F8516B079AC2E57EF5 /* magula.min.css */,
+				758FA967D7CD1027B34ED1A077A2F7A5 /* makefile.min.js */,
+				8ABDE2688C72E154C241F72DFCECB044 /* markdown.min.js */,
+				688AEED0F41753D3AE3443A947AFBCE8 /* mathematica.min.js */,
+				83C87AEC753D9146DC812A236C52A42D /* matlab.min.js */,
+				7F964D40887D514A4555AB7772D41FFE /* maxima.min.js */,
+				CDE463E616CFA54040D9C1A0AB9B6AEE /* mel.min.js */,
+				ADFCCA0097590D369D35F4586905D70D /* mercury.min.js */,
+				4D7025AC2BF122F134DD6C1D1AE83D8E /* mipsasm.min.js */,
+				B2F3B1A2E762CA817C2970DB8F8C2B3C /* mizar.min.js */,
+				78FD6BBDC9D2D900BF887E8D835205AE /* mojolicious.min.js */,
+				00EF6B0705A4F786D196CB4400E8C7A0 /* monkey.min.js */,
+				4D30F3F3CCB48603F9A57039019B6D90 /* mono-blue.min.css */,
+				59C2BFFA0F60CB453C2F5902FC3B9C86 /* monokai-sublime.min.css */,
+				B311F727A0422DE595F40DC688357A2B /* monokai.min.css */,
+				94C185DF524841F32B451F25D3C40DDD /* moonscript.min.js */,
+				17C40A74C3C09A53B15945654990AB6F /* nginx.min.js */,
+				D2175C2E89EC066DBE9164255077F189 /* nimrod.min.js */,
+				5D2948A7BC67ADC27FB68ACD170B2EB7 /* nix.min.js */,
+				E9CED375061DD10D9EB1ED33E5E7AB20 /* nsis.min.js */,
+				7C7A13828BE769F747BF8A4F44E3B8C6 /* objectivec.min.js */,
+				E908F5DF54D5118286C94F5C297FA95F /* obsidian.min.css */,
+				D20EAA2FB078F3B7A822C57B850DC1E7 /* ocaml.min.js */,
+				F8E58BA8659F33D45735867CDDE9879F /* ocean.min.css */,
+				61B9902F5B8CDCACC7844588F064E583 /* openscad.min.js */,
+				29B0FDAEE5FFC732348B3764B58EFE66 /* oxygene.min.js */,
+				C8C33D7BAB50A863F4BEDCCE0A56BB41 /* paraiso-dark.min.css */,
+				5C18DBF55B0254D2A76461C3091C6BF7 /* paraiso-light.min.css */,
+				FF32C151888C50EBCD049BA659AF2533 /* parser3.min.js */,
+				EEEE4540FBDA04DA5C87311C98CC406D /* perl.min.js */,
+				C35F9B986186448A14EE1FF7F8D9A348 /* pf.min.js */,
+				0128B52314D9F0F3CCD91B77432EA4CE /* php.min.js */,
+				A06DC6C26FD16D183FD108EECA7BF8FE /* pojoaque.min.css */,
+				A179D2DE6B95BF50338CACD77B5C30B4 /* pony.min.js */,
+				77A4114A47AE6A93B1CC3EC317028C30 /* powershell.min.js */,
+				848F0A70BAD7E2E09F55675527A6B56E /* processing.min.js */,
+				3F8655BF5AD8987B2D75FDD970BB8E3E /* profile.min.js */,
+				3AE44958B17D160BBA6F2ADB8C165534 /* prolog.min.js */,
+				9E9FE765E669D84EEDA4B0B7BC0E2A7F /* protobuf.min.js */,
+				E68B39A4D1EBB04852B810C758646852 /* puppet.min.js */,
+				9E301B5AB2702CCA5C81E506D7F6A8B8 /* purebasic.min.css */,
+				ABF166F8C1CC711348860BE14E597C27 /* purebasic.min.js */,
+				F3929EF8FDBBEE07733E3DD496A82B1C /* python.min.js */,
+				2AF780D1BCD175ACF09087D53CACA2B4 /* q.min.js */,
+				AD1D92FF450D21F35096A7461D47A18A /* qml.min.js */,
+				468688E68503787D869450ABB538B3CD /* qtcreator_dark.min.css */,
+				60147FC39176EA96C8533F5A77C771B9 /* qtcreator_light.min.css */,
+				D670174567A440696D8963574116AB49 /* r.min.js */,
+				966D496F3E91AD85AE0EF45D3638F123 /* railscasts.min.css */,
+				2A315AC1EC5CCBB8F8245045C54294DB /* rainbow.min.css */,
+				B466FB1594D51531BD65079092FD341C /* rib.min.js */,
+				9D8E4CBF5E3D2F7FA475BD00C8B89452 /* roboconf.min.js */,
+				8C338EBAA99A632E09DFEA9D61D9A04D /* rsl.min.js */,
+				B8AE48416D264DCAE3093690DA175C09 /* ruby.min.js */,
+				72F5BB7E3EF254E3C745217F35A7CD1C /* ruleslanguage.min.js */,
+				5ACD6E777F53B757C67F4F76B0D8370F /* rust.min.js */,
+				2AED0EA556230191797CA5487562BE9D /* scala.min.js */,
+				AEEA1F4B8FFC4F7DAC1FCA06B2AD9136 /* scheme.min.js */,
+				A3AC8A5DB6EE260137A94FC7FD0D4A54 /* school-book.min.css */,
+				AD4E9C56F2B67942BA0F582BDCABD4E8 /* scilab.min.js */,
+				6453A55AA74BA365BDCCCA6C242CDD6F /* scss.min.js */,
+				24EFBE497F630EDD191E8B9A0D12398D /* smali.min.js */,
+				5791912654E13E457974B1CD2C031AB7 /* smalltalk.min.js */,
+				2CE3ED973A07BF263D6F5911BDB8B2B6 /* sml.min.js */,
+				F0FA60998792BB4CFCE1EE05ACA97439 /* solarized-dark.min.css */,
+				F1A9F582DDE875AC7A9DA444220CFCB7 /* solarized-light.min.css */,
+				DEB413B3B938242FD2BC9B8CFC7F5A55 /* sqf.min.js */,
+				40AE70E3451D2B214FC02DA696DCEFE1 /* sql.min.js */,
+				C31B162790EDFD8BC51FF213F5C59EF8 /* stan.min.js */,
+				5E8A4E00C6D2BD3CE60B704215EF364E /* stata.min.js */,
+				4A749DA74C74C276AFB512AE4B27FFAD /* step21.min.js */,
+				2401DB5921B9560C88D68B70279E86BE /* stylus.min.js */,
+				D194F8E32B529A784BDBD543277BDA0C /* subunit.min.js */,
+				B333447C63633B0525F2DA107DB66849 /* sunburst.min.css */,
+				A0C81FF67BA87052E3378C93F22D81E9 /* swift.min.js */,
+				E2687205E6AAA3D1B262007CFD6FC95E /* taggerscript.min.js */,
+				ADF03E98693EAD266F3CDE2D37ED3134 /* tap.min.js */,
+				2B32AE15D72073081CC09913EDC2D56D /* tcl.min.js */,
+				49C67DE48F97047E9D799CFC9F7D9C38 /* tex.min.js */,
+				C2E4A00A1504072B194F2A008ACE8513 /* thrift.min.js */,
+				9C30C1456D58BDB02EF2ABBD9F2AC54D /* tomorrow-night-blue.min.css */,
+				4DB8DE6DC7101EF33379CB5D91277CD0 /* tomorrow-night-bright.min.css */,
+				4E41701505FE42BDAFAE48819E530225 /* tomorrow-night-eighties.min.css */,
+				7856D5BA5CDA1778BCF2870FCCFE1F3D /* tomorrow-night.min.css */,
+				89C5B5B5CA5F1D41C9C4E180CBCF75D4 /* tomorrow.min.css */,
+				E8E67C778B7352CB9CD088629B199FC9 /* tp.min.js */,
+				2BFFFC5A020C055949697E5298F40448 /* twig.min.js */,
+				7FF60C16C5A1284B5F3BD253CFAD41C9 /* typescript.min.js */,
+				F9DEB7BDF7D02803E175C9EB2EB38F73 /* vala.min.js */,
+				D3C7469E7B75647D490E14DB11FD53CD /* vbnet.min.js */,
+				6EB1016E005716EAEC89E29DC2F0490A /* vbscript-html.min.js */,
+				6CB92E8A36A754A5F34A9E62C0D2D955 /* vbscript.min.js */,
+				9D3A5D11A3887B850AE3F5F276E7FC7F /* verilog.min.js */,
+				D9BE50BE99B55DA60BDCA993D317FF43 /* vhdl.min.js */,
+				400D06CF24A673401C43799231E9084B /* vim.min.js */,
+				AF726FAF77FD619E5486D4203328809D /* vs.min.css */,
+				3B4CCEDC76D10137BEE5EF68CD415AFB /* x86asm.min.js */,
+				6368A5FF5DF9A60BB1B6690201D17E8D /* xcode.min.css */,
+				AFC24C25B20AC7022EC3961971E0AA2C /* xl.min.js */,
+				F3ED79B6EC78D141E856F2B03851B735 /* xml.min.js */,
+				27DBC010AD4713A1C8C4B77607859517 /* xquery.min.js */,
+				46BC42C214FF9F1F53F3506B4A3B65B0 /* xt256.min.css */,
+				5B2EC551D31A08A29E4BC1D9C0D2D624 /* yaml.min.js */,
+				F73E252E24FBBE639C9035294A61F2C2 /* zenburn.min.css */,
+				547AABE320F9CA317F094DD62E5F137A /* zephir.min.js */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
+				4B1FE4CF40AC122CAF3D75DD766DD40E /* Pods */,
+				29DE4A6ACC2BDE5B11CD0F55FDF7043F /* Products */,
+				424E6BB1E121BBF4591EDEE384AF3BEA /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		9609490C64B2048A397527ECD0D591A0 /* TZKeyboardPop */ = {
+			isa = PBXGroup;
+			children = (
+				EFAB22303CEC9B52AD456A3EC7AC5A41 /* TZKeyboardPop.h */,
+				5A74DA06AB93B10A4272A3DBA714DE59 /* TZKeyboardPop.m */,
+				61D81AC6FBFF5A240C1AD0177450FBC9 /* Support Files */,
+			);
+			name = TZKeyboardPop;
+			path = TZKeyboardPop;
+			sourceTree = "<group>";
+		};
+		B65AFD982160B8722C8F722F61CB52D2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				507087925B0FB07F662BD78C4D337AD0 /* Highlightr.modulemap */,
+				C5DF518E7004C70C4D5B5F9E757BE398 /* Highlightr.xcconfig */,
+				119369080CD5B56897DE9629F88A648B /* Highlightr-dummy.m */,
+				DF124654B7868AECC8EC12ADD92D4731 /* Highlightr-prefix.pch */,
+				9EC7F0045C63CE9DCB152E0B6EFA4B99 /* Highlightr-umbrella.h */,
+				813C2E83B6AFBB2078BD39F8E6124870 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Highlightr";
+			sourceTree = "<group>";
+		};
+		CF808664D56E5E767542AF08F43AC6BC /* NMSSH */ = {
+			isa = PBXGroup;
+			children = (
+				EC5B4FF005DA4F5D47E5EA4629248D84 /* libssh2.h */,
+				AE96EDCC2839A92BAF9C24D713446335 /* libssh2_publickey.h */,
+				707BF3085DB3608585540EC3CE5183D3 /* libssh2_sftp.h */,
+				1CC88947E2ED2780DB871EFA57D90EBE /* NMSFTP.h */,
+				E3A4B68D791E31340CB8F048BAC06551 /* NMSFTP.m */,
+				739FA5265B14AAC7ADD999793546D8AC /* NMSFTPFile.h */,
+				89C5AA151419F6995F6474A16F604B31 /* NMSFTPFile.m */,
+				A103E254734F287AFF1D09E09F1D309A /* NMSSH.h */,
+				9AAF6A71901FE899A20AE4B142DD1E2E /* NMSSH.h */,
+				2B35CD7B94C5DFA42E396656A335036B /* NMSSH+Protected.h */,
+				857DC0DDD9FED875A45EF6A9A980DFDA /* NMSSHChannel.h */,
+				E8BC5B4C1A7D0044746AB319CFAA561C /* NMSSHChannel.m */,
+				6256D0D61C64CB1D2146175C38AB0455 /* NMSSHChannelDelegate.h */,
+				DD24D017BE592ACABD6896E049D2DCBA /* NMSSHConfig.h */,
+				8F762D07A08A500904F9F23E6466A3D6 /* NMSSHConfig.m */,
+				31D0661D6F3FBB0C3DE57C80C11F2DDF /* NMSSHHostConfig.h */,
+				5BC8DBAD5D8F2E6C835E320C220E50D7 /* NMSSHHostConfig.m */,
+				ABC814981AB012A786F721DD0762D942 /* NMSSHLogger.h */,
+				45634AC4BDA75FE8057E0228B9676216 /* NMSSHLogger.m */,
+				8810AC5615522ABCCF277B8DCCC08267 /* NMSSHSession.h */,
+				8E7E307C5630CC3397039A711C59FDCC /* NMSSHSession.m */,
+				5CBF9AE2E13D8CDAB6EB0F03534831D7 /* NMSSHSessionDelegate.h */,
+				4065927F7A6865C25AA02F5BFCB31D58 /* socket_helper.h */,
+				F669F2BBE04BA8C7AA493B43EC9C8A7B /* socket_helper.m */,
+				EA11E953E98F233E11323A53B022F976 /* Frameworks */,
+				4CCF3D2CA9DE934A5BECC81317B485F5 /* Support Files */,
+			);
+			name = NMSSH;
+			path = NMSSH;
+			sourceTree = "<group>";
+		};
+		D285A94A9526D07DBD3D1F2727EB5FFE /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				14993A290F5E9DEA82D7C39EB4D69FCD /* Info.plist */,
+				99339E57F36931F99DD346AC799D2825 /* Zip.modulemap */,
+				AD339AD1457D7501FC79058DB86EE8DD /* Zip.xcconfig */,
+				40A35C2FEC419EEC436D965A0260F2FB /* Zip-dummy.m */,
+				CA1CE7643B4CAFD477E6092EFBA147E1 /* Zip-prefix.pch */,
+				D964FC401819CBB586993789701A1AC8 /* Zip-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Zip";
+			sourceTree = "<group>";
+		};
+		D3DC5782D19BF047DFAEB491A596E0F0 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6BB22CD2AAE4F062A7CDA2E213C68442 /* CFNetwork.framework */,
+				EDDF8D75AA654F65ACE2125C52AFAAD2 /* Foundation.framework */,
+				321DA4FBF5721A7FB806D2982ED127C8 /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		DDCB873EBF12C2C3FD99D7B2BEB69E76 /* Zip */ = {
+			isa = PBXGroup;
+			children = (
+				9681FB0378900898B721639168437AA1 /* crypt.h */,
+				AD7E603913CE3CF0368D055F151D636B /* ioapi.c */,
+				8A217DD8028440B8B2BD40E6CE76C51B /* ioapi.h */,
+				847DAD50E8CA7C37300079C2F2E32B51 /* QuickZip.swift */,
+				A1EA26DDCA684B79556E41FB63510FB8 /* unzip.c */,
+				7D26504F6878163F6F994FAD6C050ADC /* unzip.h */,
+				B773BFC0BBAAA484F931629F57D476C4 /* zip.c */,
+				8AEE9389F62A09F15F11E07AF1C13788 /* zip.h */,
+				1DACEABF8E2E03C32004D1F45F192CF7 /* Zip.h */,
+				519A56833182395F2C77CDA04BC08679 /* Zip.swift */,
+				3AC464B7F011305331E40ACCE852F4D5 /* ZipUtilities.swift */,
+				D285A94A9526D07DBD3D1F2727EB5FFE /* Support Files */,
+			);
+			name = Zip;
+			path = Zip;
+			sourceTree = "<group>";
+		};
+		EA11E953E98F233E11323A53B022F976 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A8589C17085AB9867F6FA873B85AE7D /* libcrypto.a */,
+				4EA2203D72462D4D859C6778F4CC4B3D /* libssh2.a */,
+				520E800F435B13A6889CE09BE2E6DF48 /* libssl.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1C22347E97A1C0351B58997ECB9144FA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A0A712BD1A0FC7827642E042A833062 /* TZKeyboardPop-umbrella.h in Headers */,
+				1672970595A9BAD6C42F2232DE72B8C4 /* TZKeyboardPop.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E4CC0294648F5D4B727EC3B86BED2B4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65AF5F4E6F583BAEE6285A3A70B285FA /* Highlightr-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		829D2C22D5DA9E6E4430584F3DF77851 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69128C124AD2D7EBE8507976E668A5AB /* Pods-fastSwift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88C812C296E56F3F4377E0E1DC6AE532 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51E8714E9C28CD2797A0710A9F80311E /* crypt.h in Headers */,
+				5C079287E3E8922508B9D4777D8FE89D /* ioapi.h in Headers */,
+				A3789C0BB67DB9695ED2EE1245BCA0D5 /* unzip.h in Headers */,
+				CDDDDDD4D620445E3D3C7460033FB1CE /* Zip-umbrella.h in Headers */,
+				F01E4ED0D9FD785080F4634EFE48705B /* Zip.h in Headers */,
+				FC6B2027268E6A812BD1F0687685888F /* zip.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F44C6FC351B3914D3CCC9BBE342D5A3E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2773911979B38F916EAF9755B9237273 /* libssh2.h in Headers */,
+				38C23F80C08B3D94A304DA24E9E15DEA /* libssh2_publickey.h in Headers */,
+				F45E543EA311E6D1F1926F2F645D736D /* libssh2_sftp.h in Headers */,
+				2CFC9885B7E0952E7DE87F6500290481 /* NMSFTP.h in Headers */,
+				36B93F2A2C4145C1C82A8E0B9CC30632 /* NMSFTPFile.h in Headers */,
+				6E979220FD7F4202CC8665708B831C11 /* NMSSH+Protected.h in Headers */,
+				502CFF5323F58A3B9A026EF2A46A315A /* NMSSH-umbrella.h in Headers */,
+				646577B03E696CBE3F414CA9B717ECDE /* NMSSH.h in Headers */,
+				3CCF20DCB88F20DD59966E0BEDAA14E9 /* NMSSH.h in Headers */,
+				21BB009BD854FE3D760FE0449F95DC5D /* NMSSHChannel.h in Headers */,
+				AF766E616C7548F74C8E8AA48CE8F501 /* NMSSHChannelDelegate.h in Headers */,
+				922868FC8545055AF825BCB9BC287432 /* NMSSHConfig.h in Headers */,
+				E325B473256B452B23D808FAE16ED00B /* NMSSHHostConfig.h in Headers */,
+				DA85BB3FC6D0E25EAE9AABACEDEA2A40 /* NMSSHLogger.h in Headers */,
+				FC4041E14EC85D5FF3060D606C31E5CA /* NMSSHSession.h in Headers */,
+				D0103D2E66D03C0BA07BE4BD53DECAEF /* NMSSHSessionDelegate.h in Headers */,
+				5BFE34936B673E3800863193391DF092 /* socket_helper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		194979075283092A2E49812950E345A2 /* TZKeyboardPop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1163613F51FAB2F87907939BD7ACC6C2 /* Build configuration list for PBXNativeTarget "TZKeyboardPop" */;
+			buildPhases = (
+				85B4E3B8C4548312ED8846C40F76F5E5 /* Sources */,
+				B370BD359BC29CF9EC54C59D0F168154 /* Frameworks */,
+				1C22347E97A1C0351B58997ECB9144FA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TZKeyboardPop;
+			productName = TZKeyboardPop;
+			productReference = 586C701F90327BF01FC0B624DE53AC1D /* TZKeyboardPop.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		215D3232F1F6549F2E898A121973AED8 /* NMSSH */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DADA8A63460EDF7A9F989652D6AED71D /* Build configuration list for PBXNativeTarget "NMSSH" */;
+			buildPhases = (
+				75BE7FF602B9E1E506A9298D07B8E4E0 /* Sources */,
+				BFA4F7CA0DCE647E8309C585F0B2307A /* Frameworks */,
+				F44C6FC351B3914D3CCC9BBE342D5A3E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NMSSH;
+			productName = NMSSH;
+			productReference = BC658443ACA6184D5CB16F19868F0720 /* NMSSH.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		72229CCD8F922DAC3E7BCEB65087A47C /* Pods-fastSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C54D3D7A90AEE3811F45AA303AE60A3A /* Build configuration list for PBXNativeTarget "Pods-fastSwift" */;
+			buildPhases = (
+				0C86AAA2C2AEDF1BACFE338313D68C18 /* Sources */,
+				878C87DA86CEE4C05CCDB80579276A3A /* Frameworks */,
+				829D2C22D5DA9E6E4430584F3DF77851 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				96CD87450246DA9CD75CCCB0DAB61530 /* PBXTargetDependency */,
+				4ADDEFFD2C4588906943C709351599A9 /* PBXTargetDependency */,
+				45323BA35C956E85BCD97612D5C6E669 /* PBXTargetDependency */,
+				ED3744D20B958A5218AB403F6E509BE9 /* PBXTargetDependency */,
+			);
+			name = "Pods-fastSwift";
+			productName = "Pods-fastSwift";
+			productReference = 35ADE91A6FF3EBB379E2E634A3E71B4A /* Pods_fastSwift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7A170BD7773DD723350E0B8187059DD8 /* Zip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBB585E57B3977C803EB5A8AB56D3F77 /* Build configuration list for PBXNativeTarget "Zip" */;
+			buildPhases = (
+				86B8FF162D269A1FFD451721D07450EB /* Sources */,
+				A5FD1D0D92C5C47BC51416E3B576A968 /* Frameworks */,
+				88C812C296E56F3F4377E0E1DC6AE532 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Zip;
+			productName = Zip;
+			productReference = 0997D9B9DCFB9A93589C2ABC8AFD45F5 /* Zip.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C9ABFCA2B8BFB8BD4BAA30C9B9712B74 /* Highlightr */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA794EA5C4B44171B4351A9AD0481775 /* Build configuration list for PBXNativeTarget "Highlightr" */;
+			buildPhases = (
+				D5ACD5F978F2B5B0EEA2484CC8582821 /* Sources */,
+				67599850772588524A903F7C8C54D352 /* Frameworks */,
+				0412080D4A3564F9E4E159A82CCE7FFE /* Resources */,
+				4E4CC0294648F5D4B727EC3B86BED2B4 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Highlightr;
+			productName = Highlightr;
+			productReference = 554A4B24029D804BD6270FE62592A9F8 /* Highlightr.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 29DE4A6ACC2BDE5B11CD0F55FDF7043F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C9ABFCA2B8BFB8BD4BAA30C9B9712B74 /* Highlightr */,
+				215D3232F1F6549F2E898A121973AED8 /* NMSSH */,
+				72229CCD8F922DAC3E7BCEB65087A47C /* Pods-fastSwift */,
+				194979075283092A2E49812950E345A2 /* TZKeyboardPop */,
+				7A170BD7773DD723350E0B8187059DD8 /* Zip */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0412080D4A3564F9E4E159A82CCE7FFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C55608B20D0611BD965FC8A069E80D2 /* 1c.min.js in Resources */,
+				581FA086386178120C0B183E15312EE7 /* abnf.min.js in Resources */,
+				E89B392BD3CCEE0470EE659720994423 /* accesslog.min.js in Resources */,
+				1BFA71E17965F07A89E77607F8759502 /* actionscript.min.js in Resources */,
+				DAA1D56D1E0A91EAF69B1C2064A7A3AC /* ada.min.js in Resources */,
+				643C6AB479A31EFFDAB566FED69E7991 /* agate.min.css in Resources */,
+				593B2D2621A75891374E9F9E15404EFA /* androidstudio.min.css in Resources */,
+				D1C50851B15C9DEC723448806611B1E5 /* apache.min.js in Resources */,
+				9DAD4E177C507BC8D27E145D5ABD4E5C /* applescript.min.js in Resources */,
+				19A7D1D7CA87128BFFE63290FCF838CE /* arduino-light.min.css in Resources */,
+				36A2A254B30E539101A53EF4F3EA907F /* arduino.min.js in Resources */,
+				39F1CF57B3584AC37AD9CE9D250C11FC /* armasm.min.js in Resources */,
+				F0547C7D19EE3C50AA678E9360AEF7BB /* arta.min.css in Resources */,
+				3C83214289EEA5B45F4A9F83249F439F /* ascetic.min.css in Resources */,
+				D759A9482F70788702E66AED83E74A1B /* asciidoc.min.js in Resources */,
+				9759D554A6BEEAD4176ED3BA00524A63 /* aspectj.min.js in Resources */,
+				6EC6FDB1B69475F355B7FC2909C92584 /* atelier-cave-dark.min.css in Resources */,
+				EFD6226B7482C8944BF4DE1485AD7A5F /* atelier-cave-light.min.css in Resources */,
+				5A84F20BFCB7A6D42383A46DB35D1FEB /* atelier-dune-dark.min.css in Resources */,
+				8C838F0B7CB6864EB4581608E31F2986 /* atelier-dune-light.min.css in Resources */,
+				528FE22C8A9B18C1A167519D15135AB5 /* atelier-estuary-dark.min.css in Resources */,
+				3B72F0074961A8A1E257BBB90395FD93 /* atelier-estuary-light.min.css in Resources */,
+				E3DC73ABA490EF1BBF36D4A6565CDB1C /* atelier-forest-dark.min.css in Resources */,
+				572D767E980CB8C5430ABD109CC20374 /* atelier-forest-light.min.css in Resources */,
+				813A53998873195ADD9731CEFBB427ED /* atelier-heath-dark.min.css in Resources */,
+				C79E102AD4FEFDF9C839EF02953F2254 /* atelier-heath-light.min.css in Resources */,
+				0E3CFA38C61C2A046E346379CB8A939D /* atelier-lakeside-dark.min.css in Resources */,
+				98869EBAA2C102537C0D5DBCEFC56CBC /* atelier-lakeside-light.min.css in Resources */,
+				118C36EA1F540CD0CF0771511974C6AC /* atelier-plateau-dark.min.css in Resources */,
+				2AC6CCC7C7B97B1EBCBF1D2CF45965F0 /* atelier-plateau-light.min.css in Resources */,
+				508570157600007FD4BD093238108D61 /* atelier-savanna-dark.min.css in Resources */,
+				D665B74E49381E0ACDF940F52A2C45D9 /* atelier-savanna-light.min.css in Resources */,
+				E58C905BD3140A91F7D8A07BA30B0B5B /* atelier-seaside-dark.min.css in Resources */,
+				79A1BA3EBA825869DD465F59197DB516 /* atelier-seaside-light.min.css in Resources */,
+				B622AC8CE74439ADDECC3E9A5C62E159 /* atelier-sulphurpool-dark.min.css in Resources */,
+				E2565B0E235B63C39C2BF5307DA12D93 /* atelier-sulphurpool-light.min.css in Resources */,
+				92A1C5830B5AAB1EB6E636FD84F02BE0 /* atom-one-dark.min.css in Resources */,
+				A23486E356D191BB84742BE98367324A /* atom-one-light.min.css in Resources */,
+				F3D5B42858E3C610FE6400C8948B12FB /* autohotkey.min.js in Resources */,
+				159DD9B43C4D84E135EC9ABE1EA95D2E /* autoit.min.js in Resources */,
+				66C8EE5E51373671744572AB2F739263 /* avrasm.min.js in Resources */,
+				EF7C229E3B973EF2F125F6DB22B35F7E /* awk.min.js in Resources */,
+				1AF3279FDC8DDE320299B689E2B01450 /* axapta.min.js in Resources */,
+				23B637CBA0BCB38F354152539DA32DFF /* bash.min.js in Resources */,
+				39BDA61804D088F44069B46BFB29E011 /* basic.min.js in Resources */,
+				E54EED20B6BC49A60C8AC570E8F42FDF /* bnf.min.js in Resources */,
+				5CCD3E543B21B4EB9E61BACEDFFDCE82 /* brainfuck.min.js in Resources */,
+				9FE1D60D5195B28E0F61BB32BDCC177F /* brown-paper.min.css in Resources */,
+				E798AA5DA9BD567FC1A21A27B2D17151 /* cal.min.js in Resources */,
+				43AB2A41E063FF1780C8CC33F7306F74 /* capnproto.min.js in Resources */,
+				B03F29ADE0128BCCB3657D0226FDB8D3 /* ceylon.min.js in Resources */,
+				940E08F7A53BECD2ADE78737734D6712 /* clean.min.js in Resources */,
+				9D6DF810816B289D959084C437365200 /* clojure-repl.min.js in Resources */,
+				6066B9248A5321ECCD6DADC087C1D156 /* clojure.min.js in Resources */,
+				D0EE1133C03AC34F87E21809FBF72E35 /* cmake.min.js in Resources */,
+				66D75696B7490F4C5464D5213E43E54C /* codepen-embed.min.css in Resources */,
+				159E87586AF471246660C4B70B45D040 /* coffeescript.min.js in Resources */,
+				16569E7FB41A9AAC5496195EF727CEC7 /* color-brewer.min.css in Resources */,
+				99A3094F4711F9C1B3C1796D5A4B7EE0 /* coq.min.js in Resources */,
+				E1E0D71A14FA3FF998E665DD163CFB65 /* cos.min.js in Resources */,
+				09C6A3B7EA925F3BA175430C7DF18782 /* cpp.min.js in Resources */,
+				B8E7B70DA773DC0AC237CABFCB0979A2 /* crmsh.min.js in Resources */,
+				10F459C8304ECA78A27C06F2E6755FAF /* crystal.min.js in Resources */,
+				08B74670689FE316D2EE6A217BFEF65A /* cs.min.js in Resources */,
+				7390EA09A2F3CBB28D3B20B89473EF1E /* csp.min.js in Resources */,
+				846D1B82BA4FD881BBA9890682C6A491 /* css.min.js in Resources */,
+				C9D80147D5DE0D44525CFE9F009126DE /* d.min.js in Resources */,
+				5BE49F90D68779E986F40B02E945F5A3 /* darcula.min.css in Resources */,
+				A848172F9E30DBB55E1A99BECEA285CA /* dark.min.css in Resources */,
+				C8C98378579D83992F90613290235F06 /* darkula.min.css in Resources */,
+				E267A6AC47A179C6749F64BEC0A21AC5 /* dart.min.js in Resources */,
+				45E6AA3FAC3E7E9FF606E42ADD770D4A /* default.min.css in Resources */,
+				1166B018D283C17064554C6B47EEE7D3 /* delphi.min.js in Resources */,
+				C8BA826C3D15E5ED5F1A5141E9084468 /* diff.min.js in Resources */,
+				7309B5F524DBF742292F23F618972D6C /* django.min.js in Resources */,
+				B8243038A06AFC674582FEB6B5E67A3E /* dns.min.js in Resources */,
+				5EBD7726506A4BCEC6C4C2CF2AAEE1E5 /* docco.min.css in Resources */,
+				39212AC549C5F2D7A33FCD281CD12080 /* dockerfile.min.js in Resources */,
+				B2C7AFDF91F89699DD5D6E8A1F924CD7 /* dos.min.js in Resources */,
+				5F12B66A9154FD9482497FC039E4D224 /* dracula.min.css in Resources */,
+				BDE8BF253347305A99138206FC108EF3 /* dsconfig.min.js in Resources */,
+				C4B214A5F0CCD5E0026BD733CC07C24D /* dts.min.js in Resources */,
+				34CAC5ADA3BEE92D91E319F1AFB2148C /* dust.min.js in Resources */,
+				2D66E65BA8C40469BDD0B65ABC6F1216 /* ebnf.min.js in Resources */,
+				BF9747632AF0F16009077C34D46FF407 /* elixir.min.js in Resources */,
+				CC64A86346189873439FEDCAC5E76A8A /* elm.min.js in Resources */,
+				BA6CC7E0F672575D404D2D07FF9C6A0B /* erb.min.js in Resources */,
+				8D57D14B582884ACA1C747002519A672 /* erlang-repl.min.js in Resources */,
+				A3D461E5019B99B34386F6D05E72578D /* erlang.min.js in Resources */,
+				AF9933C2337992A2F1CB147903A8E439 /* excel.min.js in Resources */,
+				2A97F738867429B44E222575B40465FC /* far.min.css in Resources */,
+				9C2442248BA06F4229DA721AEB59B84E /* fix.min.js in Resources */,
+				56A23EF1046D103BF4CCB83C03233C3D /* flix.min.js in Resources */,
+				10D52433629A50A9725C59AB07A25E6A /* fortran.min.js in Resources */,
+				E2ACA6D94E4F4823832F0FAA1BE0A444 /* foundation.min.css in Resources */,
+				FDD68C2725CE06A3CE30913F7C5FF5E8 /* fsharp.min.js in Resources */,
+				FC31FF653E1B7BD2E09F2A3241EAF244 /* gams.min.js in Resources */,
+				C28ACD4C291F838428F964D18E385F78 /* gauss.min.js in Resources */,
+				9CD30492305EDFBAB42C95BB07D5A0BD /* gcode.min.js in Resources */,
+				B1A58F27D2E9C921D90A52D5019DE3C4 /* gherkin.min.js in Resources */,
+				B43EF3A39D7A82534979DA7517520DE3 /* github-gist.min.css in Resources */,
+				AAC8BB1DB26EA83309BD9E37670B1B06 /* github.min.css in Resources */,
+				50E5DFAF68AC133CB4DC014DF0025B0D /* glsl.min.js in Resources */,
+				00228406F4E8D0671A7D743375020165 /* go.min.js in Resources */,
+				AAC2AB6307EA2D46A8C61DDA76682D12 /* golo.min.js in Resources */,
+				CF5DFD741F1AD648652D31F12D18A340 /* googlecode.min.css in Resources */,
+				97C3B809ED2CBDD31B8EB3FCC69AEA74 /* gradle.min.js in Resources */,
+				51CD1387E872DC36F4FE7DD4E4790532 /* grayscale.min.css in Resources */,
+				72E6230EBD221F298E2072F34E26D77A /* groovy.min.js in Resources */,
+				8091DC4E63757BE27513F61DD79AB456 /* gruvbox-dark.min.css in Resources */,
+				28FA21EF97EBBC2913237DC5B5499818 /* gruvbox-light.min.css in Resources */,
+				24C90EB6AD5CAB2EAD07ACB0ED81AE45 /* haml.min.js in Resources */,
+				262F40A0C18DE13CDFC892D83137B161 /* handlebars.min.js in Resources */,
+				7DD03BCDAD2AC95408F49B4070CE1CC4 /* haskell.min.js in Resources */,
+				FF2282251D208FBA8DD7120049B1BFAC /* haxe.min.js in Resources */,
+				4523A8C66A4613D4B656B0F6C4843884 /* highlight.min.js in Resources */,
+				873CA0C095FD8DEFBEB4061AA744E5EF /* hopscotch.min.css in Resources */,
+				4E98FEAAAAC115A32009AF8D8B53684C /* hsp.min.js in Resources */,
+				5245D512283D3DD96B29BC724D715597 /* htmlbars.min.js in Resources */,
+				2C28CE796ECE6C9211768048EBC03542 /* http.min.js in Resources */,
+				24A13C329A1ADCF7F03582BE97A4C610 /* hybrid.min.css in Resources */,
+				A3927A5A515022BCEB496FD2E7B69795 /* idea.min.css in Resources */,
+				82890C9CED42D9A02B4202B1223BDDF7 /* inform7.min.js in Resources */,
+				08E8C4FE575092478C379147CDD7AA72 /* ini.min.js in Resources */,
+				BC87FC1FC1D3CAA5AC78F1DC9D75280A /* ir-black.min.css in Resources */,
+				C896FC7CE844E58FA71376C966BA2608 /* irpf90.min.js in Resources */,
+				68499E612D8F0A42455B0DCBDF207E23 /* java.min.js in Resources */,
+				2155E2F27DCA8D5195CE086D15690A1E /* javascript.min.js in Resources */,
+				3B53A8F3D599F7E50EC583F1B5F1C165 /* json.min.js in Resources */,
+				68D51E7A4FF7DC63A213DDD5C70C2924 /* julia.min.js in Resources */,
+				8B87306AD08E205D9CA13B424682FB9A /* kimbie.dark.min.css in Resources */,
+				C15BD09B13A30C3AC111F97109712355 /* kimbie.light.min.css in Resources */,
+				971CCE4F952C9539E228BD7B71AE258F /* kotlin.min.js in Resources */,
+				A525538CC4A19BDCE982F47E47A7F049 /* lasso.min.js in Resources */,
+				A0CD71E57C8488EDFBE8F779656BE75F /* ldif.min.js in Resources */,
+				19BDAF579483BC3FE3D2D88CB130537E /* less.min.js in Resources */,
+				5D899416C412046E637E3CFFF5B2DCF0 /* lisp.min.js in Resources */,
+				6C70441EE69A37A2EB7638DBDD1AEC8F /* livecodeserver.min.js in Resources */,
+				41647DDB37415EA7F8618AD67596EE9F /* livescript.min.js in Resources */,
+				2495241CE243DDD72752C7B1FDF20554 /* llvm.min.js in Resources */,
+				216CFADE2B85A59D84E8DCDBF81A6450 /* lsl.min.js in Resources */,
+				C0A664B3C66E29459D5CC8B8961B50D5 /* lua.min.js in Resources */,
+				FEF19C521E0F3334A6515876B0F08BB6 /* magula.min.css in Resources */,
+				7051DB947AE45922A0261CF5626D9135 /* makefile.min.js in Resources */,
+				48D365850521554036626C28070D8FDA /* markdown.min.js in Resources */,
+				78AA6E8F1392AFE4EA3DFB75146C182E /* mathematica.min.js in Resources */,
+				7D3341C4E9A6959854E1A4BB07FA9FE0 /* matlab.min.js in Resources */,
+				FFC9B601322FFCB121E3807E539BB564 /* maxima.min.js in Resources */,
+				79AFBDD794F53E473EA7C6C08304D5B8 /* mel.min.js in Resources */,
+				CA48637B516449879E0E067AA319588D /* mercury.min.js in Resources */,
+				6653E22AD9232021B707EA6FB8A844A8 /* mipsasm.min.js in Resources */,
+				8D66A06DAAA82E2CADABC426B1DC93E9 /* mizar.min.js in Resources */,
+				E25A65C6063BCE9CC584FBA22D7C2678 /* mojolicious.min.js in Resources */,
+				28F0F914FC337741BF8B5A743B27CC9B /* monkey.min.js in Resources */,
+				68ACAAFCF4551B8D52DB95FC58C59FF5 /* mono-blue.min.css in Resources */,
+				533730D0129E8C7692836C2C1DDF72BD /* monokai-sublime.min.css in Resources */,
+				616EAB9D6E4B1ED672997C6B29A7FFC8 /* monokai.min.css in Resources */,
+				364CD47AC2287EDEF37167219D6A04B5 /* moonscript.min.js in Resources */,
+				2726A89A4671876D47F01EC1DAD4BA67 /* nginx.min.js in Resources */,
+				BCD63730AE649C55F5CF7E282A1CA5FD /* nimrod.min.js in Resources */,
+				9076A134622B7F8F3761F09D8732D645 /* nix.min.js in Resources */,
+				A7F024DDCDDAF5357F1972D28B7BCA53 /* nsis.min.js in Resources */,
+				B64C41D225C2322DF320940AE86F9EE3 /* objectivec.min.js in Resources */,
+				5BF4EAF830E212E5ABBFD14DE1BA3CB4 /* obsidian.min.css in Resources */,
+				8CBF2EBF0F7A9E3F5B0C4EBCB37CC2A6 /* ocaml.min.js in Resources */,
+				9E8D4A908A907AA0B962F7D8277284BB /* ocean.min.css in Resources */,
+				B9918C77EC480F06AE3ACF81BF71A526 /* openscad.min.js in Resources */,
+				79A2392E648C01DF2EA439BF29E0D822 /* oxygene.min.js in Resources */,
+				6065CED2B71827A1BD6A10ED6D9E326D /* paraiso-dark.min.css in Resources */,
+				AA7C8BE9D18926E5C48D86BB1B9941A2 /* paraiso-light.min.css in Resources */,
+				A697B0787DD14D7343FF635B35AB11A4 /* parser3.min.js in Resources */,
+				1CD7409C6BEB744CDE3E5E4CAEEBD8ED /* perl.min.js in Resources */,
+				A7C9011853CFB759F5672B4432B07BC9 /* pf.min.js in Resources */,
+				D68F2CF3702164B5966D7862F54097B5 /* php.min.js in Resources */,
+				1F17E61F38F98CDAC28855A795EC19E4 /* pojoaque.min.css in Resources */,
+				DC0B793022B4FDEF9BA61BD27F235FFB /* pony.min.js in Resources */,
+				83301C9E3C574260D29CA24701E17957 /* powershell.min.js in Resources */,
+				90E11C12DCEEB22EBD662975DC88D4E9 /* processing.min.js in Resources */,
+				057761850056DAD8090B38120DA35761 /* profile.min.js in Resources */,
+				4B56AA380D79086437502F4C70909BFC /* prolog.min.js in Resources */,
+				C6C9468D1747D33F962CCFBF7B188AA6 /* protobuf.min.js in Resources */,
+				0C5BECA6229670BE3441255EB2ACE868 /* puppet.min.js in Resources */,
+				ECC6D7C16E3F719ADC77B6CD03A8B6CF /* purebasic.min.css in Resources */,
+				C60CB9D1054B960478580B10AC0276F0 /* purebasic.min.js in Resources */,
+				9D1451D859323EBD3339239BE2DF0DC7 /* python.min.js in Resources */,
+				CC449DF2D6469C6AC8B023DE510B302E /* q.min.js in Resources */,
+				330F947AE5EB6C1EAE50909A75E735E8 /* qml.min.js in Resources */,
+				4BD5F0E34AA1D766679FD81507205E44 /* qtcreator_dark.min.css in Resources */,
+				28F51F7FA5E0FEA3D4C2BFA1BC27BB05 /* qtcreator_light.min.css in Resources */,
+				C6299B158B1B34CE1D745A93E87F95E9 /* r.min.js in Resources */,
+				DAF21E5A3353EB1F748457628E681A10 /* railscasts.min.css in Resources */,
+				D79AA295E990D87D6B39B37BD50DD1DE /* rainbow.min.css in Resources */,
+				2C092726BAAD3FBBA99C0B43D412FD9E /* rib.min.js in Resources */,
+				94EF088F32EBD8403B6164C759CF2AD9 /* roboconf.min.js in Resources */,
+				CAD7212EBA0F634B430DEAF630C1BE77 /* rsl.min.js in Resources */,
+				20CE4EF6DC092B93D73FAF6F949811A3 /* ruby.min.js in Resources */,
+				ACCA760C7808C8C17D9D559F02E6DE21 /* ruleslanguage.min.js in Resources */,
+				1031E8032CA8927A3A3EFED8D0A573FA /* rust.min.js in Resources */,
+				D6B9B41FA6F5B7127786E1C2C5FAE402 /* scala.min.js in Resources */,
+				C8627BCAE52D7BB82A695F6AE2D7BCD4 /* scheme.min.js in Resources */,
+				258832A286EB9ED0D96CE0D01900BB6F /* school-book.min.css in Resources */,
+				72F5CBC78D3182CB9CC1FF86C023560D /* scilab.min.js in Resources */,
+				22C7ECF59059FA681544262C3FCD2DBB /* scss.min.js in Resources */,
+				476D16B22FA23E73699EA9184B99F07B /* smali.min.js in Resources */,
+				F1ED611162E0FEBBFDEACD3D26995682 /* smalltalk.min.js in Resources */,
+				84C32C0FC17B224383F8F8814CEEC57F /* sml.min.js in Resources */,
+				56365ABA23D2137B3842DF3416BCC1F7 /* solarized-dark.min.css in Resources */,
+				4CCFAE8B120982293AEABC0BF1853C1A /* solarized-light.min.css in Resources */,
+				1C71628FEE185A283D1341DA07E382FC /* sqf.min.js in Resources */,
+				57425E9E6978C2FF46D6A57FB78EB073 /* sql.min.js in Resources */,
+				3E3E1A7CB5A979C24A4B9B82836997D1 /* stan.min.js in Resources */,
+				A097F77013A653F44E4F6A407234803A /* stata.min.js in Resources */,
+				6B5364DF5995891C849286815DF3913C /* step21.min.js in Resources */,
+				D3AEDF6FD08AF9083D38E5C40CB86BE9 /* stylus.min.js in Resources */,
+				0C3A397286D323FCADFD4E7BDD3B43D1 /* subunit.min.js in Resources */,
+				89E630D1659F2300821DD5A22485184B /* sunburst.min.css in Resources */,
+				A2017260C0A1ADCB5186B6D35BBBBD90 /* swift.min.js in Resources */,
+				38727574B971B5F3F7DE6354CA70A0B3 /* taggerscript.min.js in Resources */,
+				6F619CFAC0B96E2A2BCA69F3A4CCBE0D /* tap.min.js in Resources */,
+				C772AFE3C7DEF121909A14D87A6D9543 /* tcl.min.js in Resources */,
+				B958D03E1D716CDC351FCD05FFD2E4F2 /* tex.min.js in Resources */,
+				EF9D7FEBB8001ED6E7697C184808C108 /* thrift.min.js in Resources */,
+				20229483D16D9B6A8E6908F96E8A5081 /* tomorrow-night-blue.min.css in Resources */,
+				5961A10BF22A3C6A01B9402AE45B8989 /* tomorrow-night-bright.min.css in Resources */,
+				31B439FFB14F8B2CAA5BB96C8647B88B /* tomorrow-night-eighties.min.css in Resources */,
+				06BF246754153A49E2E1B80F221C7619 /* tomorrow-night.min.css in Resources */,
+				97279CDD4CF6084A2C9BE642095AC6FB /* tomorrow.min.css in Resources */,
+				8C610AEC4427E8254CB96D2AF197BF17 /* tp.min.js in Resources */,
+				372CC7F6F172576C1B1E45D50D35A226 /* twig.min.js in Resources */,
+				68D0F18ACC34D57D822845CC7A89C79C /* typescript.min.js in Resources */,
+				65A8850A6F60BC65F14348CD446E5651 /* vala.min.js in Resources */,
+				9967DA2746DF27D47FF85155643502F1 /* vbnet.min.js in Resources */,
+				DB1D71BEF6D9EA40E869F4ED60396320 /* vbscript-html.min.js in Resources */,
+				C0F220004E9D2CFA917EDC3680E29A4E /* vbscript.min.js in Resources */,
+				3C4AD3767E4369E05402B53DB39FAB6B /* verilog.min.js in Resources */,
+				9CBBDCF3CAFC52383F3D8F2BD59A7BAB /* vhdl.min.js in Resources */,
+				8FA67EAF0E55FD4E52C08792D0E41C74 /* vim.min.js in Resources */,
+				07D2684521173BD7BC2CF7CDC756355C /* vs.min.css in Resources */,
+				C02189007D2D884456D28C5702F9E04A /* x86asm.min.js in Resources */,
+				36F29CEAAD003E680EF9187933589985 /* xcode.min.css in Resources */,
+				5AE42AA9DDC49A6888C212A5D2BADC6A /* xl.min.js in Resources */,
+				B1B3E424712504F54E600B3BE29F2CA2 /* xml.min.js in Resources */,
+				6042912B6C79F160C6F89239902D9A61 /* xquery.min.js in Resources */,
+				98285BDD5A82494B74FEA65CC3081232 /* xt256.min.css in Resources */,
+				22B91496352570F20E30BA1ED442D03E /* yaml.min.js in Resources */,
+				533E949135CCE59EBF48C4F8F3034233 /* zenburn.min.css in Resources */,
+				C525CECB2634081E2C3A6BE5ED7F74B7 /* zephir.min.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0C86AAA2C2AEDF1BACFE338313D68C18 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E333555C379FEDBBCAD202DC0C33025C /* Pods-fastSwift-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75BE7FF602B9E1E506A9298D07B8E4E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74CDCC6E9AE244DC50DE93FA111DE384 /* NMSFTP.m in Sources */,
+				381DCF0B2F439F677F1AB441CFC08AC2 /* NMSFTPFile.m in Sources */,
+				E492F9301A28A6F0E197558C25C8493D /* NMSSH-dummy.m in Sources */,
+				1CD220C0C5CB0A23E19C2C2B0B7F41E9 /* NMSSHChannel.m in Sources */,
+				647185EE96E0B4F08A9925C90C371F23 /* NMSSHConfig.m in Sources */,
+				8F91F2B443813BBC44B4A805F04A39C4 /* NMSSHHostConfig.m in Sources */,
+				7640505CDB0CD0F37B5A51DF7B865EFF /* NMSSHLogger.m in Sources */,
+				09DE75B190EE5892D92F929F2BABFAD8 /* NMSSHSession.m in Sources */,
+				B40C5DFF7E01C15D738FBFB1641F683E /* socket_helper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85B4E3B8C4548312ED8846C40F76F5E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B28931CE6C0B6CF4DF87947D487B02AE /* TZKeyboardPop-dummy.m in Sources */,
+				30DC5C7CD3E92A56407111FCC81759FB /* TZKeyboardPop.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86B8FF162D269A1FFD451721D07450EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				922B46ABB2F668E3362BD264CEB12D57 /* ioapi.c in Sources */,
+				9DD3691F841BD042997F8307578EAA7C /* QuickZip.swift in Sources */,
+				7C03B71ACD3CC680F7738253572B22A8 /* unzip.c in Sources */,
+				1F7EBA2692F94B152369A7992E1C63C4 /* Zip-dummy.m in Sources */,
+				38ED9DDE7FA27715EDA051C0B50709AC /* zip.c in Sources */,
+				722786F99B270EA72744827CA6AC9A9A /* Zip.swift in Sources */,
+				878C2F77AF6C4FD0F595F5C1150EF24F /* ZipUtilities.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5ACD5F978F2B5B0EEA2484CC8582821 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE72538AB92C44455881404252CCEC4F /* CodeAttributedString.swift in Sources */,
+				878BFBC0F90E7913BEEB56DB4C521501 /* Highlightr-dummy.m in Sources */,
+				5798AA39697563BE79B481F95175A0FF /* Highlightr.swift in Sources */,
+				07E67C8910EDA45209DDA6296A0104AC /* HTMLUtils.swift in Sources */,
+				D135DCEDCF345F1ED6AD64813F6E609A /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		45323BA35C956E85BCD97612D5C6E669 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TZKeyboardPop;
+			target = 194979075283092A2E49812950E345A2 /* TZKeyboardPop */;
+			targetProxy = F0527E2335298D6C261F398569F33CAA /* PBXContainerItemProxy */;
+		};
+		4ADDEFFD2C4588906943C709351599A9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NMSSH;
+			target = 215D3232F1F6549F2E898A121973AED8 /* NMSSH */;
+			targetProxy = 24C1C193275A0D5C0ED74B919AF65FCC /* PBXContainerItemProxy */;
+		};
+		96CD87450246DA9CD75CCCB0DAB61530 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Highlightr;
+			target = C9ABFCA2B8BFB8BD4BAA30C9B9712B74 /* Highlightr */;
+			targetProxy = 3B6B1106A63FCB1B227F1E58B9A1FB18 /* PBXContainerItemProxy */;
+		};
+		ED3744D20B958A5218AB403F6E509BE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Zip;
+			target = 7A170BD7773DD723350E0B8187059DD8 /* Zip */;
+			targetProxy = B9DE427AF696A7D9395F94CD2BF632D1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1A41B15D3AA834993ADDD808FA9D8764 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		306E3D6818778880FBD217E9D11F8B8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D04934CBC8E979367B066F52BE345E2 /* NMSSH.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/NMSSH/NMSSH-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/NMSSH/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/NMSSH/NMSSH.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = NMSSH;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3C7B4A44A443FC3C733AD36F7120FB7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 986123BB0F45F574BD079974B4A79134 /* TZKeyboardPop.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TZKeyboardPop/TZKeyboardPop-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TZKeyboardPop/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TZKeyboardPop/TZKeyboardPop.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TZKeyboardPop;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		59667A7217D3B06246DD066AB448D2E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5DF518E7004C70C4D5B5F9E757BE398 /* Highlightr.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Highlightr/Highlightr-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Highlightr/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Highlightr/Highlightr.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Highlightr;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7655514ABC6074F7D828B2A91E3F7131 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D04934CBC8E979367B066F52BE345E2 /* NMSSH.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/NMSSH/NMSSH-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/NMSSH/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/NMSSH/NMSSH.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = NMSSH;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7C222F0D6DFC8E059412F4D6C4522A66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD339AD1457D7501FC79058DB86EE8DD /* Zip.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Zip/Zip-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Zip/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Zip/Zip.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Zip;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7D144F724433A09597E3476A57631255 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		858B4BFA7BC8D1F950CD71B58FD74DFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD339AD1457D7501FC79058DB86EE8DD /* Zip.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Zip/Zip-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Zip/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Zip/Zip.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Zip;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9DF92B252D06A0540831AC4D23234ECA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 986123BB0F45F574BD079974B4A79134 /* TZKeyboardPop.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TZKeyboardPop/TZKeyboardPop-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TZKeyboardPop/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TZKeyboardPop/TZKeyboardPop.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = TZKeyboardPop;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B7D44D79FBB3A2A10225061054E9ED35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01D25A75C50BFDDA1E8DCCDB6EC969DA /* Pods-fastSwift.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-fastSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-fastSwift/Pods-fastSwift.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_fastSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D73E6949C22B2311DDFA032F05C8A42C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06A23C8A02AB665764FF6517FE9435FF /* Pods-fastSwift.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-fastSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-fastSwift/Pods-fastSwift.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_fastSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E6A4AB25A7E8DCEF7FC0A8208076CAB3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5DF518E7004C70C4D5B5F9E757BE398 /* Highlightr.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Highlightr/Highlightr-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Highlightr/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Highlightr/Highlightr.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Highlightr;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1163613F51FAB2F87907939BD7ACC6C2 /* Build configuration list for PBXNativeTarget "TZKeyboardPop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C7B4A44A443FC3C733AD36F7120FB7A /* Debug */,
+				9DF92B252D06A0540831AC4D23234ECA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D144F724433A09597E3476A57631255 /* Debug */,
+				1A41B15D3AA834993ADDD808FA9D8764 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C54D3D7A90AEE3811F45AA303AE60A3A /* Build configuration list for PBXNativeTarget "Pods-fastSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7D44D79FBB3A2A10225061054E9ED35 /* Debug */,
+				D73E6949C22B2311DDFA032F05C8A42C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DADA8A63460EDF7A9F989652D6AED71D /* Build configuration list for PBXNativeTarget "NMSSH" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7655514ABC6074F7D828B2A91E3F7131 /* Debug */,
+				306E3D6818778880FBD217E9D11F8B8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBB585E57B3977C803EB5A8AB56D3F77 /* Build configuration list for PBXNativeTarget "Zip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				858B4BFA7BC8D1F950CD71B58FD74DFE /* Debug */,
+				7C222F0D6DFC8E059412F4D6C4522A66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA794EA5C4B44171B4351A9AD0481775 /* Build configuration list for PBXNativeTarget "Highlightr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6A4AB25A7E8DCEF7FC0A8208076CAB3 /* Debug */,
+				59667A7217D3B06246DD066AB448D2E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

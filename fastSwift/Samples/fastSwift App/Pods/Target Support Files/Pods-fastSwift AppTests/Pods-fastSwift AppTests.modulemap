@@ -1,0 +1,6 @@
+framework module Pods_fastSwift_AppTests {
+  umbrella header "Pods-fastSwift AppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_fastSwift_App {
+  umbrella header "Pods-fastSwift App-umbrella.h"
+
+  export *
+  module * { export * }
+}
