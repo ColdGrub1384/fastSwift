@@ -9,7 +9,7 @@ An iOS client for Swift compiler
 ![Xcode](https://img.shields.io/badge/Xcode-9-blue.svg?style=flat)
 ![Swift](https://img.shields.io/badge/Swift-4-blue.svg?style=flat)
 <br/>
-![Download](https://github.com/niccokunzmann/download_latest/releases/latest)
+[Download](https://github.com/niccokunzmann/download_latest/releases/latest)
 <br/>
 <br/>
 
