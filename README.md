@@ -16,7 +16,7 @@ An iOS client for Swift compiler
 fastSwift is an app that thanks of an SSH server sends, compiles and runs Swift files.
 
 ## Features
-- [ ] Custom servers
+- [x] Custom servers
 - [x] User input
 - [ ] Command line arguments
 - [x] Multiple files
