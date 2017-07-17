@@ -292,10 +292,10 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         DispatchQueue.global(qos: .background).async {
             self.present(alert, animated: true, completion: nil)
             
-            let session = NMSSHSession.connect(toHost: "190.46.99.168", withUsername: "swiftexec")
+            let session = NMSSHSession.connect(toHost: Server.host, withUsername: Server.user)
             
             if (session?.isConnected)! {
-                session?.authenticate(byPassword: "swift")
+                session?.authenticate(byPassword: Server.password)
                 
                 if (session?.isAuthorized)! {
                     
@@ -367,9 +367,9 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             if let nextVC = segue.destination as? NMTerminalViewController {
                 nextVC.command = "cd '\((UIDevice.current.identifierForVendor!.uuidString))'; mv '\(self.document!.fileURL.lastPathComponent)' main.swift; swiftc *; ./main; cd ~; rm -rf \((UIDevice.current.identifierForVendor!.uuidString)); logout"
                 print(nextVC.command)
-                nextVC.host = "190.46.99.168"
-                nextVC.user = "swiftexec"
-                nextVC.password = "swift"
+                nextVC.host = Server.host
+                nextVC.user = Server.user
+                nextVC.password = Server.password
             }
         }
     }

@@ -96,13 +96,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // Singleton
         AppDelegate.shared = self
+        
         let request = SKProductsRequest(productIdentifiers: ["ch.marcela.ada.fastSwift.purchases.pendrive","ch.marcela.ada.fastSwift.purchases.sd","ch.marcela.ada.fastSwift.purchases.cd","ch.marcela.ada.fastSwift.purchases.hd"])
         request.delegate = self
         request.start()
         print("Start request!")
-        
         SKPaymentQueue.default().add(self)
                 
         return true

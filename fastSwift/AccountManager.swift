@@ -15,11 +15,15 @@ class AccountManager {
     private init() {
     }
     
+    var customServerEnabled: Bool {
+        return UserDefaults.standard.bool(forKey: "custom_server")
+    }
+    
     var compilations: Int {
         get {
-            /*#if DEBUG
+            #if DEBUG
                 return 100
-            #endif*/
+            #endif
             
             if !UserDefaults.standard.bool(forKey: "firstReward") {
                 UserDefaults.standard.set(true, forKey: "firstReward")

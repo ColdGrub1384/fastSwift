@@ -21,6 +21,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     }
     
     
+    
     var open = true
     
     var selectedFiles = [URL]()
@@ -140,8 +141,24 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                     let newUnzipedFile = try Zip.quickUnzipFile(urls.first!)
                     
                     do {
-                        let files = try FileManager.default.contentsOfDirectory(at: newUnzipedFile, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+                        var files = try FileManager.default.contentsOfDirectory(at: newUnzipedFile, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+                        
+                        for file in files {
+                            if file.lastPathComponent == "__MACOSX" {
+                                do {
+                                    try FileManager.default.removeItem(at: file)
+                                } catch let error {
+                                    print("Error removing __MACOSX file: \(error.localizedDescription)")
+                                }
+                                
+                                break
+                            }
+                        }
+                        
+                        files = try FileManager.default.contentsOfDirectory(at: newUnzipedFile, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+                        
                         self.presentDocument(at: files)
+                        
                     } catch let error {
                         print("Error getting content of folder: \(error)")
                     }

@@ -90,41 +90,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 self.terminal.text = newString[1]
             }
             
-            if self.terminal.text.contains("DOWNLOADEXECUTABLEFILETOAPP") {
-                let newString = self.terminal.text.components(separatedBy: "DOWNLOADEXECUTABLEFILETOAPP")
-                
-                self.terminal.text = newString[0]
-                
-                // Download output
-                let alert = UIAlertController(title: "Downloading output...", message: nil, preferredStyle: .alert)
-                
-                self.present(alert, animated: true, completion: {
-                    do {
-                        
-                        self.session.disconnect()
-                        
-                        let session = NMSSHSession.connect(toHost: self.host, withUsername: self.user)
-                        if (session?.isConnected)! {
-                            session?.authenticate(byPassword: self.password)
-                            if (session?.isAuthorized)! {
-                               
-                                var fileToDownload = try session?.channel.execute("ls \((UIDevice.current.identifierForVendor!.uuidString))").replacingOccurrences(of: "\n", with: "")
-                                fileToDownload = "/home/swiftexec/\((UIDevice.current.identifierForVendor!.uuidString))/"+fileToDownload!
-                                print(fileToDownload!+" -> "+self.project+"/\(URL(fileURLWithPath:self.project).deletingPathExtension().lastPathComponent)")
-                                
-                                session?.channel.downloadFile(fileToDownload, to: self.project+"/\(URL(fileURLWithPath:self.project).deletingPathExtension().lastPathComponent)")
-                               
-                                self.dismiss(animated: true, completion: nil)
-                                
-                            }
-                        }
-
-                    } catch let error {
-                        self.dismiss(animated: true, completion: nil)
-                        print(error.localizedDescription)
-                    }
-                })
-            }
             
         }
         
