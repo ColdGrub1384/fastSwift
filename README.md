@@ -8,6 +8,7 @@ An iOS client for Swift compiler
 ![Version](https://img.shields.io/badge/iOS-11.0%2B-blue.svg?style=flat) 
 ![Xcode](https://img.shields.io/badge/Xcode-9-blue.svg?style=flat)
 ![Swift](https://img.shields.io/badge/Swift-4-blue.svg?style=flat)
+![IPA](https://img.shields.io/badge/IPA-Not%20signed-red.svg?style=flat)
 <br/>
 <br/>
 
