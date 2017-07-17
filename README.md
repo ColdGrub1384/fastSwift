@@ -21,6 +21,7 @@ fastSwift is an app that thanks of an SSH server sends, compiles and runs Swift 
 - [ ] Command line arguments
 - [x] Multiple files
 - [x] UIDocumentBrowserViewController
+- [x] Syntax highlighting
 
 # Acknowledgements
 See licenses [here](https://github.com/ColdGrub1384/fastSwift/blob/master/Pods/Target%20Support%20Files/Pods-fastSwift/Pods-fastSwift-acknowledgements.markdown)
