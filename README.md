@@ -9,8 +9,6 @@ An iOS client for Swift compiler
 ![Xcode](https://img.shields.io/badge/Xcode-9-blue.svg?style=flat)
 ![Swift](https://img.shields.io/badge/Swift-4-blue.svg?style=flat)
 <br/>
-[Download](https://github.com/ColdGrub1384/fastSwift/releases/latest)
-<br/>
 <br/>
 
 fastSwift is an app that thanks of an SSH server sends, compiles and runs Swift files.
