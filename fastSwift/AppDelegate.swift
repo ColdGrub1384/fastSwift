@@ -8,7 +8,6 @@
 
 import UIKit
 import StoreKit
-import SwiftyReceiptValidator
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
@@ -133,16 +132,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         // Reveal / import the document at the URL
         guard let documentBrowserViewController = window?.rootViewController as? DocumentBrowserViewController else { return false }
         
-        documentBrowserViewController.revealDocument(at: inputURL, shouldImport: true) { (revealedDocumentURL, error) in
+        documentBrowserViewController.presentDocument(at: [inputURL])
+        
+        /*documentBrowserViewController.revealDocument(at: inputURL, shouldImport: true) { (revealedDocumentURL, error) in
             if let error = error {
                 // Handle the error appropriately
                 print("Failed to reveal the document at URL \(inputURL) with error: '\(error)'")
                 return
             }
-            
             // Present the Document View Controller for the revealed URL
             documentBrowserViewController.presentDocument(at: [revealedDocumentURL!])
-        }
+        }*/
         
         
         return true

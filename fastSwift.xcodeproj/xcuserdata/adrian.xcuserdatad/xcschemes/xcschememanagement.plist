@@ -23,6 +23,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>execThumbnail.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
 		<key>fastSwift.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -31,6 +36,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>3A28B2F01F1E9863008A3D8B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3AD72C4E1EEC90EC000C80A9</key>
 		<dict>
 			<key>primary</key>

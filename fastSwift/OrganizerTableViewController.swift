@@ -8,9 +8,16 @@
 
 import UIKit
 import Zip
+import NMSSH
 
 class OrganizerTableViewController: UITableViewController {
     var delegate: DocumentViewController?
+    
+    func downloadBinary() {
+        self.dismiss(animated: true) {
+            self.delegate?.Compile(true)
+        }
+    }
     
     @objc func share() {
         DispatchQueue.main.async {
@@ -42,7 +49,12 @@ class OrganizerTableViewController: UITableViewController {
                         xcode.delegate = self
                     }
                     
-                    let vc = UIActivityViewController(activityItems: [file], applicationActivities: [xcode])
+                    let bin = ExportToBinaryActivity()
+                    if let _ = self.delegate {
+                        bin.delegate = self
+                    }
+                    
+                    let vc = UIActivityViewController(activityItems: [file], applicationActivities: [xcode, bin])
                     self.present(vc, animated: true, completion: nil)
                 })
             } catch let error {

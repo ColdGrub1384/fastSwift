@@ -10,6 +10,7 @@ import UIKit
 import MobileCoreServices
 import QuickLook
 import Zip
+import NMSSH
 
 class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocumentBrowserViewControllerDelegate, QLPreviewControllerDataSource {
     func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
@@ -125,54 +126,99 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         documentViewController.modalTransitionStyle = .flipHorizontal
         documentViewController.firstLaunch = true
         
-        selectedFiles = urls
-        
-        for url in urls {
-            documentViewController.files.append(url)
-            print("URLS: \(documentViewController.files)")
-        }
-        
-        if urls.first!.pathExtension != "swift" {
-            let vc = QLPreviewController()
-            vc.dataSource = self
-            
-            if urls.first!.pathExtension.lowercased() == "zip" {
-                do {
-                    let newUnzipedFile = try Zip.quickUnzipFile(urls.first!)
+        if urls.first!.pathExtension == "swiftc" {
+            let alert = ActivityViewController(message: "Uploading...")
+            self.present(alert, animated: true, completion: nil)
+            let session = NMSSHSession.connect(toHost: Server.host, withUsername: Server.user)
+            if (session?.isConnected)! {
+                session?.authenticate(byPassword: Server.password)
+                if (session?.isAuthorized)! {
+                    do {
+                        try session?.channel.execute("rm -rf bin/\(UIDevice.current.identifierForVendor!.uuidString); mkdir bin/\(UIDevice.current.identifierForVendor!.uuidString)")
+                    } catch _ {}
+                    
+                    let filePath = "bin/\(UIDevice.current.identifierForVendor!.uuidString)/\(urls.first!.lastPathComponent)"
+                    session?.channel.uploadFile(urls.first!.path, to: filePath)
                     
                     do {
-                        var files = try FileManager.default.contentsOfDirectory(at: newUnzipedFile, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-                        
-                        for file in files {
-                            if file.lastPathComponent == "__MACOSX" {
-                                do {
-                                    try FileManager.default.removeItem(at: file)
-                                } catch let error {
-                                    print("Error removing __MACOSX file: \(error.localizedDescription)")
-                                }
-                                
-                                break
-                            }
-                        }
-                        
-                        files = try FileManager.default.contentsOfDirectory(at: newUnzipedFile, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-                        
-                        self.presentDocument(at: files)
-                        
-                    } catch let error {
-                        print("Error getting content of folder: \(error)")
-                    }
-                } catch let error {
-                    print("Error unziping files! \(error.localizedDescription)")
+                        try session?.channel.execute("chmod +x \(filePath)")
+                    } catch _ {}
+                    
+                    self.dismiss(animated: true, completion: {
+                        self.performSegue(withIdentifier: "terminal", sender: filePath)
+                    })
+                    
+                } else {
+                    self.dismiss(animated: true, completion: {
+                        self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                    })
                 }
             } else {
-                present(vc, animated: true, completion: nil)
+                self.dismiss(animated: true, completion: {
+                    self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                })
             }
+            
         } else {
-            present(documentViewController, animated: true, completion: nil)
+            selectedFiles = urls
+            
+            for url in urls {
+                documentViewController.files.append(url)
+                print("URLS: \(documentViewController.files)")
+            }
+            
+            if urls.first!.pathExtension != "swift" {
+                let vc = QLPreviewController()
+                vc.dataSource = self
+                
+                if urls.first!.pathExtension.lowercased() == "zip" {
+                    do {
+                        let newUnzipedFile = try Zip.quickUnzipFile(urls.first!)
+                        
+                        do {
+                            var files = try FileManager.default.contentsOfDirectory(at: newUnzipedFile, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+                            
+                            for file in files {
+                                if file.lastPathComponent == "__MACOSX" {
+                                    do {
+                                        try FileManager.default.removeItem(at: file)
+                                    } catch let error {
+                                        print("Error removing __MACOSX file: \(error.localizedDescription)")
+                                    }
+                                    
+                                    break
+                                }
+                            }
+                            
+                            files = try FileManager.default.contentsOfDirectory(at: newUnzipedFile, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+                            
+                            self.presentDocument(at: files)
+                            
+                        } catch let error {
+                            print("Error getting content of folder: \(error)")
+                        }
+                    } catch let error {
+                        print("Error unziping files! \(error.localizedDescription)")
+                    }
+                } else {
+                    present(vc, animated: true, completion: nil)
+                }
+            } else {
+                present(documentViewController, animated: true, completion: nil)
+            }
         }
         
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "terminal" {
+            if let terminalViewController = segue.destination as? NMTerminalViewController {
+                terminalViewController.command = "\(sender as! String); rm -rf bin/\(UIDevice.current.identifierForVendor!.uuidString); logout"
+                terminalViewController.user = Server.user
+                terminalViewController.host = Server.host
+                terminalViewController.password = Server.password
+            }
+        }
     }
 }
 

@@ -34,6 +34,7 @@ class ViewController: UIViewController {
                     // Create unique folder
                     try session?.channel.execute("rm -rf \((UIDevice.current.identifierForVendor!.uuidString))")
                     try session?.channel.execute("mkdir '\((UIDevice.current.identifierForVendor!.uuidString))'")
+                    try session?.channel.execute("cp /home/fastswift/FFKit.swift '\((UIDevice.current.identifierForVendor!.uuidString))'")
                     
                     // Upload files
                     for file in self.files {

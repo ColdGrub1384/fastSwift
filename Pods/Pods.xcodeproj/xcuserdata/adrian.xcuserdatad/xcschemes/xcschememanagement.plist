@@ -8,39 +8,89 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>InAppSettingsKit-InAppSettingsKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>InAppSettingsKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>NMSSH.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>Pods-fastSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>TZKeyboardPop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>Zip.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>215D3232F1F6549F2E898A121973AED8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>31A30DD7B4EA3045A66D2F827B89E4B8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3D6B7EC13DBAC48D1FD9FA9D4B54D763</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8CB67190F0A60F7A033A3E515965C86F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C9ABFCA2B8BFB8BD4BAA30C9B9712B74</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1545645445A9BA6F45BAB8F19F825E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA416ED70FC7E091F479F65D981FE8FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

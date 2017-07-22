@@ -280,13 +280,18 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     @IBAction func Compile(_ sender: Any) {
         
+        var additionalCommand = ""
+        
         do {
             try self.code.text.write(to: (self.document?.fileURL)!, atomically: true, encoding: String.Encoding.utf8)
         } catch let error {
             AlertManager.shared.present(error: error, withTitle: "Error saving file!", inside: self)
         }
-        
         print(files)
+        
+        if  let _ = sender as? Bool {
+            additionalCommand = "downloadExecutable";
+        }
         
         let alert = ActivityViewController(message: "Uploading...")
         DispatchQueue.global(qos: .background).async {
@@ -308,6 +313,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                         // Create unique folder
                         try session?.channel.execute("rm -rf \((UIDevice.current.identifierForVendor!.uuidString))")
                         try session?.channel.execute("mkdir '\((UIDevice.current.identifierForVendor!.uuidString))'")
+                        try session?.channel.execute("cp /home/fastswift/FFKit.swift '\((UIDevice.current.identifierForVendor!.uuidString))'")
                         
                         // Upload files
                         for file in self.files {
@@ -332,7 +338,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                                                 
                         DispatchQueue.main.sync {
                             self.dismiss(animated: true, completion: {
-                                self.performSegue(withIdentifier: "swift", sender: nil)
+                                self.performSegue(withIdentifier: "swift", sender: additionalCommand)
                             })
                         }
                         
@@ -362,14 +368,29 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         
         print("Prepare for segue")
         
+        var additionalCode = ""
+        
+        if let code = sender as? String {
+            additionalCode = code
+            if additionalCode != "" {
+                additionalCode = additionalCode+";"
+            }
+        }
         
         if segue.identifier == "swift" {
             if let nextVC = segue.destination as? NMTerminalViewController {
-                nextVC.command = "cd '\((UIDevice.current.identifierForVendor!.uuidString))'; mv '\(self.document!.fileURL.lastPathComponent)' main.swift; swiftc *; ./main; cd ~; rm -rf \((UIDevice.current.identifierForVendor!.uuidString)); logout"
+                let secondPart = "./main; cd ~; rm -rf \((UIDevice.current.identifierForVendor!.uuidString)); logout"
+                nextVC.command = "cd '\((UIDevice.current.identifierForVendor!.uuidString))'; mv '\(self.document!.fileURL.lastPathComponent)' main.swift; swiftc *; \(additionalCode)     "
                 print(nextVC.command)
                 nextVC.host = Server.host
                 nextVC.user = Server.user
                 nextVC.password = Server.password
+                nextVC.mainFile = self.document!.fileURL.deletingPathExtension().lastPathComponent
+                nextVC.delegate = self
+                
+                if additionalCode == "" {
+                    nextVC.command = nextVC.command+secondPart
+                }
             }
         }
     }

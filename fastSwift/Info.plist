@@ -34,6 +34,20 @@
 				<string>public.zip-archive</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeIconFiles</key>
+			<array/>
+			<key>CFBundleTypeName</key>
+			<string>Executable</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>ch.ada.exec</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
@@ -99,6 +113,23 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Executable</string>
+			<key>UTTypeIdentifier</key>
+			<string>ch.ada.exec</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>swiftc</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
 				<string>public.item</string>
 			</array>
 			<key>UTTypeDescription</key>
@@ -130,6 +161,23 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>swift</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Executable</string>
+			<key>UTTypeIdentifier</key>
+			<string>ch.ada.exec</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>swiftc</string>
 				</array>
 			</dict>
 		</dict>

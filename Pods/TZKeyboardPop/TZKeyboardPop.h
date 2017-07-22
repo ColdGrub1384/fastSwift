@@ -19,6 +19,7 @@
 - (void) didShowKeyboard;
 - (void) didCancelKeyboard;
 - (void) didReturnKeyPressedWithText:(NSString *)str;
+- (BOOL)keyboard:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)text;
 
 @end
 

@@ -175,6 +175,11 @@ static UITextField *_mytextField;
     return NO;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)text {
+    [_delegate keyboard:_mytextField shouldChangeCharactersInRange:range replacementString:text];
+    
+    return YES;
+}
 
 @end
 
