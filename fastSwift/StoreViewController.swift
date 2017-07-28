@@ -10,6 +10,17 @@ import UIKit
 import StoreKit
 import AdSupport
 import GoogleMobileAds
+import NMSSH
+import Zip
+
+extension String {
+    func addingPercentEncodingForURLQueryValue() -> String? {
+        let allowedCharacters = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
+        
+        return self.addingPercentEncoding(withAllowedCharacters: allowedCharacters)
+    }
+    
+}
 
 
 class StoreViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, GADRewardBasedVideoAdDelegate {
@@ -21,10 +32,127 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     var prices = [String]()
     var plusOne = false
     var canMakePayments = true
+    var files = [String]()
+    var higherRunButtonTag = 0
+    var higherSourceButtonTag = 0
+    var filesCollectionView: UICollectionView?
+    
+    @objc func runFileFromStore(_ sender: UIButton) {
+        let file = files[sender.tag]
+        let fileURL = URL(string:"http://\(Server.default.host)/dl.php?f=/mnt/FFSwift/\(Server.user)@\(Server.host)/files/\(file.addingPercentEncodingForURLQueryValue()!)")!
+        
+        let activityVC = ActivityViewController(message: "Downloading...")
+        self.present(activityVC, animated: true, completion: nil)
+        
+        URLSession.shared.dataTask(with: fileURL, completionHandler: { (data, response, error) in
+            self.dismiss(animated: true, completion: {
+                if error == nil {
+                    if data != nil {
+                        let tmpFile = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)[0].appendingPathComponent("TMPEXECFILETOSEND.swiftc")
+                        FileManager.default.createFile(atPath: tmpFile.path, contents: data, attributes: nil)
+                        
+                        let vc = self.storyboard!.instantiateInitialViewController() as! DocumentBrowserViewController
+                        
+                        self.present(vc, animated: true, completion: {
+                            vc.dismissState = .ready
+                            let _ = Afte.r(1, seconds: { (timer) in
+                                vc.presentDocument(at: [tmpFile])
+                            })
+                        })
+                    } else {
+                        self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                    }
+                } else {
+                    self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                }
+            })
+        }).resume()
+    }
+    
+    @objc func showSourceFromStore(_ sender: UIButton) {
+        let file = files[sender.tag]
+        let docs = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first!
+        
+        let vc = ActivityViewController(message: "Downloading...")
+        self.present(vc, animated: true, completion: nil)
+        
+        let session = NMSSHSession.connect(toHost: Server.default.host, withUsername: Server.default.user)
+        if (session?.isConnected)! {
+            session?.authenticate(byPassword: Server.default.password)
+            if (session?.isAuthorized)! {
+                do {
+                    try session?.channel.execute("mkdir zips; mkdir zips/\(UIDevice.current.identifierForVendor!.uuidString); cd /mnt/FFSwift/\(Server.user)@\(Server.host)/source/; cd '\(file)'; cp * ~/zips/\(UIDevice.current.identifierForVendor!.uuidString)/; cd ~/zips/\(UIDevice.current.identifierForVendor!.uuidString); zip download *")
+                    
+                    URLSession.shared.downloadTask(with: URL(string:"http://\(Server.default.host)/dl.php?f=/home/swiftexec/zips/\(UIDevice.current.identifierForVendor!.uuidString)/download.zip")!, completionHandler: { (url, response, error) in
+                        
+                        do {
+                            try session?.channel.execute("rm -rf  ~/zips/\(UIDevice.current.identifierForVendor!.uuidString)/")
+                            session?.disconnect()
+                        } catch _ {
+                            self.dismiss(animated: true, completion: {
+                                self.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
+                            })
+                        }
+                        
+                        if error == nil {
+                            if url != nil {
+                                let dest = docs.appendingPathComponent((file as NSString).deletingPathExtension+".zip")
+                                
+                                do {try FileManager.default.removeItem(at: dest)} catch _ {}
+                                
+                                do {
+                                    try FileManager.default.moveItem(at: url!, to: dest)
+                                    
+                                    self.dismiss(animated: true, completion: {
+                                        let vc = self.storyboard!.instantiateInitialViewController() as! DocumentBrowserViewController
+                                        vc.dismissState = .ready
+                                        
+                                        self.present(vc, animated: true, completion: {
+                                            let _ = Afte.r(1, seconds: { (timer) in
+                                                vc.presentDocument(at: [dest])
+                                            })
+                                        })
+                                    })
+                                } catch let error {
+                                    print("Error processing files! \(error)")
+                                }
+                            } else {
+                                self.dismiss(animated: true, completion: {
+                                    self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                                })
+                            }
+                        } else {
+                            self.dismiss(animated: true, completion: {
+                                AlertManager.shared.present(error: error!, withTitle: "Error downloading source!", inside: self)
+                            })
+                        }
+                    }).resume()
+                } catch _ {
+                    self.dismiss(animated: true, completion: {
+                        self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                    })
+                }
+            } else {
+                self.dismiss(animated: true, completion: {
+                    self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                })
+            }
+        } else {
+            self.dismiss(animated: true, completion: {
+                self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+            })
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
             return 4
+        } else if collectionView.tag == 2 {
+            if self.filesCollectionView != nil {
+                return files.count
+            } else {
+                return 1
+            }
         } else {
             return 1
         }
@@ -32,20 +160,47 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if canMakePayments {
-            return 2
+            return 4
         } else {
-            return 1
+            return 3
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(indexPath.row)", for: indexPath)
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath)
+        
+        if collectionView.tag != 2 {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(indexPath.row)", for: indexPath)
+        }
         
         if collectionView.tag == 1 {
             if prices != [] {
                 let button = cell.viewWithTag(5) as! UIButton
                 button.setTitle(prices[indexPath.row], for: .normal)
+            }
+        } else if collectionView.tag == 2 {
+            
+            if let _ = self.filesCollectionView {
+                
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath)
+                
+                let label = cell.viewWithTag(4) as! UILabel
+                label.text = (files[indexPath.row] as NSString).deletingPathExtension
+                
+                let buttonRun = cell.viewWithTag(5) as! UIButton
+                let buttonSource = cell.viewWithTag(6) as! UIButton
+                
+                buttonRun.tag = higherRunButtonTag
+                higherRunButtonTag += 1
+                buttonRun.addTarget(self, action: #selector(runFileFromStore(_:)), for: .touchUpInside)
+                
+                buttonSource.tag = higherSourceButtonTag
+                higherSourceButtonTag += 1
+                buttonSource.addTarget(self, action: #selector(showSourceFromStore(_:)), for: .touchUpInside)
+            } else {
+                self.filesCollectionView = collectionView
+                return cell
             }
         }
         return cell
@@ -53,9 +208,11 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if canMakePayments {
-            return tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row)")!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row)")!
+            return cell
         } else {
-            return tableView.dequeueReusableCell(withIdentifier: "1")!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row+1)")!
+            return cell
         }
     }
     
@@ -72,6 +229,33 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         compilations.text = ""
         
         AccountManager.shared.storeViewController = self
+        
+        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/dir.php?dir=/mnt/FFSwift/\(Server.user)@\(Server.host)/files")!) { (data, response, error) in
+            if error == nil {
+                if data != nil {
+                    let string = String.init(data: data!, encoding: .utf8)!
+                    var processed = string.components(separatedBy: "\n")
+                    
+                    for element in processed {
+                        if element == "" {
+                            processed.remove(at: processed.index(of: element)!)
+                        }
+                    }
+                    
+                    self.files = processed
+                    
+                    DispatchQueue.main.async {
+                        self.filesCollectionView!.reloadData()
+                    }
+                    
+                    print(self.files)
+                } else {
+                    AlertManager.shared.present(error: error!, withTitle: "Error fetching store content!", inside: self)
+                }
+            } else {
+                AlertManager.shared.present(error: error!, withTitle: "Error fetching store content!", inside: self)
+            }
+        }.resume()
         
         tableView.reloadData()
     }
@@ -170,6 +354,10 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didFailToLoadWithError error: Error) {
         print("Error loading ad! \(error.localizedDescription)")
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func account(_ sender: Any) {
+        AccountManager.shared.presentAccountInfo(inside: self)
     }
     
     

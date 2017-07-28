@@ -21,11 +21,35 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         return selectedFiles[index] as QLPreviewItem
     }
     
-    
-    
+    enum dismissStates: Int {
+        case none = 0
+        case ready = 1
+        case done = 2
+    }
+        
     var open = true
-    
     var selectedFiles = [URL]()
+    var dismissState = dismissStates.none
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if dismissState == .done {
+            print("Dismiss")
+            do {
+                try FileManager.default.removeItem(at: FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)[0].appendingPathComponent("TMPEXECFILETOSEND.swiftc"))
+            } catch let error {
+                print("Error removing tmp file: \(error)")
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        if dismissState == .ready {
+            print("Dismiss state is ready")
+            dismissState = .done
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,86 +150,87 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         documentViewController.modalTransitionStyle = .flipHorizontal
         documentViewController.firstLaunch = true
         
-        if urls.first!.pathExtension == "swiftc" {
-            let alert = ActivityViewController(message: "Uploading...")
-            self.present(alert, animated: true, completion: nil)
-            let session = NMSSHSession.connect(toHost: Server.host, withUsername: Server.user)
-            if (session?.isConnected)! {
-                session?.authenticate(byPassword: Server.password)
-                if (session?.isAuthorized)! {
-                    do {
-                        try session?.channel.execute("rm -rf bin/\(UIDevice.current.identifierForVendor!.uuidString); mkdir bin/\(UIDevice.current.identifierForVendor!.uuidString)")
-                    } catch _ {}
-                    
-                    let filePath = "bin/\(UIDevice.current.identifierForVendor!.uuidString)/\(urls.first!.lastPathComponent)"
-                    session?.channel.uploadFile(urls.first!.path, to: filePath)
-                    
-                    do {
-                        try session?.channel.execute("chmod +x \(filePath)")
-                    } catch _ {}
-                    
-                    self.dismiss(animated: true, completion: {
-                        self.performSegue(withIdentifier: "terminal", sender: filePath)
-                    })
-                    
-                } else {
-                    self.dismiss(animated: true, completion: {
-                        self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
-                    })
-                }
-            } else {
-                self.dismiss(animated: true, completion: {
-                    self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
-                })
-            }
+        selectedFiles = urls
             
-        } else {
-            selectedFiles = urls
+        for url in urls {
+            documentViewController.files.append(url)
+            print("URLS: \(documentViewController.files)")
+        }
             
-            for url in urls {
-                documentViewController.files.append(url)
-                print("URLS: \(documentViewController.files)")
-            }
+        if urls.first!.pathExtension != "swift" {
+            let vc = QLPreviewController()
+            vc.dataSource = self
             
-            if urls.first!.pathExtension != "swift" {
-                let vc = QLPreviewController()
-                vc.dataSource = self
-                
-                if urls.first!.pathExtension.lowercased() == "zip" {
+            if urls.first!.pathExtension.lowercased() == "zip" {
+                do {
+                    let newUnzipedFile = try Zip.quickUnzipFile(urls.first!)
+                    
                     do {
-                        let newUnzipedFile = try Zip.quickUnzipFile(urls.first!)
+                        var files = try FileManager.default.contentsOfDirectory(at: newUnzipedFile, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
                         
-                        do {
-                            var files = try FileManager.default.contentsOfDirectory(at: newUnzipedFile, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-                            
-                            for file in files {
-                                if file.lastPathComponent == "__MACOSX" {
-                                    do {
-                                        try FileManager.default.removeItem(at: file)
-                                    } catch let error {
-                                        print("Error removing __MACOSX file: \(error.localizedDescription)")
-                                    }
-                                    
-                                    break
+                        for file in files {
+                            if file.lastPathComponent == "__MACOSX" {
+                                do {
+                                    try FileManager.default.removeItem(at: file)
+                                } catch let error {
+                                    print("Error removing __MACOSX file: \(error.localizedDescription)")
                                 }
+                                
+                                break
                             }
-                            
-                            files = try FileManager.default.contentsOfDirectory(at: newUnzipedFile, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-                            
-                            self.presentDocument(at: files)
-                            
-                        } catch let error {
-                            print("Error getting content of folder: \(error)")
                         }
+                            
+                        files = try FileManager.default.contentsOfDirectory(at: newUnzipedFile, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+                            
+                        self.presentDocument(at: files)
+                            
                     } catch let error {
-                        print("Error unziping files! \(error.localizedDescription)")
+                        print("Error getting content of folder: \(error)")
                     }
-                } else {
-                    present(vc, animated: true, completion: nil)
+                } catch let error {
+                    print("Error unziping files! \(error.localizedDescription)")
                 }
+            } else if urls.first!.pathExtension == "swiftc" {
+                let alert = ActivityViewController(message: "Uploading...")
+                self.present(alert, animated: true, completion: nil)
+                
+                let _ = Afte.r(1, seconds: { (timer) in
+                    let session = NMSSHSession.connect(toHost: Server.host, withUsername: Server.user)
+                    if (session?.isConnected)! {
+                        session?.authenticate(byPassword: Server.password)
+                        if (session?.isAuthorized)! {
+                            do {
+                                try session?.channel.execute("rm -rf bin/\(UIDevice.current.identifierForVendor!.uuidString); mkdir bin/\(UIDevice.current.identifierForVendor!.uuidString)")
+                            } catch _ {}
+                            
+                            let filePath = "bin/\(UIDevice.current.identifierForVendor!.uuidString)/\(urls.first!.lastPathComponent)"
+                            session?.channel.uploadFile(urls.first!.path, to: filePath)
+                            
+                            do {
+                                try session?.channel.execute("chmod +x '\(filePath)'")
+                            } catch _ {}
+                            
+                            self.dismiss(animated: true, completion: {
+                                self.performSegue(withIdentifier: "terminal", sender: filePath)
+                            })
+                            
+                        } else {
+                            self.dismiss(animated: true, completion: {
+                                self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                            })
+                        }
+                    } else {
+                        self.dismiss(animated: true, completion: {
+                            self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                        })
+                    }
+                })
+                
             } else {
-                present(documentViewController, animated: true, completion: nil)
+                present(vc, animated: true, completion: nil)
             }
+        } else {
+            present(documentViewController, animated: true, completion: nil)
         }
         
     }
@@ -213,10 +238,11 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "terminal" {
             if let terminalViewController = segue.destination as? NMTerminalViewController {
-                terminalViewController.command = "\(sender as! String); rm -rf bin/\(UIDevice.current.identifierForVendor!.uuidString); logout"
+                terminalViewController.command = "'\(sender as! String)'; rm -rf bin/\(UIDevice.current.identifierForVendor!.uuidString); logout"
                 terminalViewController.user = Server.user
                 terminalViewController.host = Server.host
                 terminalViewController.password = Server.password
+                terminalViewController.browserVC = self
             }
         }
     }

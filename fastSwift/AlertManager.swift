@@ -12,6 +12,14 @@ class AlertManager {
     private init() {}
     static let shared = AlertManager()
     
+    func openWebView(withURL url:URL, inside viewController: UIViewController) {
+        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "webview") as! WebViewController
+        vc.url = url
+        vc.modalTransitionStyle = .flipHorizontal
+        
+        viewController.present(vc, animated: true, completion: nil)
+    }
+    
     var connectionErrorViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: "connection error")

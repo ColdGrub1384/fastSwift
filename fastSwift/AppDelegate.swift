@@ -102,7 +102,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         request.start()
         print("Start request!")
         SKPaymentQueue.default().add(self)
-                
+        
+        
         return true
     }
 

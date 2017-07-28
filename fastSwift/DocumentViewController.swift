@@ -103,8 +103,8 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         } else if autoCompilationState == .compiled {
             self.dismiss(animated: true, completion: nil)
         }
-        
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -380,7 +380,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         if segue.identifier == "swift" {
             if let nextVC = segue.destination as? NMTerminalViewController {
                 let secondPart = "./main; cd ~; rm -rf \((UIDevice.current.identifierForVendor!.uuidString)); logout"
-                nextVC.command = "cd '\((UIDevice.current.identifierForVendor!.uuidString))'; mv '\(self.document!.fileURL.lastPathComponent)' main.swift; swiftc *; \(additionalCode)     "
+                nextVC.command = "cd '\((UIDevice.current.identifierForVendor!.uuidString))'; mv '\(self.document!.fileURL.lastPathComponent)' main.swift; swiftc *; \(additionalCode)"
                 print(nextVC.command)
                 nextVC.host = Server.host
                 nextVC.user = Server.user

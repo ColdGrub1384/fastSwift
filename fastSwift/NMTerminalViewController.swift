@@ -8,35 +8,33 @@
 
 import UIKit
 import NMSSH
-
+import Zip
 
 class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHChannelDelegate, UITextViewDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var terminal: TerminalTextView!
     var session = NMSSHSession()
-    
-    
     var command = ""
-    
     var host = UserDefaults.standard.string(forKey: "IP")
     var user = UserDefaults.standard.string(forKey: "USER")
     var password = UserDefaults.standard.string(forKey: "PASSWORD")
-    
     var project = ""
-    
     var needsUserInput = true
-    
     @IBOutlet weak var activity: UIActivityIndicatorView!
-    
     @IBOutlet weak var navBar: UINavigationBar!
-    
     var mainFile = ""
-    
     var delegate: DocumentViewController?
-    
+    var browserVC: DocumentBrowserViewController?
     var console = ""
     
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if let delegate = browserVC {
+            delegate.viewDidAppear(true)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +45,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         terminal.isEditable = true
         terminal.keyboardAppearance = .dark
         terminal.tintColor = .white
+        terminal.text = "\n"
         if needsUserInput {
             terminal.becomeFirstResponder()
         }
@@ -119,24 +118,46 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
             
             if self.terminal.text.contains("DownloadBinaryFileNow") {
                 let inCurrentVC = self.terminal.text.contains("DownloadBinaryFileNowInCurrentVC")
-                if true {
+                self.terminal.text = self.terminal.text.replacingOccurrences(of: "DownloadBinaryFileNow", with: "")
+                
+                
+                self.session.sftp.connect()
+                if self.session.sftp.fileExists(atPath: "/home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main") {
                     self.terminal.text = "Downloading executable file..."
                     try! self.session.channel.execute("zip \(UIDevice.current.identifierForVendor!.uuidString)/main.zip \(UIDevice.current.identifierForVendor!.uuidString)/main")
                     
-                    URLSession.shared.downloadTask(with: URL(string:"http://coldg.ddns.net/dl.php?f=/home/swiftexec/\(UIDevice.current.identifierForVendor!.uuidString)/main.zip")!, completionHandler: { (url, response, error) in
+                    let fileURL = URL(string:"http://\(Server.default.host)/dl.php?f=/home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main.zip")!
+                    print(fileURL)
+                    URLSession.shared.downloadTask(with: fileURL, completionHandler: { (url, response, error) in
                         do {try self.session.channel.write("\n")} catch _ {}
                         if error == nil {
                             if url != nil {
                                 do {
                                     let destURL = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first!.appendingPathComponent(self.mainFile+".swiftc")
                                     
+                                    print("DEST URL: \(destURL.absoluteString)")
+                                    
                                     if FileManager.default.fileExists(atPath: destURL.path) {
                                         try FileManager.default.removeItem(at: destURL)
                                     }
                                     
-                                    try FileManager.default.copyItem(at: url!, to: destURL)
+                                    print("ZIP URL: \(destURL.deletingLastPathComponent().appendingPathComponent(self.mainFile+".tmp"+".zip"))")
                                     
-                                    let activityVC = UIActivityViewController(activityItems: [destURL], applicationActivities: nil)
+                                    try FileManager.default.copyItem(at: url!, to: destURL.deletingLastPathComponent().appendingPathComponent(self.mainFile+".tmp"+".zip"))
+                                    
+                                    let unziped = try Zip.quickUnzipFile(destURL.deletingLastPathComponent().appendingPathComponent(self.mainFile+".tmp"+".zip"))
+                                    
+                                    try FileManager.default.moveItem(at: unziped.appendingPathComponent(UIDevice.current.identifierForVendor!.uuidString).appendingPathComponent("main"), to: destURL)
+                                    try FileManager.default.removeItem(at: unziped)
+                                    try FileManager.default.removeItem(at:
+                                        destURL.deletingLastPathComponent().appendingPathComponent(self.mainFile+".tmp"+".zip"))
+                                    
+                                    
+                                    let publish = PublishToStoreViewController()
+                                    publish.fileURL = destURL
+                                    publish.delegate = self.delegate
+                                    
+                                    let activityVC = UIActivityViewController(activityItems: [destURL], applicationActivities: [publish])
                                     
                                     if !inCurrentVC {
                                         self.dismiss(animated: true, completion: {
@@ -155,12 +176,12 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                         }
                     }).resume()
                     
+                } else {
+                    self.session.disconnect()
                 }
             }
             
-            if self.textExceedBoundsOf(self.terminal) {
-                self.terminal.scrollToBotom()
-            }
+            self.terminal.scrollToBotom()
             
         }
         

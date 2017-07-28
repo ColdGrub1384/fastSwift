@@ -20,10 +20,10 @@ class Server {
             if Server().enabled {
                 return ip_
             } else {
-                return "190.46.99.168"
+                return Server.default.host
             }
         } else {
-            return "190.46.99.168"
+            return Server.default.host
         }
     }
     
@@ -32,10 +32,10 @@ class Server {
             if Server().enabled {
                 return user
             } else {
-                return "swiftexec"
+                return Server.default.user
             }
         } else {
-            return "swiftexec"
+            return Server.default.user
         }
     }
     
@@ -44,10 +44,16 @@ class Server {
             if Server().enabled {
                 return pass
             } else {
-                return "swift"
+                return Server.default.password
             }
         } else {
-            return "swift"
+            return Server.default.password
         }
     }
+    
+    static var `default` = Server()
+    
+    var host = "190.46.99.168"
+    var user = "swiftexec"
+    var password = "swift"
 }

@@ -24,6 +24,7 @@
 		3A9F395C1F1BCE7600D48F02 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3A9F395B1F1BCE7600D48F02 /* Settings.bundle */; };
 		3AB1A9EE1F1BE6CC000455F5 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1A9ED1F1BE6CC000455F5 /* Server.swift */; };
 		3AB9AE7E1EFDD0B3005B4BBE /* OrganizerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9AE7D1EFDD0B3005B4BBE /* OrganizerTableViewController.swift */; };
+		3AC2FBC41F2BCE7C00170AEE /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC2FBC31F2BCE7C00170AEE /* WebViewController.swift */; };
 		3AD07F631F1BF769003C47B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD07F621F1BF769003C47B2 /* SettingsViewController.swift */; };
 		3AD509C61F12845F007C79C4 /* ExportToXcodeHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD509C51F12845E007C79C4 /* ExportToXcodeHelpViewController.swift */; };
 		3AD72C531EEC90EC000C80A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD72C521EEC90EC000C80A9 /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 		3AE628921F11BEC500A652F3 /* Licenses.md in Resources */ = {isa = PBXBuildFile; fileRef = 3AE628901F11BE4100A652F3 /* Licenses.md */; };
 		3AF7E7771EF72B3600F80C6C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AD72C621EEC90ED000C80A9 /* Info.plist */; };
 		3AFB1E881EEDA18000FBCF73 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB1E871EEDA18000FBCF73 /* AlertManager.swift */; };
+		3AFBC23D1F27CC72002A8081 /* PublishToStoreActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC23C1F27CC72002A8081 /* PublishToStoreActivity.swift */; };
 		6C009E9BCEAFA00FB8A516BE /* Pods_fastSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFB78DBF98A6DA978BBD92B /* Pods_fastSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +97,7 @@
 		3A9F395B1F1BCE7600D48F02 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3AB1A9ED1F1BE6CC000455F5 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		3AB9AE7D1EFDD0B3005B4BBE /* OrganizerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizerTableViewController.swift; sourceTree = "<group>"; };
+		3AC2FBC31F2BCE7C00170AEE /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3AD07F621F1BF769003C47B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3AD509C51F12845E007C79C4 /* ExportToXcodeHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToXcodeHelpViewController.swift; sourceTree = "<group>"; };
 		3AD72C4F1EEC90EC000C80A9 /* fastSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fastSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +112,7 @@
 		3AE628901F11BE4100A652F3 /* Licenses.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Licenses.md; sourceTree = "<group>"; };
 		3AF7E7661EF7288B00F80C6C /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		3AFB1E871EEDA18000FBCF73 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		3AFBC23C1F27CC72002A8081 /* PublishToStoreActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishToStoreActivity.swift; sourceTree = "<group>"; };
 		93679DAC690C0B518ECF2FED /* Pods-fastSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fastSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fastSwift/Pods-fastSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		EFFB78DBF98A6DA978BBD92B /* Pods_fastSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fastSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -191,12 +195,14 @@
 				3A64F52C1F11380A00C3EBF9 /* ExportToXcodeActivity.swift */,
 				3A1C6CC41F2002D6001D551C /* ExportToBinaryActivity.swift */,
 				3A6873FB1F11B0F400FA0AF3 /* ExportToXcodeViewController.swift */,
+				3AFBC23C1F27CC72002A8081 /* PublishToStoreActivity.swift */,
 				3AD509C51F12845E007C79C4 /* ExportToXcodeHelpViewController.swift */,
 				3AD72C581EEC90ED000C80A9 /* Document.swift */,
 				3A6A34381F01BD5B00ADC9E5 /* NMTerminalViewController.swift */,
 				3A09B3BE1F23BC010045CAA1 /* TerminalTextView.swift */,
 				3A3B0D3D1F0823EB00836D00 /* ServerErrorViewController.swift */,
 				3AD07F621F1BF769003C47B2 /* SettingsViewController.swift */,
+				3AC2FBC31F2BCE7C00170AEE /* WebViewController.swift */,
 				3AD72C5A1EEC90ED000C80A9 /* Main.storyboard */,
 				3AD72C5D1EEC90ED000C80A9 /* Assets.xcassets */,
 				3AD72C5F1EEC90ED000C80A9 /* LaunchScreen.storyboard */,
@@ -390,6 +396,7 @@
 				3AD72C591EEC90ED000C80A9 /* Document.swift in Sources */,
 				3A0FF2AF1F1EEB4600AF2D7A /* After.swift in Sources */,
 				3A6A34391F01C27D00ADC9E5 /* NMTerminalViewController.swift in Sources */,
+				3AC2FBC41F2BCE7C00170AEE /* WebViewController.swift in Sources */,
 				3AE628911F11BE8D00A652F3 /* Licenses.md in Sources */,
 				3AB9AE7E1EFDD0B3005B4BBE /* OrganizerTableViewController.swift in Sources */,
 				3AD72C571EEC90ED000C80A9 /* DocumentViewController.swift in Sources */,
@@ -397,6 +404,7 @@
 				3AD07F631F1BF769003C47B2 /* SettingsViewController.swift in Sources */,
 				3A64F52D1F11380A00C3EBF9 /* ExportToXcodeActivity.swift in Sources */,
 				3A2404221EFEC82F00C38D48 /* StoreViewController.swift in Sources */,
+				3AFBC23D1F27CC72002A8081 /* PublishToStoreActivity.swift in Sources */,
 				3AD72C551EEC90ED000C80A9 /* DocumentBrowserViewController.swift in Sources */,
 				3AB1A9EE1F1BE6CC000455F5 /* Server.swift in Sources */,
 				3A6873FC1F11B0F500FA0AF3 /* ExportToXcodeViewController.swift in Sources */,
