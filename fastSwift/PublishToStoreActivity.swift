@@ -43,7 +43,7 @@ class PublishToStoreViewController: UIActivity {
             let vc = ActivityViewController(message: "Uploading...")
             delegate.present(vc, animated: true, completion: nil)
             
-            URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/createDirAtShop.php/?server\("\(Server.user)@\(Server.host)".addingPercentEncodingForURLQueryValue()!)")!, completionHandler: { (data, response, error) in
+            URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/createDirAtShop.php/?server=\("\(Server.user)@\(Server.host)".addingPercentEncodingForURLQueryValue()!)")!, completionHandler: { (data, response, error) in
                 if error == nil {
                     let session = NMSSHSession.connect(toHost: Server.default.host, withUsername: Server.default.user)
                     if session!.isConnected {
@@ -61,7 +61,7 @@ class PublishToStoreViewController: UIActivity {
                                 session?.channel.uploadFile(file.path, to: "/home/swiftexec/store/\(Server.user)@\(Server.host)/source/\(self.fileURL!.lastPathComponent)/\(file.lastPathComponent)")
                             }
                             
-                            let url = URL(string:"http://\(Server.default.host)/moveScriptsToShop.php/?atServer=\("\(Server.user)@\(Server.host)")&script=\(self.fileURL!.lastPathComponent.addingPercentEncodingForURLQueryValue()!)")!
+                            let url = URL(string:"http://\(Server.default.host)/moveScriptsToShop.php/?atServer=\("\(Server.user)@\(Server.host)")&script=\(self.fileURL!.lastPathComponent.addingPercentEncodingForURLQueryValue()!)&user=\(AccountManager.shared.username!.addingPercentEncodingForURLQueryValue()!)&password=\(AccountManager.shared.password!.addingPercentEncodingForURLQueryValue()!)")!
                             print(url.absoluteString)
                             URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                                 
@@ -71,21 +71,31 @@ class PublishToStoreViewController: UIActivity {
                                 
                                 if error == nil {
                                     if data != nil {
-                                        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php/?action=registerScript&user=\(AccountManager.shared.username!.addingPercentEncodingForURLQueryValue()!)&password=\(AccountManager.shared.password!.addingPercentEncodingForURLQueryValue()!)&script=\(self.fileURL!.lastPathComponent.addingPercentEncodingForURLQueryValue()!)")!, completionHandler: { (data, response, error) in
-                                            
-                                            if error == nil {
-                                                if data != nil {
-                                                    delegate.dismiss(animated: true, completion: nil)
-                                                } else {
-                                                    AlertManager.shared.presentAlert(withTitle: "Error adding script to the database!", message: "Returned data is empty.", style: .alert, actions: [AlertManager.shared.cancel], inside: delegate, animated: true, completion: nil)
-                                                }
-                                            } else {
+                                        if let error = String(data:data!, encoding: String.Encoding.utf8) {
+                                            if error != "" {
                                                 delegate.dismiss(animated: true, completion: {
-                                                    AlertManager.shared.present(error: error!, withTitle: "Error adding script to the database!", inside: delegate)
+                                                     AlertManager.shared.presentAlert(withTitle: "Error publishing project!", message: error, style: .alert, actions: [AlertManager.shared.cancel], inside: delegate, animated: true, completion: nil)
                                                 })
+                                            } else {
+                                                URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php/?action=registerScript&user=\(AccountManager.shared.username!.addingPercentEncodingForURLQueryValue()!)&password=\(AccountManager.shared.password!.addingPercentEncodingForURLQueryValue()!)&script=\(self.fileURL!.lastPathComponent.addingPercentEncodingForURLQueryValue()!)")!, completionHandler: { (data, response, error) in
+                                                    
+                                                    if error == nil {
+                                                        if data != nil {
+                                                            delegate.dismiss(animated: true, completion: {
+                                                                AlertManager.shared.presentAlert(withTitle: "Published!", message: "People connected to \(Server.host) can now download your project via the store!\nIf you want to update the project, simplely publish it another time and if you want to delete the project go to Store > Account > View Account.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
+                                                            })
+                                                        } else {
+                                                            AlertManager.shared.presentAlert(withTitle: "Error adding script to the database!", message: "Returned data is empty.", style: .alert, actions: [AlertManager.shared.cancel], inside: delegate, animated: true, completion: nil)
+                                                        }
+                                                    } else {
+                                                        delegate.dismiss(animated: true, completion: {
+                                                            AlertManager.shared.present(error: error!, withTitle: "Error adding script to the database!", inside: delegate)
+                                                        })
+                                                    }
+                                                    
+                                                }).resume()
                                             }
-                                            
-                                        }).resume()
+                                        }
                                     } else {
                                         delegate.dismiss(animated: true, completion: {
                                             delegate.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)

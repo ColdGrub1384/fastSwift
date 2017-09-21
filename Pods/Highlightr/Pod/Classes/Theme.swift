@@ -171,7 +171,7 @@ open class Theme {
             if(result.numberOfRanges == 3)
             {
                 var attributes = [String:String]()
-                let cssPairs = objcString.substring(with: result.rangeAt(2)).components(separatedBy: ";")
+                let cssPairs = objcString.substring(with: result.range(at: 2)).components(separatedBy: ";")
                 for pair in cssPairs {
                     let cssPropComp = pair.components(separatedBy: ":")
                     if(cssPropComp.count == 2)
@@ -182,7 +182,7 @@ open class Theme {
                 }
                 if attributes.count > 0
                 {
-                    resultDict[objcString.substring(with: result.rangeAt(1))] = attributes
+                    resultDict[objcString.substring(with: result.range(at: 1))] = attributes
                 }
                 
             }

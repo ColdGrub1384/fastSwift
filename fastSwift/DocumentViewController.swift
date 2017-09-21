@@ -10,6 +10,15 @@ import UIKit
 import Highlightr
 import NMSSH
 
+extension UITextInput {
+    var selectedRange: NSRange? {
+        guard let range = self.selectedTextRange else { return nil }
+        let location = offset(from: beginningOfDocument, to: range.start)
+        let length = offset(from: range.start, to: range.end)
+        return NSRange(location: location, length: length)
+    }
+}
+
 class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopoverPresentationControllerDelegate, DocumentDelegate {
     
     func document(didClose document: Document) {
@@ -39,22 +48,20 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     @IBOutlet weak var titleBar: UINavigationBar!
     @IBOutlet weak var code: UITextView!
-    
     @IBOutlet weak var dismissKeyboard: UIBarButtonItem!
     
     var files = [URL]()
     
     @IBOutlet weak var compilations: UIBarButtonItem!
-    
-    
     @IBOutlet weak var organizeBTN: UIBarButtonItem!
-    
     @IBOutlet weak var compileBTN: UIBarButtonItem!
     
     var firstLaunch = false
     
     var autoCompilationState = AppDelegate.autoCompilationState.none
     
+    var range: NSRange?
+    var cursorPos: UITextRange?
     
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
@@ -133,10 +140,19 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         })
         
         
-        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (timer) in
-            let cursorPos = self.code.selectedTextRange
-            self.code.attributedText = self.highlight("swift", code: self.code.text)
-            self.code.selectedTextRange = cursorPos
+        DispatchQueue.main.async {
+            let _ = Repea.t(all: 0.1) { (timer) in
+                self.range = self.code.selectedRange
+                self.cursorPos = self.code.selectedTextRange
+            }
+        }
+        
+        DispatchQueue.main.async {
+            let _ = Repea.t(all: 0.2) { (timer) in
+                self.code.attributedText = self.highlight("swift", code: self.code.text)
+                self.code.selectedTextRange = self.cursorPos
+                self.code.scrollRangeToVisible(self.range!)
+            }
         }
         
     }
@@ -194,63 +210,65 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     func CodeToolBar() {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
-        let toolbar2 = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
         
         var items = [UIBarButtonItem]()
-        items.append(UIBarButtonItem(title: "( ", style: .done, target: self, action: #selector(insertText(sender:)))) // (
-        items.append(UIBarButtonItem(title: ") ", style: .done, target: self, action: #selector(insertText(sender:)))) // )
+        items.append(UIBarButtonItem(title: "( ", style: .plain, target: self, action: #selector(insertText(sender:)))) // (
+        items.append(UIBarButtonItem(title: ") ", style: .plain, target: self, action: #selector(insertText(sender:)))) // )
+        items.append(UIBarButtonItem(title: "{ ", style: .plain, target: self, action: #selector(insertText(sender:)))) // {
+        items.append(UIBarButtonItem(title: "} ", style: .plain, target: self, action: #selector(insertText(sender:)))) // }
+        items.append(UIBarButtonItem(title: "\\ ", style: .plain, target: self, action: #selector(insertText(sender:)))) // \
+        items.append(UIBarButtonItem(title: "/ ", style: .plain, target: self, action: #selector(insertText(sender:)))) // /
+        items.append(UIBarButtonItem(title: "\" ", style: .plain, target: self, action: #selector(insertText(sender:)))) // "
+        items.append(UIBarButtonItem(title: "[ ", style: .plain, target: self, action: #selector(insertText(sender:)))) // [
+        items.append(UIBarButtonItem(title: "] ", style: .plain, target: self, action: #selector(insertText(sender:)))) // ]
+        items.append(UIBarButtonItem(title: "! ", style: .plain, target: self, action: #selector(insertText(sender:)))) // !
+        items.append(UIBarButtonItem(title: "? ", style: .plain, target: self, action: #selector(insertText(sender:)))) // ?
+        items.append(UIBarButtonItem(title: "& ", style: .plain, target: self, action: #selector(insertText(sender:)))) // &
+        items.append(UIBarButtonItem(title: "| ", style: .plain, target: self, action: #selector(insertText(sender:)))) // |
         
-        items.append(UIBarButtonItem(title: "  ", style: .done, target: self, action: nil))
-        
-        items.append(UIBarButtonItem(title: "{ ", style: .done, target: self, action: #selector(insertText(sender:)))) // {
-        items.append(UIBarButtonItem(title: "} ", style: .done, target: self, action: #selector(insertText(sender:)))) // }
-        
-        items.append(UIBarButtonItem(title: "  ", style: .done, target: self, action: nil))
-        
-        items.append(UIBarButtonItem(title: "\\ ", style: .done, target: self, action: #selector(insertText(sender:)))) // \
-        items.append(UIBarButtonItem(title: "/ ", style: .done, target: self, action: #selector(insertText(sender:)))) // /
-        
-        items.append(UIBarButtonItem(title: "  ", style: .done, target: self, action: nil))
-        
-        items.append(UIBarButtonItem(title: "\" ", style: .done, target: self, action: #selector(insertText(sender:)))) // "
-        
-        items.append(UIBarButtonItem(title: "  ", style: .done, target: self, action: nil))
-        
-        items.append(UIBarButtonItem(title: "[ ", style: .done, target: self, action: #selector(insertText(sender:)))) // [
-        items.append(UIBarButtonItem(title: "] ", style: .done, target: self, action: #selector(insertText(sender:)))) // ]
-        
-        items.append(UIBarButtonItem(title: "  ", style: .done, target: self, action: nil))
-        
-        items.append(UIBarButtonItem(title: "! ", style: .done, target: self, action: #selector(insertText(sender:)))) // !
-        items.append(UIBarButtonItem(title: "? ", style: .done, target: self, action: #selector(insertText(sender:)))) // ?
-        
-        items.append(UIBarButtonItem(title: "  ", style: .done, target: self, action: nil))
-        
-        items.append(UIBarButtonItem(title: "& ", style: .done, target: self, action: #selector(insertText(sender:)))) // &
-        items.append(UIBarButtonItem(title: "| ", style: .done, target: self, action: #selector(insertText(sender:)))) // |
-        
-        items.append(UIBarButtonItem(title: "  ", style: .done, target: self, action: nil))
-        
-        items.append(UIBarButtonItem(title: "↹", style: .done, target: self, action: #selector(insertText(sender:)))) // TAB
-        
-        for item in items {
+        /*for item in items {
             let font = UIFont(name: "Helvetica", size: 20)
             
-            item.setTitleTextAttributes([NSAttributedStringKey.font.rawValue:font], for: UIControlState.normal)
-        }
+            item.setTitleTextAttributes([NSAttributedStringKey.font:font!], for: UIControlState.normal)
+        }*/
         
         toolbar.sizeToFit()
         toolbar.items = items
         toolbar.barTintColor = self.view.backgroundColor
         toolbar.tintColor = self.view.tintColor
         
-        self.code.inputAccessoryView = toolbar
+        let toolbar2 = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        
+        var items2 = [UIBarButtonItem]()
+        items2.append(UIBarButtonItem(title: "var ", style: .plain, target: self, action: #selector(insertText(sender:)))) // var
+        items2.append(UIBarButtonItem(title: "let ", style: .plain, target: self, action: #selector(insertText(sender:)))) // let
+        items2.append(UIBarButtonItem(title: "func ", style: .plain, target: self, action: #selector(insertText(sender:)))) // func
+        items2.append(UIBarButtonItem(title: "if ", style: .plain, target: self, action: #selector(insertText(sender:)))) // if
+        items2.append(UIBarButtonItem(title: "else ", style: .plain, target: self, action: #selector(insertText(sender:)))) // else
+        items2.append(UIBarButtonItem(title: "print ", style: .plain, target: self, action: #selector(insertText(sender:)))) // print
+        items2.append(UIBarButtonItem(title: "↹", style: .plain, target: self, action: #selector(insertText(sender:)))) // TAB
+
+        
+        toolbar2.sizeToFit()
+        toolbar2.items = items2
+        toolbar2.barTintColor = self.view.backgroundColor
+        toolbar2.tintColor = self.view.tintColor
+        
+        let inputAccessoryView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
+        inputAccessoryView.backgroundColor = self.view.backgroundColor
+        inputAccessoryView.addSubview(toolbar)
+        inputAccessoryView.addSubview(toolbar2)
+        toolbar2.frame.origin.y = toolbar2.frame.origin.y+50
+        
+        self.code.inputAccessoryView = inputAccessoryView
     }
     
     @objc func insertText(sender: UIBarButtonItem) {
         var text = sender.title!.replacingOccurrences(of: " ", with: "")
         if text == "↹" {
             text = "    "
+        } else if text == "print" {
+            text = "print(\""
         }
         self.code.replace(self.code.selectedTextRange!, withText: text)
     }
@@ -294,9 +312,9 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         }
         
         let alert = ActivityViewController(message: "Uploading...")
+        self.present(alert, animated: true, completion: nil)
+        
         DispatchQueue.global(qos: .background).async {
-            self.present(alert, animated: true, completion: nil)
-            
             let session = NMSSHSession.connect(toHost: Server.host, withUsername: Server.user)
             
             if (session?.isConnected)! {
@@ -394,6 +412,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             }
         }
     }
+    
     
     @IBAction func Templates(_ sender: UIBarButtonItem) {
         

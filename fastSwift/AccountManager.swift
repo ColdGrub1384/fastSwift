@@ -17,11 +17,11 @@ class AccountManager {
     
     var username: String? {
         get {
-            return  UserDefaults.standard.string(forKey: "username")
+            return  UserDefaults.standard.string(forKey: "accountUser")
         }
         
         set(value) {
-            UserDefaults.standard.set(value, forKey: "username")
+            UserDefaults.standard.set(value, forKey: "accountUser")
         }
     }
     var password: String? {
@@ -37,7 +37,7 @@ class AccountManager {
     func presentAccountInfo(inside vc: UIViewController) {
         func info() {
             let alert = AlertManager.shared.alert(withTitle: self.username!, message: "You are logged as \(self.username!)", style: .alert, actions: [UIAlertAction.init(title: "View account", style: .default, handler: { (action) in
-                AlertManager.shared.openWebView(withURL: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php?user=\(self.username!.addingPercentEncodingForURLQueryValue()!)&password=\(self.password!.addingPercentEncodingForURLQueryValue()!)&server=\(Server.host)&action=uiLogin")!, inside: vc)
+                AlertManager.shared.openWebView(withURL: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php?user=\(self.username!.addingPercentEncodingForURLQueryValue()!)&password=\(self.password!.addingPercentEncodingForURLQueryValue()!)&server=\(Server.user)@\(Server.host)&action=uiLogin")!, inside: vc)
             }), UIAlertAction.init(title: "Logout", style: .default, handler: { (action) in
                 self.username = nil
                 self.password = nil
@@ -81,13 +81,19 @@ class AccountManager {
                                 completion!()
                             }
                         } else {
-                            AlertManager.shared.presentAlert(withTitle: "Error loging in!", message: str, style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
+                            DispatchQueue.main.async {
+                                AlertManager.shared.presentAlert(withTitle: "Error loging in!", message: str, style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
+                            }
                         }
                     } else {
-                        AlertManager.shared.presentAlert(withTitle: "Error loging in!", message: "Returned data is empty!", style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
+                        DispatchQueue.main.async {
+                            AlertManager.shared.presentAlert(withTitle: "Error loging in!", message: "Returned data is empty!", style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
+                        }
                     }
                 } else {
-                    AlertManager.shared.present(error: error!, withTitle: "Error loging in!", inside: vc)
+                    DispatchQueue.main.async {
+                        AlertManager.shared.present(error: error!, withTitle: "Error loging in!", inside: vc)
+                    }
                 }
             }).resume()
             
@@ -103,20 +109,29 @@ class AccountManager {
                         let str = String.init(data: data!, encoding: String.Encoding.utf8)!
                         
                         if str == "User created!" {
+                            
                             self.username = userTextField.text!
                             self.password = passTextField.text!
                             
                             if completion != nil {
-                                completion!()
+                                DispatchQueue.main.async {
+                                    completion!()
+                                }
                             }
                         } else {
-                            AlertManager.shared.presentAlert(withTitle: "Error creating account!", message: str, style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
+                            DispatchQueue.main.async {
+                                AlertManager.shared.presentAlert(withTitle: "Error creating account!", message: str, style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
+                            }
                         }
                     } else {
-                        AlertManager.shared.presentAlert(withTitle: "Error creating account!", message: "Returned data is empty!", style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
+                        DispatchQueue.main.async {
+                            AlertManager.shared.presentAlert(withTitle: "Error creating account!", message: "Returned data is empty!", style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
+                        }
                     }
                 } else {
-                    AlertManager.shared.present(error: error!, withTitle: "Error creating account!", inside: vc)
+                    DispatchQueue.main.async {
+                        AlertManager.shared.present(error: error!, withTitle: "Error creating account!", inside: vc)
+                    }
                 }
             }).resume()
             
@@ -142,10 +157,7 @@ class AccountManager {
     
     var compilations: Int {
         get {
-            #if DEBUG
-                return 100
-            #endif
-            
+                        
             if !UserDefaults.standard.bool(forKey: "firstReward") {
                 UserDefaults.standard.set(true, forKey: "firstReward")
                 UserDefaults.standard.set(1, forKey: "compilations")

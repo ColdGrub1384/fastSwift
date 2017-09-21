@@ -23,7 +23,7 @@ extension String {
 }
 
 
-class StoreViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, GADRewardBasedVideoAdDelegate {
+class StoreViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, GADRewardBasedVideoAdDelegate, UITableViewDelegate {
     
     var currentPurchase: SKProduct?
     @IBOutlet weak var compilations: UILabel!
@@ -36,6 +36,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     var higherRunButtonTag = 0
     var higherSourceButtonTag = 0
     var filesCollectionView: UICollectionView?
+    @IBOutlet weak var doneBtn: UIBarButtonItem!
     
     @objc func runFileFromStore(_ sender: UIButton) {
         let file = files[sender.tag]
@@ -48,10 +49,10 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             self.dismiss(animated: true, completion: {
                 if error == nil {
                     if data != nil {
-                        let tmpFile = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)[0].appendingPathComponent("TMPEXECFILETOSEND.swiftc")
+                        let tmpFile = FileManager.default.urls(for: .cachesDirectory, in: .allDomainsMask)[0].appendingPathComponent("TMPEXECFILETOSEND.swiftc")
                         FileManager.default.createFile(atPath: tmpFile.path, contents: data, attributes: nil)
                         
-                        let vc = self.storyboard!.instantiateInitialViewController() as! DocumentBrowserViewController
+                        let vc = self.storyboard!.instantiateViewController(withIdentifier: "browser") as! DocumentBrowserViewController
                         
                         self.present(vc, animated: true, completion: {
                             vc.dismissState = .ready
@@ -166,6 +167,10 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath)
@@ -227,6 +232,8 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         activity.stopAnimating()
         
         compilations.text = ""
+        
+        tableView.delegate = self
         
         AccountManager.shared.storeViewController = self
         
@@ -352,8 +359,9 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     }
     
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didFailToLoadWithError error: Error) {
-        print("Error loading ad! \(error.localizedDescription)")
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            AlertManager.shared.present(error: error, withTitle: "Error loading ad!", inside: self)
+        }
     }
     
     @IBAction func account(_ sender: Any) {

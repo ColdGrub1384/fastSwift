@@ -38,11 +38,17 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         if dismissState == .done {
             print("Dismiss")
             do {
-                try FileManager.default.removeItem(at: FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)[0].appendingPathComponent("TMPEXECFILETOSEND.swiftc"))
+                try FileManager.default.removeItem(at: FileManager.default.urls(for: .cachesDirectory, in: .allDomainsMask)[0].appendingPathComponent("TMPEXECFILETOSEND.swiftc"))
             } catch let error {
                 print("Error removing tmp file: \(error)")
             }
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: {
+                if let menu = AppDelegate.shared.topViewController() as? MenuViewController {
+                    if menu.loadedStore {
+                        menu.reloadStore()
+                    }
+                }
+            })
         }
         
         if dismissState == .ready {
@@ -55,6 +61,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         super.viewDidLoad()
         
         delegate = self
+        AppDelegate.shared.browser = self
                 
         allowsDocumentCreation = true
         allowsPickingMultipleItems = true
@@ -200,17 +207,25 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                         session?.authenticate(byPassword: Server.password)
                         if (session?.isAuthorized)! {
                             do {
-                                try session?.channel.execute("rm -rf bin/\(UIDevice.current.identifierForVendor!.uuidString); mkdir bin/\(UIDevice.current.identifierForVendor!.uuidString)")
+                                try session?.channel.execute("mkdir bin; rm -rf bin/\(UIDevice.current.identifierForVendor!.uuidString); mkdir bin/\(UIDevice.current.identifierForVendor!.uuidString)")
                             } catch _ {}
                             
-                            let filePath = "bin/\(UIDevice.current.identifierForVendor!.uuidString)/\(urls.first!.lastPathComponent)"
-                            session?.channel.uploadFile(urls.first!.path, to: filePath)
+                            let filePath = "/home/\(Server.user)/bin/\(UIDevice.current.identifierForVendor!.uuidString)/\(urls.first!.lastPathComponent)"
+                            session?.sftp.connect()
+                            do {
+                                let fileData = try Data.init(contentsOf: urls.first!)
+                                try session?.channel.execute("touch '\(filePath)'")
+                                session?.sftp.appendContents(fileData, toFileAtPath: filePath)
+                            } catch let error {
+                                print("Error copying file! \(error)")
+                            }
+                            
                             
                             do {
                                 try session?.channel.execute("chmod +x '\(filePath)'")
                             } catch _ {}
                             
-                            self.dismiss(animated: true, completion: {
+                            alert.dismiss(animated: true, completion: {
                                 self.performSegue(withIdentifier: "terminal", sender: filePath)
                             })
                             
@@ -238,7 +253,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "terminal" {
             if let terminalViewController = segue.destination as? NMTerminalViewController {
-                terminalViewController.command = "'\(sender as! String)'; rm -rf bin/\(UIDevice.current.identifierForVendor!.uuidString); logout"
+                terminalViewController.command = "'\(sender as! String)'; rm '\(sender as! String)'; logout"
                 terminalViewController.user = Server.user
                 terminalViewController.host = Server.host
                 terminalViewController.password = Server.password

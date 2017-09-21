@@ -1,24 +1,21 @@
 PODS:
   - Highlightr (1.1.0)
   - InAppSettingsKit (2.8.1)
-  - NMSSH (2.2.6)
-  - TZKeyboardPop (0.0.1)
-  - Zip (0.6.0)
+  - NMSSH (2.2.7)
+  - Zip (0.7.0)
 
 DEPENDENCIES:
   - Highlightr
   - InAppSettingsKit
   - NMSSH
-  - TZKeyboardPop (~> 0.0.1)
   - Zip
 
 SPEC CHECKSUMS:
   Highlightr: 519911a0a9a040d76e591f6fe58bb5177c8bdaa3
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
-  NMSSH: f429af1a564e154450dd99cf47eced2574779b13
-  TZKeyboardPop: 96b7208ff4611c6f608e852e54cb0efabcd1a0c4
-  Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
+  NMSSH: dbe527b7eda5a90f55f487d4d44e527c317d55e8
+  Zip: e34513299ac38c0686d5b24504da7ce343799ab9
 
-PODFILE CHECKSUM: 21cae44655eec6991776effd7c2f6c87a5dcfae4
+PODFILE CHECKSUM: 987a13ab34d7b2325d69cb92b348af48cedded24
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1

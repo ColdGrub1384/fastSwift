@@ -9,20 +9,50 @@
 import UIKit
 import StoreKit
 
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
     var window: UIWindow?
     var prices = [String]()
     var currentPurchase: SKProduct?
+    var menu: MenuViewController!
+    var browser: DocumentBrowserViewController!
+    var qrScanner: QRScanViewController!
     
     static var shared = AppDelegate()
-    
+        
     enum autoCompilationState {
         case userActionNeed
         case ready
         case compiled
         case none
+    }
+    
+    func clearCaches() {
+        do {for file in try FileManager.default.contentsOfDirectory(at: FileManager.default.urls(for: .cachesDirectory, in: .allDomainsMask)[0], includingPropertiesForKeys: nil, options: .skipsHiddenFiles) {
+            do { try FileManager.default.removeItem(at: file) } catch _ {}
+            }} catch _ {}
+        
+        do {for file in try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath:NSTemporaryDirectory()), includingPropertiesForKeys: nil, options: .skipsHiddenFiles) {
+            do { try FileManager.default.removeItem(at: file) } catch _ {}
+            }} catch _ {}
+    }
+    
+    func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(base: selected)
+            }
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(base: presented)
+        }
+        return base
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction]) {
@@ -46,6 +76,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         }
         
         print(prices)
+        
+        menu.reloadStore()
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
@@ -103,6 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         print("Start request!")
         SKPaymentQueue.default().add(self)
         
+        clearCaches()
         
         return true
     }
@@ -119,10 +152,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        qrScanner.restartSession()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        qrScanner.restartSession()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -131,19 +166,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
 
     func application(_ app: UIApplication, open inputURL: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         // Reveal / import the document at the URL
-        guard let documentBrowserViewController = window?.rootViewController as? DocumentBrowserViewController else { return false }
+        let documentBrowserViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "browser") as! DocumentBrowserViewController
+        // Present the Document View Controller for the revealed URL
+        documentBrowserViewController.dismissState = .ready
         
-        documentBrowserViewController.presentDocument(at: [inputURL])
-        
-        /*documentBrowserViewController.revealDocument(at: inputURL, shouldImport: true) { (revealedDocumentURL, error) in
-            if let error = error {
-                // Handle the error appropriately
-                print("Failed to reveal the document at URL \(inputURL) with error: '\(error)'")
-                return
-            }
-            // Present the Document View Controller for the revealed URL
-            documentBrowserViewController.presentDocument(at: [revealedDocumentURL!])
-        }*/
+        self.topViewController()?.present(documentBrowserViewController, animated: true, completion: {
+            documentBrowserViewController.revealDocument(at: inputURL, importIfNeeded: true, completion: { (revealedDocumentURL, error) in
+                if error == nil {
+                    documentBrowserViewController.presentDocument(at: [revealedDocumentURL!])
+                } else {
+                    print("Error revealing document: \(error!.localizedDescription)")
+                }
+            })
+        })
         
         
         return true

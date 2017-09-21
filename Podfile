@@ -8,7 +8,6 @@ target 'fastSwift' do
   # Pods for fastSwift
   pod 'Highlightr'
   pod 'NMSSH'
-  pod 'TZKeyboardPop', '~> 0.0.1'
   pod 'Zip'
   pod 'InAppSettingsKit'
 end

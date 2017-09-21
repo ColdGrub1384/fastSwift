@@ -53,7 +53,7 @@ class Server {
     
     static var `default` = Server()
     
-    var host = "190.46.99.168"
+    var host = "coldg.ddns.net"
     var user = "swiftexec"
     var password = "swift"
 }

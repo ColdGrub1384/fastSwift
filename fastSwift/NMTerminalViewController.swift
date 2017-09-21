@@ -27,7 +27,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     var browserVC: DocumentBrowserViewController?
     var console = ""
     
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
@@ -242,4 +241,5 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         let textHeight = textView.contentSize.height
         return textHeight > textView.bounds.height
     }
+
 }

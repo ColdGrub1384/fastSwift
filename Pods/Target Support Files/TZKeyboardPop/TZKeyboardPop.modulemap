@@ -1,6 +1,0 @@
-framework module TZKeyboardPop {
-  umbrella header "TZKeyboardPop-umbrella.h"
-
-  export *
-  module * { export * }
-}

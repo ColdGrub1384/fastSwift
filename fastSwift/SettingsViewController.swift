@@ -16,8 +16,5 @@ class SettingsViewController: IASKAppSettingsViewController {
         
         self.neverShowPrivacySettings = false
     }
-    
-    @IBAction func done(_ sender: Any) {
-        self.dismiss(animated: true, completion:nil)
-    }
+
 }
