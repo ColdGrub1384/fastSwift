@@ -15,6 +15,7 @@ class SetupServerViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,8 @@ class SetupServerViewController: UIViewController, UITextFieldDelegate {
         ip.delegate = self
         username.delegate = self
         password.delegate = self
+        
+        activity.isHidden = true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -39,60 +42,69 @@ class SetupServerViewController: UIViewController, UITextFieldDelegate {
         
     @IBAction func setup(sender: Any) {
         
-        let session = NMSSHSession.connect(toHost: ip.text!, withUsername: username.text!)
-        if session!.isConnected {
-            
-            showStatus("Connected!", with: .green)
-            
-            session?.authenticate(byPassword: password.text!)
-            if session!.isAuthorized {
+        activity.startAnimating()
+        activity.isHidden = false
+        
+        let _ = Afte.r(0.2) { (timer) in
+            let session = NMSSHSession.connect(toHost: self.ip.text!, withUsername: self.username.text!)
+            if session!.isConnected {
                 
-                showStatus("Logged in!", with: .green)
+                self.showStatus("Connected!", with: .green)
                 
-                do {
-                    showStatus("Installing..", with: .yellow)
+                session?.authenticate(byPassword: self.password.text!)
+                if session!.isAuthorized {
                     
-                    let swift = try session?.channel.execute("swiftc --help")
+                    self.showStatus("Logged in!", with: .green)
                     
-                    if swift!.contains("swiftc: command not found") {
-                        // Swift is not installed
-                        showStatus("Swift is not installed!", with: .red)
-                    } else {
-                        let _ = try session?.channel.execute("echo \(password.text!) | sudo -S wait; curl -s -L http://goo.gl/hPvdsn | sudo bash -s swiftexec swift; logout")
+                    do {
+                        self.showStatus("Installing..", with: .yellow)
                         
-                        showStatus("Installed!", with: .green)
-                        var installed = true
+                        let swift = try session?.channel.execute("swiftc --help")
                         
-                        let newUserFolder = try session?.channel.execute("ls /home/swiftexec")
-                        if newUserFolder!.contains("No such file or directory") {
-                            showStatus("Failed to create /home/swiftexec", with: .red)
-                            installed = false
+                        if swift!.contains("swiftc: command not found") {
+                            // Swift is not installed
+                            self.showStatus("Swift is not installed!", with: .red)
+                        } else {
+                            let _ = try session?.channel.execute("echo \(self.password.text!) | sudo -S wait; curl -s -L http://goo.gl/hPvdsn | sudo bash -s swiftexec swift; logout")
+                            
+                            self.showStatus("Installed!", with: .green)
+                            var installed = true
+                            
+                            let newUserFolder = try session?.channel.execute("ls /home/swiftexec")
+                            if newUserFolder!.contains("No such file or directory") {
+                                self.showStatus("Failed to create /home/swiftexec", with: .red)
+                                installed = false
+                            }
+                            
+                            let userID = try session?.channel.execute("id -u swiftexec")
+                            if userID!.contains("no such user") {
+                                self.showStatus("Failed to create user swiftexec", with: .red)
+                                installed = false
+                            }
+                            
+                            if installed {
+                                let alert = AlertManager.shared.alert(withTitle: "Created server", message: "'swiftexec@\(self.ip.text!)' with password 'swift'", style: .alert, actions: [AlertManager.shared.ok(handler: nil)])
+                                self.present(alert, animated: true, completion: nil)
+                            }
                         }
                         
-                        let userID = try session?.channel.execute("id -u swiftexec")
-                        if userID!.contains("no such user") {
-                            showStatus("Failed to create user swiftexec", with: .red)
-                            installed = false
-                        }
                         
-                        if installed {
-                            let alert = AlertManager.shared.alert(withTitle: "Created server", message: "'swiftexec@\(ip.text!)' with password 'swift'", style: .alert, actions: [AlertManager.shared.ok(handler: nil)])
-                            self.present(alert, animated: true, completion: nil)
-                        }
+                    } catch let error {
+                        self.showStatus("\(error)", with: .red)
                     }
                     
-                    
-                } catch let error {
-                    showStatus("\(error)", with: .red)
+                } else {
+                    self.showStatus("Can't login!", with: .red)
+                    session?.disconnect()
                 }
-                
             } else {
-                showStatus("Can't login!", with: .red)
-                session?.disconnect()
+                self.showStatus("Can't connect!", with: .red)
             }
-        } else {
-            showStatus("Can't connect!", with: .red)
         }
+        
+        self.activity.stopAnimating()
+        self.activity.isHidden = true
+        
     }
     
     

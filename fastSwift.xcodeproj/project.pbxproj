@@ -14,8 +14,8 @@
 		3A1C6CC51F2002D6001D551C /* ExportToBinaryActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C6CC41F2002D6001D551C /* ExportToBinaryActivity.swift */; };
 		3A2404221EFEC82F00C38D48 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2404211EFEC82F00C38D48 /* StoreViewController.swift */; };
 		3A28B2F41F1E9863008A3D8B /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A28B2F31F1E9863008A3D8B /* ThumbnailProvider.swift */; };
-		3A28B2F81F1E9863008A3D8B /* execThumbnail.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3A28B2F11F1E9863008A3D8B /* execThumbnail.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3A3B0D3E1F0823EB00836D00 /* ServerErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B0D3D1F0823EB00836D00 /* ServerErrorViewController.swift */; };
+		3A45264E1F75460800B57DF6 /* execThumbnail.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3A28B2F11F1E9863008A3D8B /* execThumbnail.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3A579F751EFEB70700B4D209 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A579F741EFEB70700B4D209 /* AccountManager.swift */; };
 		3A5858C71EFF1A4D0036B0AE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5858C61EFF1A4D0036B0AE /* StoreKit.framework */; };
 		3A64F52D1F11380A00C3EBF9 /* ExportToXcodeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64F52C1F11380A00C3EBF9 /* ExportToXcodeActivity.swift */; };
@@ -28,8 +28,10 @@
 		3AB9AE7E1EFDD0B3005B4BBE /* OrganizerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9AE7D1EFDD0B3005B4BBE /* OrganizerTableViewController.swift */; };
 		3ABE08221F69A162009EDB16 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABE08211F69A162009EDB16 /* MenuViewController.swift */; };
 		3AC2FBC41F2BCE7C00170AEE /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC2FBC31F2BCE7C00170AEE /* WebViewController.swift */; };
+		3ACFA2EA1F74484B000EC9C5 /* Pods_fastSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFB78DBF98A6DA978BBD92B /* Pods_fastSwift.framework */; };
 		3AD07F631F1BF769003C47B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD07F621F1BF769003C47B2 /* SettingsViewController.swift */; };
 		3AD509C61F12845F007C79C4 /* ExportToXcodeHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD509C51F12845E007C79C4 /* ExportToXcodeHelpViewController.swift */; };
+		3AD5F8C11F745A2B0074D651 /* Licenses.md in Sources */ = {isa = PBXBuildFile; fileRef = 3AE628901F11BE4100A652F3 /* Licenses.md */; };
 		3AD72C531EEC90EC000C80A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD72C521EEC90EC000C80A9 /* AppDelegate.swift */; };
 		3AD72C551EEC90ED000C80A9 /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD72C541EEC90ED000C80A9 /* DocumentBrowserViewController.swift */; };
 		3AD72C571EEC90ED000C80A9 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD72C561EEC90ED000C80A9 /* DocumentViewController.swift */; };
@@ -37,16 +39,14 @@
 		3AD72C5C1EEC90ED000C80A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AD72C5A1EEC90ED000C80A9 /* Main.storyboard */; };
 		3AD72C5E1EEC90ED000C80A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD72C5D1EEC90ED000C80A9 /* Assets.xcassets */; };
 		3AD72C611EEC90ED000C80A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AD72C5F1EEC90ED000C80A9 /* LaunchScreen.storyboard */; };
-		3AE628911F11BE8D00A652F3 /* Licenses.md in Sources */ = {isa = PBXBuildFile; fileRef = 3AE628901F11BE4100A652F3 /* Licenses.md */; };
 		3AE628921F11BEC500A652F3 /* Licenses.md in Resources */ = {isa = PBXBuildFile; fileRef = 3AE628901F11BE4100A652F3 /* Licenses.md */; };
 		3AF7E7771EF72B3600F80C6C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AD72C621EEC90ED000C80A9 /* Info.plist */; };
 		3AFB1E881EEDA18000FBCF73 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB1E871EEDA18000FBCF73 /* AlertManager.swift */; };
 		3AFBC23D1F27CC72002A8081 /* PublishToStoreActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC23C1F27CC72002A8081 /* PublishToStoreActivity.swift */; };
-		6C009E9BCEAFA00FB8A516BE /* Pods_fastSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFB78DBF98A6DA978BBD92B /* Pods_fastSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3A28B2F61F1E9863008A3D8B /* PBXContainerItemProxy */ = {
+		3A45264F1F75460800B57DF6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3AD72C471EEC90EC000C80A9 /* Project object */;
 			proxyType = 1;
@@ -56,6 +56,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3A4526511F75460800B57DF6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3A45264E1F75460800B57DF6 /* execThumbnail.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3A799BAE1F09402C0095B568 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -64,17 +75,6 @@
 			files = (
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3AF7E75E1EF7237900F80C6C /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				3A28B2F81F1E9863008A3D8B /* execThumbnail.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -135,7 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C009E9BCEAFA00FB8A516BE /* Pods_fastSwift.framework in Frameworks */,
+				3ACFA2EA1F74484B000EC9C5 /* Pods_fastSwift.framework in Frameworks */,
 				3A1267D71F00207900049F6E /* GoogleMobileAds.framework in Frameworks */,
 				3A5858C71EFF1A4D0036B0AE /* StoreKit.framework in Frameworks */,
 			);
@@ -261,13 +261,13 @@
 				3AD72C4D1EEC90EC000C80A9 /* Resources */,
 				225488CA49397682E85AB80A /* [CP] Embed Pods Frameworks */,
 				DDD7A1D2A33171957BFD3625 /* [CP] Copy Pods Resources */,
-				3AF7E75E1EF7237900F80C6C /* Embed App Extensions */,
 				3A799BAE1F09402C0095B568 /* Embed Frameworks */,
+				3A4526511F75460800B57DF6 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3A28B2F71F1E9863008A3D8B /* PBXTargetDependency */,
+				3A4526501F75460800B57DF6 /* PBXTargetDependency */,
 			);
 			name = fastSwift;
 			productName = fastSwift;
@@ -289,6 +289,7 @@
 					};
 					3AD72C4E1EEC90EC000C80A9 = {
 						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -401,12 +402,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AD5F8C11F745A2B0074D651 /* Licenses.md in Sources */,
 				3A3B0D3E1F0823EB00836D00 /* ServerErrorViewController.swift in Sources */,
 				3AD72C591EEC90ED000C80A9 /* Document.swift in Sources */,
 				3A0FF2AF1F1EEB4600AF2D7A /* Timers.swift in Sources */,
 				3A6A34391F01C27D00ADC9E5 /* NMTerminalViewController.swift in Sources */,
 				3AC2FBC41F2BCE7C00170AEE /* WebViewController.swift in Sources */,
-				3AE628911F11BE8D00A652F3 /* Licenses.md in Sources */,
 				3AB9AE7E1EFDD0B3005B4BBE /* OrganizerTableViewController.swift in Sources */,
 				3AD72C571EEC90ED000C80A9 /* DocumentViewController.swift in Sources */,
 				3AFB1E881EEDA18000FBCF73 /* AlertManager.swift in Sources */,
@@ -431,10 +432,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3A28B2F71F1E9863008A3D8B /* PBXTargetDependency */ = {
+		3A4526501F75460800B57DF6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3A28B2F01F1E9863008A3D8B /* execThumbnail */;
-			targetProxy = 3A28B2F61F1E9863008A3D8B /* PBXContainerItemProxy */;
+			targetProxy = 3A45264F1F75460800B57DF6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -461,6 +462,8 @@
 		3A28B2FA1F1E9863008A3D8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Y96PL6G497;
 				INFOPLIST_FILE = execThumbnail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -475,6 +478,8 @@
 		3A28B2FB1F1E9863008A3D8B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Y96PL6G497;
 				INFOPLIST_FILE = execThumbnail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -516,6 +521,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -571,6 +577,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -595,16 +602,20 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y96PL6G497;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/fastSwift",
 				);
 				INFOPLIST_FILE = fastSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.marcela.ada.fastSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -616,16 +627,19 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y96PL6G497;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/fastSwift",
 				);
 				INFOPLIST_FILE = fastSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.marcela.ada.fastSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

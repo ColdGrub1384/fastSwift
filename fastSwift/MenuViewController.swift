@@ -126,4 +126,8 @@ class MenuViewController: UIViewController {
         self.present(vc, animated: false, completion: nil)
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    
 }

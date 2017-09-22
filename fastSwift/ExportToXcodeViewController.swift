@@ -57,12 +57,14 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
                 print(files)
                 do {
                     let docs = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)[0]
-                    let fileURL = docs.appendingPathComponent(delegate.delegate!.document!.fileURL.deletingPathExtension().lastPathComponent)
-                    let projectHiercarchyURL = fileURL.appendingPathComponent("fastSwift App")
+                    var fileURL = docs.appendingPathComponent(delegate.delegate!.document!.fileURL.deletingPathExtension().lastPathComponent).appendingPathExtension("xc")
+                    print(fileURL.absoluteString)
+                    try FileManager.default.copyItem(at: Bundle.main.url(forResource: "Samples/fastSwift App", withExtension: "zip")!, to: fileURL.deletingLastPathComponent().appendingPathComponent("\(fileURL.lastPathComponent).zip"))
+                    
+                    var projectHiercarchyURL = try Zip.quickUnzipFile(fileURL.deletingLastPathComponent().appendingPathComponent("\(fileURL.lastPathComponent)").appendingPathExtension("zip"))
+                    projectHiercarchyURL = projectHiercarchyURL.appendingPathComponent("fastSwift App").appendingPathComponent("fastSwift App")
                     let sourceURL = projectHiercarchyURL.appendingPathComponent("Source")
                     let plist = projectHiercarchyURL.appendingPathComponent("Info.plist")
-                    
-                    try FileManager.default.copyItem(at: Bundle.main.url(forResource: "Samples/fastSwift App", withExtension: nil)!, to: fileURL)
                     
                     for file in files {
                         let fileName = file.lastPathComponent
@@ -106,6 +108,11 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
                     }
                     
                     do {
+                        try FileManager.default.removeItem(at: fileURL.appendingPathExtension("zip"))
+                        if !FileManager.default.fileExists(atPath: fileURL.deletingPathExtension().path) {
+                            try FileManager.default.moveItem(at: fileURL, to: fileURL.deletingPathExtension())
+                            fileURL = fileURL.deletingPathExtension()
+                        }
                         let zipURL = try Zip.quickZipFiles([fileURL], fileName: fileURL.deletingPathExtension().lastPathComponent)
                         try FileManager.default.removeItem(at: fileURL)
                         let vc = UIActivityViewController(activityItems: [zipURL], applicationActivities: nil)

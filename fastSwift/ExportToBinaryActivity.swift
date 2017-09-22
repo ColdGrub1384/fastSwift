@@ -37,7 +37,7 @@ class ExportToBinaryActivity: UIActivity {
             if !delegate.delegate!.firstLaunch {
                 delegate.downloadBinary()
             } else {
-                AlertManager.shared.presentAlert(withTitle: "No main file!", message: "Please select a main file before export to Xcode project.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
+                AlertManager.shared.presentAlert(withTitle: "No main file!", message: "Please select a main file before export to binary.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
             }
         }
     }
