@@ -150,8 +150,10 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         DispatchQueue.main.async {
             let _ = Repea.t(all: 0.2) { (timer) in
                 self.code.attributedText = self.highlight("swift", code: self.code.text)
-                self.code.selectedTextRange = self.cursorPos
-                self.code.scrollRangeToVisible(self.range!)
+                if self.code.isFirstResponder {
+                    self.code.selectedTextRange = self.cursorPos
+                    self.code.scrollRangeToVisible(self.range!)
+                }
             }
         }
         

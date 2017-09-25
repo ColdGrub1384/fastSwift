@@ -136,7 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         SKPaymentQueue.default().add(self)
         
         clearCaches()
-        
+                
         return true
     }
 

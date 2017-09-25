@@ -211,6 +211,8 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
             self.terminal.resignFirstResponder()
             self.terminal.isEditable = false
             self.activity.stopAnimating()
+            self.terminal.isSelectable = true
+            self.terminal.tintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         }
     }
     
