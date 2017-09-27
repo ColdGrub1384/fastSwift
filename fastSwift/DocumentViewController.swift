@@ -19,7 +19,7 @@ extension UITextInput {
     }
 }
 
-class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopoverPresentationControllerDelegate, DocumentDelegate {
+class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopoverPresentationControllerDelegate, DocumentDelegate, UITextViewDelegate {
     
     func document(didClose document: Document) {
         print("\(document.fileURL.deletingPathExtension().lastPathComponent) closed!")
@@ -63,6 +63,8 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     var range: NSRange?
     var cursorPos: UITextRange?
     
+    var pause = false
+    
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         for url in urls {
@@ -85,6 +87,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        self.code.delegate = self
         
         print("State: \(autoCompilationState)")
         
@@ -139,21 +142,18 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             }
         })
         
-        
-        DispatchQueue.main.async {
-            let _ = Repea.t(all: 0.1) { (timer) in
-                self.range = self.code.selectedRange
-                self.cursorPos = self.code.selectedTextRange
-            }
-        }
-        
         DispatchQueue.main.async {
             let _ = Repea.t(all: 0.2) { (timer) in
-                self.code.attributedText = self.highlight("swift", code: self.code.text)
-                if self.code.isFirstResponder {
+                if self.pause {
+                    self.range = self.code.selectedRange
+                    self.cursorPos = self.code.selectedTextRange
+                    
+                    self.code.attributedText = self.highlight("swift", code: self.code.text)
                     self.code.selectedTextRange = self.cursorPos
                     self.code.scrollRangeToVisible(self.range!)
                 }
+                
+                self.pause = true
             }
         }
         
@@ -596,7 +596,9 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     @IBAction func buyCompilations(_ sender: Any) { print("Buy compilation")
     }
     
-    
+    func textViewDidChange(_ textView: UITextView) {
+        self.pause = false
+    }
 
 }
 

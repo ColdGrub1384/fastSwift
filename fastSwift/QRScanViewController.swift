@@ -15,10 +15,6 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     var video = AVCaptureVideoPreviewLayer()
     var session = AVCaptureSession()
     
-    func restartSession() {
-        viewDidLoad()
-    }
-    
     func showCam() {
         let output = AVCaptureMetadataOutput()
         session.addOutput(output)
