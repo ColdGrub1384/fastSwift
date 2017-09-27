@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fastSwift.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>99C02234926C1CD6711A763A3E7D097747F72099</string>
+				<key>dateExpires</key>
+				<string>21.09.18</string>
+				<key>type</key>
+				<string>iOS Distribution</string>
+			</dict>
+			<key>embeddedBinaries</key>
+			<array>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>armv7</string>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>99C02234926C1CD6711A763A3E7D097747F72099</string>
+						<key>dateExpires</key>
+						<string>21.09.18</string>
+						<key>type</key>
+						<string>iOS Distribution</string>
+					</dict>
+					<key>name</key>
+					<string>Highlightr.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>Y96PL6G497</string>
+						<key>name</key>
+						<string>Marcela Cid</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>armv7</string>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>99C02234926C1CD6711A763A3E7D097747F72099</string>
+						<key>dateExpires</key>
+						<string>21.09.18</string>
+						<key>type</key>
+						<string>iOS Distribution</string>
+					</dict>
+					<key>name</key>
+					<string>InAppSettingsKit.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>Y96PL6G497</string>
+						<key>name</key>
+						<string>Marcela Cid</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>armv7</string>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>99C02234926C1CD6711A763A3E7D097747F72099</string>
+						<key>dateExpires</key>
+						<string>21.09.18</string>
+						<key>type</key>
+						<string>iOS Distribution</string>
+					</dict>
+					<key>name</key>
+					<string>NMSSH.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>Y96PL6G497</string>
+						<key>name</key>
+						<string>Marcela Cid</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>armv7</string>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>99C02234926C1CD6711A763A3E7D097747F72099</string>
+						<key>dateExpires</key>
+						<string>21.09.18</string>
+						<key>type</key>
+						<string>iOS Distribution</string>
+					</dict>
+					<key>name</key>
+					<string>Zip.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>Y96PL6G497</string>
+						<key>name</key>
+						<string>Marcela Cid</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>99C02234926C1CD6711A763A3E7D097747F72099</string>
+						<key>dateExpires</key>
+						<string>21.09.18</string>
+						<key>type</key>
+						<string>iOS Distribution</string>
+					</dict>
+					<key>entitlements</key>
+					<dict>
+						<key>application-identifier</key>
+						<string>Y96PL6G497.ch.marcela.ada.fastSwift.execThumbnail</string>
+						<key>com.apple.developer.team-identifier</key>
+						<string>Y96PL6G497</string>
+						<key>get-task-allow</key>
+						<false/>
+						<key>keychain-access-groups</key>
+						<array>
+							<string>Y96PL6G497.ch.marcela.ada.fastSwift.execThumbnail</string>
+						</array>
+					</dict>
+					<key>name</key>
+					<string>execThumbnail.appex</string>
+					<key>profile</key>
+					<dict>
+						<key>UUID</key>
+						<string>c64922fd-6a41-48cf-a807-21022049417a</string>
+						<key>name</key>
+						<string>iOS Team Ad Hoc Provisioning Profile: *</string>
+					</dict>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>Y96PL6G497</string>
+						<key>name</key>
+						<string>Marcela Cid</string>
+					</dict>
+				</dict>
+			</array>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>Y96PL6G497.ch.marcela.ada.fastSwift</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>Y96PL6G497</string>
+				<key>get-task-allow</key>
+				<false/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>Y96PL6G497.ch.marcela.ada.fastSwift</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>fastSwift.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>c64922fd-6a41-48cf-a807-21022049417a</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: *</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>Y96PL6G497</string>
+				<key>name</key>
+				<string>Marcela Cid</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
