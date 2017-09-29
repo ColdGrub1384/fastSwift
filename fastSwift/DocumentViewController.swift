@@ -65,6 +65,8 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     var pause = false
     
+    var timer = Timer()
+    
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         for url in urls {
@@ -113,8 +115,29 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         } else if autoCompilationState == .compiled {
             self.dismiss(animated: true, completion: nil)
         }
+        
+        DispatchQueue.main.async {
+            let _ = Repea.t(all: 0.2) { (timer) in
+                self.timer = timer
+                if self.pause {
+                    self.range = self.code.selectedRange
+                    self.cursorPos = self.code.selectedTextRange
+                    
+                    self.code.attributedText = self.highlight("swift", code: self.code.text)
+                    self.code.selectedTextRange = self.cursorPos
+                    self.code.scrollRangeToVisible(self.range!)
+                }
+                
+                self.pause = true
+            }
+        }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.timer.invalidate()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,21 +164,6 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                 // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
             }
         })
-        
-        DispatchQueue.main.async {
-            let _ = Repea.t(all: 0.2) { (timer) in
-                if self.pause {
-                    self.range = self.code.selectedRange
-                    self.cursorPos = self.code.selectedTextRange
-                    
-                    self.code.attributedText = self.highlight("swift", code: self.code.text)
-                    self.code.selectedTextRange = self.cursorPos
-                    self.code.scrollRangeToVisible(self.range!)
-                }
-                
-                self.pause = true
-            }
-        }
         
     }
     
