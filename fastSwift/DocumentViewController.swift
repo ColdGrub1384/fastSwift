@@ -280,7 +280,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         if text == "↹" {
             text = "    "
         } else if text == "print" {
-            text = "Debugger.shared.debug_(\""
+            text = "print(\""
         }
         self.code.replace(self.code.selectedTextRange!, withText: text)
     }
@@ -449,7 +449,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
 
             // Write code here
 
-            Debugger.shared.debug_("Hello World!")
+            print("Hello World!")
 
             """)
         }),
@@ -468,14 +468,14 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             // Write code here
 
             let mainText = ""
-            Debugger.shared.debug_(mainText)
+            print(mainText)
 
             var response = readLine()!
             switch response {
             case "1":
-                Debugger.shared.debug_("User typed 1!")
+                print("User typed 1!")
             default:
-                Debugger.shared.debug_("Other text")
+                print("Other text")
             }
 
             """)
@@ -495,13 +495,13 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             // Write code here
 
             let mainText = ""
-            Debugger.shared.debug_(mainText)
+            print(mainText)
             
             main: while true {
                 var response = readLine()!
                 switch response {
                 case "1":
-                    Debugger.shared.debug_("User typed 1!")
+                    print("User typed 1!")
                 default:
                     break main
                 }

@@ -15,9 +15,7 @@
 		3A2404221EFEC82F00C38D48 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2404211EFEC82F00C38D48 /* StoreViewController.swift */; };
 		3A28B2F41F1E9863008A3D8B /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A28B2F31F1E9863008A3D8B /* ThumbnailProvider.swift */; };
 		3A3B0D3E1F0823EB00836D00 /* ServerErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B0D3D1F0823EB00836D00 /* ServerErrorViewController.swift */; };
-		3A40AB271F800E65003C3915 /* DebuLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A40AB241F800E46003C3915 /* DebuLog.framework */; };
 		3A40AB291F800E7B003C3915 /* Debugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A40AB281F800E7B003C3915 /* Debugger.swift */; };
-		3A40AB2C1F801936003C3915 /* DebuLog.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A40AB241F800E46003C3915 /* DebuLog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3A45264E1F75460800B57DF6 /* execThumbnail.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3A28B2F11F1E9863008A3D8B /* execThumbnail.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3A579F751EFEB70700B4D209 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A579F741EFEB70700B4D209 /* AccountManager.swift */; };
 		3A5858C71EFF1A4D0036B0AE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5858C61EFF1A4D0036B0AE /* StoreKit.framework */; };
@@ -25,6 +23,7 @@
 		3A6873FC1F11B0F500FA0AF3 /* ExportToXcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6873FB1F11B0F400FA0AF3 /* ExportToXcodeViewController.swift */; };
 		3A6A34391F01C27D00ADC9E5 /* NMTerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6A34381F01BD5B00ADC9E5 /* NMTerminalViewController.swift */; };
 		3A6ED5D71F6D7F3000041AAE /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6ED5D61F6D7F3000041AAE /* QRScanViewController.swift */; };
+		3A7004381F804F7900FD8137 /* DebuLog.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7004371F804F6500FD8137 /* DebuLog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3A9771151EED917D00E5E565 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 3A9771141EED917D00E5E565 /* Samples */; };
 		3A9F395C1F1BCE7600D48F02 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3A9F395B1F1BCE7600D48F02 /* Settings.bundle */; };
 		3AB1A9EE1F1BE6CC000455F5 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1A9ED1F1BE6CC000455F5 /* Server.swift */; };
@@ -49,26 +48,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3A40AB231F800E46003C3915 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3A40AB1F1F800E46003C3915 /* DebuLog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3AA1B45A1EAD2D9F0095809C;
-			remoteInfo = DebuLog;
-		};
-		3A40AB2A1F800EAB003C3915 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3A40AB1F1F800E46003C3915 /* DebuLog.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 3AA1B4591EAD2D9F0095809C;
-			remoteInfo = DebuLog;
-		};
 		3A45264F1F75460800B57DF6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3AD72C471EEC90EC000C80A9 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3A28B2F01F1E9863008A3D8B;
 			remoteInfo = execThumbnail;
+		};
+		3A7004361F804F6500FD8137 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A7004321F804F6500FD8137 /* DebuLog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3AA1B45A1EAD2D9F0095809C;
+			remoteInfo = DebuLog;
+		};
+		3A7004391F804F7C00FD8137 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A7004321F804F6500FD8137 /* DebuLog.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AA1B4591EAD2D9F0095809C;
+			remoteInfo = DebuLog;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -90,7 +89,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3A40AB2C1F801936003C3915 /* DebuLog.framework in Embed Frameworks */,
+				3A7004381F804F7900FD8137 /* DebuLog.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,7 +108,6 @@
 		3A28B2F31F1E9863008A3D8B /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
 		3A28B2F51F1E9863008A3D8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A3B0D3D1F0823EB00836D00 /* ServerErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorViewController.swift; sourceTree = "<group>"; };
-		3A40AB1F1F800E46003C3915 /* DebuLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DebuLog.xcodeproj; path = ../DebuLog/DebuLog.xcodeproj; sourceTree = "<group>"; };
 		3A40AB281F800E7B003C3915 /* Debugger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debugger.swift; sourceTree = "<group>"; };
 		3A579F741EFEB70700B4D209 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		3A5858C61EFF1A4D0036B0AE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -117,6 +115,7 @@
 		3A6873FB1F11B0F400FA0AF3 /* ExportToXcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToXcodeViewController.swift; sourceTree = "<group>"; };
 		3A6A34381F01BD5B00ADC9E5 /* NMTerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMTerminalViewController.swift; sourceTree = "<group>"; };
 		3A6ED5D61F6D7F3000041AAE /* QRScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
+		3A7004321F804F6500FD8137 /* DebuLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DebuLog.xcodeproj; path = DebuLog/DebuLog.xcodeproj; sourceTree = "<group>"; };
 		3A706E211F701D8300EE16B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A9771141EED917D00E5E565 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		3A9F395B1F1BCE7600D48F02 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -155,7 +154,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A40AB271F800E65003C3915 /* DebuLog.framework in Frameworks */,
 				3ACFA2EA1F74484B000EC9C5 /* Pods_fastSwift.framework in Frameworks */,
 				3A1267D71F00207900049F6E /* GoogleMobileAds.framework in Frameworks */,
 				3A5858C71EFF1A4D0036B0AE /* StoreKit.framework in Frameworks */,
@@ -184,10 +182,10 @@
 			path = execThumbnail;
 			sourceTree = "<group>";
 		};
-		3A40AB201F800E46003C3915 /* Products */ = {
+		3A7004331F804F6500FD8137 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3A40AB241F800E46003C3915 /* DebuLog.framework */,
+				3A7004371F804F6500FD8137 /* DebuLog.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,7 +193,7 @@
 		3AD72C461EEC90EC000C80A9 = {
 			isa = PBXGroup;
 			children = (
-				3A40AB1F1F800E46003C3915 /* DebuLog.xcodeproj */,
+				3A7004321F804F6500FD8137 /* DebuLog.xcodeproj */,
 				3A9F395B1F1BCE7600D48F02 /* Settings.bundle */,
 				3AD72C511EEC90EC000C80A9 /* fastSwift */,
 				3A28B2F21F1E9863008A3D8B /* execThumbnail */,
@@ -298,7 +296,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				3A40AB2B1F800EAB003C3915 /* PBXTargetDependency */,
+				3A70043A1F804F7C00FD8137 /* PBXTargetDependency */,
 				3A4526501F75460800B57DF6 /* PBXTargetDependency */,
 			);
 			name = fastSwift;
@@ -343,8 +341,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 3A40AB201F800E46003C3915 /* Products */;
-					ProjectRef = 3A40AB1F1F800E46003C3915 /* DebuLog.xcodeproj */;
+					ProductGroup = 3A7004331F804F6500FD8137 /* Products */;
+					ProjectRef = 3A7004321F804F6500FD8137 /* DebuLog.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -356,11 +354,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		3A40AB241F800E46003C3915 /* DebuLog.framework */ = {
+		3A7004371F804F6500FD8137 /* DebuLog.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = DebuLog.framework;
-			remoteRef = 3A40AB231F800E46003C3915 /* PBXContainerItemProxy */;
+			remoteRef = 3A7004361F804F6500FD8137 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -481,15 +479,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3A40AB2B1F800EAB003C3915 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = DebuLog;
-			targetProxy = 3A40AB2A1F800EAB003C3915 /* PBXContainerItemProxy */;
-		};
 		3A4526501F75460800B57DF6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3A28B2F01F1E9863008A3D8B /* execThumbnail */;
 			targetProxy = 3A45264F1F75460800B57DF6 /* PBXContainerItemProxy */;
+		};
+		3A70043A1F804F7C00FD8137 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DebuLog;
+			targetProxy = 3A7004391F804F7C00FD8137 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
