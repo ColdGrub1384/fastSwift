@@ -67,7 +67,7 @@ class AccountManager {
             let params = "user=\(userTextField.text!.addingPercentEncodingForURLQueryValue()!)&password=\(passTextField.text!.addingPercentEncodingForURLQueryValue()!)&action=login"
             URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php?\(params)")!, completionHandler: { (data, response, error) in
                 
-                print("URL: \(response!.url!)")
+                Debugger.shared.debug_("URL: \(response!.url!)")
                 
                 if error == nil {
                     if data != nil {
@@ -102,7 +102,7 @@ class AccountManager {
             let params = "user=\(userTextField.text!.addingPercentEncodingForURLQueryValue()!)&password=\(passTextField.text!.addingPercentEncodingForURLQueryValue()!)&action=register"
             URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php?\(params)")!, completionHandler: { (data, response, error) in
                 
-                print("URL: \(response!.url!)")
+                Debugger.shared.debug_("URL: \(response!.url!)")
                 
                 if error == nil {
                     if data != nil {

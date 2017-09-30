@@ -36,6 +36,31 @@
 						<string>iOS Distribution</string>
 					</dict>
 					<key>name</key>
+					<string>DebuLog.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>Y96PL6G497</string>
+						<key>name</key>
+						<string>Marcela Cid</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>armv7</string>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>99C02234926C1CD6711A763A3E7D097747F72099</string>
+						<key>dateExpires</key>
+						<string>21.09.18</string>
+						<key>type</key>
+						<string>iOS Distribution</string>
+					</dict>
+					<key>name</key>
 					<string>Highlightr.framework</string>
 					<key>team</key>
 					<dict>

@@ -12,12 +12,12 @@ import NMSSH
 class MenuViewController: UIViewController {
     @IBOutlet weak var scroll: UIScrollView!
     
-    var loadedStore = false
     var settingsFile = "Root"
     
     var vcs = [UIViewController]()
     
     var mainVCIndex = 2
+    var loadedStore = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,6 @@ class MenuViewController: UIViewController {
         AppDelegate.shared.menu = self
         
         let fileBrowser:DocumentBrowserViewController = self.storyboard!.instantiateViewController(withIdentifier: "browser") as! DocumentBrowserViewController
-        let store:UINavigationController = self.storyboard!.instantiateViewController(withIdentifier: "store") as! UINavigationController
         let settings: UINavigationController = self.storyboard!.instantiateViewController(withIdentifier: "settingsNav") as! UINavigationController
         let loadingStore: UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "loadingStore")
         let qrScan:QRScanViewController = self.storyboard!.instantiateViewController(withIdentifier: "qrScan") as! QRScanViewController
@@ -41,15 +40,15 @@ class MenuViewController: UIViewController {
                     news.html = html
                     session?.disconnect()
                 } catch let error {
-                    print(error.localizedDescription)
+                    Debugger.shared.debug_(error.localizedDescription)
                 }
             }
         }
         
+        vcs = [news,qrScan, fileBrowser, loadingStore, settings, setup]
+        
         if loadedStore {
-            vcs = [news ,qrScan, fileBrowser, store, settings, setup]
-        } else {
-            vcs = [news,qrScan, fileBrowser, loadingStore, settings, setup]
+            vcs[3] = self.storyboard!.instantiateViewController(withIdentifier: "store") as! UINavigationController
         }
         
         scroll.backgroundColor = #colorLiteral(red: 0.1490048468, green: 0.1490279436, blue: 0.1489969492, alpha: 1)
@@ -90,8 +89,6 @@ class MenuViewController: UIViewController {
         
         let mainVc = vcs[mainVCIndex]
         
-        (store.viewControllers.first! as! StoreViewController).doneBtn.isEnabled = false
-        
         self.scroll.contentSize = CGSize(width: self.view.frame.width*CGFloat.init(vcs.count), height: self.view.frame.height)
         
         let origin = CGPoint(x: mainVc.view.frame.origin.x-10, y: mainVc.view.frame.origin.y-20)
@@ -106,16 +103,19 @@ class MenuViewController: UIViewController {
     }
     
     func reloadStore() {
-        let vc = self.storyboard!.instantiateInitialViewController()! as! MenuViewController
-        vc.loadedStore = true
-        vc.mainVCIndex = mainVCIndex
-        self.present(vc, animated: false, completion: nil)
+        let frame = vcs[3].view.frame
+        vcs[3].view.removeFromSuperview()
+        vcs[3] = self.storyboard!.instantiateViewController(withIdentifier: "store") as! UINavigationController
+        ((vcs[3] as! UINavigationController).viewControllers.first! as! StoreViewController).doneBtn.isEnabled = false
+        addChildViewController(vcs[3])
+        scroll.addSubview(vcs[3].view)
+        vcs[3].view.frame = frame
     }
     
     func reload() {
         let vc = self.storyboard!.instantiateInitialViewController()! as! MenuViewController
-        vc.loadedStore = self.loadedStore
         vc.mainVCIndex = mainVCIndex
+        vc.loadedStore = loadedStore
         self.present(vc, animated: false, completion: nil)
     }
     

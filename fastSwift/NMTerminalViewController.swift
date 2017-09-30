@@ -67,7 +67,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                     try session.channel.startShell()
                     try session.channel.write("echo Progr\\am output;"+command+"\n")
                 } catch let error {
-                    print(error.localizedDescription)
+                    Debugger.shared.debug_(error.localizedDescription)
                 }
             }
         }
@@ -126,7 +126,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                     try! self.session.channel.execute("zip \(UIDevice.current.identifierForVendor!.uuidString)/main.zip \(UIDevice.current.identifierForVendor!.uuidString)/main")
                     
                     let fileURL = URL(string:"http://\(Server.default.host)/dl.php?f=/home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main.zip")!
-                    print(fileURL)
+                    Debugger.shared.debug_(fileURL)
                     URLSession.shared.downloadTask(with: fileURL, completionHandler: { (url, response, error) in
                         do {try self.session.channel.write("\n")} catch _ {}
                         if error == nil {
@@ -134,13 +134,13 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                                 do {
                                     let destURL = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first!.appendingPathComponent(self.mainFile+".swiftc")
                                     
-                                    print("DEST URL: \(destURL.absoluteString)")
+                                    Debugger.shared.debug_("DEST URL: \(destURL.absoluteString)")
                                     
                                     if FileManager.default.fileExists(atPath: destURL.path) {
                                         try FileManager.default.removeItem(at: destURL)
                                     }
                                     
-                                    print("ZIP URL: \(destURL.deletingLastPathComponent().appendingPathComponent(self.mainFile+".tmp"+".zip"))")
+                                    Debugger.shared.debug_("ZIP URL: \(destURL.deletingLastPathComponent().appendingPathComponent(self.mainFile+".tmp"+".zip"))")
                                     
                                     try FileManager.default.copyItem(at: url!, to: destURL.deletingLastPathComponent().appendingPathComponent(self.mainFile+".tmp"+".zip"))
                                     
@@ -207,7 +207,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     
     func channelShellDidClose(_ channel: NMSSHChannel!) {
         DispatchQueue.main.async {
-            print("Shell closed!")
+            Debugger.shared.debug_("Shell closed!")
             self.terminal.resignFirstResponder()
             self.terminal.isEditable = false
             self.activity.stopAnimating()
@@ -222,7 +222,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
             if text.contains("\n") {
                 let newConsole = textView.text+text
                 let cmd = newConsole.replacingOccurrences(of: console, with: "")
-                print("Command: { \(cmd) }")
+                Debugger.shared.debug_("Command: { \(cmd) }")
                 do {
                     let range = newConsole.range(of: cmd)
                     textView.text = newConsole.replacingCharacters(in: range!, with: "")

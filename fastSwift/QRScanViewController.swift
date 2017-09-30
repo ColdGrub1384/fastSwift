@@ -18,7 +18,7 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     func showCam() {
         let output = AVCaptureMetadataOutput()
         session.addOutput(output)
-        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.init(label: "qr"))
         output.metadataObjectTypes = [AVMetadataMachineReadableCodeObject.ObjectType.qr]
         
         video = AVCaptureVideoPreviewLayer(session: session)
@@ -35,15 +35,13 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
         AppDelegate.shared.qrScanner = self
         
-        video = AVCaptureVideoPreviewLayer()
-        session = AVCaptureSession()
         let device = AVCaptureDevice.default(for: AVMediaType.video)
         
         do {
             let input = try AVCaptureDeviceInput(device: device!)
             session.addInput(input)
         } catch let error {
-            print("Error: \(error)")
+            Debugger.shared.debug_("Error: \(error)")
         }
         
         var cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
@@ -55,7 +53,7 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 showCam()
             case .restricted: break
             case .notDetermined:
-                print("Not determined!")
+                Debugger.shared.debug_("Not determined!")
                 let _ = Repea.t(all: 0.2, seconds: { (timer) in
                     if cameraAuthorizationStatus == .notDetermined {
                         cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
@@ -79,6 +77,10 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             return
         }
         
+        if let _ = presentedViewController as? UIAlertController {
+            return
+        }
+        
         if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
             if object.type == .qr {
                 if let str = object.stringValue {
@@ -88,17 +90,18 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                         if let userName = server.components(separatedBy: "@").first {
                             if let address = server.components(separatedBy: "@").last?.components(separatedBy: ";").first {
                                 if let password = server.components(separatedBy: ";").last {
-                                    AlertManager.shared.presentAlert(withTitle: "Detected Server!", message: "Do you want to use server '\(userName)@\(address)' with password '\(password)'?", style: .alert, actions: [UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
-                                        self.session.startRunning()
-                                    }), AlertManager.shared.ok(handler: { (action) in
-                                        UserDefaults.standard.set(address, forKey: "hostname")
-                                        UserDefaults.standard.set(userName, forKey: "username")
-                                        UserDefaults.standard.set(password, forKey: "password")
-                                        UserDefaults.standard.set(true, forKey: "custom_server")
-                                        self.session.startRunning()
-                                        AppDelegate.shared.menu.showSettings()
-                                    })], inside: self, animated: true, completion: nil)
-                                    self.session.stopRunning()
+                                    DispatchQueue.main.async {
+                                        AlertManager.shared.presentAlert(withTitle: "Detected Server!", message: "Do you want to use server '\(userName)@\(address)' with password '\(password)'?", style: .alert, actions: [UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
+                                            self.session.startRunning()
+                                        }), AlertManager.shared.ok(handler: { (action) in
+                                            UserDefaults.standard.set(address, forKey: "hostname")
+                                            UserDefaults.standard.set(userName, forKey: "username")
+                                            UserDefaults.standard.set(password, forKey: "password")
+                                            UserDefaults.standard.set(true, forKey: "custom_server")
+                                            self.session.startRunning()
+                                            AppDelegate.shared.menu.showSettings()
+                                        })], inside: self, animated: true, completion: nil)
+                                    }
                                 }
                             }
                         }
@@ -106,36 +109,38 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                         AudioServicesPlaySystemSound(1307)
                         let script = str.replacingOccurrences(of: "$CODE=", with: "")
                         if let url = URL(string:script) {
-                            AlertManager.shared.presentAlert(withTitle: "Detected script!", message: "Do you want to run this script?", style: .alert, actions: [UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
-                                self.session.startRunning()
-                            }), UIAlertAction.init(title: "Ok", style: .default, handler: { (alert) in
-                                URLSession.shared.downloadTask(with: url, completionHandler: { (url, response, error) in
-                                    if error == nil {
-                                        if url != nil {
-                                            let finalURL = url!.deletingLastPathComponent().appendingPathComponent(response!.suggestedFilename!)
-                                            do {
-                                                try FileManager.default.moveItem(at: url!, to: finalURL)
+                            DispatchQueue.main.async {
+                                AlertManager.shared.presentAlert(withTitle: "Detected script!", message: "Do you want to run this script?", style: .alert, actions: [UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
+                                }), UIAlertAction.init(title: "Ok", style: .default, handler: { (alert) in
+                                    let activity = ActivityViewController(message: "Downloading...")
+                                    self.present(activity, animated: true, completion: nil)
+                                    URLSession.shared.downloadTask(with: url, completionHandler: { (url, response, error) in
+                                        if error == nil {
+                                            if url != nil {
+                                                let finalURL = url!.deletingLastPathComponent().appendingPathComponent(response!.suggestedFilename!)
+                                                do {
+                                                    try FileManager.default.moveItem(at: url!, to: finalURL)
+                                                    self.dismiss(animated: true, completion: {
+                                                        let _ = AppDelegate.shared.application(UIApplication.shared, open: finalURL)
+                                                    })
+                                                } catch let error {
+                                                    self.dismiss(animated: true, completion: {
+                                                        AlertManager.shared.presentAlert(withTitle: "Error moving file!", message: error.localizedDescription, style: .alert, actions: [AlertManager.shared.cancel], inside: self, animated: true, completion: nil)
+                                                    })
+                                                }
+                                            } else {
                                                 self.dismiss(animated: true, completion: {
-                                                    let _ = AppDelegate.shared.application(UIApplication.shared, open: finalURL)
-                                                })
-                                            } catch let error {
-                                                self.dismiss(animated: true, completion: {
-                                                    AlertManager.shared.presentAlert(withTitle: "Error moving file!", message: error.localizedDescription, style: .alert, actions: [AlertManager.shared.cancel], inside: self, animated: true, completion: nil)
+                                                    AlertManager.shared.presentAlert(withTitle: "Error downloading file!", message: "Returned data is empty", style: .alert, actions: [AlertManager.shared.cancel], inside: self, animated: true, completion: nil)
                                                 })
                                             }
                                         } else {
                                             self.dismiss(animated: true, completion: {
-                                                AlertManager.shared.presentAlert(withTitle: "Error downloading file!", message: "Returned data is empty", style: .alert, actions: [AlertManager.shared.cancel], inside: self, animated: true, completion: nil)
+                                                AlertManager.shared.present(error: error!, withTitle: "Error downloading file!", inside: self)
                                             })
                                         }
-                                    } else {
-                                        self.dismiss(animated: true, completion: {
-                                            AlertManager.shared.present(error: error!, withTitle: "Error downloading file!", inside: self)
-                                        })
-                                    }
-                                }).resume()
-                            })], inside: self, animated: true, completion: nil)
-                            self.session.stopRunning()
+                                    }).resume()
+                                })], inside: self, animated: true, completion: nil)
+                            }
                         }
                     } else {
                         AudioServicesPlaySystemSound(1102)

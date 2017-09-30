@@ -56,11 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction]) {
-        print("Remove transaction")
+        Debugger.shared.debug_("Remove transaction")
     }
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        print("Received products!")
+        Debugger.shared.debug_("Received products!")
         var prices_ = [Double]()
         var currency = ""
         AccountManager.shared.shop = response.products
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
             prices.append("\(price) \(currency)")
         }
         
-        print(prices)
+        Debugger.shared.debug_(prices)
         
         menu.reloadStore()
     }
@@ -85,24 +85,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
             let trans = transaction as SKPaymentTransaction
             var continuePurchase = false
             
-            print("Buying "+trans.payment.productIdentifier)
+            Debugger.shared.debug_("Buying "+trans.payment.productIdentifier)
             
             switch trans.transactionState {
             case .purchased:
-                print("Purchased!")
+                Debugger.shared.debug_("Purchased!")
                 continuePurchase = true
                 SKPaymentQueue.default().finishTransaction(trans)
             case .purchasing:
-                print("Purchasing")
+                Debugger.shared.debug_("Purchasing")
             case .failed:
                 if let vc = AccountManager.shared.storeViewController {
                     AlertManager.shared.present(error: trans.error!, withTitle: "Error!", inside: vc)
                 }
-                print("Error! \(trans.error!)")
+                Debugger.shared.debug_("Error! \(trans.error!)")
             case .restored:
-                print("Restored")
+                Debugger.shared.debug_("Restored")
             case .deferred:
-                print("Deferred")
+                Debugger.shared.debug_("Deferred")
             }
             
             if continuePurchase {
@@ -117,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
                     case "ch.marcela.ada.fastSwift.purchases.hd":
                         AccountManager.shared.buy(product: .hardDrive)
                     default:
-                        print("Unknown purchase!")
+                        Debugger.shared.debug_("Unknown purchase!")
                     }
                 }
             }
@@ -132,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         let request = SKProductsRequest(productIdentifiers: ["ch.marcela.ada.fastSwift.purchases.pendrive","ch.marcela.ada.fastSwift.purchases.sd","ch.marcela.ada.fastSwift.purchases.cd","ch.marcela.ada.fastSwift.purchases.hd"])
         request.delegate = self
         request.start()
-        print("Start request!")
+        Debugger.shared.debug_("Start request!")
         SKPaymentQueue.default().add(self)
         
         clearCaches()
@@ -161,7 +161,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        Debugger.shared.close()
     }
 
     func application(_ app: UIApplication, open inputURL: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -175,7 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
                 if error == nil {
                     documentBrowserViewController.presentDocument(at: [revealedDocumentURL!])
                 } else {
-                    print("Error revealing document: \(error!.localizedDescription)")
+                    Debugger.shared.debug_("Error revealing document: \(error!.localizedDescription)")
                 }
             })
         })

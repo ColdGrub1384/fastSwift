@@ -62,7 +62,7 @@ class PublishToStoreViewController: UIActivity {
                             }
                             
                             let url = URL(string:"http://\(Server.default.host)/moveScriptsToShop.php/?atServer=\("\(Server.user)@\(Server.host)")&script=\(self.fileURL!.lastPathComponent.addingPercentEncodingForURLQueryValue()!)&user=\(AccountManager.shared.username!.addingPercentEncodingForURLQueryValue()!)&password=\(AccountManager.shared.password!.addingPercentEncodingForURLQueryValue()!)")!
-                            print(url.absoluteString)
+                            Debugger.shared.debug_(url.absoluteString)
                             URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                                 
                                 
@@ -134,7 +134,7 @@ class PublishToStoreViewController: UIActivity {
         } else {
             AccountManager.shared.login(inside: delegate, completion: {
                 publish()
-                print("No account!")
+                Debugger.shared.debug_("No account!")
             })
         }
     }

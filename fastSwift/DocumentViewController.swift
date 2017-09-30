@@ -22,7 +22,7 @@ extension UITextInput {
 class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopoverPresentationControllerDelegate, DocumentDelegate, UITextViewDelegate {
     
     func document(didClose document: Document) {
-        print("\(document.fileURL.deletingPathExtension().lastPathComponent) closed!")
+        Debugger.shared.debug_("\(document.fileURL.deletingPathExtension().lastPathComponent) closed!")
         for file in files {
             if file != document.fileURL {
                 let document = Document(fileURL: file)
@@ -32,15 +32,15 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     }
     
     func document(_ document: Document, didLoadContents contents: String) {
-        print("Returned content for \(document.fileURL.deletingPathExtension().lastPathComponent): \(contents)")
+        Debugger.shared.debug_("Returned content for \(document.fileURL.deletingPathExtension().lastPathComponent): \(contents)")
     }
     
     func document(willOpen document: Document) {
-        print("\(document.fileURL.deletingPathExtension().lastPathComponent) will be opened!")
+        Debugger.shared.debug_("\(document.fileURL.deletingPathExtension().lastPathComponent) will be opened!")
     }
     
     func document(_ document: Document, didLoadContentsWithError error: Error) {
-        print("Error returning content for \(document.fileURL.deletingPathExtension().lastPathComponent): \(error.localizedDescription)")
+        Debugger.shared.debug_("Error returning content for \(document.fileURL.deletingPathExtension().lastPathComponent): \(error.localizedDescription)")
     }
     
     
@@ -91,7 +91,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         
         self.code.delegate = self
         
-        print("State: \(autoCompilationState)")
+        Debugger.shared.debug_("State: \(autoCompilationState)")
         
         if firstLaunch {
             if files.count >= 2 {
@@ -119,16 +119,18 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         DispatchQueue.main.async {
             let _ = Repea.t(all: 0.2) { (timer) in
                 self.timer = timer
-                if self.pause {
-                    self.range = self.code.selectedRange
-                    self.cursorPos = self.code.selectedTextRange
+                if self.code.isFirstResponder {
+                    if self.pause {
+                        self.range = self.code.selectedRange
+                        self.cursorPos = self.code.selectedTextRange
+                        
+                        self.code.attributedText = self.highlight("swift", code: self.code.text)
+                        self.code.selectedTextRange = self.cursorPos
+                        self.code.scrollRangeToVisible(self.range!)
+                    }
                     
-                    self.code.attributedText = self.highlight("swift", code: self.code.text)
-                    self.code.selectedTextRange = self.cursorPos
-                    self.code.scrollRangeToVisible(self.range!)
+                    self.pause = true
                 }
-                
-                self.pause = true
             }
         }
     }
@@ -278,7 +280,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         if text == "↹" {
             text = "    "
         } else if text == "print" {
-            text = "print(\""
+            text = "Debugger.shared.debug_(\""
         }
         self.code.replace(self.code.selectedTextRange!, withText: text)
     }
@@ -315,7 +317,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         } catch let error {
             AlertManager.shared.present(error: error, withTitle: "Error saving file!", inside: self)
         }
-        print(files)
+        Debugger.shared.debug_(files)
         
         if  let _ = sender as? Bool {
             additionalCommand = "downloadExecutable";
@@ -335,7 +337,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                     AccountManager.shared.compilations = AccountManager.shared.compilations-1
                     self.compilations.title = "\(AccountManager.shared.compilations) 🐧"
                     
-                    print("Authorized session!")
+                    Debugger.shared.debug_("Authorized session!")
                     
                     do {
                         // Create unique folder
@@ -346,12 +348,12 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                         // Upload files
                         for file in self.files {
                             
-                            print("Send: "+file.lastPathComponent)
+                            Debugger.shared.debug_("Send: "+file.lastPathComponent)
                             if file != self.document!.fileURL {
                                 let document = Document(fileURL: file)
                                 
                                 document.open(completionHandler: { (success) in
-                                    print("File opened!")
+                                    Debugger.shared.debug_("File opened!")
                                     if success {
                                         session?.channel.uploadFile(file.path, to: "\((UIDevice.current.identifierForVendor!.uuidString))/\(file.lastPathComponent)")
                                         document.close(completionHandler: nil)
@@ -374,7 +376,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                         self.dismiss(animated: true, completion: {
                             AlertManager.shared.present(error: error, withTitle: "Error uploading file!", inside: self)
                         })
-                        print("Error uploading file: \(error.localizedDescription)")
+                        Debugger.shared.debug_("Error uploading file: \(error.localizedDescription)")
                     }
                 } else {
                     self.dismiss(animated: true, completion: {
@@ -394,7 +396,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        print("Prepare for segue")
+        Debugger.shared.debug_("Prepare for segue")
         
         var additionalCode = ""
         
@@ -409,7 +411,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             if let nextVC = segue.destination as? NMTerminalViewController {
                 let secondPart = "./main; cd ~; rm -rf \((UIDevice.current.identifierForVendor!.uuidString)); logout"
                 nextVC.command = "cd '\((UIDevice.current.identifierForVendor!.uuidString))'; mv '\(self.document!.fileURL.lastPathComponent)' main.swift; swiftc *; \(additionalCode)"
-                print(nextVC.command)
+                Debugger.shared.debug_(nextVC.command)
                 nextVC.host = Server.host
                 nextVC.user = Server.user
                 nextVC.password = Server.password
@@ -447,7 +449,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
 
             // Write code here
 
-            print("Hello World!")
+            Debugger.shared.debug_("Hello World!")
 
             """)
         }),
@@ -466,14 +468,14 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             // Write code here
 
             let mainText = ""
-            print(mainText)
+            Debugger.shared.debug_(mainText)
 
             var response = readLine()!
             switch response {
             case "1":
-                print("User typed 1!")
+                Debugger.shared.debug_("User typed 1!")
             default:
-                print("Other text")
+                Debugger.shared.debug_("Other text")
             }
 
             """)
@@ -493,13 +495,13 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             // Write code here
 
             let mainText = ""
-            print(mainText)
+            Debugger.shared.debug_(mainText)
             
             main: while true {
                 var response = readLine()!
                 switch response {
                 case "1":
-                    print("User typed 1!")
+                    Debugger.shared.debug_("User typed 1!")
                 default:
                     break main
                 }
@@ -601,7 +603,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         self.present(nav, animated: true, completion: nil)
     }
     
-    @IBAction func buyCompilations(_ sender: Any) { print("Buy compilation")
+    @IBAction func buyCompilations(_ sender: Any) { Debugger.shared.debug_("Buy compilation")
     }
     
     func textViewDidChange(_ textView: UITextView) {
