@@ -27,10 +27,16 @@ class OrganizerTableViewController: UITableViewController {
         DispatchQueue.main.async {
             self.present(ActivityViewController.init(message: "Compressing.."), animated: true, completion: nil)
             do {
-                let newFilePath = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first!.appendingPathComponent(self.delegate!.document!.fileURL.deletingPathExtension().lastPathComponent).path
+                let newFilePath = FileManager.default.urls(for: .cachesDirectory, in: .allDomainsMask).first!.appendingPathComponent(self.delegate!.document!.fileURL.deletingPathExtension().lastPathComponent).path
                 if FileManager.default.fileExists(atPath: newFilePath) {
                     try FileManager.default.removeItem(at: URL(fileURLWithPath:newFilePath))
                 }
+                
+                let zipURL = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first!.appendingPathComponent(self.delegate!.document!.fileURL.deletingPathExtension().appendingPathExtension("zip").lastPathComponent)
+                if FileManager.default.fileExists(atPath: zipURL.path) {
+                    try FileManager.default.removeItem(at: zipURL)
+                }
+                
                 
                 for file in self.delegate!.files {
                     if file != self.delegate!.document?.fileURL {

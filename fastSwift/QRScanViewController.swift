@@ -50,9 +50,9 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             case .denied:
                 view.viewWithTag(1)!.isHidden = true
             case .authorized:
-                showCam()
+                showCam() // Show cam only if user has authorized it
             case .restricted: break
-            case .notDetermined:
+            case .notDetermined: // If the user hasn't putted anything, wait for it
                 Debugger.shared.debug_("Not determined!")
                 let _ = Repea.t(all: 0.2, seconds: { (timer) in
                     if cameraAuthorizationStatus == .notDetermined {
@@ -79,6 +79,28 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
         if let _ = presentedViewController as? UIAlertController {
             return
+        }
+        
+        if let terminal = AppDelegate.shared.topViewController() as? NMTerminalViewController { // Send text to terminal
+            if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
+                if object.type == .qr {
+                    if let str = object.stringValue?.replacingOccurrences(of: "\n", with: "") {
+                        if terminal.session.isConnected {
+                            if terminal.session.isAuthorized {
+                                if !terminal.terminal.text.hasSuffix(str) {
+                                    DispatchQueue.main.async {
+                                        if terminal.terminal.isEditable {
+                                            AudioServicesPlaySystemSound(1307)
+                                            terminal.terminal.text = terminal.terminal.text+str
+                                            return
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         
         if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {

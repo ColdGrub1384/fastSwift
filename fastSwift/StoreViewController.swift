@@ -105,7 +105,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                                     try FileManager.default.moveItem(at: url!, to: dest)
                                     
                                     self.dismiss(animated: true, completion: {
-                                        let vc = self.storyboard!.instantiateInitialViewController() as! DocumentBrowserViewController
+                                        let vc = self.storyboard!.instantiateViewController(withIdentifier: "browser") as! DocumentBrowserViewController
                                         vc.dismissState = .ready
                                         
                                         self.present(vc, animated: true, completion: {
