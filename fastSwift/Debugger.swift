@@ -29,7 +29,7 @@ class Debugger: DebuLog {
         if session.isConnected {
             session.authenticate(byPassword: "debug")
             if session.isAuthorized {
-                send = true
+                send = false
             }
         }
         

@@ -55,15 +55,19 @@ class MenuViewController: UIViewController {
         
         self.view.backgroundColor = fileBrowser.view.backgroundColor
         
+        let screenBounds = UIScreen.main.bounds
+        
         var count:CGFloat = -1
         for vc in vcs {
             self.addChildViewController(vc)
             self.scroll.addSubview(vc.view)
             vc.didMove(toParentViewController: self)
+            vc.view.bounds = screenBounds
+            vc.view.frame = self.scroll.frame
             
             if vc != vcs.first {
                 var vcframe:CGRect = vc.view.frame
-                vcframe.origin.x = self.view.frame.width+10+(self.view.frame.width*count)
+                vcframe.origin.x = screenBounds.width+10+(screenBounds.width*count)
                 vcframe.origin.y = vcframe.origin.y+20
                 vc.view.frame = vcframe
                 vc.view.frame.size.height = vc.view.frame.height-20

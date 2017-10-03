@@ -37,16 +37,17 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
         let device = AVCaptureDevice.default(for: AVMediaType.video)
         
-        do {
-            let input = try AVCaptureDeviceInput(device: device!)
-            session.addInput(input)
-        } catch let error {
-            Debugger.shared.debug_("Error: \(error)")
-        }
-        
-        var cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
-        
-        switch cameraAuthorizationStatus {
+        if device != nil {
+            do {
+                let input = try AVCaptureDeviceInput(device: device!)
+                session.addInput(input)
+            } catch let error {
+                Debugger.shared.debug_("Error: \(error)")
+            }
+            
+            var cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+            
+            switch cameraAuthorizationStatus {
             case .denied:
                 view.viewWithTag(1)!.isHidden = true
             case .authorized:
@@ -66,6 +67,7 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                         }
                     }
                 })
+            }
         }
         
         
