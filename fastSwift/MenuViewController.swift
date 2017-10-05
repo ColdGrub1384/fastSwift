@@ -70,13 +70,13 @@ class MenuViewController: UIViewController {
                 vcframe.origin.x = screenBounds.width+10+(screenBounds.width*count)
                 vcframe.origin.y = vcframe.origin.y+20
                 vc.view.frame = vcframe
-                vc.view.frame.size.height = vc.view.frame.height-20
+                vc.view.frame.size.height = vc.view.frame.height-(20)
                 if vc != vcs.last {
                     vc.view.frame.size.width = vc.view.frame.width-20
                 }
             } else {
                 vc.view.frame.size.width = vc.view.frame.width-20
-                vc.view.frame.size.height = vc.view.frame.height-20
+                vc.view.frame.size.height = vc.view.frame.height-(20)
                 vc.view.frame.origin.y = vc.view.frame.origin.y+20
             }
             
@@ -100,6 +100,19 @@ class MenuViewController: UIViewController {
         
         news.doneBtn.isEnabled = false
         
+        if !UserDefaults.standard.bool(forKey: "opened") { // Show instructions
+            UserDefaults.standard.set(true, forKey: "opened")
+            
+            let vc = self.storyboard!.instantiateViewController(withIdentifier: "instructions")
+            self.addChildViewController(vc)
+            
+            vc.view.bounds = UIScreen.main.bounds
+            vc.view.frame = self.scroll.frame
+            
+            self.view.addSubview(vc.view)
+            
+        }
+                
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
