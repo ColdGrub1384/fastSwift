@@ -36,7 +36,9 @@ class ExportToXcodeActivty: UIActivity {
     override func perform() {
         if let delegate = self.delegate {
             if !delegate.delegate!.firstLaunch {
-                delegate.performSegue(withIdentifier: "xcode", sender: nil)
+                let vc = AppViewControllers().exportToXcode
+                vc.delegate = delegate
+                delegate.present(vc, animated: true, completion: nil)
             } else {
                 AlertManager.shared.presentAlert(withTitle: "No main file!", message: "Please select a main file before export to Xcode project.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
             }

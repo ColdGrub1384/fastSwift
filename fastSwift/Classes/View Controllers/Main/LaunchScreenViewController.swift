@@ -17,7 +17,7 @@ class LaunchScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menu = AppViewControllers.menu
+        menu = AppViewControllers().menu
         self.addChildViewController(menu)
         self.view.addSubview(menu.view)
         menu.view.isHidden = true
@@ -29,9 +29,9 @@ class LaunchScreenViewController: UIViewController {
         
         let _ = Afte.r(0.1) { (timer) in
             let _ = Repea.t(all: 0.001) { (timer) in
-                if AppDelegate.shared.theme.isEqual(to: Theme.black) { // Animation for black theme
+                if AppDelegate.shared.theme.statusBarStyle == .lightContent { // Animation for black theme
                     self.animBlack(timer: timer)
-                } else if AppDelegate.shared.theme.isEqual(to: Theme.white) { // Animation for white theme
+                } else if AppDelegate.shared.theme.statusBarStyle == .default { // Animation for white theme
                     self.animWhite(timer: timer)
                 }
             }

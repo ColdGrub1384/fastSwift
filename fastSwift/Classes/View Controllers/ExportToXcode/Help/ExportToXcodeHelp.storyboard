@@ -143,6 +143,7 @@ If you don't have a paid developer account, you will need to reinstall your app 
                         <viewLayoutGuide key="safeArea" id="K0J-QE-znR"/>
                     </view>
                     <connections>
+                        <outlet property="navBar" destination="saX-a6-xhb" id="E1S-Kc-hLO"/>
                         <outlet property="textView" destination="Td6-zt-do9" id="ORR-09-lah"/>
                     </connections>
                 </viewController>

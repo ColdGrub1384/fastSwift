@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         do {for file in try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath:NSTemporaryDirectory()), includingPropertiesForKeys: nil, options: .skipsHiddenFiles) {
             do { try FileManager.default.removeItem(at: file) } catch _ {}
             }} catch _ {}
+        
     }
     
     func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
@@ -164,7 +165,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
             
             index += 1
         }
-                
+        
         return true
     }
 
@@ -191,7 +192,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
 
     func application(_ app: UIApplication, open inputURL: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         // Reveal / import the document at the URL
-        let documentBrowserViewController = AppViewControllers.documentBrowser
+        let documentBrowserViewController = AppViewControllers().documentBrowser
         // Present the Document View Controller for the revealed URL
         documentBrowserViewController.dismissState = .ready
         
@@ -214,9 +215,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         print("The user has selected a theme")
         let _ = Afte.r(1) { (timer) in
             self.changeTheme()
-            self.applicationWillTerminate(UIApplication.shared)
-            _ = self.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
-            self.window!.rootViewController = AppViewControllers.launchScreen
+            self.window!.rootViewController = AppViewControllers().launchScreen
+            _ = Afte.r(1, seconds: { (timer) in
+                self.applicationWillTerminate(UIApplication.shared)
+                _ = self.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
+            })
         }
     }
     

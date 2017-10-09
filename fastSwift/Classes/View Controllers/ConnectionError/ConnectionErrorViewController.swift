@@ -29,13 +29,12 @@ class ConnectionErrorViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func settings(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "settings")
-        if let settings = vc as? SettingsViewController {
+        let vc = AppViewControllers().settings
+        if let settings = vc.viewControllers.first as? SettingsViewController {
             settings.file = "Server"
             settings.title = "Custom server"
             
-            let navVC = UINavigationController(rootViewController: settings)
-            self.present(navVC, animated: true, completion: nil)
+            self.present(vc, animated: true, completion: nil)
         }
     }
 }

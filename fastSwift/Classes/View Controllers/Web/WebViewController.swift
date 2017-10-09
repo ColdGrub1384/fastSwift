@@ -34,10 +34,11 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         webview.delegate = self
         titleBar.barTintColor = AppDelegate.shared.theme.color
         titleBar.tintColor = AppDelegate.shared.theme.tintColor
+        view.backgroundColor = AppDelegate.shared.theme.color
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return AppDelegate.shared.theme.statusBarStyle
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {

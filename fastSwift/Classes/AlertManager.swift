@@ -13,7 +13,7 @@ class AlertManager {
     static let shared = AlertManager()
     
     func openWebView(withURL url:URL, inside viewController: UIViewController) {
-        let vc = AppViewControllers.web
+        let vc = AppViewControllers().web
         vc.url = url
         vc.modalTransitionStyle = .flipHorizontal
         
@@ -21,13 +21,13 @@ class AlertManager {
     }
     
     var connectionErrorViewController: UIViewController {
-        return AppViewControllers.connectionError
+        return AppViewControllers().connectionError
     }
     
     func presentAlert(withTitle title:String, message:String, style: UIAlertControllerStyle, actions: [UIAlertAction], inside viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
-        alert.view.tintColor = .orange
+        alert.view.tintColor = AppDelegate.shared.theme.tintColor
         
         for action in actions {
             alert.addAction(action)
@@ -39,7 +39,7 @@ class AlertManager {
     
     func alert(withTitle title:String, message:String, style: UIAlertControllerStyle, actions: [UIAlertAction]) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
-        alert.view.tintColor = .orange
+        alert.view.tintColor = AppDelegate.shared.theme.tintColor
         
         for action in actions {
             alert.addAction(action)
@@ -55,7 +55,7 @@ class AlertManager {
     
     func present(error: Error, withTitle title:String, inside viewController: UIViewController) {
         let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
-        alert.view.tintColor = .orange
+        alert.view.tintColor = AppDelegate.shared.theme.tintColor
         
         alert.addAction(ok(handler: nil))
         

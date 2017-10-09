@@ -383,7 +383,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                                     additionalCommand += ";"
                                 }
                                 
-                                let terminal = AppViewControllers.terminal
+                                let terminal = AppViewControllers().terminal
                                 let secondPart = "./main; cd ~; rm -rf \((UIDevice.current.identifierForVendor!.uuidString)); logout"
                                 terminal.command = "cd '\((UIDevice.current.identifierForVendor!.uuidString))'; mv '\(self.document!.fileURL.lastPathComponent)' main.swift; swiftc *; \(additionalCommand)"
                                 print(terminal.command)
@@ -396,6 +396,8 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                                 if additionalCommand == "" {
                                     terminal.command = terminal.command+secondPart
                                 }
+                                
+                                self.present(terminal, animated:true, completion: nil)
                             })
                         }
                         
@@ -582,7 +584,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     
     @IBAction func browser(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "manage") as! OrganizerTableViewController
+        let vc = AppViewControllers().organizer
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .popover
         nav.navigationBar.prefersLargeTitles = true
@@ -602,10 +604,10 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     @IBAction func buyCompilations(_ sender: Any) {
         if AppDelegate.shared.menu.loadedStore {
-            let store = AppViewControllers.store
+            let store = AppViewControllers().store
             self.present(store, animated: true, completion: nil)
         } else {
-            let errorVc = AppViewControllers.errorLoadingStore
+            let errorVc = AppViewControllers().errorLoadingStore
             self.present(errorVc, animated: true, completion: nil)
         }
     }

@@ -23,9 +23,10 @@ class ErrorLoadingStoreViewController: UIViewController {
     }
     
     @IBAction func retry(_ sender: Any) {
-        AppDelegate.shared.applicationWillTerminate(UIApplication.shared)
-        _ = AppDelegate.shared.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
-        
-        AppDelegate.shared.window?.rootViewController = AppViewControllers.launchScreen
+        AppDelegate.shared.window?.rootViewController = AppViewControllers().launchScreen
+        _ = Afte.r(1, seconds: { (timer) in
+            AppDelegate.shared.applicationWillTerminate(UIApplication.shared)
+            _ = AppDelegate.shared.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
+        })
     }
 }

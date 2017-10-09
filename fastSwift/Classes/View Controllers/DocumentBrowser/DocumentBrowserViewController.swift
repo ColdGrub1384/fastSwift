@@ -125,7 +125,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     // MARK: Document Presentation
     
     func compile(urls: [URL], withState state:AppDelegate.autoCompilationState) {
-        let documentViewController = AppViewControllers.document
+        let documentViewController = AppViewControllers().document
         documentViewController.document = Document(fileURL: urls.first!)
         documentViewController.modalTransitionStyle = .flipHorizontal
         documentViewController.firstLaunch = true
@@ -151,7 +151,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         
         let urls = documentsURL
         
-        let documentViewController = AppViewControllers.document
+        let documentViewController = AppViewControllers().document
         documentViewController.document = Document(fileURL: urls.first!)
         documentViewController.modalTransitionStyle = .flipHorizontal
         documentViewController.firstLaunch = true
@@ -225,7 +225,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                             } catch _ {}
                             
                             alert.dismiss(animated: true, completion: {
-                                let terminalViewController = AppViewControllers.terminal
+                                let terminalViewController = AppViewControllers().terminal
                                 terminalViewController.command = "'\(filePath)'; rm '\(filePath)'; logout"
                                 terminalViewController.user = Server.user
                                 terminalViewController.host = Server.host

@@ -22,12 +22,12 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        let fileBrowser:DocumentBrowserViewController = AppViewControllers.documentBrowser
-        let settings: UINavigationController = AppViewControllers.settings
-        let loadingStore: UIViewController = AppViewControllers.errorLoadingStore
-        let qrScan:QRScanViewController = AppViewControllers.camera
-        let news:WebViewController = AppViewControllers.web
-        let setup:SetupServerViewController = AppViewControllers.setupServer
+        let fileBrowser:DocumentBrowserViewController = AppViewControllers().documentBrowser
+        let settings: UINavigationController = AppViewControllers().settings
+        let loadingStore: UIViewController = AppViewControllers().errorLoadingStore
+        let qrScan:QRScanViewController = AppViewControllers().camera
+        let news:WebViewController = AppViewControllers().web
+        let setup:SetupServerViewController = AppViewControllers().setupServer
         
         
         let session = NMSSHSession.connect(toHost: Server.host, withUsername: Server.user)
@@ -47,7 +47,7 @@ class MenuViewController: UIViewController {
         vcs = [news,qrScan, fileBrowser, loadingStore, settings, setup]
         
         if loadedStore {
-            vcs[3] = AppViewControllers.store
+            vcs[3] = AppViewControllers().store
         }
         
         scroll.backgroundColor = AppDelegate.shared.theme.color
@@ -86,7 +86,6 @@ class MenuViewController: UIViewController {
         }
         
         if news.html != UserDefaults.standard.string(forKey: "html") {
-            mainVCIndex = 0
             UserDefaults.standard.set(news.html, forKey: "html")
         }
         
@@ -106,7 +105,7 @@ class MenuViewController: UIViewController {
     func reloadStore() {
         let frame = vcs[3].view.frame
         vcs[3].view.removeFromSuperview()
-        vcs[3] = AppViewControllers.store
+        vcs[3] = AppViewControllers().store
         ((vcs[3] as! UINavigationController).viewControllers.first! as! StoreViewController).doneBtn.isEnabled = false
         addChildViewController(vcs[3])
         scroll.addSubview(vcs[3].view)
@@ -114,14 +113,14 @@ class MenuViewController: UIViewController {
     }
     
     func reload() {
-        let vc = AppViewControllers.menu
+        let vc = AppViewControllers().menu
         vc.mainVCIndex = mainVCIndex
         vc.loadedStore = loadedStore
         AppDelegate.shared.window?.rootViewController = vc
     }
     
     func showSettings() {
-        let vc = AppViewControllers.menu
+        let vc = AppViewControllers().menu
         vc.mainVCIndex = 4
         vc.loadedStore = loadedStore
         AppDelegate.shared.window?.rootViewController = vc

@@ -10,6 +10,25 @@ import UIKit
 import NMSSH
 import Zip
 
+extension String {
+    
+    func slice(from: String, to: String) -> String? {
+        
+        return (range(of: from)?.upperBound).flatMap { substringFrom in
+            (range(of: to, range: substringFrom..<endIndex)?.lowerBound).map { substringTo in
+                String(self[substringFrom..<substringTo])
+            }
+        }
+    }
+    
+    func replacingFirstOccurrence(of target: String, with replaceString: String) -> String {
+        if let range = self.range(of: target) {
+            return self.replacingCharacters(in: range, with: replaceString)
+        }
+        return self
+    }
+}
+
 class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHChannelDelegate, UITextViewDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var terminal: TerminalTextView!
@@ -26,6 +45,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     var delegate: DocumentViewController?
     var browserVC: DocumentBrowserViewController?
     var console = ""
+    var reopen = false
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -92,7 +112,17 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     
     @IBAction func disconnect(_ sender: Any) {
         session.disconnect()
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            
+            if self.reopen {
+                AppDelegate.shared.window?.rootViewController = AppViewControllers().launchScreen
+                _ = Afte.r(1, seconds: { (timer) in
+                    AppDelegate.shared.applicationWillTerminate(UIApplication.shared)
+                    _ = AppDelegate.shared.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
+                })
+            }
+            
+        })
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -109,6 +139,102 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 self.activity.stopAnimating()
                 self.terminal.text = newString[1]
                 self.console = self.terminal.text
+            }
+            
+            if self.terminal.text.contains("<showAlert>") { // Show an alert
+                if let text = self.terminal.text.slice(from: "<showAlert>", to: "</showAlert>") {
+                    if let buttonsStr = text.slice(from: "<buttons>", to: "</buttons>") {
+                        let buttons = buttonsStr.components(separatedBy: "<bt>")
+                        var actions = [UIAlertAction]()
+                        for button in buttons {
+                            actions.append(UIAlertAction(title: button, style: .default, handler: { (action) in
+                                if self.terminal.isFirstResponder {
+                                    do {
+                                        try self.session.channel.write(button+"\n")
+                                    } catch _ {
+                                        self.present(AppViewControllers().connectionError, animated: true, completion: nil)
+                                    }
+                                }
+                            }))
+                        }
+                        
+                        var title = ""
+                        
+                        if let title_ = text.slice(from: "<title>", to: "</title>") {
+                            title = title_
+                        }
+                        
+                        var msg = ""
+                        
+                        if let msg_ = text.slice(from: "<message>", to: "</message>") {
+                            msg = msg_
+                        }
+                        
+                        self.present(AlertManager.shared.alert(withTitle: title, message: msg, style: .alert, actions: actions), animated: true, completion: nil)
+                    }
+                }
+                
+                self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: self.terminal.text.slice(from: "<showAlert>", to: "</showAlert>")!, with: "")
+                self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "<showAlert>", with: "")
+                self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "</showAlert>", with: "")
+            }
+            
+            if self.terminal.text.contains("<theme>") {
+                if let theme = self.terminal.text.slice(from: "<theme>", to: "</theme>") {
+                    let color = theme.slice(from: "<color>", to: "</color>")
+                    let tint = theme.slice(from: "<tintColor>", to: "</tintColor>")
+                    let textColor = theme.slice(from: "<textColor>", to: "</textColor>")
+                    let barStyle = theme.slice(from: "<barStyle>", to: "</barStyle>")
+                    let keyboard = theme.slice(from: "<keyboard>", to: "</keyboard>")
+                    let statusBar = theme.slice(from: "<statusBarStyle>", to: "</statusBarStyle>")
+                    let browserStyle = theme.slice(from: "<browserStyle>", to: "</browserStyle>")
+                    let codeEditorBackground = theme.slice(from: "<codeEditorBackground>", to: "</codeEditorBackground>")
+                    let codeEditorTheme = theme.slice(from: "<codeEditorTheme>", to: "</codeEditorTheme>")
+                    let alternateIcon = theme.slice(from: "<alternateIcon>", to: "</alternateIcon>")
+                    
+                    self.present(AlertManager.shared.alert(withTitle: "Available theme!", message: "This program want to install a theme", style: .alert, actions: [UIAlertAction.init(title: "Install", style: .default, handler: { (action) in
+                        
+                        if color != nil {
+                            if tint != nil {
+                                if textColor != nil {
+                                    if barStyle != nil {
+                                        if keyboard != nil {
+                                            if statusBar != nil {
+                                                if browserStyle != nil {
+                                                    if codeEditorBackground != nil {
+                                                        if codeEditorTheme != nil {
+                                                            if alternateIcon != nil {
+                                                                UserDefaults.standard.set("custom", forKey: "theme")
+                                                                UserDefaults.standard.set(color, forKey: "ct_color")
+                                                                UserDefaults.standard.set(tint, forKey: "ct_tint")
+                                                                UserDefaults.standard.set(textColor, forKey: "ct_text")
+                                                                UserDefaults.standard.set(barStyle, forKey: "ct_bar")
+                                                                UserDefaults.standard.set(keyboard, forKey: "ct_keyboard")
+                                                                UserDefaults.standard.set(statusBar, forKey: "ct_sbar")
+                                                                UserDefaults.standard.set(browserStyle, forKey: "ct_browser")
+                                                                UserDefaults.standard.set(codeEditorBackground, forKey: "ct_eback")
+                                                                UserDefaults.standard.set(codeEditorTheme, forKey: "ct_etheme")
+                                                                UserDefaults.standard.set(alternateIcon, forKey: "ct_icon")
+                                                                
+                                                                self.reopen = true
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }), AlertManager.shared.cancel]), animated: true, completion: nil)
+                    
+                    self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: self.terminal.text.slice(from: "<theme>", to: "</theme>")!, with: "")
+                    self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "<theme>", with: "")
+                    self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "</theme>", with: "")
+                }
+                
             }
             
             if self.terminal.text.contains("Show activity") {

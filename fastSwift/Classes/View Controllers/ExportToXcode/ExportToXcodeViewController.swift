@@ -156,4 +156,10 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func help(_ sender: Any) {
+        print("Open help")
+        self.present(AppViewControllers().exportToXcodeHelp, animated: true, completion: nil)
+    }
+    
+    
 }

@@ -26,6 +26,9 @@
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="RKU-ci-hl2">
                                                 <rect key="frame" x="16" y="11" width="22" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="help:" destination="pL2-Gb-vxw" eventType="touchUpInside" id="daA-KX-VkW"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="QdI-QK-0Ur">
