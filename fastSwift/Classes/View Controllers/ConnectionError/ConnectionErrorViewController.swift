@@ -1,5 +1,5 @@
 //
-//  LoadViewController.swift
+//  ConnectionErrorViewController.swift
 //  fastSwift
 //
 //  Created by Adrian on 01.07.17.
@@ -9,7 +9,7 @@
 import UIKit
 import NMSSH
 
-class ServerErrorViewController: UIViewController, UITextViewDelegate {
+class ConnectionErrorViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var errorText: UITextView!
     

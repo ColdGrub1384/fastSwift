@@ -378,7 +378,24 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                                                 
                         DispatchQueue.main.sync {
                             self.dismiss(animated: true, completion: {
-                                self.performSegue(withIdentifier: "swift", sender: additionalCommand)
+                                
+                                if additionalCommand != "" {
+                                    additionalCommand += ";"
+                                }
+                                
+                                let terminal = AppViewControllers.terminal
+                                let secondPart = "./main; cd ~; rm -rf \((UIDevice.current.identifierForVendor!.uuidString)); logout"
+                                terminal.command = "cd '\((UIDevice.current.identifierForVendor!.uuidString))'; mv '\(self.document!.fileURL.lastPathComponent)' main.swift; swiftc *; \(additionalCommand)"
+                                print(terminal.command)
+                                terminal.host = Server.host
+                                terminal.user = Server.user
+                                terminal.password = Server.password
+                                terminal.mainFile = self.document!.fileURL.deletingPathExtension().lastPathComponent
+                                terminal.delegate = self
+                                
+                                if additionalCommand == "" {
+                                    terminal.command = terminal.command+secondPart
+                                }
                             })
                         }
                         
@@ -390,13 +407,13 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                     }
                 } else {
                     self.dismiss(animated: true, completion: {
-                        self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                        self.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                     })
                     
                 }
             } else {
                 self.dismiss(animated: true, completion: {
-                    self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                    self.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                 })
             }
         }
@@ -404,36 +421,6 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        print("Prepare for segue")
-        
-        var additionalCode = ""
-        
-        if let code = sender as? String {
-            additionalCode = code
-            if additionalCode != "" {
-                additionalCode = additionalCode+";"
-            }
-        }
-        
-        if segue.identifier == "swift" {
-            if let nextVC = segue.destination as? NMTerminalViewController {
-                let secondPart = "./main; cd ~; rm -rf \((UIDevice.current.identifierForVendor!.uuidString)); logout"
-                nextVC.command = "cd '\((UIDevice.current.identifierForVendor!.uuidString))'; mv '\(self.document!.fileURL.lastPathComponent)' main.swift; swiftc *; \(additionalCode)"
-                print(nextVC.command)
-                nextVC.host = Server.host
-                nextVC.user = Server.user
-                nextVC.password = Server.password
-                nextVC.mainFile = self.document!.fileURL.deletingPathExtension().lastPathComponent
-                nextVC.delegate = self
-                
-                if additionalCode == "" {
-                    nextVC.command = nextVC.command+secondPart
-                }
-            }
-        }
-    }
     
     
     @IBAction func Templates(_ sender: UIBarButtonItem) {
@@ -615,10 +602,10 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     @IBAction func buyCompilations(_ sender: Any) {
         if AppDelegate.shared.menu.loadedStore {
-            let store = self.storyboard!.instantiateViewController(withIdentifier: "store")
+            let store = AppViewControllers.store
             self.present(store, animated: true, completion: nil)
         } else {
-            let errorVc = self.storyboard!.instantiateViewController(withIdentifier: "loadingStore")
+            let errorVc = AppViewControllers.errorLoadingStore
             self.present(errorVc, animated: true, completion: nil)
         }
     }

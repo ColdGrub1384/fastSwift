@@ -22,12 +22,12 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        let fileBrowser:DocumentBrowserViewController = self.storyboard!.instantiateViewController(withIdentifier: "browser") as! DocumentBrowserViewController
-        let settings: UINavigationController = self.storyboard!.instantiateViewController(withIdentifier: "settingsNav") as! UINavigationController
-        let loadingStore: UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "loadingStore")
-        let qrScan:QRScanViewController = self.storyboard!.instantiateViewController(withIdentifier: "qrScan") as! QRScanViewController
-        let news:WebViewController = self.storyboard!.instantiateViewController(withIdentifier: "webview") as! WebViewController
-        let setup:SetupServerViewController = self.storyboard!.instantiateViewController(withIdentifier: "setup") as! SetupServerViewController
+        let fileBrowser:DocumentBrowserViewController = AppViewControllers.documentBrowser
+        let settings: UINavigationController = AppViewControllers.settings
+        let loadingStore: UIViewController = AppViewControllers.errorLoadingStore
+        let qrScan:QRScanViewController = AppViewControllers.camera
+        let news:WebViewController = AppViewControllers.web
+        let setup:SetupServerViewController = AppViewControllers.setupServer
         
         
         let session = NMSSHSession.connect(toHost: Server.host, withUsername: Server.user)
@@ -47,7 +47,7 @@ class MenuViewController: UIViewController {
         vcs = [news,qrScan, fileBrowser, loadingStore, settings, setup]
         
         if loadedStore {
-            vcs[3] = self.storyboard!.instantiateViewController(withIdentifier: "store") as! UINavigationController
+            vcs[3] = AppViewControllers.store
         }
         
         scroll.backgroundColor = AppDelegate.shared.theme.color
@@ -99,18 +99,6 @@ class MenuViewController: UIViewController {
         
         news.doneBtn.isEnabled = false
         
-        if !UserDefaults.standard.bool(forKey: "opened") { // Show instructions
-            UserDefaults.standard.set(true, forKey: "opened")
-            
-            let vc = self.storyboard!.instantiateViewController(withIdentifier: "instructions")
-            self.addChildViewController(vc)
-            
-            vc.view.bounds = UIScreen.main.bounds
-            vc.view.frame = self.scroll.frame
-            
-            self.view.addSubview(vc.view)
-            
-        }
                 
     }
 
@@ -118,7 +106,7 @@ class MenuViewController: UIViewController {
     func reloadStore() {
         let frame = vcs[3].view.frame
         vcs[3].view.removeFromSuperview()
-        vcs[3] = self.storyboard!.instantiateViewController(withIdentifier: "store") as! UINavigationController
+        vcs[3] = AppViewControllers.store
         ((vcs[3] as! UINavigationController).viewControllers.first! as! StoreViewController).doneBtn.isEnabled = false
         addChildViewController(vcs[3])
         scroll.addSubview(vcs[3].view)
@@ -126,14 +114,14 @@ class MenuViewController: UIViewController {
     }
     
     func reload() {
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "menu") as! MenuViewController
+        let vc = AppViewControllers.menu
         vc.mainVCIndex = mainVCIndex
         vc.loadedStore = loadedStore
         AppDelegate.shared.window?.rootViewController = vc
     }
     
     func showSettings() {
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "menu") as! MenuViewController
+        let vc = AppViewControllers.menu
         vc.mainVCIndex = 4
         vc.loadedStore = loadedStore
         AppDelegate.shared.window?.rootViewController = vc

@@ -17,7 +17,7 @@ class LaunchScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menu = (self.storyboard?.instantiateViewController(withIdentifier: "menu"))! as! MenuViewController
+        menu = AppViewControllers.menu
         self.addChildViewController(menu)
         self.view.addSubview(menu.view)
         menu.view.isHidden = true

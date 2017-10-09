@@ -11,6 +11,13 @@ import UIKit
 class ExportToXcodeHelpViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = AppDelegate.shared.theme.color
+        textView.textColor = AppDelegate.shared.theme.textColor
+    }
+    
     @IBAction func done(_ sender:Any) {
         self.dismiss(animated: true, completion: nil)
     }

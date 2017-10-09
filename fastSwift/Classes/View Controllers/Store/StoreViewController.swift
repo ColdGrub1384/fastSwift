@@ -52,7 +52,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                         let tmpFile = FileManager.default.urls(for: .cachesDirectory, in: .allDomainsMask)[0].appendingPathComponent("TMPEXECFILETOSEND.swiftc")
                         FileManager.default.createFile(atPath: tmpFile.path, contents: data, attributes: nil)
                         
-                        let vc = self.storyboard!.instantiateViewController(withIdentifier: "browser") as! DocumentBrowserViewController
+                        let vc = AppViewControllers.documentBrowser
                         
                         self.present(vc, animated: true, completion: {
                             vc.dismissState = .ready
@@ -61,10 +61,10 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                             })
                         })
                     } else {
-                        self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                        self.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                     }
                 } else {
-                    self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                    self.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                 }
             })
         }).resume()
@@ -105,7 +105,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                                     try FileManager.default.moveItem(at: url!, to: dest)
                                     
                                     self.dismiss(animated: true, completion: {
-                                        let vc = self.storyboard!.instantiateViewController(withIdentifier: "browser") as! DocumentBrowserViewController
+                                        let vc = AppViewControllers.documentBrowser
                                         vc.dismissState = .ready
                                         
                                         self.present(vc, animated: true, completion: {
@@ -119,7 +119,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                                 }
                             } else {
                                 self.dismiss(animated: true, completion: {
-                                    self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                                    self.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                                 })
                             }
                         } else {
@@ -130,17 +130,17 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                     }).resume()
                 } catch _ {
                     self.dismiss(animated: true, completion: {
-                        self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                        self.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                     })
                 }
             } else {
                 self.dismiss(animated: true, completion: {
-                    self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                    self.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                 })
             }
         } else {
             self.dismiss(animated: true, completion: {
-                self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                self.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
             })
         }
     }

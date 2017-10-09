@@ -13,7 +13,7 @@ class AlertManager {
     static let shared = AlertManager()
     
     func openWebView(withURL url:URL, inside viewController: UIViewController) {
-        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "webview") as! WebViewController
+        let vc = AppViewControllers.web
         vc.url = url
         vc.modalTransitionStyle = .flipHorizontal
         
@@ -21,13 +21,7 @@ class AlertManager {
     }
     
     var connectionErrorViewController: UIViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: "connection error")
-    }
-    
-    var serverErrorViewController: UIViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: "server error")
+        return AppViewControllers.connectionError
     }
     
     func presentAlert(withTitle title:String, message:String, style: UIAlertControllerStyle, actions: [UIAlertAction], inside viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {

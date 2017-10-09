@@ -125,8 +125,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     // MARK: Document Presentation
     
     func compile(urls: [URL], withState state:AppDelegate.autoCompilationState) {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let documentViewController = storyBoard.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
+        let documentViewController = AppViewControllers.document
         documentViewController.document = Document(fileURL: urls.first!)
         documentViewController.modalTransitionStyle = .flipHorizontal
         documentViewController.firstLaunch = true
@@ -152,8 +151,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         
         let urls = documentsURL
         
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let documentViewController = storyBoard.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
+        let documentViewController = AppViewControllers.document
         documentViewController.document = Document(fileURL: urls.first!)
         documentViewController.modalTransitionStyle = .flipHorizontal
         documentViewController.firstLaunch = true
@@ -227,17 +225,23 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                             } catch _ {}
                             
                             alert.dismiss(animated: true, completion: {
-                                self.performSegue(withIdentifier: "terminal", sender: filePath)
+                                let terminalViewController = AppViewControllers.terminal
+                                terminalViewController.command = "'\(filePath)'; rm '\(filePath)'; logout"
+                                terminalViewController.user = Server.user
+                                terminalViewController.host = Server.host
+                                terminalViewController.password = Server.password
+                                terminalViewController.browserVC = self
+                                self.present(terminalViewController, animated: true, completion: nil)
                             })
                             
                         } else {
                             self.dismiss(animated: true, completion: {
-                                self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                                self.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                             })
                         }
                     } else {
                         self.dismiss(animated: true, completion: {
-                            self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                            self.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                         })
                     }
                 })
@@ -251,16 +255,5 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "terminal" {
-            if let terminalViewController = segue.destination as? NMTerminalViewController {
-                terminalViewController.command = "'\(sender as! String)'; rm '\(sender as! String)'; logout"
-                terminalViewController.user = Server.user
-                terminalViewController.host = Server.host
-                terminalViewController.password = Server.password
-                terminalViewController.browserVC = self
-            }
-        }
-    }
 }
 

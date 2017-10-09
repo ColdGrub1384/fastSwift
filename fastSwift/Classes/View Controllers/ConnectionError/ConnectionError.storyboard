@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="irK-mX-jbF">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Connection error-->
+        <scene sceneID="CYs-1e-8a8">
+            <objects>
+                <viewController id="yKu-Kl-X8A" customClass="ConnectionErrorViewController" customModule="fastSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mVa-4e-I5F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="server error" translatesAutoresizingMaskIntoConstraints="NO" id="Gbs-hn-9HQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="541"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Error" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eRr-Df-ZvM">
+                                <rect key="frame" x="0.0" y="587" width="375" height="80"/>
+                                <color key="backgroundColor" red="0.1489986479" green="0.1490316391" blue="0.14899659160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Pc5-V6-KL0"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdY-3g-bAi">
+                                <rect key="frame" x="16" y="549" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Xub-jB-ODb"/>
+                                </constraints>
+                                <state key="normal" title="Server settings">
+                                    <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="settings:" destination="yKu-Kl-X8A" eventType="touchUpInside" id="h7a-eL-cCO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1482854784" green="0.1484311223" blue="0.1483080685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="xdY-3g-bAi" firstAttribute="leading" secondItem="mVa-4e-I5F" secondAttribute="leadingMargin" id="3dJ-pq-n1B"/>
+                            <constraint firstItem="eRr-Df-ZvM" firstAttribute="bottom" secondItem="4WZ-TG-1ey" secondAttribute="bottom" id="7yM-EK-gZk"/>
+                            <constraint firstItem="Gbs-hn-9HQ" firstAttribute="leading" secondItem="4WZ-TG-1ey" secondAttribute="leading" id="AqC-es-aHZ"/>
+                            <constraint firstItem="4WZ-TG-1ey" firstAttribute="trailing" secondItem="Gbs-hn-9HQ" secondAttribute="trailing" id="DCU-ns-a5i"/>
+                            <constraint firstItem="Gbs-hn-9HQ" firstAttribute="top" secondItem="mVa-4e-I5F" secondAttribute="top" id="QXp-RZ-jEC"/>
+                            <constraint firstItem="xdY-3g-bAi" firstAttribute="centerX" secondItem="eRr-Df-ZvM" secondAttribute="centerX" id="Zr7-zL-y1c"/>
+                            <constraint firstItem="eRr-Df-ZvM" firstAttribute="top" secondItem="xdY-3g-bAi" secondAttribute="bottom" constant="8" symbolic="YES" id="kHE-eI-mao"/>
+                            <constraint firstItem="Gbs-hn-9HQ" firstAttribute="trailing" secondItem="eRr-Df-ZvM" secondAttribute="trailing" id="nDq-wK-MPK"/>
+                            <constraint firstItem="xdY-3g-bAi" firstAttribute="top" secondItem="Gbs-hn-9HQ" secondAttribute="bottom" constant="8" symbolic="YES" id="uqV-WQ-Q0y"/>
+                            <constraint firstItem="Gbs-hn-9HQ" firstAttribute="leading" secondItem="eRr-Df-ZvM" secondAttribute="leading" id="ux3-ZG-E1i"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4WZ-TG-1ey"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Connection error" largeTitleDisplayMode="always" id="F82-Bb-ID5">
+                        <barButtonItem key="rightBarButtonItem" title="Retry" id="hHe-xM-urb">
+                            <color key="tintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="retryWithSender:" destination="yKu-Kl-X8A" id="xM1-o8-wgv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="errorText" destination="eRr-Df-ZvM" id="uSo-av-GmQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TWo-Uj-Bpp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="857" y="1287"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mGS-Is-h1Q">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="irK-mX-jbF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="gmB-s3-Wgg">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yKu-Kl-X8A" kind="relationship" relationship="rootViewController" id="wD2-hW-3Ca"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vE0-Lb-kZh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="146" y="1287"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="server error" width="626" height="626"/>
+    </resources>
+</document>

@@ -238,7 +238,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                     try session.channel.write(cmd)
                     return false
                 } catch _ {
-                    self.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                    self.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                 }
             }
             return true

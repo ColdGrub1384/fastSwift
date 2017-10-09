@@ -26,6 +26,6 @@ class ErrorLoadingStoreViewController: UIViewController {
         AppDelegate.shared.applicationWillTerminate(UIApplication.shared)
         _ = AppDelegate.shared.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
         
-        AppDelegate.shared.window?.rootViewController = self.storyboard?.instantiateInitialViewController()
+        AppDelegate.shared.window?.rootViewController = AppViewControllers.launchScreen
     }
 }

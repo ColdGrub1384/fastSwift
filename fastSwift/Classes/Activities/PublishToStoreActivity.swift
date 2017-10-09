@@ -52,7 +52,7 @@ class PublishToStoreViewController: UIActivity {
                             do {
                                 try session?.channel.execute("mkdir /home/swiftexec/store/; mkdir /home/swiftexec/store/\(Server.user)@\(Server.host); mkdir /home/swiftexec/store/\(Server.user)@\(Server.host)/files; mkdir /home/swiftexec/store/\(Server.user)@\(Server.host)/source; mkdir '/home/swiftexec/store/\(Server.user)@\(Server.host)/source/\(self.fileURL!.lastPathComponent)'; mkdir /home/swiftexec/store/\(Server.user)@\(Server.host)/meta; mkdir '/home/swiftexec/store/\(Server.user)@\(Server.host)/meta/\(self.fileURL!.lastPathComponent)'; mkdir '/home/swiftexec/store/\(Server.user)@\(Server.host)/meta/\(self.fileURL!.lastPathComponent)/user'; touch '/home/swiftexec/store/\(Server.user)@\(Server.host)/meta/\(self.fileURL!.lastPathComponent)/user/\(AccountManager.shared.username!)'")
                             } catch _ {
-                                delegate.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                                delegate.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                             }
                             session?.channel.uploadFile(self.fileURL!.path, to: "/home/swiftexec/store/\(Server.user)@\(Server.host)/files/\(self.fileURL!.lastPathComponent)")
                             let source = delegate.files
@@ -98,12 +98,12 @@ class PublishToStoreViewController: UIActivity {
                                         }
                                     } else {
                                         delegate.dismiss(animated: true, completion: {
-                                            delegate.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                                            delegate.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                                         })
                                     }
                                 } else {
                                     delegate.dismiss(animated: true, completion: {
-                                        delegate.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                                        delegate.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                                     })
                                 }
                                 
@@ -112,12 +112,12 @@ class PublishToStoreViewController: UIActivity {
                             
                         } else {
                             delegate.dismiss(animated: true, completion: {
-                                delegate.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                                delegate.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                             })
                         }
                     } else {
                         delegate.dismiss(animated: true, completion: {
-                            delegate.present(AlertManager.shared.serverErrorViewController, animated: true, completion: nil)
+                            delegate.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                         })
                     }
                 } else {
