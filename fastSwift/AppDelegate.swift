@@ -9,7 +9,7 @@
 import UIKit
 import StoreKit
 
-
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     
     var window: UIWindow?
@@ -56,11 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction]) {
-        Debugger.shared.debug_("Remove transaction")
+        print("Remove transaction")
     }
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        Debugger.shared.debug_("Received products!")
+        print("Received products!")
         var prices_ = [Double]()
         var currency = ""
         AccountManager.shared.shop = response.products
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
             prices.append("\(price) \(currency)")
         }
         
-        Debugger.shared.debug_(prices)
+        print(prices)
         
         menu.reloadStore()
     }
@@ -85,24 +85,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
             let trans = transaction as SKPaymentTransaction
             var continuePurchase = false
             
-            Debugger.shared.debug_("Buying "+trans.payment.productIdentifier)
+            print("Buying "+trans.payment.productIdentifier)
             
             switch trans.transactionState {
             case .purchased:
-                Debugger.shared.debug_("Purchased!")
+                print("Purchased!")
                 continuePurchase = true
                 SKPaymentQueue.default().finishTransaction(trans)
             case .purchasing:
-                Debugger.shared.debug_("Purchasing")
+                print("Purchasing")
             case .failed:
                 if let vc = AccountManager.shared.storeViewController {
                     AlertManager.shared.present(error: trans.error!, withTitle: "Error!", inside: vc)
                 }
-                Debugger.shared.debug_("Error! \(trans.error!)")
+                print("Error! \(trans.error!)")
             case .restored:
-                Debugger.shared.debug_("Restored")
+                print("Restored")
             case .deferred:
-                Debugger.shared.debug_("Deferred")
+                print("Deferred")
             }
             
             if continuePurchase {
@@ -117,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
                     case "ch.marcela.ada.fastSwift.purchases.hd":
                         AccountManager.shared.buy(product: .hardDrive)
                     default:
-                        Debugger.shared.debug_("Unknown purchase!")
+                        print("Unknown purchase!")
                     }
                 }
             }
@@ -133,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         let request = SKProductsRequest(productIdentifiers: ["ch.marcela.ada.fastSwift.purchases.pendrive","ch.marcela.ada.fastSwift.purchases.sd","ch.marcela.ada.fastSwift.purchases.cd","ch.marcela.ada.fastSwift.purchases.hd"])
         request.delegate = self
         request.start()
-        Debugger.shared.debug_("Start request!")
+        print("Start request!")
         SKPaymentQueue.default().add(self)
         
         clearCaches()
@@ -148,6 +148,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         
         let _ = Afte.r(4) { (timer) in
             self.changeTheme()
+        }
+        
+        // Debug
+        let arguments = CommandLine.arguments
+        var index = 0
+        for argument in arguments {
+            if argument == "setCompilations" {
+                if arguments.count >= index+1 {
+                    if let num = Int(arguments[index+1]) {
+                        AccountManager.shared.compilations = num
+                    }
+                }
+            }
+            
+            index += 1
         }
                 
         return true
@@ -172,7 +187,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        Debugger.shared.close()
     }
 
     func application(_ app: UIApplication, open inputURL: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -186,7 +200,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
                 if error == nil {
                     documentBrowserViewController.presentDocument(at: [revealedDocumentURL!])
                 } else {
-                    Debugger.shared.debug_("Error revealing document: \(error!.localizedDescription)")
+                    print("Error revealing document: \(error!.localizedDescription)")
                 }
             })
         })
@@ -197,9 +211,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
 
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        Debugger.shared.debug_("The user has selected a theme")
+        print("The user has selected a theme")
         let _ = Afte.r(1) { (timer) in
             self.changeTheme()
+            self.applicationWillTerminate(UIApplication.shared)
+            _ = self.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
+            self.window!.rootViewController = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "launch")
         }
     }
     
@@ -207,23 +224,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         if let theme = UserDefaults.standard.string(forKey: "theme") {
             if let _ = UserDefaults.standard.string(forKey: "oldTheme") {
                 if !Theme(name: theme).isEqual(to: self.theme) {
-                    Debugger.shared.debug_("Change theme!")
+                    print("Change theme!")
                     UserDefaults.standard.set(theme, forKey: "theme")
                     UserDefaults.standard.set(theme, forKey: "oldTheme")
                     self.theme = Theme(name: theme)
                     
-                    if self.theme.isEqual(to: Theme(name:"black")) {
-                        self.browser.view.tintColor = .orange
-                        self.browser.browserUserInterfaceStyle = .dark
-                    } else if self.theme.isEqual(to: Theme(name:"white")) {
-                        self.browser.view.tintColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-                        self.browser.browserUserInterfaceStyle = .white
-                    }
-                    
                     if UIApplication.shared.supportsAlternateIcons {
                         UIApplication.shared.setAlternateIconName(self.theme.alternateIcon, completionHandler: { (error) in
                             if error != nil {
-                                Debugger.shared.debug_(error!)
+                                print(error!)
                             }
                         })
                     }

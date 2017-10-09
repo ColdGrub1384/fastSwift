@@ -115,7 +115,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                                         })
                                     })
                                 } catch let error {
-                                    Debugger.shared.debug_("Error processing files! \(error)")
+                                    print("Error processing files! \(error)")
                                 }
                             } else {
                                 self.dismiss(animated: true, completion: {
@@ -249,7 +249,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             
             for subview in cell.contentView.subviews {
                 if let collectionView = subview as? UICollectionView {
-                    Debugger.shared.debug_("Collectionview found!")
+                    print("Collectionview found!")
                     collectionView.backgroundColor = AppDelegate.shared.theme.color
                     collectionView.backgroundColor = AppDelegate.shared.theme.color
                 }
@@ -262,7 +262,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             
             for subview in cell.contentView.subviews {
                 if let collectionView = subview as? UICollectionView {
-                    Debugger.shared.debug_("Collectionview found!")
+                    print("Collectionview found!")
                     collectionView.backgroundColor = AppDelegate.shared.theme.color
                     collectionView.backgroundColor = AppDelegate.shared.theme.color
                 }
@@ -285,8 +285,6 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
         tableView.delegate = self
         
-        AccountManager.shared.storeViewController = self
-        
         URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/dir.php?dir=/mnt/FFSwift/\(Server.user)@\(Server.host)/files")!) { (data, response, error) in
             if error == nil {
                 if data != nil {
@@ -305,7 +303,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                         self.filesCollectionView!.reloadData()
                     }
                     
-                    Debugger.shared.debug_(self.files)
+                    print(self.files)
                 } else {
                     AlertManager.shared.present(error: error!, withTitle: "Error fetching store content!", inside: self)
                 }
@@ -333,13 +331,17 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        print("viewDidAppear!")
+        
         compilations.text = "\(AccountManager.shared.compilations) 🐧"
         if plusOne {
-            Debugger.shared.debug_("+1")
+            print("+1")
             let alert = AlertManager.shared.alert(withTitle: "+1 🐧", message: "You have now \(AccountManager.shared.compilations)🐧", style: .alert, actions: [AlertManager.shared.ok(handler: nil)])
             self.present(alert, animated: true, completion: nil)
             plusOne = false
         }
+        
+        AccountManager.shared.storeViewController = self
         
     }
     
@@ -348,7 +350,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     }
     
     func buy(_ product: SKProduct) {
-        Debugger.shared.debug_("Buy "+product.localizedTitle)
+        print("Buy "+product.localizedTitle)
         let pay = SKPayment(product: product)
         currentPurchase = product
         AppDelegate.shared.currentPurchase = currentPurchase
@@ -356,7 +358,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     }
     
     @IBAction func buyPendrive(_ sender: Any) {
-        Debugger.shared.debug_("Buy pendrive")
+        print("Buy pendrive")
         
         for item in AccountManager.shared.shop {
             if item.productIdentifier == "ch.marcela.ada.fastSwift.purchases.pendrive" {
@@ -367,7 +369,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     }
     
     @IBAction func buySDCard(_ sender: Any) {
-        Debugger.shared.debug_("Buy SD Card")
+        print("Buy SD Card")
         for item in AccountManager.shared.shop {
             if item.productIdentifier == "ch.marcela.ada.fastSwift.purchases.sd" {
                 buy(item)
@@ -377,7 +379,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     }
     
     @IBAction func buyCD(_ sender: Any) {
-        Debugger.shared.debug_("Buy CD")
+        print("Buy CD")
         for item in AccountManager.shared.shop {
             if item.productIdentifier == "ch.marcela.ada.fastSwift.purchases.cd" {
                 buy(item)
@@ -387,7 +389,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     }
     
     @IBAction func buyHD(_ sender: Any) {
-        Debugger.shared.debug_("Buy hard drive")
+        print("Buy hard drive")
         for item in AccountManager.shared.shop {
             if item.productIdentifier == "ch.marcela.ada.fastSwift.purchases.hd" {
                 buy(item)
@@ -397,7 +399,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     }
     
     @IBAction func watchVideo(_ sender: Any) {
-        Debugger.shared.debug_("Watch video")
+        print("Watch video")
         
         GADRewardBasedVideoAd.sharedInstance().delegate = self
         let request = GADRequest()
@@ -414,7 +416,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     
     func rewardBasedVideoAdDidReceive(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         if GADRewardBasedVideoAd.sharedInstance().isReady {
-            Debugger.shared.debug_("Is ready!")
+            print("Is ready!")
             self.dismiss(animated: true, completion: {
                 GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: self)
             })

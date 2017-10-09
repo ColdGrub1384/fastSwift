@@ -39,7 +39,7 @@ class MenuViewController: UIViewController {
                     news.html = html
                     session?.disconnect()
                 } catch let error {
-                    Debugger.shared.debug_(error.localizedDescription)
+                    print(error.localizedDescription)
                 }
             }
         }

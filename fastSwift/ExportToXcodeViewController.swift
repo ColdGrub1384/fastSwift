@@ -74,11 +74,11 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
         DispatchQueue.global(qos: .background).async {
             if let delegate = self.delegate {
                 let files = delegate.delegate!.files
-                Debugger.shared.debug_(files)
+                print(files)
                 do {
                     let docs = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)[0]
                     var fileURL = docs.appendingPathComponent(delegate.delegate!.document!.fileURL.deletingPathExtension().lastPathComponent).appendingPathExtension("xc")
-                    Debugger.shared.debug_(fileURL.absoluteString)
+                    print(fileURL.absoluteString)
                     try FileManager.default.copyItem(at: Bundle.main.url(forResource: "Samples/fastSwift App", withExtension: "zip")!, to: fileURL.deletingLastPathComponent().appendingPathComponent("\(fileURL.lastPathComponent).zip"))
                     
                     var projectHiercarchyURL = try Zip.quickUnzipFile(fileURL.deletingLastPathComponent().appendingPathComponent("\(fileURL.lastPathComponent)").appendingPathExtension("zip"))
@@ -92,7 +92,7 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
                             do {
                                 try FileManager.default.copyItem(at: file, to: sourceURL.appendingPathComponent(fileName))
                             } catch let error {
-                                Debugger.shared.debug_("Error copying to project! \(error.localizedDescription)")
+                                print("Error copying to project! \(error.localizedDescription)")
                                 self.dismiss(animated: true, completion: {
                                     AlertManager.shared.present(error: error, withTitle: "Error copying to project!", inside: self)
                                 })
@@ -101,7 +101,7 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
                             do {
                                 try FileManager.default.copyItem(at: file, to: sourceURL.appendingPathComponent("main.swift"))
                             } catch let error {
-                                Debugger.shared.debug_("Error copying to project! \(error.localizedDescription)")
+                                print("Error copying to project! \(error.localizedDescription)")
                                 self.dismiss(animated: true, completion: {
                                     AlertManager.shared.present(error: error, withTitle: "Error copying to project!", inside: self)
                                 })
@@ -121,7 +121,7 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
                     do {
                         try newPlistContent.write(to: plist, atomically: true, encoding: .utf8)
                     } catch let error {
-                        Debugger.shared.debug_("Error writing to plist file! \(error.localizedDescription)")
+                        print("Error writing to plist file! \(error.localizedDescription)")
                         self.dismiss(animated: true, completion: {
                             AlertManager.shared.present(error: error, withTitle: "Error writing to plist file!", inside: self)
                         })
@@ -140,14 +140,14 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
                             self.present(vc, animated: true, completion: nil)
                         })
                     } catch let error {
-                        Debugger.shared.debug_("Error zipping file! \(error.localizedDescription)")
+                        print("Error zipping file! \(error.localizedDescription)")
                         self.dismiss(animated: true, completion: {
                             AlertManager.shared.present(error: error, withTitle: "Error zipping file!", inside: self)
                         })
                     }
                     
                 } catch let error {
-                    Debugger.shared.debug_("Error copying project! \(error.localizedDescription)")
+                    print("Error copying project! \(error.localizedDescription)")
                     self.dismiss(animated: true, completion: {
                         AlertManager.shared.present(error: error, withTitle: "Error copying project!", inside: self)
                     })

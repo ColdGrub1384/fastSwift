@@ -67,7 +67,7 @@ class AccountManager {
             let params = "user=\(userTextField.text!.addingPercentEncodingForURLQueryValue()!)&password=\(passTextField.text!.addingPercentEncodingForURLQueryValue()!)&action=login"
             URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php?\(params)")!, completionHandler: { (data, response, error) in
                 
-                Debugger.shared.debug_("URL: \(response!.url!)")
+                print("URL: \(response!.url!)")
                 
                 if error == nil {
                     if data != nil {
@@ -102,7 +102,7 @@ class AccountManager {
             let params = "user=\(userTextField.text!.addingPercentEncodingForURLQueryValue()!)&password=\(passTextField.text!.addingPercentEncodingForURLQueryValue()!)&action=register"
             URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php?\(params)")!, completionHandler: { (data, response, error) in
                 
-                Debugger.shared.debug_("URL: \(response!.url!)")
+                print("URL: \(response!.url!)")
                 
                 if error == nil {
                     if data != nil {
@@ -174,6 +174,9 @@ class AccountManager {
     
     func buy(product: products) {
         compilations = compilations+product.rawValue
+        if let store = self.storeViewController {
+            store.compilations.text = "\(AccountManager.shared.compilations) 🐧"
+        }
     }
     
     
@@ -190,7 +193,7 @@ class AccountManager {
     
     var shop: [SKProduct]!
     
-    var storeViewController: UIViewController?
+    var storeViewController: StoreViewController?
     
     
 }

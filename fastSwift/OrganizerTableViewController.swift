@@ -68,7 +68,7 @@ class OrganizerTableViewController: UITableViewController {
                     self.present(vc, animated: true, completion: nil)
                 })
             } catch let error {
-                Debugger.shared.debug_("Error! \(error.localizedDescription)")
+                print("Error! \(error.localizedDescription)")
             }
         }
     }

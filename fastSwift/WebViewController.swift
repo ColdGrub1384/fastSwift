@@ -41,7 +41,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        Debugger.shared.debug_(request.url!.absoluteString)
+        print(request.url!.absoluteString)
         if request.url!.absoluteString.hasSuffix(".swiftc") {
             self.present(ActivityViewController.init(message: "Downloading..."), animated: true, completion: nil)
 

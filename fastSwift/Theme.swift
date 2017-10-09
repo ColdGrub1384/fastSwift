@@ -21,6 +21,7 @@ class Theme {
     var codeEditorTheme: CodeEditorTheme
     var keyboardAppearance: UIKeyboardAppearance
     var statusBarStyle: UIStatusBarStyle
+    var browserUserInterfaceStyle: UIDocumentBrowserViewController.BrowserUserInterfaceStyle
     
     init(name:String = "") {
         
@@ -35,6 +36,7 @@ class Theme {
             codeEditorTheme = CodeEditorTheme(themeName: "androidstudio", backgroundColor: color)
             keyboardAppearance = .dark
             statusBarStyle = .lightContent
+            browserUserInterfaceStyle = .dark
         case "white":
             color = .white
             tintColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
@@ -43,6 +45,7 @@ class Theme {
             codeEditorTheme = CodeEditorTheme(themeName: "github-gist", backgroundColor: color)
             keyboardAppearance = .light
             statusBarStyle = .default
+            browserUserInterfaceStyle = .white
         default:
             color = .clear
             tintColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
@@ -51,6 +54,7 @@ class Theme {
             codeEditorTheme = CodeEditorTheme(themeName: "github-gist", backgroundColor: color)
             keyboardAppearance = .default
             statusBarStyle = .default
+            browserUserInterfaceStyle = .light
             
         }
     }
@@ -67,7 +71,7 @@ class Theme {
     }
     
     func isEqual(to other: Theme) -> Bool {
-        return (self.name == other.name && self.color == other.color && self.tintColor == other.tintColor && self.textColor == other.textColor && self.barStyle == other.barStyle && self.codeEditorTheme.isEqual(to: other.codeEditorTheme) && self.statusBarStyle == other.statusBarStyle)
+        return (self.name == other.name && self.color == other.color && self.tintColor == other.tintColor && self.textColor == other.textColor && self.barStyle == other.barStyle && self.codeEditorTheme.isEqual(to: other.codeEditorTheme) && self.statusBarStyle == other.statusBarStyle && self.browserUserInterfaceStyle == other.browserUserInterfaceStyle)
     }
 }
 

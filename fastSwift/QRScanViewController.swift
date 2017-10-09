@@ -43,7 +43,7 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 let input = try AVCaptureDeviceInput(device: device!)
                 session.addInput(input)
             } catch let error {
-                Debugger.shared.debug_("Error: \(error)")
+                print("Error: \(error)")
             }
             
             var cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
@@ -55,7 +55,7 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 showCam() // Show cam only if user has authorized it
             case .restricted: break
             case .notDetermined: // If the user hasn't putted anything, wait for it
-                Debugger.shared.debug_("Not determined!")
+                print("Not determined!")
                 let _ = Repea.t(all: 0.2, seconds: { (timer) in
                     if cameraAuthorizationStatus == .notDetermined {
                         cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)

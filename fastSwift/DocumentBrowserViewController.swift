@@ -36,11 +36,11 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         super.viewDidAppear(animated)
         
         if dismissState == .done {
-            Debugger.shared.debug_("Dismiss")
+            print("Dismiss")
             do {
                 try FileManager.default.removeItem(at: FileManager.default.urls(for: .cachesDirectory, in: .allDomainsMask)[0].appendingPathComponent("TMPEXECFILETOSEND.swiftc"))
             } catch let error {
-                Debugger.shared.debug_("Error removing tmp file: \(error)")
+                print("Error removing tmp file: \(error)")
             }
             self.dismiss(animated: true, completion: {
                 if let menu = AppDelegate.shared.topViewController() as? MenuViewController {
@@ -52,7 +52,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         }
         
         if dismissState == .ready {
-            Debugger.shared.debug_("Dismiss state is ready")
+            print("Dismiss state is ready")
             dismissState = .done
         }
         
@@ -68,10 +68,8 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         allowsPickingMultipleItems = true
         
         // Update the style of the UIDocumentBrowserViewController
-        if AppDelegate.shared.theme.isEqual(to: Theme.black) {
-            browserUserInterfaceStyle = .dark
-            view.tintColor = .orange
-        }
+        browserUserInterfaceStyle = AppDelegate.shared.theme.browserUserInterfaceStyle
+        view.tintColor = AppDelegate.shared.theme.tintColor
         
         // Specify the allowed content types of your application via the Info.plist.
         
@@ -87,7 +85,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
             if urls.count == 1 {
                 self.compile(urls: urls, withState: .ready)
             } else {
-                Debugger.shared.debug_("User action need!")
+                print("User action need!")
                 self.compile(urls: urls, withState: .userActionNeed)
             }
         })]
@@ -164,7 +162,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
             
         for url in urls {
             documentViewController.files.append(url)
-            Debugger.shared.debug_("URLS: \(documentViewController.files)")
+            print("URLS: \(documentViewController.files)")
         }
             
         if urls.first!.pathExtension != "swift" {
@@ -183,7 +181,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                                 do {
                                     try FileManager.default.removeItem(at: file)
                                 } catch let error {
-                                    Debugger.shared.debug_("Error removing __MACOSX file: \(error.localizedDescription)")
+                                    print("Error removing __MACOSX file: \(error.localizedDescription)")
                                 }
                                 
                                 break
@@ -195,10 +193,10 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                         self.presentDocument(at: files)
                             
                     } catch let error {
-                        Debugger.shared.debug_("Error getting content of folder: \(error)")
+                        print("Error getting content of folder: \(error)")
                     }
                 } catch let error {
-                    Debugger.shared.debug_("Error unziping files! \(error.localizedDescription)")
+                    print("Error unziping files! \(error.localizedDescription)")
                 }
             } else if urls.first!.pathExtension == "swiftc" {
                 let alert = ActivityViewController(message: "Uploading...")
@@ -220,7 +218,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                                 try session?.channel.execute("touch '\(filePath)'")
                                 session?.sftp.appendContents(fileData, toFileAtPath: filePath)
                             } catch let error {
-                                Debugger.shared.debug_("Error copying file! \(error)")
+                                print("Error copying file! \(error)")
                             }
                             
                             
