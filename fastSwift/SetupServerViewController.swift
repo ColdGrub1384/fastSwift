@@ -16,6 +16,9 @@ class SetupServerViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var activity: UIActivityIndicatorView!
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var text: UITextView!
+    @IBOutlet weak var setupBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +29,10 @@ class SetupServerViewController: UIViewController, UITextFieldDelegate {
         password.delegate = self
         
         activity.isHidden = true
+        
+        view.backgroundColor = AppDelegate.shared.theme.color
+        titleLbl.textColor = AppDelegate.shared.theme.textColor
+        text.textColor = AppDelegate.shared.theme.textColor
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

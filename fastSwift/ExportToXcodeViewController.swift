@@ -18,6 +18,17 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var version: UITextField!
     @IBOutlet weak var build: UITextField!
     
+    @IBOutlet weak var doneBtn: UIBarButtonItem!
+    @IBOutlet weak var info: UIBarButtonItem!
+    
+    @IBOutlet weak var displayNameLabel: UILabel!
+    @IBOutlet weak var bundleIDLabel: UILabel!
+    @IBOutlet weak var VersionLabel: UILabel!
+    @IBOutlet weak var buildLabel: UILabel!
+    @IBOutlet weak var note: UILabel!
+    @IBOutlet weak var navBar: UINavigationBar!
+    
+    
     func text(forTextField textField:UITextField) -> String {
         let text = textField.text
         let placeholder = textField.placeholder
@@ -33,10 +44,19 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         displayName.placeholder = delegate!.delegate!.document!.fileURL.deletingPathExtension().lastPathComponent
+        view.backgroundColor = AppDelegate.shared.theme.color
+        navBar.barTintColor = AppDelegate.shared.theme.color
+        navBar.barStyle = AppDelegate.shared.theme.barStyle
+        view.tintColor = AppDelegate.shared.theme.tintColor
+        
+        let labels = [displayNameLabel, bundleIDLabel, VersionLabel, buildLabel, note]
+        for label in labels {
+            label?.textColor = AppDelegate.shared.theme.textColor
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return AppDelegate.shared.theme.statusBarStyle
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

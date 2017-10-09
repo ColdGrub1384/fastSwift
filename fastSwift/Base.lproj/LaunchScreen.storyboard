@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,12 +21,41 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="} " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqM-vy-qnm">
+                                <rect key="frame" x="188" y="0.0" width="188" height="667"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="100"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" {" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GV-fL-MDZ">
+                                <rect key="frame" x="0.0" y="0.0" width="188" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="188" id="Yal-yH-bmX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="100"/>
+                                <color key="textColor" red="0.14899864792823792" green="0.14903163909912109" blue="0.14899659156799316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.1482854784" green="0.1484311223" blue="0.1483080685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="3GV-fL-MDZ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="1lr-eG-6Do"/>
+                            <constraint firstItem="VqM-vy-qnm" firstAttribute="height" secondItem="3GV-fL-MDZ" secondAttribute="height" id="69H-01-M3A"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VqM-vy-qnm" secondAttribute="trailing" constant="-17" id="L0F-Mb-foa"/>
+                            <constraint firstItem="VqM-vy-qnm" firstAttribute="width" secondItem="3GV-fL-MDZ" secondAttribute="width" id="LBW-EZ-OHw"/>
+                            <constraint firstItem="3GV-fL-MDZ" firstAttribute="baseline" secondItem="VqM-vy-qnm" secondAttribute="baseline" id="fHS-db-Oj6"/>
+                            <constraint firstItem="3GV-fL-MDZ" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="fpd-MT-68M"/>
+                            <constraint firstItem="3GV-fL-MDZ" firstAttribute="firstBaseline" secondItem="VqM-vy-qnm" secondAttribute="firstBaseline" id="o0h-rf-quh"/>
+                            <constraint firstItem="3GV-fL-MDZ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="q1k-fU-CfU"/>
+                            <constraint firstItem="VqM-vy-qnm" firstAttribute="leading" secondItem="3GV-fL-MDZ" secondAttribute="trailing" id="uQK-2B-PJ5"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="50.399999999999999" y="372.86356821589209"/>
         </scene>
     </scenes>
 </document>

@@ -21,15 +21,14 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        AppDelegate.shared.menu = self
-        
+                
         let fileBrowser:DocumentBrowserViewController = self.storyboard!.instantiateViewController(withIdentifier: "browser") as! DocumentBrowserViewController
         let settings: UINavigationController = self.storyboard!.instantiateViewController(withIdentifier: "settingsNav") as! UINavigationController
         let loadingStore: UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "loadingStore")
         let qrScan:QRScanViewController = self.storyboard!.instantiateViewController(withIdentifier: "qrScan") as! QRScanViewController
         let news:WebViewController = self.storyboard!.instantiateViewController(withIdentifier: "webview") as! WebViewController
         let setup:SetupServerViewController = self.storyboard!.instantiateViewController(withIdentifier: "setup") as! SetupServerViewController
+        
         
         let session = NMSSHSession.connect(toHost: Server.host, withUsername: Server.user)
         if (session?.isConnected)! {
@@ -51,9 +50,9 @@ class MenuViewController: UIViewController {
             vcs[3] = self.storyboard!.instantiateViewController(withIdentifier: "store") as! UINavigationController
         }
         
-        scroll.backgroundColor = #colorLiteral(red: 0.1490048468, green: 0.1490279436, blue: 0.1489969492, alpha: 1)
+        scroll.backgroundColor = AppDelegate.shared.theme.color
         
-        self.view.backgroundColor = fileBrowser.view.backgroundColor
+        self.view.backgroundColor = AppDelegate.shared.theme.color
         
         let screenBounds = UIScreen.main.bounds
         
@@ -114,10 +113,7 @@ class MenuViewController: UIViewController {
         }
                 
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+
     
     func reloadStore() {
         let frame = vcs[3].view.frame
@@ -130,21 +126,22 @@ class MenuViewController: UIViewController {
     }
     
     func reload() {
-        let vc = self.storyboard!.instantiateInitialViewController()! as! MenuViewController
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "menu") as! MenuViewController
         vc.mainVCIndex = mainVCIndex
         vc.loadedStore = loadedStore
-        self.present(vc, animated: false, completion: nil)
+        AppDelegate.shared.window?.rootViewController = vc
     }
     
     func showSettings() {
-        let vc = self.storyboard!.instantiateInitialViewController()! as! MenuViewController
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "menu") as! MenuViewController
         vc.mainVCIndex = 4
         vc.loadedStore = loadedStore
-        self.present(vc, animated: false, completion: nil)
+        AppDelegate.shared.window?.rootViewController = vc
     }
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.portrait
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return AppDelegate.shared.theme.statusBarStyle
     }
+
     
 }

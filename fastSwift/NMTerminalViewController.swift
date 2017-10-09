@@ -42,12 +42,18 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         terminal.isSelectable = false
         terminal.delegate = self
         terminal.isEditable = true
-        terminal.keyboardAppearance = .dark
-        terminal.tintColor = .white
+        terminal.keyboardAppearance = AppDelegate.shared.theme.keyboardAppearance
+        terminal.tintColor = AppDelegate.shared.theme.textColor
         terminal.text = "\n"
         if needsUserInput {
             terminal.becomeFirstResponder()
         }
+        terminal.backgroundColor = AppDelegate.shared.theme.color
+        terminal.textColor = terminal.tintColor
+        navBar.barStyle = AppDelegate.shared.theme.barStyle
+        navBar.barTintColor = AppDelegate.shared.theme.color
+        view.backgroundColor = AppDelegate.shared.theme.color
+        view.tintColor = AppDelegate.shared.theme.tintColor
         
         // Update text view size
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -72,7 +78,9 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
             }
         }
         
-        self.title = "Program output"
+        if let item = navBar.items?.first {
+            item.title = "Output"
+        }
         
     }
     
@@ -88,7 +96,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
+        return AppDelegate.shared.theme.statusBarStyle
     }
     
     func channel(_ channel: NMSSHChannel!, didReadData message: String!) {

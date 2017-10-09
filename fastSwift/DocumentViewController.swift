@@ -56,6 +56,9 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     @IBOutlet weak var organizeBTN: UIBarButtonItem!
     @IBOutlet weak var compileBTN: UIBarButtonItem!
     
+    @IBOutlet weak var toolbar: UIToolbar!
+    
+    
     var firstLaunch = false
     
     var autoCompilationState = AppDelegate.autoCompilationState.none
@@ -144,7 +147,11 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     override func viewDidLoad() {
         super.viewDidLoad()
             
-        self.view.tintColor = .orange
+        view.tintColor = AppDelegate.shared.theme.tintColor
+        titleBar.barStyle = AppDelegate.shared.theme.barStyle
+        titleBar.barTintColor = AppDelegate.shared.theme.color
+        view.backgroundColor = AppDelegate.shared.theme.color
+        toolbar.barTintColor = AppDelegate.shared.theme.color
         
         CodeToolBar()
         dismissKeyboard.isEnabled = false
@@ -153,6 +160,9 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         document?.delegate = self
+        
+        code.backgroundColor = AppDelegate.shared.theme.codeEditorTheme.backgroundColor
+        code.keyboardAppearance = AppDelegate.shared.theme.keyboardAppearance
         
         // Access the document
         document?.open(completionHandler: { (success) in
@@ -203,7 +213,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return AppDelegate.shared.theme.statusBarStyle
     }
     
     func highlight(_ language:String, code:String) -> NSAttributedString? {
@@ -211,7 +221,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         let lang = language.lowercased()
         
         let highlightr = Highlightr()
-        highlightr?.setTheme(to: "androidstudio")
+        highlightr?.setTheme(to: AppDelegate.shared.theme.codeEditorTheme.name)
         
         self.code.autocorrectionType = .no
         self.code.autocapitalizationType = .none
@@ -590,7 +600,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         nav.modalPresentationStyle = .popover
         nav.navigationBar.prefersLargeTitles = true
         nav.navigationBar.barTintColor = self.titleBar.barTintColor
-        nav.navigationBar.barStyle = .black
+        nav.navigationBar.barStyle = AppDelegate.shared.theme.barStyle
         vc.delegate = self
         
         
@@ -603,7 +613,14 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         self.present(nav, animated: true, completion: nil)
     }
     
-    @IBAction func buyCompilations(_ sender: Any) { Debugger.shared.debug_("Buy compilation")
+    @IBAction func buyCompilations(_ sender: Any) {
+        if AppDelegate.shared.menu.loadedStore {
+            let store = self.storyboard!.instantiateViewController(withIdentifier: "store")
+            self.present(store, animated: true, completion: nil)
+        } else {
+            let errorVc = self.storyboard!.instantiateViewController(withIdentifier: "loadingStore")
+            self.present(errorVc, animated: true, completion: nil)
+        }
     }
     
     func textViewDidChange(_ textView: UITextView) {

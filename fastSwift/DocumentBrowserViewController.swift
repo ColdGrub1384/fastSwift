@@ -55,6 +55,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
             Debugger.shared.debug_("Dismiss state is ready")
             dismissState = .done
         }
+        
     }
     
     override func viewDidLoad() {
@@ -67,8 +68,10 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         allowsPickingMultipleItems = true
         
         // Update the style of the UIDocumentBrowserViewController
-        browserUserInterfaceStyle = .dark
-        view.tintColor = .orange
+        if AppDelegate.shared.theme.isEqual(to: Theme.black) {
+            browserUserInterfaceStyle = .dark
+            view.tintColor = .orange
+        }
         
         // Specify the allowed content types of your application via the Info.plist.
         

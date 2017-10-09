@@ -17,6 +17,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     var html: String!
     
     @IBOutlet weak var doneBtn: UIBarButtonItem!
+    @IBOutlet weak var titleBar: UINavigationBar!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         }
         
         webview.delegate = self
+        titleBar.barTintColor = AppDelegate.shared.theme.color
+        titleBar.tintColor = AppDelegate.shared.theme.tintColor
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

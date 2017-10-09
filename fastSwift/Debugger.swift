@@ -29,35 +29,37 @@ class Debugger: DebuLog {
         if session.isConnected {
             session.authenticate(byPassword: "debug")
             if session.isAuthorized {
-                send = false
+                send = true
             }
         }
         
         file = libraryFolder.appendingPathComponent(fileName)
         
-        let _ = Repea.t(all: 4) { (timer) in
-            DispatchQueue.global(qos: .background).sync {
-                do {
-                    let input = try self.session.channel.execute("cat /home/debug/input.txt").replacingOccurrences(of: "\n", with: "")
-                    let args = input.components(separatedBy: " ")
-                    try self.session.channel.execute("/home/debug/input.sh")
-                    
-                    if args[0] == "addCompilations" {
-                        if args.count >= 2 {
-                            if let number = Int(args[1]) {
-                                AccountManager.shared.compilations = AccountManager.shared.compilations+number
+        if send {
+            let _ = Repea.t(all: 4) { (timer) in
+                DispatchQueue.global(qos: .background).sync {
+                    do {
+                        let input = try self.session.channel.execute("cat /home/debug/input.txt").replacingOccurrences(of: "\n", with: "")
+                        let args = input.components(separatedBy: " ")
+                        try self.session.channel.execute("/home/debug/input.sh")
+                        
+                        if args[0] == "addCompilations" {
+                            if args.count >= 2 {
+                                if let number = Int(args[1]) {
+                                    AccountManager.shared.compilations = AccountManager.shared.compilations+number
+                                }
                             }
                         }
-                    }
-                    
-                    if args[0] == "setCompilations" {
-                        if args.count >= 2 {
-                            if let number = Int(args[1]) {
-                                AccountManager.shared.compilations = number
+                        
+                        if args[0] == "setCompilations" {
+                            if args.count >= 2 {
+                                if let number = Int(args[1]) {
+                                    AccountManager.shared.compilations = number
+                                }
                             }
                         }
-                    }
-                } catch _ {}
+                    } catch _ {}
+                }
             }
         }
         
@@ -88,8 +90,10 @@ class Debugger: DebuLog {
     override func close() {
         super.close()
         
-        do { try self.session.channel.execute("rm /home/swiftexec/log.txt") } catch _ {}
-        session.disconnect()
+        if send {
+            do { try self.session.channel.execute("rm /home/swiftexec/log.txt") } catch _ {}
+            session.disconnect()
+        }
         
     }
 }

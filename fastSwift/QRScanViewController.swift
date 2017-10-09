@@ -14,6 +14,7 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     var video = AVCaptureVideoPreviewLayer()
     var session = AVCaptureSession()
+    @IBOutlet weak var denied: UILabel!
     
     func showCam() {
         let output = AVCaptureMetadataOutput()
@@ -70,7 +71,8 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             }
         }
         
-        
+        view.backgroundColor = AppDelegate.shared.theme.color
+        denied.textColor = AppDelegate.shared.theme.textColor
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {

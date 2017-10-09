@@ -10,25 +10,25 @@ import UIKit
 import StoreKit
 
 
-
-@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
-
+    
     var window: UIWindow?
     var prices = [String]()
     var currentPurchase: SKProduct?
     var menu: MenuViewController!
     var browser: DocumentBrowserViewController!
     var qrScanner: QRScanViewController!
+    var theme = Theme.black
     
     static var shared = AppDelegate()
-        
+    
     enum autoCompilationState {
         case userActionNeed
         case ready
         case compiled
         case none
     }
+    
     
     func clearCaches() {
         do {for file in try FileManager.default.contentsOfDirectory(at: FileManager.default.urls(for: .cachesDirectory, in: .allDomainsMask)[0], includingPropertiesForKeys: nil, options: .skipsHiddenFiles) {
@@ -124,6 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
             
         }
     }
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -136,6 +137,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         SKPaymentQueue.default().add(self)
         
         clearCaches()
+        
+        UserDefaults.standard.addObserver(self, forKeyPath: "theme", options: .new, context: nil) // Call a function when the theme is changed
+        
+        if UserDefaults.standard.string(forKey: "oldTheme") == nil {
+            UserDefaults.standard.set(Theme.black.name, forKey: "oldTheme")
+        }
+        
+        theme = Theme(name: UserDefaults.standard.string(forKey: "oldTheme")!)
+        
+        let _ = Afte.r(4) { (timer) in
+            self.changeTheme()
+        }
                 
         return true
     }
@@ -152,12 +165,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        //qrScanner.restartSession()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        //qrScanner.restartSession()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -185,5 +196,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
     }
 
 
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        Debugger.shared.debug_("The user has selected a theme")
+        let _ = Afte.r(1) { (timer) in
+            self.changeTheme()
+        }
+    }
+    
+    func changeTheme() {
+        if let theme = UserDefaults.standard.string(forKey: "theme") {
+            if let _ = UserDefaults.standard.string(forKey: "oldTheme") {
+                if !Theme(name: theme).isEqual(to: self.theme) {
+                    Debugger.shared.debug_("Change theme!")
+                    UserDefaults.standard.set(theme, forKey: "theme")
+                    UserDefaults.standard.set(theme, forKey: "oldTheme")
+                    self.theme = Theme(name: theme)
+                    
+                    if self.theme.isEqual(to: Theme(name:"black")) {
+                        self.browser.view.tintColor = .orange
+                        self.browser.browserUserInterfaceStyle = .dark
+                    } else if self.theme.isEqual(to: Theme(name:"white")) {
+                        self.browser.view.tintColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+                        self.browser.browserUserInterfaceStyle = .white
+                    }
+                    
+                    if UIApplication.shared.supportsAlternateIcons {
+                        UIApplication.shared.setAlternateIconName(self.theme.alternateIcon, completionHandler: { (error) in
+                            if error != nil {
+                                Debugger.shared.debug_(error!)
+                            }
+                        })
+                    }
+                    
+                }
+            }
+        }
+    }
 }
 

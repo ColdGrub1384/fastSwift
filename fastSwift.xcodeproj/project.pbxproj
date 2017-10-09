@@ -17,6 +17,11 @@
 		3A3B0D3E1F0823EB00836D00 /* ServerErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B0D3D1F0823EB00836D00 /* ServerErrorViewController.swift */; };
 		3A40AB291F800E7B003C3915 /* Debugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A40AB281F800E7B003C3915 /* Debugger.swift */; };
 		3A45264E1F75460800B57DF6 /* execThumbnail.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3A28B2F11F1E9863008A3D8B /* execThumbnail.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3A4681DA1F881E80001FE6D4 /* White@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2B90181F881963001130D5 /* White@2x.png */; };
+		3A4681DB1F881E85001FE6D4 /* White@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2B90171F881963001130D5 /* White@3x.png */; };
+		3A4681DD1F891CA4001FE6D4 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4681DC1F891CA4001FE6D4 /* LaunchScreenViewController.swift */; };
+		3A4681DF1F89499D001FE6D4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4681DE1F89499D001FE6D4 /* Theme.swift */; };
+		3A4681E11F896ED2001FE6D4 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4681E01F896ED2001FE6D4 /* main.swift */; };
 		3A579F751EFEB70700B4D209 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A579F741EFEB70700B4D209 /* AccountManager.swift */; };
 		3A5858C71EFF1A4D0036B0AE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5858C61EFF1A4D0036B0AE /* StoreKit.framework */; };
 		3A64F52D1F11380A00C3EBF9 /* ExportToXcodeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64F52C1F11380A00C3EBF9 /* ExportToXcodeActivity.swift */; };
@@ -24,6 +29,7 @@
 		3A6A34391F01C27D00ADC9E5 /* NMTerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6A34381F01BD5B00ADC9E5 /* NMTerminalViewController.swift */; };
 		3A6ED5D71F6D7F3000041AAE /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6ED5D61F6D7F3000041AAE /* QRScanViewController.swift */; };
 		3A7004381F804F7900FD8137 /* DebuLog.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7004371F804F6500FD8137 /* DebuLog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3A9017771F8AD55100EA6679 /* ErrorLoadingStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9017761F8AD55100EA6679 /* ErrorLoadingStoreViewController.swift */; };
 		3A95F51A1F86DA8C00461BE4 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A95F5191F86DA8C00461BE4 /* InstructionsViewController.swift */; };
 		3A9771151EED917D00E5E565 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 3A9771141EED917D00E5E565 /* Samples */; };
 		3A9F395C1F1BCE7600D48F02 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3A9F395B1F1BCE7600D48F02 /* Settings.bundle */; };
@@ -108,8 +114,13 @@
 		3A28B2F11F1E9863008A3D8B /* execThumbnail.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = execThumbnail.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A28B2F31F1E9863008A3D8B /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
 		3A28B2F51F1E9863008A3D8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A2B90171F881963001130D5 /* White@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "White@3x.png"; sourceTree = "<group>"; };
+		3A2B90181F881963001130D5 /* White@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "White@2x.png"; sourceTree = "<group>"; };
 		3A3B0D3D1F0823EB00836D00 /* ServerErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorViewController.swift; sourceTree = "<group>"; };
 		3A40AB281F800E7B003C3915 /* Debugger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debugger.swift; sourceTree = "<group>"; };
+		3A4681DC1F891CA4001FE6D4 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		3A4681DE1F89499D001FE6D4 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		3A4681E01F896ED2001FE6D4 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3A579F741EFEB70700B4D209 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		3A5858C61EFF1A4D0036B0AE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3A64F52C1F11380A00C3EBF9 /* ExportToXcodeActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToXcodeActivity.swift; sourceTree = "<group>"; };
@@ -118,6 +129,7 @@
 		3A6ED5D61F6D7F3000041AAE /* QRScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		3A7004321F804F6500FD8137 /* DebuLog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DebuLog.xcodeproj; path = DebuLog/DebuLog.xcodeproj; sourceTree = "<group>"; };
 		3A706E211F701D8300EE16B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3A9017761F8AD55100EA6679 /* ErrorLoadingStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLoadingStoreViewController.swift; sourceTree = "<group>"; };
 		3A95F5191F86DA8C00461BE4 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		3A9771141EED917D00E5E565 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		3A9F395B1F1BCE7600D48F02 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -184,6 +196,15 @@
 			path = execThumbnail;
 			sourceTree = "<group>";
 		};
+		3A2B90141F881884001130D5 /* White icon */ = {
+			isa = PBXGroup;
+			children = (
+				3A2B90181F881963001130D5 /* White@2x.png */,
+				3A2B90171F881963001130D5 /* White@3x.png */,
+			);
+			path = "White icon";
+			sourceTree = "<group>";
+		};
 		3A7004331F804F6500FD8137 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,7 +240,9 @@
 			children = (
 				3A706E211F701D8300EE16B7 /* GoogleService-Info.plist */,
 				3A1267D61F00207900049F6E /* GoogleMobileAds.framework */,
+				3A4681E01F896ED2001FE6D4 /* main.swift */,
 				3AD72C521EEC90EC000C80A9 /* AppDelegate.swift */,
+				3A4681DE1F89499D001FE6D4 /* Theme.swift */,
 				3A40AB281F800E7B003C3915 /* Debugger.swift */,
 				3AFB1E871EEDA18000FBCF73 /* AlertManager.swift */,
 				3A0FF2AE1F1EEB4600AF2D7A /* Timers.swift */,
@@ -244,11 +267,14 @@
 				3A6ED5D61F6D7F3000041AAE /* QRScanViewController.swift */,
 				3A02C9D11F7164020014AF28 /* SetupServerViewController.swift */,
 				3A95F5191F86DA8C00461BE4 /* InstructionsViewController.swift */,
+				3A4681DC1F891CA4001FE6D4 /* LaunchScreenViewController.swift */,
+				3A9017761F8AD55100EA6679 /* ErrorLoadingStoreViewController.swift */,
 				3AD72C5A1EEC90ED000C80A9 /* Main.storyboard */,
 				3AD72C5D1EEC90ED000C80A9 /* Assets.xcassets */,
 				3AD72C5F1EEC90ED000C80A9 /* LaunchScreen.storyboard */,
 				3AD72C621EEC90ED000C80A9 /* Info.plist */,
 				3AE628901F11BE4100A652F3 /* Licenses.md */,
+				3A2B90141F881884001130D5 /* White icon */,
 				3A9771141EED917D00E5E565 /* Samples */,
 			);
 			path = fastSwift;
@@ -378,6 +404,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A4681DB1F881E85001FE6D4 /* White@3x.png in Resources */,
+				3A4681DA1F881E80001FE6D4 /* White@2x.png in Resources */,
 				3A9F395C1F1BCE7600D48F02 /* Settings.bundle in Resources */,
 				3A9771151EED917D00E5E565 /* Samples in Resources */,
 				3AD72C611EEC90ED000C80A9 /* LaunchScreen.storyboard in Resources */,
@@ -459,17 +487,21 @@
 				3AC2FBC41F2BCE7C00170AEE /* WebViewController.swift in Sources */,
 				3AB9AE7E1EFDD0B3005B4BBE /* OrganizerTableViewController.swift in Sources */,
 				3AD72C571EEC90ED000C80A9 /* DocumentViewController.swift in Sources */,
+				3A4681E11F896ED2001FE6D4 /* main.swift in Sources */,
 				3AFB1E881EEDA18000FBCF73 /* AlertManager.swift in Sources */,
 				3A02C9D21F7164020014AF28 /* SetupServerViewController.swift in Sources */,
 				3AD07F631F1BF769003C47B2 /* SettingsViewController.swift in Sources */,
 				3A64F52D1F11380A00C3EBF9 /* ExportToXcodeActivity.swift in Sources */,
 				3A2404221EFEC82F00C38D48 /* StoreViewController.swift in Sources */,
+				3A4681DF1F89499D001FE6D4 /* Theme.swift in Sources */,
+				3A4681DD1F891CA4001FE6D4 /* LaunchScreenViewController.swift in Sources */,
 				3AFBC23D1F27CC72002A8081 /* PublishToStoreActivity.swift in Sources */,
 				3A6ED5D71F6D7F3000041AAE /* QRScanViewController.swift in Sources */,
 				3AD72C551EEC90ED000C80A9 /* DocumentBrowserViewController.swift in Sources */,
 				3AB1A9EE1F1BE6CC000455F5 /* Server.swift in Sources */,
 				3ABE08221F69A162009EDB16 /* MenuViewController.swift in Sources */,
 				3A6873FC1F11B0F500FA0AF3 /* ExportToXcodeViewController.swift in Sources */,
+				3A9017771F8AD55100EA6679 /* ErrorLoadingStoreViewController.swift in Sources */,
 				3AD72C531EEC90EC000C80A9 /* AppDelegate.swift in Sources */,
 				3AD509C61F12845F007C79C4 /* ExportToXcodeHelpViewController.swift in Sources */,
 				3A1C6CC51F2002D6001D551C /* ExportToBinaryActivity.swift in Sources */,

@@ -7,6 +7,26 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Titles</key>
+			<array>
+				<string>Black</string>
+				<string>White</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>black</string>
+				<string>white</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Theme</string>
+			<key>Key</key>
+			<string>theme</string>
+			<key>DefaultValue</key>
+			<string>1</string>
+		</dict>
+		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>FooterText</key>

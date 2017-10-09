@@ -179,22 +179,38 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(indexPath.row)", for: indexPath)
         }
         
-        if collectionView.tag == 1 {
+        if collectionView.tag == 1 { // Store
             if prices != [] {
                 let button = cell.viewWithTag(5) as! UIButton
                 button.setTitle(prices[indexPath.row], for: .normal)
+                button.backgroundColor = .clear
+                cell.backgroundColor = AppDelegate.shared.theme.color
+                
+                let iconView = cell.viewWithTag(6) as! UIImageView
+                let icon = iconView.image!
+                let icon_ = icon.withRenderingMode(.alwaysTemplate)
+                iconView.image = icon_
+                iconView.tintColor = AppDelegate.shared.theme.textColor
+                
+                let label = cell.viewWithTag(7) as! UILabel
+                label.textColor = AppDelegate.shared.theme.textColor
             }
-        } else if collectionView.tag == 2 {
+        } else if collectionView.tag == 2 { // Programs
             
             if let _ = self.filesCollectionView {
                 
                 cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath)
+                cell.backgroundColor = AppDelegate.shared.theme.color
                 
                 let label = cell.viewWithTag(4) as! UILabel
                 label.text = (files[indexPath.row] as NSString).deletingPathExtension
+                label.textColor = AppDelegate.shared.theme.textColor
                 
                 let buttonRun = cell.viewWithTag(5) as! UIButton
                 let buttonSource = cell.viewWithTag(6) as! UIButton
+                
+                buttonSource.backgroundColor = .clear
+                buttonRun.backgroundColor = .clear
                 
                 buttonRun.tag = higherRunButtonTag
                 higherRunButtonTag += 1
@@ -207,16 +223,50 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                 self.filesCollectionView = collectionView
                 return cell
             }
+        } else if collectionView.tag == 3 { // View video
+            let label = cell.viewWithTag(2) as! UILabel
+            label.textColor = AppDelegate.shared.theme.textColor
+            
+            cell.backgroundColor = AppDelegate.shared.theme.color
+            
+            let button = cell.viewWithTag(4) as! UIButton
+            button.backgroundColor = .clear
+            
+            let iconView = cell.viewWithTag(3) as! UIImageView
+            let icon = iconView.image
+            let icon_ = icon?.withRenderingMode(.alwaysTemplate)
+            iconView.image = icon_
+            iconView.tintColor = AppDelegate.shared.theme.textColor
         }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if canMakePayments {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row)")!
+            cell.backgroundColor = AppDelegate.shared.theme.color
+            
+            for subview in cell.contentView.subviews {
+                if let collectionView = subview as? UICollectionView {
+                    Debugger.shared.debug_("Collectionview found!")
+                    collectionView.backgroundColor = AppDelegate.shared.theme.color
+                    collectionView.backgroundColor = AppDelegate.shared.theme.color
+                }
+            }
+            
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row+1)")!
+            cell.backgroundColor = AppDelegate.shared.theme.color
+            
+            for subview in cell.contentView.subviews {
+                if let collectionView = subview as? UICollectionView {
+                    Debugger.shared.debug_("Collectionview found!")
+                    collectionView.backgroundColor = AppDelegate.shared.theme.color
+                    collectionView.backgroundColor = AppDelegate.shared.theme.color
+                }
+            }
             return cell
         }
     }
@@ -265,6 +315,19 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         }.resume()
         
         tableView.reloadData()
+        
+        tableView.backgroundColor = AppDelegate.shared.theme.color
+        view.backgroundColor = AppDelegate.shared.theme.color
+        view.tintColor = AppDelegate.shared.theme.tintColor
+        compilations.backgroundColor = AppDelegate.shared.theme.color
+        compilations.textColor = AppDelegate.shared.theme.textColor
+        navigationController?.navigationBar.barTintColor = AppDelegate.shared.theme.color
+        navigationController?.navigationBar.tintColor = AppDelegate.shared.theme.tintColor
+        navigationController?.navigationBar.barStyle = AppDelegate.shared.theme.barStyle
+        view.backgroundColor = AppDelegate.shared.theme.color
+        if AppDelegate.shared.theme.isEqual(to: Theme.white) {
+            view.backgroundColor = #colorLiteral(red: 0.9627815673, green: 0.9627815673, blue: 0.9627815673, alpha: 1)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -368,5 +431,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         AccountManager.shared.presentAccountInfo(inside: self)
     }
     
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return AppDelegate.shared.theme.statusBarStyle
+    }
 }
