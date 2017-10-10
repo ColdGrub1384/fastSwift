@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8aj-TH-94W">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Scan View Controller-->
+        <scene sceneID="JoE-zg-h4f">
+            <objects>
+                <viewController storyboardIdentifier="qrScan" id="8aj-TH-94W" customClass="QRScanViewController" customModule="fastSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="al4-2x-Tgr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrSquare" translatesAutoresizingMaskIntoConstraints="NO" id="Npt-7U-aSz">
+                                <rect key="frame" x="37" y="189" width="302" height="289"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Denied access for the camera" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DO8-pi-lmL">
+                                <rect key="frame" x="8" y="319" width="359" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1489986479" green="0.1490316391" blue="0.14899659160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DO8-pi-lmL" firstAttribute="centerX" secondItem="fEI-fD-nBU" secondAttribute="centerX" id="0Gv-UA-0yn"/>
+                            <constraint firstItem="Npt-7U-aSz" firstAttribute="leading" secondItem="al4-2x-Tgr" secondAttribute="leadingMargin" constant="21" id="8hh-tq-wx6"/>
+                            <constraint firstItem="DO8-pi-lmL" firstAttribute="leading" secondItem="al4-2x-Tgr" secondAttribute="leadingMargin" constant="-8" id="HLm-HQ-w41"/>
+                            <constraint firstItem="DO8-pi-lmL" firstAttribute="top" secondItem="fEI-fD-nBU" secondAttribute="top" constant="299" id="Pzc-N9-cSo"/>
+                            <constraint firstItem="DO8-pi-lmL" firstAttribute="centerY" secondItem="Npt-7U-aSz" secondAttribute="centerY" id="a8v-JR-Aji"/>
+                            <constraint firstItem="Npt-7U-aSz" firstAttribute="centerY" secondItem="al4-2x-Tgr" secondAttribute="centerY" id="c3X-tF-Sda"/>
+                            <constraint firstItem="Npt-7U-aSz" firstAttribute="top" secondItem="fEI-fD-nBU" secondAttribute="top" constant="169" id="nsJ-Zk-YwH"/>
+                            <constraint firstItem="Npt-7U-aSz" firstAttribute="centerX" secondItem="DO8-pi-lmL" secondAttribute="centerX" id="ziN-NU-VrP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fEI-fD-nBU"/>
+                    </view>
+                    <connections>
+                        <outlet property="denied" destination="DO8-pi-lmL" id="wGI-Me-nKv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fsT-ex-ZiI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-298.39999999999998" y="-19.340329835082461"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="qrSquare" width="1200" height="1200"/>
+    </resources>
+</document>

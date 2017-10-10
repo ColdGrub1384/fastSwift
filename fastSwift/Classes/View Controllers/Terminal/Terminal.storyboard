@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1NZ-dT-ps9">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Menlo.ttc">
+            <string>Menlo-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--mobile@localhost-->
+        <scene sceneID="p7a-g4-0jf">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1NZ-dT-ps9" customClass="NMTerminalViewController" customModule="fastSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HOQ-lx-PfQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="elq-op-eW1" customClass="TerminalTextView" customModule="fastSwift" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.1482854784" green="0.1484311223" blue="0.1483080685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="VKk-pt-b8D">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="0.1482854784" green="0.1484311223" blue="0.1483080685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem id="fbz-47-got">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Wbs-cM-weI">
+                                            <connections>
+                                                <action selector="disconnect:" destination="1NZ-dT-ps9" id="UbQ-f7-pm7"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="69k-Pa-W8t">
+                                <rect key="frame" x="177.5" y="355" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1482854784" green="0.1484311223" blue="0.1483080685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="elq-op-eW1" firstAttribute="bottom" secondItem="Gzm-q9-YI7" secondAttribute="bottom" id="1CT-Bv-8fF"/>
+                            <constraint firstItem="Gzm-q9-YI7" firstAttribute="trailing" secondItem="VKk-pt-b8D" secondAttribute="trailing" id="58W-rw-2K8"/>
+                            <constraint firstItem="VKk-pt-b8D" firstAttribute="leading" secondItem="Gzm-q9-YI7" secondAttribute="leading" id="BFm-NG-JxZ"/>
+                            <constraint firstItem="VKk-pt-b8D" firstAttribute="top" secondItem="Gzm-q9-YI7" secondAttribute="top" id="CqN-pl-aE4"/>
+                            <constraint firstItem="elq-op-eW1" firstAttribute="centerY" secondItem="69k-Pa-W8t" secondAttribute="centerY" id="FSb-4p-6x0"/>
+                            <constraint firstItem="VKk-pt-b8D" firstAttribute="leading" secondItem="elq-op-eW1" secondAttribute="leading" id="QS9-40-wJd"/>
+                            <constraint firstItem="VKk-pt-b8D" firstAttribute="centerX" secondItem="69k-Pa-W8t" secondAttribute="centerX" id="TqB-Ak-jbb"/>
+                            <constraint firstItem="elq-op-eW1" firstAttribute="top" secondItem="VKk-pt-b8D" secondAttribute="bottom" id="cO3-RQ-wIu"/>
+                            <constraint firstItem="VKk-pt-b8D" firstAttribute="trailing" secondItem="elq-op-eW1" secondAttribute="trailing" id="uNo-Ph-0Zd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Gzm-q9-YI7"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="mobile@localhost" id="fGc-NG-9L1"/>
+                    <connections>
+                        <outlet property="activity" destination="69k-Pa-W8t" id="9ZL-wU-kRw"/>
+                        <outlet property="navBar" destination="VKk-pt-b8D" id="nrj-yz-qz0"/>
+                        <outlet property="terminal" destination="elq-op-eW1" id="fPg-tb-pKU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pFb-NO-wcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1777" y="1200"/>
+        </scene>
+    </scenes>
+</document>

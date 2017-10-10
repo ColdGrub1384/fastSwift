@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a90-RX-Wee">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Launch Screen View Controller-->
+        <scene sceneID="HRz-Gy-tvI">
+            <objects>
+                <viewController storyboardIdentifier="launch" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a90-RX-Wee" customClass="LaunchScreenViewController" customModule="fastSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fIB-Yk-Kc6"/>
+                        <viewControllerLayoutGuide type="bottom" id="xQY-SQ-AvA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="M4z-08-ZXR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" {" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVx-Az-5vf">
+                                <rect key="frame" x="0.0" y="0.0" width="188" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="188" id="vVQ-Kq-4He"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="100"/>
+                                <color key="textColor" red="0.1489986479" green="0.1490316391" blue="0.14899659160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="} " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqA-1B-t8J">
+                                <rect key="frame" x="188" y="0.0" width="188" height="667"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="100"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1482854784" green="0.1484311223" blue="0.1483080685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZVx-Az-5vf" firstAttribute="baseline" secondItem="mqA-1B-t8J" secondAttribute="baseline" id="57f-Gx-QBj"/>
+                            <constraint firstItem="ZVx-Az-5vf" firstAttribute="top" secondItem="M4z-08-ZXR" secondAttribute="top" id="9cP-RC-Rzu"/>
+                            <constraint firstItem="mqA-1B-t8J" firstAttribute="width" secondItem="ZVx-Az-5vf" secondAttribute="width" id="BKh-FE-1RX"/>
+                            <constraint firstItem="ZVx-Az-5vf" firstAttribute="bottom" secondItem="xQY-SQ-AvA" secondAttribute="top" id="TCZ-Ha-m84"/>
+                            <constraint firstItem="mqA-1B-t8J" firstAttribute="height" secondItem="ZVx-Az-5vf" secondAttribute="height" id="UmD-J3-B6T"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mqA-1B-t8J" secondAttribute="trailing" constant="-17" id="eIw-KF-cpq"/>
+                            <constraint firstItem="ZVx-Az-5vf" firstAttribute="firstBaseline" secondItem="mqA-1B-t8J" secondAttribute="firstBaseline" id="sxG-be-HZx"/>
+                            <constraint firstItem="ZVx-Az-5vf" firstAttribute="leading" secondItem="M4z-08-ZXR" secondAttribute="leading" id="ttD-C4-xin"/>
+                            <constraint firstItem="mqA-1B-t8J" firstAttribute="leading" secondItem="ZVx-Az-5vf" secondAttribute="trailing" id="wBa-zN-Itz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EIF-lW-i7M"/>
+                    </view>
+                    <connections>
+                        <outlet property="blackLbl" destination="mqA-1B-t8J" id="s6o-4G-0Wh"/>
+                        <outlet property="whiteLbl" destination="ZVx-Az-5vf" id="2n3-Q9-2rW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mpu-sq-sfc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2078" y="655"/>
+        </scene>
+    </scenes>
+</document>

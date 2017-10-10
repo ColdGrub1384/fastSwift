@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Jq-YJ-h2M">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13196"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Select main file-->
+        <scene sceneID="Thu-a7-uQS">
+            <objects>
+                <tableViewController id="9Jq-YJ-h2M" customClass="OrganizerTableViewController" customModule="fastSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="28" sectionFooterHeight="28" id="y2F-0g-RMw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1482854784" green="0.1484311223" blue="0.1483080685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.33723086120000001" green="0.3375118077" blue="0.33727437259999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="file" rowHeight="76" id="J24-B5-fIg">
+                                <rect key="frame" x="0.0" y="28" width="375" height="76"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J24-B5-fIg" id="ynd-dZ-Gnj">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="75.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Untitled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eW3-V5-5OP">
+                                            <rect key="frame" x="89" y="27" width="278" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fastSwift file icon" translatesAutoresizingMaskIntoConstraints="NO" id="uZ5-fh-ESp">
+                                            <rect key="frame" x="8" y="8" width="73" height="59"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="73" id="cK7-vc-uTF"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="uZ5-fh-ESp" firstAttribute="centerY" secondItem="eW3-V5-5OP" secondAttribute="centerY" id="BuF-Mp-5ph"/>
+                                        <constraint firstItem="eW3-V5-5OP" firstAttribute="leading" secondItem="uZ5-fh-ESp" secondAttribute="trailing" constant="8" symbolic="YES" id="KQ1-l7-zwr"/>
+                                        <constraint firstItem="eW3-V5-5OP" firstAttribute="trailing" secondItem="ynd-dZ-Gnj" secondAttribute="trailingMargin" id="bkg-5s-VAk"/>
+                                        <constraint firstItem="uZ5-fh-ESp" firstAttribute="leading" secondItem="ynd-dZ-Gnj" secondAttribute="leadingMargin" id="ohN-Nc-5Nw"/>
+                                        <constraint firstItem="uZ5-fh-ESp" firstAttribute="top" secondItem="ynd-dZ-Gnj" secondAttribute="topMargin" id="uGQ-6g-WX9"/>
+                                        <constraint firstItem="uZ5-fh-ESp" firstAttribute="centerY" secondItem="ynd-dZ-Gnj" secondAttribute="centerY" id="wys-kG-jaY"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.1482854784" green="0.1484311223" blue="0.1483080685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9Jq-YJ-h2M" id="Ram-st-gm8"/>
+                            <outlet property="delegate" destination="9Jq-YJ-h2M" id="jC5-e2-E3f"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Select main file" id="ITn-8j-dMA"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KVS-nw-AZV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1866" y="551"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="fastSwift file icon" width="1024" height="1024"/>
+    </resources>
+</document>
