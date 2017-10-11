@@ -29,9 +29,9 @@ class LaunchScreenViewController: UIViewController {
         
         let _ = Afte.r(0.1) { (timer) in
             let _ = Repea.t(all: 0.001) { (timer) in
-                if AppDelegate.shared.theme.statusBarStyle == .lightContent { // Animation for black theme
+                if AppDelegate.shared.theme.browserUserInterfaceStyle == .dark { // Animation for black theme
                     self.animBlack(timer: timer)
-                } else if AppDelegate.shared.theme.statusBarStyle == .default { // Animation for white theme
+                } else { // Animation for white theme
                     self.animWhite(timer: timer)
                 }
             }
