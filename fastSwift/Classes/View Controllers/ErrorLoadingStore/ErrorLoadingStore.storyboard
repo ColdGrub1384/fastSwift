@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WrT-mI-C9y">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WrT-mI-C9y">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,36 +13,47 @@
         <!--Error Loading Store View Controller-->
         <scene sceneID="6LV-SH-ZUe">
             <objects>
-                <viewController storyboardIdentifier="loadingStore" id="WrT-mI-C9y" customClass="ErrorLoadingStoreViewController" customModule="fastSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loadingStore" modalTransitionStyle="flipHorizontal" id="WrT-mI-C9y" customClass="ErrorLoadingStoreViewController" customModule="fastSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1EN-mt-QiD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error loading store" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fao-kg-elH">
-                                <rect key="frame" x="75" y="319" width="225" height="29"/>
+                                <rect key="frame" x="75" y="391.66666666666669" width="225" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JsR-pG-umJ">
-                                <rect key="frame" x="16" y="617" width="339" height="30"/>
+                                <rect key="frame" x="16" y="762" width="339" height="30"/>
                                 <state key="normal" title="Retry"/>
                                 <connections>
                                     <action selector="retry:" destination="WrT-mI-C9y" eventType="touchUpInside" id="Eyx-DY-gmU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1N-Ir-rD7">
+                                <rect key="frame" x="321" y="44" width="38" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="done:" destination="WrT-mI-C9y" eventType="touchUpInside" id="QDR-aC-dqt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1489986479" green="0.1490316391" blue="0.14899659160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="JsR-pG-umJ" firstAttribute="leading" secondItem="1EN-mt-QiD" secondAttribute="leadingMargin" id="03P-vA-Lgo"/>
-                            <constraint firstAttribute="bottom" secondItem="JsR-pG-umJ" secondAttribute="bottom" constant="20" symbolic="YES" id="6pD-PT-Vsc"/>
-                            <constraint firstItem="tns-GD-MQn" firstAttribute="trailing" secondItem="JsR-pG-umJ" secondAttribute="trailing" constant="20" id="cVk-Tb-ki0"/>
-                            <constraint firstItem="Fao-kg-elH" firstAttribute="centerY" secondItem="1EN-mt-QiD" secondAttribute="centerY" id="d2g-oB-vuY"/>
-                            <constraint firstItem="Fao-kg-elH" firstAttribute="centerX" secondItem="1EN-mt-QiD" secondAttribute="centerX" id="zm3-30-4NZ"/>
+                            <constraint firstItem="JsR-pG-umJ" firstAttribute="leading" secondItem="1EN-mt-QiD" secondAttribute="leadingMargin" id="1wV-CL-V4L"/>
+                            <constraint firstItem="G1N-Ir-rD7" firstAttribute="top" secondItem="tns-GD-MQn" secondAttribute="top" id="5IQ-aP-BKQ"/>
+                            <constraint firstItem="Fao-kg-elH" firstAttribute="centerY" secondItem="1EN-mt-QiD" secondAttribute="centerY" id="AXC-Dl-yVe"/>
+                            <constraint firstItem="G1N-Ir-rD7" firstAttribute="trailing" secondItem="1EN-mt-QiD" secondAttribute="trailingMargin" id="Ylu-ax-Hfq"/>
+                            <constraint firstItem="Fao-kg-elH" firstAttribute="centerX" secondItem="1EN-mt-QiD" secondAttribute="centerX" id="ZCy-2D-yZs"/>
+                            <constraint firstItem="tns-GD-MQn" firstAttribute="trailing" secondItem="JsR-pG-umJ" secondAttribute="trailing" constant="20" id="iiE-XZ-xQH"/>
+                            <constraint firstAttribute="bottom" secondItem="JsR-pG-umJ" secondAttribute="bottom" constant="20" symbolic="YES" id="vaZ-jp-Amm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tns-GD-MQn"/>
                     </view>
                     <connections>
+                        <outlet property="doneBtn" destination="G1N-Ir-rD7" id="QbR-OF-1xu"/>
                         <outlet property="retryBtn" destination="JsR-pG-umJ" id="0J9-yW-iul"/>
                     </connections>
                 </viewController>

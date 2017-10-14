@@ -21,7 +21,6 @@ class LaunchScreenViewController: UIViewController {
         self.addChildViewController(menu)
         self.view.addSubview(menu.view)
         menu.view.isHidden = true
-        AppDelegate.shared.menu = menu
     }
     
     override func viewDidAppear(_ animated: Bool) {

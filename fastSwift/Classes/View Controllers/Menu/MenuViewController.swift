@@ -21,13 +21,14 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        AppDelegate.shared.menu = self
                 
         let fileBrowser:DocumentBrowserViewController = AppViewControllers().documentBrowser
         let settings: UINavigationController = AppViewControllers().settings
         let loadingStore: UIViewController = AppViewControllers().errorLoadingStore
         let qrScan:QRScanViewController = AppViewControllers().camera
         let news:WebViewController = AppViewControllers().web
-        let setup:SetupServerViewController = AppViewControllers().setupServer
         
         
         let session = NMSSHSession.connect(toHost: Server.host, withUsername: Server.user)
@@ -44,7 +45,7 @@ class MenuViewController: UIViewController {
             }
         }
         
-        vcs = [news,qrScan, fileBrowser, loadingStore, settings, setup]
+        vcs = [qrScan, news, fileBrowser, loadingStore, settings]
         
         if loadedStore {
             vcs[3] = AppViewControllers().store
@@ -97,7 +98,6 @@ class MenuViewController: UIViewController {
         self.scroll.setContentOffset(origin, animated: false)
         
         news.doneBtn.isEnabled = false
-        
                 
     }
 

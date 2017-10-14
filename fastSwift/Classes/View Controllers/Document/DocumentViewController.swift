@@ -611,6 +611,11 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             self.present(store, animated: true, completion: nil)
         } else {
             let errorVc = AppViewControllers().errorLoadingStore
+            if code.text.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "") != document?.code.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "") {
+                errorVc.isSaved = false
+            }
+            
+            errorVc.delegate = self
             self.present(errorVc, animated: true, completion: nil)
         }
     }

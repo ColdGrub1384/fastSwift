@@ -436,4 +436,9 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return AppDelegate.shared.theme.statusBarStyle
     }
+    
+    @IBAction func setupServer(_ sender: Any) {
+        self.present(AppViewControllers().setupServer, animated: true, completion: nil)
+    }
+    
 }
