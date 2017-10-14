@@ -289,10 +289,13 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         var text = sender.title!.replacingOccurrences(of: " ", with: "")
         if text == "↹" {
             text = "    "
+        } else if text == "\n↹" {
+            text = "\n    "
         } else if text == "print" {
             text = "print(\""
         }
         self.code.replace(self.code.selectedTextRange!, withText: text)
+        let _ = self.textView(self.code, shouldChangeTextIn: self.code.selectedRange, replacementText: text)
     }
     
     @IBAction func dismissKeyboard(_ sender: Any) {
@@ -614,6 +617,53 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     func textViewDidChange(_ textView: UITextView) {
         self.pause = false
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        print("Autocompletion: \(text)")
+        
+        if text.contains("{") {
+            print("Key detected!")
+            self.insertText(sender: UIBarButtonItem(title: "}", style: .plain, target: nil, action: nil))
+            self.code.selectedRange = range
+        }
+        
+        if text.contains("[") {
+            print("Bracket detected!")
+            self.insertText(sender: UIBarButtonItem(title: "]", style: .plain, target: nil, action: nil))
+            self.code.selectedRange = range
+        }
+        
+        if text.contains("(") {
+            print("Parenthesis detected!")
+            self.insertText(sender: UIBarButtonItem(title: ")", style: .plain, target: nil, action: nil))
+            self.code.selectedRange = range
+        }
+        
+        if text == "\n" {
+            let position = self.code.selectedTextRange!.start
+            let line = self.code.tokenizer.position(from: position, toBoundary: .line, inDirection: UITextStorageDirection.backward.rawValue)
+            let lineRange = self.code.tokenizer.rangeEnclosingPosition(line!, with: .line, inDirection: UITextStorageDirection.backward.rawValue)
+            let lineText = self.code.text(in: lineRange!)
+            
+            if let _ = lineText {
+                print(lineText!)
+                if lineText!.hasSuffix("}") {
+                    self.insertText(sender: UIBarButtonItem(title: "\n↹", style: .plain, target: nil, action: nil))
+                    let range = self.code.selectedTextRange
+                    _ = Afte.r(0.1, seconds: { (timer) in
+                        self.code.selectedTextRange = range
+                    })
+                    
+                }
+            }
+            
+        }
+        
+        
+        
+        return true
     }
 
 }
