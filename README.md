@@ -17,10 +17,11 @@ fastSwift is an app that thanks of an SSH server sends, compiles and runs Swift 
 ## Features
 - [x] Custom servers
 - [x] User input
-- [x] Command line arguments (From a Shell)
+- [x] Command line arguments (From FFShell)
 - [x] Multiple files
 - [x] UIDocumentBrowserViewController
 - [x] Syntax highlighting
+- [x] {}, (). [], "" Auto completion
 
 # Acknowledgements
 See licenses [here](https://github.com/ColdGrub1384/fastSwift/blob/master/Pods/Target%20Support%20Files/Pods-fastSwift/Pods-fastSwift-acknowledgements.markdown)
