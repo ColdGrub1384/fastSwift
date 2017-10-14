@@ -628,6 +628,12 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         
         print("Autocompletion: \(text)")
         
+        if text.contains("\"") {
+            print("Quotes detected!")
+            self.insertText(sender: UIBarButtonItem(title: "\"", style: .plain, target: nil, action: nil))
+            self.code.selectedRange = range
+        }
+        
         if text.contains("{") {
             print("Key detected!")
             self.insertText(sender: UIBarButtonItem(title: "}", style: .plain, target: nil, action: nil))
