@@ -23,5 +23,10 @@ fastSwift is an app that thanks of an SSH server sends, compiles and runs Swift 
 - [x] Syntax highlighting
 - [x] {}, (). [], "" Auto completion
 
+## Preview
+<a href="http://coldg.ddns.net:83/test.html"><img src="https://raw.githubusercontent.com/ColdGrub1384/fastSwift/master/preview.png" width="100px"></a><br/>
+Click this image to test the app from your Web browser
+
+
 # Acknowledgements
 See licenses [here](https://github.com/ColdGrub1384/fastSwift/blob/master/Pods/Target%20Support%20Files/Pods-fastSwift/Pods-fastSwift-acknowledgements.markdown)
