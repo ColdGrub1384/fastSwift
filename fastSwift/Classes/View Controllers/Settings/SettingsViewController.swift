@@ -14,7 +14,13 @@ class SettingsViewController: IASKAppSettingsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.backgroundColor = AppDelegate.shared.theme.color
         self.neverShowPrivacySettings = false
+        self.backgroundColor = AppDelegate.shared.theme.color
+        self.textColor = AppDelegate.shared.theme.textColor
+        self.navigationController?.navigationBar.barStyle = AppDelegate.shared.theme.barStyle
+        self.navigationController?.navigationBar.barTintColor = AppDelegate.shared.theme.color
+        self.navigationController?.navigationBar.tintColor = AppDelegate.shared.theme.tintColor
     }
 
 }

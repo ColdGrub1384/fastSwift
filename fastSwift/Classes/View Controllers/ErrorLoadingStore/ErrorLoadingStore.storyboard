@@ -24,13 +24,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JsR-pG-umJ">
-                                <rect key="frame" x="16" y="762" width="339" height="30"/>
-                                <state key="normal" title="Retry"/>
-                                <connections>
-                                    <action selector="retry:" destination="WrT-mI-C9y" eventType="touchUpInside" id="Eyx-DY-gmU"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1N-Ir-rD7">
                                 <rect key="frame" x="321" y="44" width="38" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -39,21 +32,39 @@
                                     <action selector="done:" destination="WrT-mI-C9y" eventType="touchUpInside" id="QDR-aC-dqt"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Error" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8y0-Nt-K2D">
+                                <rect key="frame" x="67" y="427.66666666666669" width="240" height="250.33333333333331"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JsR-pG-umJ">
+                                <rect key="frame" x="18" y="762" width="338" height="30"/>
+                                <state key="normal" title="Retry"/>
+                                <connections>
+                                    <action selector="retry:" destination="WrT-mI-C9y" eventType="touchUpInside" id="Eyx-DY-gmU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1489986479" green="0.1490316391" blue="0.14899659160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="JsR-pG-umJ" firstAttribute="leading" secondItem="1EN-mt-QiD" secondAttribute="leadingMargin" id="1wV-CL-V4L"/>
-                            <constraint firstItem="G1N-Ir-rD7" firstAttribute="top" secondItem="tns-GD-MQn" secondAttribute="top" id="5IQ-aP-BKQ"/>
-                            <constraint firstItem="Fao-kg-elH" firstAttribute="centerY" secondItem="1EN-mt-QiD" secondAttribute="centerY" id="AXC-Dl-yVe"/>
-                            <constraint firstItem="G1N-Ir-rD7" firstAttribute="trailing" secondItem="1EN-mt-QiD" secondAttribute="trailingMargin" id="Ylu-ax-Hfq"/>
-                            <constraint firstItem="Fao-kg-elH" firstAttribute="centerX" secondItem="1EN-mt-QiD" secondAttribute="centerX" id="ZCy-2D-yZs"/>
-                            <constraint firstItem="tns-GD-MQn" firstAttribute="trailing" secondItem="JsR-pG-umJ" secondAttribute="trailing" constant="20" id="iiE-XZ-xQH"/>
-                            <constraint firstAttribute="bottom" secondItem="JsR-pG-umJ" secondAttribute="bottom" constant="20" symbolic="YES" id="vaZ-jp-Amm"/>
+                            <constraint firstItem="G1N-Ir-rD7" firstAttribute="top" secondItem="tns-GD-MQn" secondAttribute="top" id="5b6-HE-aZq"/>
+                            <constraint firstItem="8y0-Nt-K2D" firstAttribute="centerX" secondItem="JsR-pG-umJ" secondAttribute="centerX" id="BTV-Gu-5zs"/>
+                            <constraint firstItem="Fao-kg-elH" firstAttribute="centerY" secondItem="1EN-mt-QiD" secondAttribute="centerY" id="Oaj-Eh-39E"/>
+                            <constraint firstItem="Fao-kg-elH" firstAttribute="centerX" secondItem="1EN-mt-QiD" secondAttribute="centerX" id="PHc-IW-5Lc"/>
+                            <constraint firstItem="Fao-kg-elH" firstAttribute="centerX" secondItem="8y0-Nt-K2D" secondAttribute="centerX" id="TVp-tt-AQ4"/>
+                            <constraint firstAttribute="bottom" secondItem="JsR-pG-umJ" secondAttribute="bottom" constant="20" symbolic="YES" id="aVk-ZH-Ub3"/>
+                            <constraint firstItem="8y0-Nt-K2D" firstAttribute="leading" secondItem="tns-GD-MQn" secondAttribute="leading" constant="67" id="dwV-lI-Ja7"/>
+                            <constraint firstItem="8y0-Nt-K2D" firstAttribute="top" secondItem="Fao-kg-elH" secondAttribute="bottom" constant="7" id="gCU-c2-AKm"/>
+                            <constraint firstItem="G1N-Ir-rD7" firstAttribute="trailing" secondItem="1EN-mt-QiD" secondAttribute="trailingMargin" id="oec-1T-4CK"/>
+                            <constraint firstItem="JsR-pG-umJ" firstAttribute="top" secondItem="8y0-Nt-K2D" secondAttribute="bottom" constant="84" id="sVB-tH-Xty"/>
+                            <constraint firstItem="JsR-pG-umJ" firstAttribute="leading" secondItem="tns-GD-MQn" secondAttribute="leading" constant="18" id="sk2-PD-5NN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tns-GD-MQn"/>
                     </view>
                     <connections>
                         <outlet property="doneBtn" destination="G1N-Ir-rD7" id="QbR-OF-1xu"/>
+                        <outlet property="errorText" destination="8y0-Nt-K2D" id="df5-G5-l9Z"/>
                         <outlet property="retryBtn" destination="JsR-pG-umJ" id="0J9-yW-iul"/>
                     </connections>
                 </viewController>

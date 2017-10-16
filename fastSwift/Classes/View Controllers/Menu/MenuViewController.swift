@@ -19,8 +19,14 @@ class MenuViewController: UIViewController {
     var mainVCIndex = 2
     var loadedStore = false
     
+    var barSize: CGFloat = 20
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if AppDelegate.shared.screenSize == .iPhoneX {
+            barSize = 44
+        }
         
         AppDelegate.shared.menu = self
                 
@@ -68,16 +74,16 @@ class MenuViewController: UIViewController {
             if vc != vcs.first {
                 var vcframe:CGRect = vc.view.frame
                 vcframe.origin.x = screenBounds.width+10+(screenBounds.width*count)
-                vcframe.origin.y = vcframe.origin.y+20
+                vcframe.origin.y = vcframe.origin.y+self.barSize
                 vc.view.frame = vcframe
-                vc.view.frame.size.height = vc.view.frame.height-(20)
+                vc.view.frame.size.height = vc.view.frame.height-(self.barSize)
                 if vc != vcs.last {
                     vc.view.frame.size.width = vc.view.frame.width-20
                 }
             } else {
                 vc.view.frame.size.width = vc.view.frame.width-20
-                vc.view.frame.size.height = vc.view.frame.height-(20)
-                vc.view.frame.origin.y = vc.view.frame.origin.y+20
+                vc.view.frame.size.height = vc.view.frame.height-(self.barSize)
+                vc.view.frame.origin.y = vc.view.frame.origin.y+self.barSize
             }
             
             count+=1
@@ -94,12 +100,14 @@ class MenuViewController: UIViewController {
         
         self.scroll.contentSize = CGSize(width: self.view.frame.width*CGFloat.init(vcs.count), height: self.view.frame.height)
         
-        let origin = CGPoint(x: mainVc.view.frame.origin.x-10, y: mainVc.view.frame.origin.y-20)
+        let origin = CGPoint(x: mainVc.view.frame.origin.x-10, y: mainVc.view.frame.origin.y)
         self.scroll.setContentOffset(origin, animated: false)
         
         news.doneBtn.isEnabled = false
         loadingStore.doneBtn.isEnabled = false
-                
+        
+        scroll.contentSize = CGSize(width: scroll.contentSize.width, height: fileBrowser.view.frame.height)
+        
     }
 
     

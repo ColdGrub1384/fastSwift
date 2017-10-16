@@ -67,6 +67,8 @@
 @property (nonatomic, assign) IBInspectable BOOL showDoneButton;
 @property (nonatomic, retain) NSSet *hiddenKeys;
 @property (nonatomic) IBInspectable BOOL neverShowPrivacySettings;
+@property (nonatomic, copy) UIColor *backgroundColor;
+@property (nonatomic, copy) UIColor *textColor;
 
 - (void)synchronizeSettings;
 - (void)dismiss:(id)sender;

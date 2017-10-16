@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
     var browser: DocumentBrowserViewController!
     var qrScanner: QRScanViewController!
     var theme = Theme.black
+    var loadingStoreError = ""
     
     static var shared = AppDelegate()
     
@@ -29,6 +30,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         case none
     }
     
+    enum ScreenSize {
+        case iPhoneSE
+        case iPhone8
+        case iPhone8Plus
+        case iPhoneX
+        case iPad
+        case iPadPro129
+        case iPadPro105
+        
+        case unknown
+    }
+    
+    var screenSize: ScreenSize {
+        switch UIScreen.main.nativeBounds.height {
+        case 1136:
+            return .iPhoneSE
+        case 1334:
+            return .iPhone8
+        case 2208:
+            return .iPhone8Plus
+        case 2436:
+            return .iPhoneX
+        case 2224:
+            return .iPadPro105
+        case 2732:
+            return .iPadPro129
+        default:
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                return .iPad
+            }
+            return .unknown
+        }
+    }
     
     func clearCaches() {
         do {for file in try FileManager.default.contentsOfDirectory(at: FileManager.default.urls(for: .cachesDirectory, in: .allDomainsMask)[0], includingPropertiesForKeys: nil, options: .skipsHiddenFiles) {
@@ -81,13 +115,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         menu.reloadStore()
         menu.loadedStore = true
     }
+
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        self.loadingStoreError = error.localizedDescription
+        (self.menu.vcs[3] as! ErrorLoadingStoreViewController).reloadError()
+    }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             let trans = transaction as SKPaymentTransaction
             var continuePurchase = false
             
-            print("Buying "+trans.payment.productIdentifier)
+            print(trans.payment.productIdentifier)
             
             switch trans.transactionState {
             case .purchased:
@@ -127,10 +166,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         }
     }
     
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         AppDelegate.shared = self
+        
+        loadingStoreError = ""
         
         let request = SKProductsRequest(productIdentifiers: ["ch.marcela.ada.fastSwift.purchases.pendrive","ch.marcela.ada.fastSwift.purchases.sd","ch.marcela.ada.fastSwift.purchases.cd","ch.marcela.ada.fastSwift.purchases.hd"])
         request.delegate = self

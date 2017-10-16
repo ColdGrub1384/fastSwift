@@ -14,6 +14,11 @@ class ErrorLoadingStoreViewController: UIViewController {
     
     var isSaved = true
     var delegate: DocumentViewController?
+    @IBOutlet weak var errorText: UITextView!
+    
+    func reloadError() {
+        errorText.text = AppDelegate.shared.loadingStoreError
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +30,9 @@ class ErrorLoadingStoreViewController: UIViewController {
         }
         
         view.backgroundColor = AppDelegate.shared.theme.color
+        
+        reloadError()
+        errorText.textColor = AppDelegate.shared.theme.textColor
     }
     
     func reload() {

@@ -66,6 +66,8 @@ CGRect IASKCGRectSwap(CGRect rect);
 @synthesize settingsReader = _settingsReader;
 @synthesize settingsStore = _settingsStore;
 @synthesize file = _file;
+@synthesize backgroundColor;
+@synthesize textColor;
 
 #pragma mark accessors
 - (IASKSettingsReader*)settingsReader {
@@ -140,6 +142,7 @@ CGRect IASKCGRectSwap(CGRect rect);
     if ((self = [super initWithStyle:style])) {
 		[self configure];
     }
+    
     return self;
 }
 
@@ -538,6 +541,10 @@ CGRect IASKCGRectSwap(CGRect rect);
 					 cell.detailTextLabel.minimumFontSize = kIASKMinimumFontSize;);
 	IASK_IF_IOS6_OR_GREATER(cell.textLabel.minimumScaleFactor = kIASKMinimumFontSize / cell.textLabel.font.pointSize;
 							cell.detailTextLabel.minimumScaleFactor = kIASKMinimumFontSize / cell.detailTextLabel.font.pointSize;);
+    
+    cell.backgroundColor = backgroundColor;
+    cell.textLabel.textColor = textColor;
+    cell.detailTextLabel.textColor = textColor;
 	return cell;
 }
 
