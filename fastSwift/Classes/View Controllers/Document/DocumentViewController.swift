@@ -292,10 +292,15 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         } else if text == "\n↹" {
             text = "\n    "
         } else if text == "print" {
-            text = "print(\""
+            text = "print("
+            let _ = self.textView(self.code, shouldChangeTextIn: self.code.selectedRange, replacementText: text)
+        } else if text == "\"." {
+            text = "\""
+        } else {
+            let _ = self.textView(self.code, shouldChangeTextIn: self.code.selectedRange, replacementText: text)
         }
+        
         self.code.replace(self.code.selectedTextRange!, withText: text)
-        let _ = self.textView(self.code, shouldChangeTextIn: self.code.selectedRange, replacementText: text)
     }
     
     @IBAction func dismissKeyboard(_ sender: Any) {
@@ -628,26 +633,31 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         
         print("Autocompletion: \(text)")
         
-        if text.contains("\"") {
+        if text == "\"" {
             print("Quotes detected!")
-            self.insertText(sender: UIBarButtonItem(title: "\"", style: .plain, target: nil, action: nil))
+            self.insertText(sender: UIBarButtonItem(title: "\".", style: .plain, target: nil, action: nil))
             self.code.selectedRange = range
         }
         
-        if text.contains("{") {
+        if text == "{" {
             print("Key detected!")
             self.insertText(sender: UIBarButtonItem(title: "}", style: .plain, target: nil, action: nil))
             self.code.selectedRange = range
         }
         
-        if text.contains("[") {
+        if text == "[" {
             print("Bracket detected!")
             self.insertText(sender: UIBarButtonItem(title: "]", style: .plain, target: nil, action: nil))
             self.code.selectedRange = range
         }
         
-        if text.contains("(") {
+        if text == "(" {
             print("Parenthesis detected!")
+            self.insertText(sender: UIBarButtonItem(title: ")", style: .plain, target: nil, action: nil))
+            self.code.selectedRange = range
+        }
+        
+        if text == "print(" {
             self.insertText(sender: UIBarButtonItem(title: ")", style: .plain, target: nil, action: nil))
             self.code.selectedRange = range
         }
