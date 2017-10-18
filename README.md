@@ -30,3 +30,8 @@ Click this image to test the app from your Web browser
 
 # Acknowledgements
 See licenses [here](https://github.com/ColdGrub1384/fastSwift/blob/master/Pods/Target%20Support%20Files/Pods-fastSwift/Pods-fastSwift-acknowledgements.markdown)
+
+# Donations
+Pay me an iPhone screen reparation:
+BTC: 1Gufqtu4rYM1q3WaevbEF1wKkYXXk5hWfR
+![QR](https://i.imgur.com/dwk2u8n.jpg)
