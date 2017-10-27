@@ -10,15 +10,6 @@ import UIKit
 import Highlightr
 import NMSSH
 
-extension UITextInput {
-    var selectedRange: NSRange? {
-        guard let range = self.selectedTextRange else { return nil }
-        let location = offset(from: beginningOfDocument, to: range.start)
-        let length = offset(from: range.start, to: range.end)
-        return NSRange(location: location, length: length)
-    }
-}
-
 class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopoverPresentationControllerDelegate, DocumentDelegate, UITextViewDelegate {
     
     func document(didClose document: Document) {
@@ -69,6 +60,8 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     var pause = false
     
     var timer = Timer()
+    
+    var closedKeys = true
     
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
@@ -124,18 +117,22 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                 self.timer = timer
                 if self.code.isFirstResponder {
                     if self.pause {
+                        // Syntax highlighting
                         self.range = self.code.selectedRange
                         self.cursorPos = self.code.selectedTextRange
                         
                         self.code.attributedText = self.highlight("swift", code: self.code.text)
                         self.code.selectedTextRange = self.cursorPos
                         self.code.scrollRangeToVisible(self.range!)
+                        
                     }
                     
                     self.pause = true
                 }
             }
         }
+        
+        print(code.text.values)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -231,77 +228,171 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     
     func CodeToolBar() {
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
         
-        var items = [UIBarButtonItem]()
-        items.append(UIBarButtonItem(title: "( ", style: .plain, target: self, action: #selector(insertText(sender:)))) // (
-        items.append(UIBarButtonItem(title: ") ", style: .plain, target: self, action: #selector(insertText(sender:)))) // )
-        items.append(UIBarButtonItem(title: "{ ", style: .plain, target: self, action: #selector(insertText(sender:)))) // {
-        items.append(UIBarButtonItem(title: "} ", style: .plain, target: self, action: #selector(insertText(sender:)))) // }
-        items.append(UIBarButtonItem(title: "\\ ", style: .plain, target: self, action: #selector(insertText(sender:)))) // \
-        items.append(UIBarButtonItem(title: "/ ", style: .plain, target: self, action: #selector(insertText(sender:)))) // /
-        items.append(UIBarButtonItem(title: "\" ", style: .plain, target: self, action: #selector(insertText(sender:)))) // "
-        items.append(UIBarButtonItem(title: "[ ", style: .plain, target: self, action: #selector(insertText(sender:)))) // [
-        items.append(UIBarButtonItem(title: "] ", style: .plain, target: self, action: #selector(insertText(sender:)))) // ]
-        items.append(UIBarButtonItem(title: "! ", style: .plain, target: self, action: #selector(insertText(sender:)))) // !
-        items.append(UIBarButtonItem(title: "? ", style: .plain, target: self, action: #selector(insertText(sender:)))) // ?
-        items.append(UIBarButtonItem(title: "& ", style: .plain, target: self, action: #selector(insertText(sender:)))) // &
-        items.append(UIBarButtonItem(title: "| ", style: .plain, target: self, action: #selector(insertText(sender:)))) // |
-        
-        /*for item in items {
-            let font = UIFont(name: "Helvetica", size: 20)
+        func items(from strings: [String], separator: String) -> [UIBarButtonItem] {
+            var items = [UIBarButtonItem]()
+            for string in strings {
+                let button = UIButton()
+                button.setTitle("\(string)", for: .normal)
+                button.addTarget(self, action: #selector(insertText(sender:)), for: UIControlEvents.touchUpInside)
+                button.setTitleColor(self.view.tintColor, for: .normal)
+                if AppDelegate.shared.theme.keyboardAppearance == .dark {
+                    button.backgroundColor = .black
+                } else {
+                    button.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+                }
+                
+                button.layer.cornerRadius = 5
+                button.layer.borderWidth = 1
+                button.layer.borderColor = button.backgroundColor?.cgColor
+                button.backgroundColor = .clear
+                
+                let item = UIBarButtonItem(customView: button)
+                items.append(item)
+                
+                if separator != "" {
+                    items.append(UIBarButtonItem.init(title: separator, style: .plain, target: nil, action: nil))
+                }
+            }
             
-            item.setTitleTextAttributes([NSAttributedStringKey.font:font!], for: UIControlState.normal)
-        }*/
+            return items
+        }
         
-        toolbar.sizeToFit()
-        toolbar.items = items
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width*2, height: 50))
+        toolbar.items = items(from: ["(",")","{","}","\\", "/","\"","[","]","!","?","!","&","|","="], separator: "  ")
         toolbar.barTintColor = self.view.backgroundColor
-        toolbar.tintColor = self.view.tintColor
         
-        let toolbar2 = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
-        
-        var items2 = [UIBarButtonItem]()
-        items2.append(UIBarButtonItem(title: "var ", style: .plain, target: self, action: #selector(insertText(sender:)))) // var
-        items2.append(UIBarButtonItem(title: "let ", style: .plain, target: self, action: #selector(insertText(sender:)))) // let
-        items2.append(UIBarButtonItem(title: "func ", style: .plain, target: self, action: #selector(insertText(sender:)))) // func
-        items2.append(UIBarButtonItem(title: "if ", style: .plain, target: self, action: #selector(insertText(sender:)))) // if
-        items2.append(UIBarButtonItem(title: "else ", style: .plain, target: self, action: #selector(insertText(sender:)))) // else
-        items2.append(UIBarButtonItem(title: "print ", style: .plain, target: self, action: #selector(insertText(sender:)))) // print
-        items2.append(UIBarButtonItem(title: "↹", style: .plain, target: self, action: #selector(insertText(sender:)))) // TAB
-
-        
-        toolbar2.sizeToFit()
-        toolbar2.items = items2
+        let toolbar2 = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width*2, height: 50))
+        toolbar2.items = items(from: ["readLine", "print","var","let","func","if","else", "else if", "↹"], separator: " ")
         toolbar2.barTintColor = self.view.backgroundColor
-        toolbar2.tintColor = self.view.tintColor
+        
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        scrollView.addSubview(toolbar)
+        scrollView.contentSize = toolbar.frame.size
+        
+        let scrollView2 = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        scrollView2.addSubview(toolbar2)
+        scrollView2.contentSize = toolbar.frame.size
         
         let inputAccessoryView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
         inputAccessoryView.backgroundColor = self.view.backgroundColor
-        inputAccessoryView.addSubview(toolbar)
-        inputAccessoryView.addSubview(toolbar2)
-        toolbar2.frame.origin.y = toolbar2.frame.origin.y+50
+        inputAccessoryView.addSubview(scrollView)
+        inputAccessoryView.addSubview(scrollView2)
+        scrollView.frame.origin.y = scrollView.frame.origin.y+50
         
         self.code.inputAccessoryView = inputAccessoryView
     }
     
-    @objc func insertText(sender: UIBarButtonItem) {
-        var text = sender.title!.replacingOccurrences(of: " ", with: "")
-        if text == "↹" {
-            text = "    "
-        } else if text == "\n↹" {
-            text = "\n    "
-        } else if text == "print" {
+    @objc func insertText(sender: UIButton) {
+        
+        var continue_ = true
+        
+        var text = sender.title(for: .normal)!.replacingOccurrences(of: " ", with: "")
+        if text.contains("↹") { // Tab
+            text = text.replacingOccurrences(of: "↹", with: "    ")
+        } else if text == "print" { // print
             text = "print("
             let _ = self.textView(self.code, shouldChangeTextIn: self.code.selectedRange, replacementText: text)
         } else if text == "\"." {
             text = "\""
+        } else if text == "func" { // Function
+            continue_ = false
+            
+            let alert = UIAlertController(title: "Declare a function", message: "Type the function's name and paramaters (separated by \",\")", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.placeholder = "Function's name"
+            })
+            
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.placeholder = "Parameters (Optional)"
+            })
+            
+            alert.addAction(UIAlertAction.init(title: "Create", style: .default, handler: { (action) in
+                let name = alert.textFields![0].text!
+                let params = alert.textFields![1].text!
+                self.code.replace(self.code.selectedTextRange!, withText: "func \(name)(\(params)) ")
+                self.code.replace(self.code.selectedTextRange!, withText: "{")
+                let range = self.code.selectedTextRange!
+                self.code.replace(self.code.selectedTextRange!, withText: "}")
+                self.code.selectedTextRange = range
+            }))
+            alert.addAction(AlertManager.shared.cancel)
+            
+            alert.view.tintColor = AppDelegate.shared.theme.tintColor
+            
+            self.present(alert, animated: true, completion: nil)
+        } else if text == "else" { // else
+            continue_ = false
+            
+            self.code.replace(self.code.selectedTextRange!, withText: "else ")
+            self.code.replace(self.code.selectedTextRange!, withText: "{")
+            let range = self.code.selectedTextRange!
+            self.code.replace(self.code.selectedTextRange!, withText: "}")
+            self.code.selectedTextRange = range
+        } else if text == "if" { // if
+            
+            continue_ = false
+            
+            let alert = UIAlertController(title: "If", message: "Type the condition", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.placeholder = "Condition"
+            })
+            
+            alert.addAction(UIAlertAction.init(title: "Add", style: .default, handler: { (action) in
+                let condition = alert.textFields![0].text!
+                self.code.replace(self.code.selectedTextRange!, withText: "if \(condition) ")
+                self.code.replace(self.code.selectedTextRange!, withText: "{")
+                let range = self.code.selectedTextRange!
+                self.code.replace(self.code.selectedTextRange!, withText: "}")
+                self.code.selectedTextRange = range
+            }))
+            alert.addAction(AlertManager.shared.cancel)
+            
+            alert.view.tintColor = AppDelegate.shared.theme.tintColor
+            
+            self.present(alert, animated: true, completion: nil)
+        } else if text == "elseif" { // else if
+            
+            continue_ = false
+            
+            let alert = UIAlertController(title: "Else if", message: "Type the condition", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.placeholder = "Condition"
+            })
+            
+            alert.addAction(UIAlertAction.init(title: "Add", style: .default, handler: { (action) in
+                let condition = alert.textFields![0].text!
+                self.code.replace(self.code.selectedTextRange!, withText: "else if \(condition) ")
+                self.code.replace(self.code.selectedTextRange!, withText: "{")
+                let range = self.code.selectedTextRange!
+                self.code.replace(self.code.selectedTextRange!, withText: "}")
+                self.code.selectedTextRange = range
+            }))
+            alert.addAction(AlertManager.shared.cancel)
+            
+            alert.view.tintColor = AppDelegate.shared.theme.tintColor
+            
+            self.present(alert, animated: true, completion: nil)
+        } else if text == "readLine" { // readLine
+            text = "readLine()!"
+        } else if text == "var" || text == "let" {
+            text = text+" "
         } else {
             let _ = self.textView(self.code, shouldChangeTextIn: self.code.selectedRange, replacementText: text)
         }
         
-        self.code.replace(self.code.selectedTextRange!, withText: text)
+        if continue_ {
+             self.code.replace(self.code.selectedTextRange!, withText: text)
+        }
     }
+    
+    func insert(text: String) {
+        let button = UIButton()
+        button.setTitle(text, for: .normal)
+        
+        insertText(sender: button)
+    }
+
     
     @IBAction func dismissKeyboard(_ sender: Any) {
         self.code.resignFirstResponder()
@@ -430,7 +521,6 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         
         
     }
-    
     
     
     @IBAction func Templates(_ sender: UIBarButtonItem) {
@@ -631,50 +721,93 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
+        let position = textView.selectedTextRange!.start
+        
+        
         print("Autocompletion: \(text)")
+        
+        if textView.text.occurrences(of: "{") == self.code.text.occurrences(of: "}") { // Check if there are the same count of { and }
+            self.closedKeys = true
+        } else {
+            self.closedKeys = false
+        }
+        
         
         if text == "\"" {
             print("Quotes detected!")
-            self.insertText(sender: UIBarButtonItem(title: "\".", style: .plain, target: nil, action: nil))
-            self.code.selectedRange = range
+            self.insert(text: "\".")
+            textView.selectedRange = range
         }
-        
+    
         if text == "{" {
             print("Key detected!")
-            self.insertText(sender: UIBarButtonItem(title: "}", style: .plain, target: nil, action: nil))
-            self.code.selectedRange = range
+            if self.closedKeys {
+                self.insert(text: "}")
+                textView.selectedRange = range
+            }
         }
+        
         
         if text == "[" {
             print("Bracket detected!")
-            self.insertText(sender: UIBarButtonItem(title: "]", style: .plain, target: nil, action: nil))
-            self.code.selectedRange = range
+            self.insert(text: "]")
+            textView.selectedRange = range
         }
         
         if text == "(" {
             print("Parenthesis detected!")
-            self.insertText(sender: UIBarButtonItem(title: ")", style: .plain, target: nil, action: nil))
-            self.code.selectedRange = range
+            self.insert(text: ")")
+            textView.selectedRange = range
         }
         
         if text == "print(" {
-            self.insertText(sender: UIBarButtonItem(title: ")", style: .plain, target: nil, action: nil))
-            self.code.selectedRange = range
+            self.insert(text: ")")
+            textView.selectedRange = range
         }
         
         if text == "\n" {
-            let position = self.code.selectedTextRange!.start
-            let line = self.code.tokenizer.position(from: position, toBoundary: .line, inDirection: UITextStorageDirection.backward.rawValue)
-            let lineRange = self.code.tokenizer.rangeEnclosingPosition(line!, with: .line, inDirection: UITextStorageDirection.backward.rawValue)
-            let lineText = self.code.text(in: lineRange!)
+            let line = textView.tokenizer.position(from: position, toBoundary: .line, inDirection: UITextStorageDirection.backward.rawValue)
+            let lineRange = textView.tokenizer.rangeEnclosingPosition(line!, with: .line, inDirection: UITextStorageDirection.backward.rawValue)
+            let lineText = textView.text(in: lineRange!)
+            
+            var afterCursor = ""
+            if let afterCursor_ = self.code.afterCursor {
+                afterCursor = afterCursor_
+                print("After cursor: \(afterCursor_)")
+            }
             
             if let _ = lineText {
                 print(lineText!)
-                if lineText!.hasSuffix("}") {
-                    self.insertText(sender: UIBarButtonItem(title: "\n↹", style: .plain, target: nil, action: nil))
-                    let range = self.code.selectedTextRange
+                if lineText!.hasSuffix("}") && afterCursor == "}" { // Indent
+                    
+                    var lineText_ = lineText!
+                    // Detect tabs (4 spaces)
+                    var spacesNumbers = 0
+                    while lineText_.hasPrefix(" ") {
+                        spacesNumbers += 1
+                        lineText_ = String(lineText_.dropFirst())
+                    }
+                    
+                    print(spacesNumbers)
+                    
+                    let tabsNumbers = spacesNumbers/4
+                    
+                    
+                    var count = 0
+                    var tabs = "↹"
+                    
+                    while count < tabsNumbers {
+                        tabs = tabs+"↹"
+                        count += 1
+                    }
+                    
+                    let cursor = textView.selectedTextRange!
+                    self.insert(text: "\(tabs.replacingFirstOccurrence(of: "↹", with: ""))")
+                    textView.selectedTextRange = cursor
+                    self.insert(text: "\n\(tabs)")
+                    let range = textView.selectedTextRange
                     _ = Afte.r(0.1, seconds: { (timer) in
-                        self.code.selectedTextRange = range
+                        textView.selectedTextRange = range
                     })
                     
                 }

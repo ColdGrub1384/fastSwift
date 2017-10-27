@@ -10,25 +10,6 @@ import UIKit
 import NMSSH
 import Zip
 
-extension String {
-    
-    func slice(from: String, to: String) -> String? {
-        
-        return (range(of: from)?.upperBound).flatMap { substringFrom in
-            (range(of: to, range: substringFrom..<endIndex)?.lowerBound).map { substringTo in
-                String(self[substringFrom..<substringTo])
-            }
-        }
-    }
-    
-    func replacingFirstOccurrence(of target: String, with replaceString: String) -> String {
-        if let range = self.range(of: target) {
-            return self.replacingCharacters(in: range, with: replaceString)
-        }
-        return self
-    }
-}
-
 class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHChannelDelegate, UITextViewDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var terminal: TerminalTextView!
@@ -46,6 +27,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     var browserVC: DocumentBrowserViewController?
     var console = ""
     var reopen = false
+    var mutableAttrStr = NSMutableAttributedString()
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -54,6 +36,12 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
             delegate.viewDidAppear(true)
         }
     }
+    
+    var terminalHTML: String {
+        return try! String(contentsOfFile: Bundle.main.path(forResource: "terminal", ofType: "html")!).replacingOccurrences(of: "$BACKGROUNDCOLOR", with:"#"+AppDelegate.shared.theme.color.hexString).replacingOccurrences(of: "$TEXTCOLOR", with: "#"+AppDelegate.shared.theme.textColor.hexString)
+        
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +74,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 session.channel.delegate = self
                 session.delegate = self
                 session.channel.requestSizeWidth(UInt(self.view.frame.size.width), height: UInt(self.view.frame.size.height))
-                //session.channel.ptyTerminalType = NMSSHChannelPtyTerminal.xterm
                 session.channel.requestPty = true
                 
                 do {
@@ -131,13 +118,29 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     
     func channel(_ channel: NMSSHChannel!, didReadData message: String!) {
         DispatchQueue.main.async {
-            self.console = self.console+message
-            self.terminal.text = self.terminal.text+message
             
-            if self.terminal.text.contains("Program output") {
+
+            self.terminal.isHidden = true
+            
+            self.terminal.text = self.terminal.text+message
+            self.terminal.text = self.terminal.text.replacingOccurrences(of: "\n", with: "</br>") // terminal works with HTML, so replace \n by </br>
+            self.terminal.text = self.terminal.text+self.terminalHTML
+            
+            if let html = self.terminal.text.attributedStringFromHTML {
+                self.terminal.attributedText = html
+            }
+            
+            self.terminal.isHidden = false
+            
+            
+            print(self.terminal.text)
+            
+            
+            if self.terminal.text.contains("Program output") { // Clear shell
                 let newString = self.terminal.text.components(separatedBy: "Program output")
                 self.activity.stopAnimating()
-                self.terminal.text = newString[1]
+                self.mutableAttrStr = NSMutableAttributedString()
+                self.terminal.text = newString[1]+self.terminalHTML
                 self.console = self.terminal.text
             }
             
@@ -315,8 +318,10 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
             }
             
             self.terminal.scrollToBotom()
+            self.console = self.terminal.text
             
         }
+        
         
     }
     
@@ -355,6 +360,8 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         if (textView.text as NSString).replacingCharacters(in: range, with: text).characters.count >= console.characters.count {
             if text.contains("\n") {
                 let newConsole = textView.text+text
+                let console = self.console
+                print("newConsole: \(newConsole)")
                 let cmd = newConsole.replacingOccurrences(of: console, with: "")
                 print("Command: { \(cmd) }")
                 do {

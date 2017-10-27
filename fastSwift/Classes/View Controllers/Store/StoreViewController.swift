@@ -13,15 +13,6 @@ import GoogleMobileAds
 import NMSSH
 import Zip
 
-extension String {
-    func addingPercentEncodingForURLQueryValue() -> String? {
-        let allowedCharacters = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
-        
-        return self.addingPercentEncoding(withAllowedCharacters: allowedCharacters)
-    }
-    
-}
-
 
 class StoreViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, GADRewardBasedVideoAdDelegate, UITableViewDelegate {
     
@@ -37,7 +28,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     var higherSourceButtonTag = 0
     var filesCollectionView: UICollectionView?
     @IBOutlet weak var doneBtn: UIBarButtonItem!
-    
+        
     @objc func runFileFromStore(_ sender: UIButton) {
         let file = files[sender.tag]
         let fileURL = URL(string:"http://\(Server.default.host)/dl.php?f=/mnt/FFSwift/\(Server.user)@\(Server.host)/files/\(file.addingPercentEncodingForURLQueryValue()!)")!

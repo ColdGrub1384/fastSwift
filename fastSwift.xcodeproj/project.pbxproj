@@ -17,6 +17,7 @@
 		3A2404221EFEC82F00C38D48 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2404211EFEC82F00C38D48 /* StoreViewController.swift */; };
 		3A28B2F41F1E9863008A3D8B /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A28B2F31F1E9863008A3D8B /* ThumbnailProvider.swift */; };
 		3A3B0D3E1F0823EB00836D00 /* ConnectionErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B0D3D1F0823EB00836D00 /* ConnectionErrorViewController.swift */; };
+		3A4074871F9A903A00FBC728 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4074861F9A903A00FBC728 /* Extensions.swift */; };
 		3A45264E1F75460800B57DF6 /* execThumbnail.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3A28B2F11F1E9863008A3D8B /* execThumbnail.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3A4681DA1F881E80001FE6D4 /* White@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2B90181F881963001130D5 /* White@2x.png */; };
 		3A4681DB1F881E85001FE6D4 /* White@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2B90171F881963001130D5 /* White@3x.png */; };
@@ -24,6 +25,7 @@
 		3A4681DF1F89499D001FE6D4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4681DE1F89499D001FE6D4 /* Theme.swift */; };
 		3A579F751EFEB70700B4D209 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A579F741EFEB70700B4D209 /* AccountManager.swift */; };
 		3A5858C71EFF1A4D0036B0AE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5858C61EFF1A4D0036B0AE /* StoreKit.framework */; };
+		3A62AA541FA12D42003750D5 /* terminal.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A62AA531FA12D42003750D5 /* terminal.html */; };
 		3A64F52D1F11380A00C3EBF9 /* ExportToXcodeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64F52C1F11380A00C3EBF9 /* ExportToXcodeActivity.swift */; };
 		3A6873FC1F11B0F500FA0AF3 /* ExportToXcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6873FB1F11B0F400FA0AF3 /* ExportToXcodeViewController.swift */; };
 		3A6A34391F01C27D00ADC9E5 /* NMTerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6A34381F01BD5B00ADC9E5 /* NMTerminalViewController.swift */; };
@@ -113,10 +115,12 @@
 		3A2B90171F881963001130D5 /* White@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "White@3x.png"; sourceTree = "<group>"; };
 		3A2B90181F881963001130D5 /* White@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "White@2x.png"; sourceTree = "<group>"; };
 		3A3B0D3D1F0823EB00836D00 /* ConnectionErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionErrorViewController.swift; sourceTree = "<group>"; };
+		3A4074861F9A903A00FBC728 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3A4681DC1F891CA4001FE6D4 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		3A4681DE1F89499D001FE6D4 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		3A579F741EFEB70700B4D209 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		3A5858C61EFF1A4D0036B0AE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		3A62AA531FA12D42003750D5 /* terminal.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = terminal.html; sourceTree = "<group>"; };
 		3A64F52C1F11380A00C3EBF9 /* ExportToXcodeActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToXcodeActivity.swift; sourceTree = "<group>"; };
 		3A6873FB1F11B0F400FA0AF3 /* ExportToXcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToXcodeViewController.swift; sourceTree = "<group>"; };
 		3A6A34381F01BD5B00ADC9E5 /* NMTerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMTerminalViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 				3AD72C5D1EEC90ED000C80A9 /* Assets.xcassets */,
 				3AD72C621EEC90ED000C80A9 /* Info.plist */,
 				3AD72C5F1EEC90ED000C80A9 /* LaunchScreen.storyboard */,
+				3A62AA531FA12D42003750D5 /* terminal.html */,
 				3A9771141EED917D00E5E565 /* Samples */,
 			);
 			name = Ressources;
@@ -269,6 +274,7 @@
 				3AB5845B1F8BB5630005A690 /* AppViewControllers.swift */,
 				3AD72C581EEC90ED000C80A9 /* Document.swift */,
 				3A09B3BE1F23BC010045CAA1 /* TerminalTextView.swift */,
+				3A4074861F9A903A00FBC728 /* Extensions.swift */,
 				3AF458241F8BC0D3006F9048 /* Activities */,
 				3AF458131F8BBEFC006F9048 /* View Controllers */,
 			);
@@ -509,6 +515,7 @@
 					};
 					3AD72C4E1EEC90EC000C80A9 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
@@ -561,6 +568,7 @@
 				3AB584541F8BB4AB0005A690 /* Camera.storyboard in Resources */,
 				3AB584461F8BB3750005A690 /* Web.storyboard in Resources */,
 				3AB584421F8BB3130005A690 /* Menu.storyboard in Resources */,
+				3A62AA541FA12D42003750D5 /* terminal.html in Resources */,
 				3AB584581F8BB4E40005A690 /* Settings.storyboard in Resources */,
 				3AB584501F8BB4530005A690 /* Terminal.storyboard in Resources */,
 				3AB5844E1F8BB4370005A690 /* ExportToXcodeHelp.storyboard in Resources */,
@@ -645,6 +653,7 @@
 				3A6A34391F01C27D00ADC9E5 /* NMTerminalViewController.swift in Sources */,
 				3AC2FBC41F2BCE7C00170AEE /* WebViewController.swift in Sources */,
 				3AB9AE7E1EFDD0B3005B4BBE /* OrganizerTableViewController.swift in Sources */,
+				3A4074871F9A903A00FBC728 /* Extensions.swift in Sources */,
 				3AB5845C1F8BB5630005A690 /* AppViewControllers.swift in Sources */,
 				3AD72C571EEC90ED000C80A9 /* DocumentViewController.swift in Sources */,
 				3AFB1E881EEDA18000FBCF73 /* AlertManager.swift in Sources */,
@@ -705,13 +714,18 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Y96PL6G497;
+				ENABLE_TESTABILITY = NO;
+				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = execThumbnail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.marcela.ada.fastSwift.execThumbnail;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -721,13 +735,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Y96PL6G497;
+				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = execThumbnail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.marcela.ada.fastSwift.execThumbnail;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -842,20 +859,37 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y96PL6G497;
+				ENABLE_TESTABILITY = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/fastSwift",
 				);
+				GCC_NO_COMMON_BLOCKS = NO;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/fastSwift/Classes/";
 				INFOPLIST_FILE = fastSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					"\"Highlightr\"",
+					"-framework",
+					"\"InAppSettingsKit\"",
+					"-framework",
+					"\"NMSSH\"",
+					"-framework",
+					"\"Zip\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ch.marcela.ada.fastSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -867,6 +901,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -875,11 +910,25 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/fastSwift",
 				);
+				GCC_NO_COMMON_BLOCKS = NO;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/fastSwift/Classes/";
 				INFOPLIST_FILE = fastSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					"\"Highlightr\"",
+					"-framework",
+					"\"InAppSettingsKit\"",
+					"-framework",
+					"\"NMSSH\"",
+					"-framework",
+					"\"Zip\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ch.marcela.ada.fastSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

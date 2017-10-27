@@ -127,65 +127,11 @@
 	</array>
 	<key>UISupportsDocumentBrowser</key>
 	<true/>
-	<key>UTExportedTypeDeclarations</key>
-	<array>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.data</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>Executable</string>
-			<key>UTTypeIdentifier</key>
-			<string>ch.ada.exec</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>swiftc</string>
-				</array>
-			</dict>
-		</dict>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.item</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>Swift script</string>
-			<key>UTTypeIdentifier</key>
-			<string>ch.ada.swift</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>swift</string>
-				</array>
-			</dict>
-		</dict>
-	</array>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.text</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>Swift script</string>
-			<key>UTTypeIdentifier</key>
-			<string>ch.ada.swift</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>swift</string>
-				</array>
-			</dict>
-		</dict>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
@@ -197,6 +143,23 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>swiftc</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.swift-source</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Swift Script</string>
+			<key>UTTypeIdentifier</key>
+			<string>ch.ada.swift</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>swift</string>
 				</array>
 			</dict>
 		</dict>

@@ -10,7 +10,7 @@ import UIKit
 import StoreKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
+@objc class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     
     var window: UIWindow?
     var prices = [String]()
@@ -62,6 +62,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
             }
             return .unknown
         }
+    }
+    
+    @objc func is_iPad() -> Bool {
+        return (screenSize == .iPad || screenSize == .iPadPro105 || screenSize == .iPadPro129)
     }
     
     func clearCaches() {

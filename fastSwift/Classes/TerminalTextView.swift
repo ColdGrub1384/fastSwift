@@ -16,9 +16,7 @@ class TerminalTextView: UITextView {
         return rect
     }
     
-    
-    
-    
+        
     func scrollToBotom() {
         let range = NSMakeRange((text as NSString).length - 1, 1)
         scrollRangeToVisible(range)

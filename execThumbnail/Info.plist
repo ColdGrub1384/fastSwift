@@ -27,6 +27,7 @@
 			<key>QLSupportedContentTypes</key>
 			<array>
 				<string>ch.ada.exec</string>
+				<string>ch.ada.swift</string>
 			</array>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
@@ -56,10 +57,10 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.item</string>
+				<string>public.swift-source</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Swift script</string>
+			<string>Swift Script</string>
 			<key>UTTypeIdentifier</key>
 			<string>ch.ada.swift</string>
 			<key>UTTypeTagSpecification</key>
