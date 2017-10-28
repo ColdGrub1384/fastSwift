@@ -10,6 +10,7 @@ import UIKit
 import NMSSH
 import Zip
 
+
 class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHChannelDelegate, UITextViewDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var terminal: TerminalTextView!
@@ -27,7 +28,8 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     var browserVC: DocumentBrowserViewController?
     var console = ""
     var reopen = false
-    var mutableAttrStr = NSMutableAttributedString()
+    var consoleHTML = ""
+    var plainTerminal = TerminalTextView()
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -35,6 +37,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         if let delegate = browserVC {
             delegate.viewDidAppear(true)
         }
+        
     }
     
     var terminalHTML: String {
@@ -46,6 +49,8 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        plainTerminal.isHidden = true
+        view.addSubview(plainTerminal)
         terminal.layoutManager.allowsNonContiguousLayout = false
         terminal.isSelectable = false
         terminal.delegate = self
@@ -62,6 +67,11 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         navBar.barTintColor = AppDelegate.shared.theme.color
         view.backgroundColor = AppDelegate.shared.theme.color
         view.tintColor = AppDelegate.shared.theme.tintColor
+        
+        plainTerminal.frame = terminal.frame
+        plainTerminal.textColor = terminal.textColor
+        plainTerminal.backgroundColor = terminal.backgroundColor
+        plainTerminal.font = terminal.font
         
         // Update text view size
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -118,19 +128,20 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     
     func channel(_ channel: NMSSHChannel!, didReadData message: String!) {
         DispatchQueue.main.async {
+                        
+            self.consoleHTML = ((self.consoleHTML+message).replacingOccurrences(of: self.terminalHTML, with: "").replacingOccurrences(of: "\n", with: "</br>"))+self.terminalHTML // terminal works with HTML, so replace \n by </br>
             
 
-            self.terminal.isHidden = true
+            self.plainTerminal.isHidden = false
             
-            self.terminal.text = self.terminal.text+message
-            self.terminal.text = self.terminal.text.replacingOccurrences(of: "\n", with: "</br>") // terminal works with HTML, so replace \n by </br>
-            self.terminal.text = self.terminal.text+self.terminalHTML
+            self.terminal.text = self.consoleHTML
+            self.plainTerminal.text = self.console
             
             if let html = self.terminal.text.attributedStringFromHTML {
                 self.terminal.attributedText = html
             }
             
-            self.terminal.isHidden = false
+            self.plainTerminal.isHidden = true
             
             
             print(self.terminal.text)
@@ -139,8 +150,8 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
             if self.terminal.text.contains("Program output") { // Clear shell
                 let newString = self.terminal.text.components(separatedBy: "Program output")
                 self.activity.stopAnimating()
-                self.mutableAttrStr = NSMutableAttributedString()
                 self.terminal.text = newString[1]+self.terminalHTML
+                self.consoleHTML = newString[1]+self.terminalHTML
                 self.console = self.terminal.text
             }
             
@@ -319,7 +330,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
             
             self.terminal.scrollToBotom()
             self.console = self.terminal.text
-            
         }
         
         
@@ -333,11 +343,18 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         self.terminal.contentInset.bottom = r.size.height+50
         self.terminal.scrollIndicatorInsets.bottom = r.size.height+50
         
+        r = self.plainTerminal.convert(r, from:nil)
+        self.plainTerminal.contentInset.bottom = r.size.height+50
+        self.plainTerminal.scrollIndicatorInsets.bottom = r.size.height+50
+        
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
         self.terminal.contentInset = .zero
         self.terminal.scrollIndicatorInsets = .zero
+        
+        self.plainTerminal.contentInset = .zero
+        self.plainTerminal.scrollIndicatorInsets = .zero
     }
     
     func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
@@ -374,6 +391,8 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                     self.present(AlertManager.shared.connectionErrorViewController, animated: true, completion: nil)
                 }
             }
+            
+            
             return true
         }
         

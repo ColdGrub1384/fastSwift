@@ -263,7 +263,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         toolbar.barTintColor = self.view.backgroundColor
         
         let toolbar2 = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width*2, height: 50))
-        toolbar2.items = items(from: ["readLine", "print","var","let","func","if","else", "else if", "↹"], separator: " ")
+        toolbar2.items = items(from: ["readLine","readPass","formatted text","print","var","let","func","if","else", "else if", "↹"], separator: " ")
         toolbar2.barTintColor = self.view.backgroundColor
         
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
@@ -375,6 +375,139 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             self.present(alert, animated: true, completion: nil)
         } else if text == "readLine" { // readLine
             text = "readLine()!"
+        } else if text == "readPass" {
+            text = "FFKit.readPass()!"
+        } else if text == "formattedtext" {
+            continue_ = false
+            
+            let alert = UIAlertController(title: "Formatted Text", message: "Type text and attributes", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.placeholder = "Text to be formatted"
+            })
+            
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.placeholder = "Attributes"
+                textField.isEnabled = false
+            })
+            
+            alert.addAction(UIAlertAction.init(title: "Add attribute", style: .default, handler: { (action) in
+                let formatting = ["bold", "dim", "underlined", "inverted", "hidden"]
+                let foregroundColors = ["red", "green", "yellow", "blue", "magenta", "cyan", "lightGray", "darkGray"]
+                let backgroundColors = ["default", "red", "green", "yellow", "blue", "magenta", "cyan", "lightGray", "darkGray", "white"]
+                
+                let add = UIAlertController(title: "Add attribute", message: nil, preferredStyle: .alert)
+                
+                
+                add.addAction(UIAlertAction(title: "Formatting", style: .default, handler: { (action) in
+                    let alert_ = UIAlertController(title: "Formatting", message: nil, preferredStyle: .alert)
+                    alert_.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                        self.present(alert, animated: true, completion: nil)
+                    }))
+                    
+                    alert_.view.tintColor = AppDelegate.shared.theme.tintColor
+                    
+                    for formatting_ in formatting {
+                        alert_.addAction(UIAlertAction(title: formatting_, style: .default, handler: { (action) in
+                            alert.textFields![1].text = alert.textFields![1].text!+"\(formatting_) "
+                            
+                            self.present(alert, animated: true, completion: nil)
+                        }))
+                    }
+                    
+                    self.present(alert_, animated: true, completion: nil)
+                }))
+                
+                add.addAction(UIAlertAction(title: "Font color", style: .default, handler: { (action) in
+                    let alert_ = UIAlertController(title: "Font color", message: nil, preferredStyle: .alert)
+                    alert_.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                        self.present(alert, animated: true, completion: nil)
+                    }))
+                    
+                    alert_.view.tintColor = AppDelegate.shared.theme.tintColor
+                    
+                    for color in foregroundColors {
+                        alert_.addAction(UIAlertAction(title: color, style: .default, handler: { (action) in
+                            alert.textFields![1].text = alert.textFields![1].text!+"\(color) "
+                            
+                            self.present(alert, animated: true, completion: nil)
+                        }))
+                    }
+                    
+                    self.present(alert_, animated: true, completion: nil)
+                }))
+                
+                add.addAction(UIAlertAction(title: "Background color", style: .default, handler: { (action) in
+                    let alert_ = UIAlertController(title: "Background color", message: nil, preferredStyle: .alert)
+                    alert_.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                        self.present(alert, animated: true, completion: nil)
+                    }))
+                    
+                    alert_.view.tintColor = AppDelegate.shared.theme.tintColor
+                    
+                    for color in backgroundColors {
+                        alert_.addAction(UIAlertAction(title: color, style: .default, handler: { (action) in
+                            alert.textFields![1].text = alert.textFields![1].text!+"\(color)Bak "
+                            
+                            self.present(alert, animated: true, completion: nil)
+                        }))
+                    }
+                    
+                    self.present(alert_, animated: true, completion: nil)
+                }))
+                
+                add.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                    self.present(alert, animated: true, completion: nil)
+                }))
+                
+                add.view.tintColor = alert.view.tintColor
+                
+                self.present(add, animated: true, completion: nil)
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Remove attribute", style: .default, handler: { (action) in
+                let alert_ = UIAlertController(title: "Remove attribute", message: nil, preferredStyle: .alert)
+                let attrs = alert.textFields![1].text!
+                let attrs_ = attrs.components(separatedBy: " ")
+                
+                for attr in attrs_ {
+                    if attr != "" {
+                        alert_.addAction(UIAlertAction(title: attr, style: .default, handler: { (action) in
+                            let textfield = alert.textFields![1]
+                            textfield.text = textfield.text?.replacingOccurrences(of: attr+" ", with: "")
+                            
+                            self.present(alert, animated: true, completion: nil)
+                        }))
+                    }
+                }
+                
+                alert_.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                    self.present(alert, animated: true, completion: nil)
+                }))
+                
+                alert_.view.tintColor = alert.view.tintColor
+                
+                self.present(alert_, animated: true, completion: nil)
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (action) in
+                let attrs = alert.textFields![1].text!
+                var attributes = attrs.components(separatedBy: " ")
+                
+                var index = 0
+                
+                for attribute in attributes {
+                    if attribute == " " {
+                        attributes.remove(at: index)
+                    }
+                    
+                    index = index+1
+                }
+            }))
+            alert.addAction(AlertManager.shared.cancel)
+            
+            alert.view.tintColor = AppDelegate.shared.theme.tintColor
+            
+            self.present(alert, animated: true, completion: nil)
         } else if text == "var" || text == "let" {
             text = text+" "
         } else {
