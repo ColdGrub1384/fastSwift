@@ -380,7 +380,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         } else if text == "formattedtext" {
             continue_ = false
             
-            let alert = UIAlertController(title: "Formatted Text", message: "Type text and attributes", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Formatted Text", message: "Type text and attributes, a variable will be created with typed text and attributes that can be printed", preferredStyle: .alert)
             alert.addTextField(configurationHandler: { (textField) in
                 textField.placeholder = "Text to be formatted"
             })
@@ -491,17 +491,20 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             
             alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (action) in
                 let attrs = alert.textFields![1].text!
-                var attributes = attrs.components(separatedBy: " ")
+                let text = alert.textFields![0].text!
+                let attributes_ = attrs.components(separatedBy: " ")
+                var attributes = [String]()
                 
-                var index = 0
-                
-                for attribute in attributes {
-                    if attribute == " " {
-                        attributes.remove(at: index)
+                for attribute in attributes_{
+                    if attribute.replacingOccurrences(of: " ", with: "") != "" {
+                        let newAttr = ".\(attribute)"
+                        attributes.append(newAttr)
                     }
                     
-                    index = index+1
                 }
+                
+                let code = "FFKit.text(\"\(text)\", withAttributes:[\(attributes.joined(separator: ","))])"
+                self.code.replace(self.code.selectedTextRange!, withText: code)
             }))
             alert.addAction(AlertManager.shared.cancel)
             
