@@ -31,6 +31,8 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     var consoleHTML = ""
     var plainTerminal = TerminalTextView()
     
+    
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
@@ -272,6 +274,18 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 if self.session.sftp.fileExists(atPath: "/home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main") {
                     self.terminal.text = "Downloading executable file..."
                     try! self.session.channel.execute("zip \(UIDevice.current.identifierForVendor!.uuidString)/main.zip \(UIDevice.current.identifierForVendor!.uuidString)/main")
+                    let zipFile = self.session.sftp.contents(atPath: "/home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main.zip")
+                    
+                    let defaultSession = NMSSHSession.connect(toHost: Server.default.host, withUsername: Server.default.user)
+                    if defaultSession!.isConnected {
+                        defaultSession?.authenticate(byPassword: Server.default.password)
+                        if defaultSession!.isAuthorized {
+                            defaultSession?.sftp.connect()
+                            defaultSession?.sftp.createDirectory(atPath: "/home/\(Server.default.user)/\(UIDevice.current.identifierForVendor!.uuidString)")
+                            try! defaultSession?.channel.execute("touch /home/\(Server.default.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main.zip")
+                            defaultSession?.sftp.writeContents(zipFile, toFileAtPath: "/home/\(Server.default.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main.zip")
+                        }
+                    }
                     
                     let fileURL = URL(string:"http://\(Server.default.host)/dl.php?f=/home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main.zip")!
                     print(fileURL)
