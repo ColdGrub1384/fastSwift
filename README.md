@@ -34,4 +34,3 @@ See licenses [here](https://github.com/ColdGrub1384/fastSwift/blob/master/Pods/T
 # Donations
 Pay me an iPhone screen reparation:</br>
 BTC: 1Gufqtu4rYM1q3WaevbEF1wKkYXXk5hWfR</br>
-![QR](http://coldg.ddns.net/donate.jpeg)
