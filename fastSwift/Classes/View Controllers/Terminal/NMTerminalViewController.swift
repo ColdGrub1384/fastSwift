@@ -320,14 +320,19 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                                     
                                     let activityVC = UIActivityViewController(activityItems: [destURL], applicationActivities: [publish])
                                     
+                                    try! defaultSession?.channel.execute("rm -rf /home/\(Server.default.user)/\(UIDevice.current.identifierForVendor!.uuidString)")
+                                    try! self.session.channel.execute("rm -rf /home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)")
+                                    self.session.disconnect()
+                                    defaultSession?.disconnect()
+                                    
                                     if !inCurrentVC {
                                         self.dismiss(animated: true, completion: {
-                                            self.session.disconnect()
                                             self.delegate?.present(activityVC, animated: true, completion: nil)
                                         })
                                     } else {
                                         self.present(activityVC, animated: true, completion: nil)
                                     }
+                                    
                                 } catch let error {
                                     AlertManager.shared.present(error: error, withTitle: "Error saving file!", inside: self)
                                 }
@@ -385,6 +390,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
             self.terminal.tintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         }
     }
+    
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
