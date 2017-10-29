@@ -95,15 +95,30 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     // MARK: UIDocumentBrowserViewControllerDelegate
     
     func documentBrowser(_ controller: UIDocumentBrowserViewController, didRequestDocumentCreationWithHandler importHandler: @escaping (URL?, UIDocumentBrowserViewController.ImportMode) -> Void) {
-        let newDocumentURL: URL? = Bundle.main.url(forResource: "Samples", withExtension: "")?.appendingPathComponent("Untitled.swift")
+        let docURL: URL? = Bundle.main.url(forResource: "Samples", withExtension: "")?.appendingPathComponent("Untitled.swift")
+        var newDocumentURL: URL?
         
         // Set the URL for the new document here. Optionally, you can present a template chooser before calling the importHandler.
         // Make sure the importHandler is always called, even if the user cancels the creation request.
-        if newDocumentURL != nil {
+        
+        let alert = AlertManager.shared.alert(withTitle: "Create a Swift file", message: "Type file's name", style: .alert, actions: [])
+        alert.addAction(AlertManager.shared.ok(handler: { (action) in
+            let fileName = alert.textFields![0].text!
+            let tmp = URL(fileURLWithPath:NSTemporaryDirectory())
+            newDocumentURL = tmp.appendingPathComponent(fileName+".swift")
+            try! FileManager.default.copyItem(at: docURL!, to: newDocumentURL!)
+            
             importHandler(newDocumentURL, .copy)
-        } else {
-            importHandler(nil, .none)
+        }))
+        
+        alert.addTextField { (textfield) in
+            textfield.placeholder = "File's name"
         }
+        alert.addAction(AlertManager.shared.cancel)
+        alert.view.tintColor = AppDelegate.shared.theme.tintColor
+        
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     func documentBrowser(_ controller: UIDocumentBrowserViewController, didPickDocumentURLs documentURLs: [URL]) {
