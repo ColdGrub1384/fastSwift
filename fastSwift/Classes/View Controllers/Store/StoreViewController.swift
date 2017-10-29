@@ -28,6 +28,18 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     var higherSourceButtonTag = 0
     var filesCollectionView: UICollectionView?
     @IBOutlet weak var doneBtn: UIBarButtonItem!
+    var challenges = [Challenge]()
+    
+    
+    @objc func tryChallenge(_ sender: UIButton) {
+        let documentViewController = AppViewControllers().document
+        let index_ = sender.title(for: .disabled)
+        if let index = Int(index_!) {
+            documentViewController.challenge = self.challenges[index]
+            self.present(documentViewController, animated: true, completion: nil)
+        }
+        
+    }
         
     @objc func runFileFromStore(_ sender: UIButton) {
         let file = files[sender.tag]
@@ -145,6 +157,8 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             } else {
                 return 1
             }
+        } else if collectionView.tag == 7 {
+            return challenges.count
         } else {
             return 1
         }
@@ -152,9 +166,9 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if canMakePayments {
-            return 4
+            return 5
         } else {
-            return 3
+            return 4
         }
     }
     
@@ -228,6 +242,18 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             let icon_ = icon?.withRenderingMode(.alwaysTemplate)
             iconView.image = icon_
             iconView.tintColor = AppDelegate.shared.theme.textColor
+        } else if collectionView.tag == 7 { // Challenges
+            let label = cell.viewWithTag(4) as! UILabel
+            label.textColor = AppDelegate.shared.theme.textColor
+            label.text = self.challenges[indexPath.row].name
+            
+            cell.backgroundColor = AppDelegate.shared.theme.color
+            
+            let button = cell.viewWithTag(5) as! UIButton
+            button.backgroundColor = .clear
+            button.setTitle("\(indexPath.row)", for: .disabled)
+            button.addTarget(self, action: #selector(tryChallenge(_:)), for: .touchUpInside)
+            
         }
         
         return cell
@@ -276,7 +302,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
         tableView.delegate = self
         
-        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/dir.php?dir=/mnt/FFSwift/\(Server.user)@\(Server.host)/files")!) { (data, response, error) in
+        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/dir.php?dir=/mnt/FFSwift/\(Server.user)@\(Server.host)/files")!) { (data, response, error) in // Fetch store programs
             if error == nil {
                 if data != nil {
                     let string = String.init(data: data!, encoding: .utf8)!
@@ -319,6 +345,32 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         if AppDelegate.shared.theme.isEqual(to: Theme.white) {
             view.backgroundColor = #colorLiteral(red: 0.9627815673, green: 0.9627815673, blue: 0.9627815673, alpha: 1)
         }
+        
+        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/challenges.php?viewChallenges")!) { (data, response, error) in // Fetch challenges
+            if let data = data {
+                if let str = String(data: data, encoding: .utf8) {
+                    let challenges = str.components(separatedBy: ";")
+                    
+                    for challenge in challenges {
+                        let properties = challenge.components(separatedBy: ":")
+                        
+                        if properties.count <= 1 { // Break if challenge is empty, always the last
+                            break
+                        }
+                        
+                        let name = properties[0]
+                        let code = properties[1]
+                        
+                        let challenge_ = Challenge(name: name, code: code)
+                        self.challenges.append(challenge_)
+                    }
+                    
+                    for challenge in self.challenges {
+                        print("Challenge found: \(challenge.name)")
+                    }
+                }
+            }
+        }.resume()
     }
     
     override func viewDidAppear(_ animated: Bool) {

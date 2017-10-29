@@ -63,6 +63,8 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     var closedKeys = true
     
+    var challenge: Challenge?
+    
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         for url in urls {
@@ -131,8 +133,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                 }
             }
         }
-        
-        print(code.text.values)
+
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -162,21 +163,36 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         code.keyboardAppearance = AppDelegate.shared.theme.keyboardAppearance
         
         // Access the document
-        document?.open(completionHandler: { (success) in
-            if success {
-                // Display the content of the document, e.g.:
-                self.code.text = self.document?.code
-                self.titleBar.topItem?.title = self.document?.fileURL.deletingPathExtension().lastPathComponent
-                
-                self.code.attributedText = self.highlight("swift", code: self.code.text)
-            } else {
-                // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
-            }
-        })
+        if document != nil {
+            document?.open(completionHandler: { (success) in
+                if success {
+                    // Display the content of the document, e.g.:
+                    self.code.text = self.document?.code
+                    self.titleBar.topItem?.title = self.document?.fileURL.deletingPathExtension().lastPathComponent
+                    
+                    self.code.attributedText = self.highlight("swift", code: self.code.text)
+                } else {
+                    // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
+                }
+            })
+        } else if challenge != nil { // Init from challenge
+            titleBar.topItem?.title = challenge?.name
+            code.text = challenge!.code+"\n\n"
+            code.attributedText = self.highlight("swift", code: self.code.text)
+            
+            compilations.isEnabled = false
+            
+            let compile = toolbar.items?.first
+            toolbar.setItems([compile!], animated: true)
+        }
         
     }
     
     @IBAction func dismissDocumentViewController() {
+        
+        if challenge != nil { // Is a challenge
+            self.dismiss(animated: true, completion: nil)
+        }
         
         code.resignFirstResponder()
         
@@ -282,6 +298,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         
         self.code.inputAccessoryView = inputAccessoryView
     }
+    
     
     @objc func insertText(sender: UIButton) {
         
@@ -553,7 +570,52 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         dismissKeyboard.isEnabled = false
     }
     
-    @IBAction func Compile(_ sender: Any) {
+    func checkCode() { // Check if code is correct for challenge
+        if let codeForParams = self.code.text.addingPercentEncodingForURLQueryValue() {
+            let url = URL(string:"http://\(Server.default.host)/challenges.php?username=\(AccountManager.shared.username!.addingPercentEncodingForURLQueryValue()!)&code=\(codeForParams)&challenge=\(self.challenge!.name.addingPercentEncodingForURLQueryValue()!)")! // URL to check code
+            
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                if let error = error {
+                    AlertManager.shared.present(error: error, withTitle: "Error sending request", inside: self)
+                } else {
+                    if let data = data {
+                        if let str = String(data: data, encoding: .utf8) {
+                            let win = (str.slice(from: "Result(", to: ")")! == "1")
+                            if let output = str.slice(from: "Output(", to: ")") {
+                                var textToShow = ""
+                                if win { // User won the challenge
+                                    textToShow = "You completed the challenge!\nThe output was:\n \(output)"
+                                } else {
+                                    textToShow = "You code is incorrect, retry\nThe output was:\n \(output)"
+                                }
+                                
+                                let alert = UIAlertController(title: "Results", message: textToShow, preferredStyle: .alert)
+
+                                if win {
+                                    alert.addAction(AlertManager.shared.ok(handler: { (action) in
+                                        self.dismiss(animated: true, completion: nil)
+                                    }))
+                                } else {
+                                    alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: nil))
+                                }
+                                
+                                alert.view.tintColor = AppDelegate.shared.theme.tintColor
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                }
+            }).resume()
+        }
+    }
+    
+    @IBAction func Compile(_ sender: Any) { // Send code
+        
+        if challenge != nil {
+            // Send challenge
+            checkCode()
+            return
+        }
         
         var additionalCommand = ""
         
@@ -579,6 +641,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                 
                 if (session?.isAuthorized)! {
                     
+                    // Spend compilation
                     AccountManager.shared.compilations = AccountManager.shared.compilations-1
                     self.compilations.title = "\(AccountManager.shared.compilations) 🐧"
                     
@@ -611,7 +674,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                             }
                         }
                                                 
-                        DispatchQueue.main.sync {
+                        DispatchQueue.main.sync { // Compile code and run it
                             self.dismiss(animated: true, completion: {
                                 
                                 if additionalCommand != "" {
