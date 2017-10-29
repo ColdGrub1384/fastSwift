@@ -313,6 +313,8 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         navigationController?.navigationBar.barTintColor = AppDelegate.shared.theme.color
         navigationController?.navigationBar.tintColor = AppDelegate.shared.theme.tintColor
         navigationController?.navigationBar.barStyle = AppDelegate.shared.theme.barStyle
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
         view.backgroundColor = AppDelegate.shared.theme.color
         if AppDelegate.shared.theme.isEqual(to: Theme.white) {
             view.backgroundColor = #colorLiteral(red: 0.9627815673, green: 0.9627815673, blue: 0.9627815673, alpha: 1)
