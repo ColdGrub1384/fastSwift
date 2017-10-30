@@ -36,7 +36,13 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         let index_ = sender.title(for: .disabled)
         if let index = Int(index_!) {
             documentViewController.challenge = self.challenges[index]
-            self.present(documentViewController, animated: true, completion: nil)
+            if AccountManager.shared.username != nil && AccountManager.shared.password != nil { // User is logged, so start the challenge
+                self.present(documentViewController, animated: true, completion: nil)
+            } else { // User is not logged
+                AccountManager.shared.login(inside: self, completion: {
+                    self.tryChallenge(sender)
+                })
+            }
         }
         
     }

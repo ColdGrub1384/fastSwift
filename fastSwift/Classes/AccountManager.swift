@@ -62,7 +62,7 @@ class AccountManager {
         var userTextField = UITextField()
         var passTextField = UITextField()
         
-        let alert = AlertManager.shared.alert(withTitle: "Login / Register", message: "You need an account to publish projects to the store", style: .alert, actions: [UIAlertAction.init(title: "Login", style: .default, handler: { (action) in
+        let alert = AlertManager.shared.alert(withTitle: "Login / Register", message: "You need an account to publish projects to the store and play challenges", style: .alert, actions: [UIAlertAction.init(title: "Login", style: .default, handler: { (action) in
             // Login
             let params = "user=\(userTextField.text!.addingPercentEncodingForURLQueryValue()!)&password=\(passTextField.text!.addingPercentEncodingForURLQueryValue()!)&action=login"
             URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php?\(params)")!, completionHandler: { (data, response, error) in
@@ -74,11 +74,13 @@ class AccountManager {
                         let str = String.init(data: data!, encoding: String.Encoding.utf8)!
                         
                         if str == "Authenticated!" {
-                            self.username = userTextField.text!
-                            self.password = passTextField.text!
-                            
-                            if completion != nil {
-                                completion!()
+                            DispatchQueue.main.async {
+                                self.username = userTextField.text!
+                                self.password = passTextField.text!
+                                
+                                if completion != nil {
+                                    completion!()
+                                }
                             }
                         } else {
                             DispatchQueue.main.async {

@@ -572,7 +572,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     func checkCode() { // Check if code is correct for challenge
         if let codeForParams = self.code.text.addingPercentEncodingForURLQueryValue() {
-            let url = URL(string:"http://\(Server.default.host)/challenges.php?username=\(AccountManager.shared.username!.addingPercentEncodingForURLQueryValue()!)&code=\(codeForParams)&challenge=\(self.challenge!.name.addingPercentEncodingForURLQueryValue()!)")! // URL to check code
+            let url = URL(string:"http://\(Server.default.host)/challenges.php?username=\(AccountManager.shared.username!.addingPercentEncodingForURLQueryValue()!)&code=\(codeForParams)&challenge=\(self.challenge!.name.addingPercentEncodingForURLQueryValue()!)&password=\(AccountManager.shared.password!.addingPercentEncodingForURLQueryValue()!)")! // URL to check code
             
             URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                 if let error = error {
