@@ -593,7 +593,13 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
 
                                 if win {
                                     alert.addAction(AlertManager.shared.ok(handler: { (action) in
-                                        self.dismiss(animated: true, completion: nil)
+                                        self.dismiss(animated: true, completion: {
+                                            if let points = str.slice(from: "EarnPoints(", to: ")") {
+                                                if let vc = AppDelegate.shared.window?.rootViewController {
+                                                    AlertManager.shared.presentAlert(withTitle: "You earned \(points) points!", message: "Congrulations! You completed the challenge the first time!", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: vc, animated: true, completion: nil)
+                                                }
+                                            }
+                                        })
                                     }))
                                 } else {
                                     alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: nil))
