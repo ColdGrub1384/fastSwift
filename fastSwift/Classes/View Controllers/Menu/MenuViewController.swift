@@ -110,6 +110,13 @@ class MenuViewController: UIViewController {
         
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if AppDelegate.shared.isFirstLaunch {
+            
+        }
+    }
     
     func reloadStore() {
         let frame = vcs[3].view.frame

@@ -8,6 +8,31 @@
 
 import UIKit
 
+extension AppDelegate {
+    var isFirstLaunch: Bool {
+        let value = UserDefaults.standard.bool(forKey: "launched")
+        UserDefaults.standard.set(true, forKey: "launched")
+        
+        for argument in CommandLine.arguments {
+            if argument == "firstLaunch" {
+                return true
+            }
+        }
+        
+        return value.inverted
+    }
+}
+
+extension Bool {
+    var inverted: Bool {
+        if self {
+            return false
+        } else {
+            return true
+        }
+    }
+}
+
 extension String {
     
     var attributedStringFromHTML: NSAttributedString? {

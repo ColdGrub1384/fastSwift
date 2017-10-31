@@ -28,6 +28,38 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     var higherSourceButtonTag = 0
     var filesCollectionView: UICollectionView?
     @IBOutlet weak var doneBtn: UIBarButtonItem!
+    var challenges = [Challenge]()
+    var leaderboard = [Player]()
+    
+    @objc func viewProfile(_ sender: UIButton) {
+        let webViewController = AppViewControllers().web
+        let index_ = sender.title(for: .disabled)
+        if let index = Int(index_!) {
+            let player = leaderboard[index]
+            let url = player.profile
+            
+            webViewController.url = url
+            self.present(webViewController, animated: true, completion: nil)
+        }
+        
+    }
+    
+    @objc func tryChallenge(_ sender: UIButton) {
+        let documentViewController = AppViewControllers().document
+        let index_ = sender.title(for: .disabled)
+        if let index = Int(index_!) {
+            documentViewController.challenge = self.challenges[index]
+            if AccountManager.shared.username != nil && AccountManager.shared.password != nil { // User is logged, so start the challenge
+                self.present(documentViewController, animated: true, completion: nil)
+            } else { // User is not logged
+                AccountManager.shared.login(inside: self, completion: {
+                    self.tryChallenge(sender)
+                })
+            }
+        }
+        
+    }
+
         
     @objc func runFileFromStore(_ sender: UIButton) {
         let file = files[sender.tag]
@@ -145,6 +177,10 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             } else {
                 return 1
             }
+        } else if collectionView.tag == 7 {
+            return challenges.count
+        } else if collectionView.tag == 8 {
+            return leaderboard.count
         } else {
             return 1
         }
@@ -152,9 +188,9 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if canMakePayments {
-            return 4
+            return 6
         } else {
-            return 3
+            return 5
         }
     }
     
@@ -166,7 +202,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
         var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath)
         
-        if collectionView.tag != 2 {
+        if collectionView.tag != 2 && collectionView.tag != 8 {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(indexPath.row)", for: indexPath)
         }
         
@@ -228,7 +264,42 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             let icon_ = icon?.withRenderingMode(.alwaysTemplate)
             iconView.image = icon_
             iconView.tintColor = AppDelegate.shared.theme.textColor
+        } else if collectionView.tag == 7 { // Challenges
+            let label = cell.viewWithTag(4) as! UILabel
+            label.textColor = AppDelegate.shared.theme.textColor
+            label.text = self.challenges[indexPath.row].name
+            
+            cell.backgroundColor = AppDelegate.shared.theme.color
+            
+            let button = cell.viewWithTag(5) as! UIButton
+            button.backgroundColor = .clear
+            button.setTitle("\(indexPath.row)", for: .disabled)
+            button.addTarget(self, action: #selector(tryChallenge(_:)), for: .touchUpInside)
+            
+        } else if collectionView.tag == 8 { // Leaderboard
+            let points = cell.viewWithTag(3) as! UILabel
+            points.textColor = AppDelegate.shared.theme.textColor
+            points.text = "\(self.leaderboard[indexPath.row].points) Points"
+            
+            let name = cell.viewWithTag(4) as! UILabel
+            name.textColor = AppDelegate.shared.theme.textColor
+            name.text = self.leaderboard[indexPath.row].name
+            
+            cell.backgroundColor = AppDelegate.shared.theme.color
+            
+            let button = cell.viewWithTag(5) as! UIButton
+            button.backgroundColor = .clear
+            button.setTitle("\(indexPath.row)", for: .disabled)
+            button.addTarget(self, action: #selector(viewProfile(_:)), for: .touchUpInside)
+            
+            let iconView = cell.viewWithTag(1) as! UIImageView
+            let icon = iconView.image!
+            let icon_ = icon.withRenderingMode(.alwaysTemplate)
+            iconView.image = icon_
+            iconView.tintColor = AppDelegate.shared.theme.textColor
+            
         }
+
         
         return cell
     }
@@ -276,7 +347,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
         tableView.delegate = self
         
-        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/dir.php?dir=/mnt/FFSwift/\(Server.user)@\(Server.host)/files")!) { (data, response, error) in
+        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/dir.php?dir=/mnt/FFSwift/\(Server.user)@\(Server.host)/files")!) { (data, response, error) in // Fetch store programs
             if error == nil {
                 if data != nil {
                     let string = String.init(data: data!, encoding: .utf8)!
@@ -313,10 +384,66 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         navigationController?.navigationBar.barTintColor = AppDelegate.shared.theme.color
         navigationController?.navigationBar.tintColor = AppDelegate.shared.theme.tintColor
         navigationController?.navigationBar.barStyle = AppDelegate.shared.theme.barStyle
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
         view.backgroundColor = AppDelegate.shared.theme.color
         if AppDelegate.shared.theme.isEqual(to: Theme.white) {
             view.backgroundColor = #colorLiteral(red: 0.9627815673, green: 0.9627815673, blue: 0.9627815673, alpha: 1)
         }
+        
+        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/challenges.php?viewChallenges")!) { (data, response, error) in // Fetch challenges
+            if let data = data {
+                if let str = String(data: data, encoding: .utf8) {
+                    let challenges = str.components(separatedBy: ";")
+                    
+                    for challenge in challenges {
+                        let properties = challenge.components(separatedBy: ":")
+                        
+                        if properties.count <= 1 { // Break if challenge is empty, always the last
+                            break
+                        }
+                        
+                        let name = properties[0]
+                        let code = properties[1]
+                        
+                        let challenge_ = Challenge(name: name, code: code)
+                        self.challenges.append(challenge_)
+                    }
+                    
+                    for challenge in self.challenges {
+                        print("Challenge found: \(challenge.name)")
+                    }
+                }
+            }
+        }.resume()
+        
+        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/leaderboard.php")!) { (data, response, error) in // Fetch leaderboard
+            if let data = data {
+                if let str = String(data: data, encoding: .utf8) {
+                    let users = str.components(separatedBy: ";")
+                    
+                    for user in users {
+                        let properties = user.components(separatedBy: ":")
+                        
+                        if properties.count <= 1 {
+                            break
+                        }
+                        
+                        let name = properties[0]
+                        let points_ = properties[1]
+                        
+                        if let points = Int(points_) {
+                            let player = Player(name: name, points: points)
+                            self.leaderboard.append(player)
+                        }
+                    }
+                    
+                    for player in self.leaderboard {
+                        print("Player found: \(player.name)")
+                    }
+                }
+            }
+            }.resume()
     }
     
     override func viewDidAppear(_ animated: Bool) {

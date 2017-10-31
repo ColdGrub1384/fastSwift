@@ -72,6 +72,10 @@
             argument = "9999"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "firstLaunch"
+            isEnabled = "YES">
+         </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>

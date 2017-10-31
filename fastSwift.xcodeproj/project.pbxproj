@@ -25,6 +25,8 @@
 		3A4681DF1F89499D001FE6D4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4681DE1F89499D001FE6D4 /* Theme.swift */; };
 		3A579F751EFEB70700B4D209 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A579F741EFEB70700B4D209 /* AccountManager.swift */; };
 		3A5858C71EFF1A4D0036B0AE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5858C61EFF1A4D0036B0AE /* StoreKit.framework */; };
+		3A5A90A21FA67722005F143D /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A90A11FA67721005F143D /* Challenge.swift */; };
+		3A5A90A41FA7B68F005F143D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A90A31FA7B68F005F143D /* Player.swift */; };
 		3A62AA541FA12D42003750D5 /* terminal.html in Resources */ = {isa = PBXBuildFile; fileRef = 3A62AA531FA12D42003750D5 /* terminal.html */; };
 		3A64F52D1F11380A00C3EBF9 /* ExportToXcodeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A64F52C1F11380A00C3EBF9 /* ExportToXcodeActivity.swift */; };
 		3A6873FC1F11B0F500FA0AF3 /* ExportToXcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6873FB1F11B0F400FA0AF3 /* ExportToXcodeViewController.swift */; };
@@ -120,6 +122,8 @@
 		3A4681DE1F89499D001FE6D4 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		3A579F741EFEB70700B4D209 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		3A5858C61EFF1A4D0036B0AE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		3A5A90A11FA67721005F143D /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
+		3A5A90A31FA7B68F005F143D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		3A62AA531FA12D42003750D5 /* terminal.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = terminal.html; sourceTree = "<group>"; };
 		3A64F52C1F11380A00C3EBF9 /* ExportToXcodeActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToXcodeActivity.swift; sourceTree = "<group>"; };
 		3A6873FB1F11B0F400FA0AF3 /* ExportToXcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToXcodeViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +233,13 @@
 			path = "White icon";
 			sourceTree = "<group>";
 		};
+		3A5A90A51FA7EFB6005F143D /* Instructions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Instructions;
+			sourceTree = "<group>";
+		};
 		3AD72C461EEC90EC000C80A9 = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +286,8 @@
 				3AD72C581EEC90ED000C80A9 /* Document.swift */,
 				3A09B3BE1F23BC010045CAA1 /* TerminalTextView.swift */,
 				3A4074861F9A903A00FBC728 /* Extensions.swift */,
+				3A5A90A11FA67721005F143D /* Challenge.swift */,
+				3A5A90A31FA7B68F005F143D /* Player.swift */,
 				3AF458241F8BC0D3006F9048 /* Activities */,
 				3AF458131F8BBEFC006F9048 /* View Controllers */,
 			);
@@ -284,6 +297,7 @@
 		3AF458131F8BBEFC006F9048 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3A5A90A51FA7EFB6005F143D /* Instructions */,
 				3AF458221F8BC085006F9048 /* Main */,
 				3AF4581E1F8BC040006F9048 /* Menu */,
 				3AF458141F8BBF24006F9048 /* DocumentBrowser */,
@@ -659,12 +673,14 @@
 				3AFB1E881EEDA18000FBCF73 /* AlertManager.swift in Sources */,
 				3A02C9D21F7164020014AF28 /* SetupServerViewController.swift in Sources */,
 				3AD07F631F1BF769003C47B2 /* SettingsViewController.swift in Sources */,
+				3A5A90A41FA7B68F005F143D /* Player.swift in Sources */,
 				3A64F52D1F11380A00C3EBF9 /* ExportToXcodeActivity.swift in Sources */,
 				3A2404221EFEC82F00C38D48 /* StoreViewController.swift in Sources */,
 				3A4681DF1F89499D001FE6D4 /* Theme.swift in Sources */,
 				3A4681DD1F891CA4001FE6D4 /* LaunchScreenViewController.swift in Sources */,
 				3AFBC23D1F27CC72002A8081 /* PublishToStoreActivity.swift in Sources */,
 				3A6ED5D71F6D7F3000041AAE /* QRScanViewController.swift in Sources */,
+				3A5A90A21FA67722005F143D /* Challenge.swift in Sources */,
 				3AD72C551EEC90ED000C80A9 /* DocumentBrowserViewController.swift in Sources */,
 				3AB1A9EE1F1BE6CC000455F5 /* Server.swift in Sources */,
 				3ABE08221F69A162009EDB16 /* MenuViewController.swift in Sources */,
