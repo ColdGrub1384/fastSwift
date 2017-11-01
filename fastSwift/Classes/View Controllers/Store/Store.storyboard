@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Account-->
+        <!--Sale-->
         <scene sceneID="VDs-Qy-kaa">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="15H-7M-nE7" customClass="StoreViewController" customModule="fastSwift" customModuleProvider="target" sceneMemberID="viewController">
@@ -606,7 +606,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bEN-bL-axR"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Account" id="28C-Cw-JlF">
+                    <navigationItem key="navigationItem" title="Sale" id="28C-Cw-JlF">
                         <barButtonItem key="leftBarButtonItem" title="Setup a server" id="dYd-7Q-YaC">
                             <connections>
                                 <action selector="setupServer:" destination="15H-7M-nE7" id="EG6-eR-1lA"/>

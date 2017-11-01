@@ -314,7 +314,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                                         destURL.deletingLastPathComponent().appendingPathComponent(self.mainFile+".tmp"+".zip"))
                                     
                                     
-                                    let publish = PublishToStoreViewController()
+                                    let publish = PublishToStoreActivity()
                                     publish.fileURL = destURL
                                     publish.delegate = self.delegate
                                     

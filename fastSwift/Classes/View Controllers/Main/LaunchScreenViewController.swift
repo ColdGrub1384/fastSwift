@@ -35,6 +35,10 @@ class LaunchScreenViewController: UIViewController {
                 }
             }
         }
+        
+        if AppDelegate.shared.isFirstLaunch {
+            self.present(GuideViewController.pages.first!, animated: true, completion: nil)
+        }
     }
     
     func animWhite(timer: Timer) {

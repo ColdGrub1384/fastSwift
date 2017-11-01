@@ -186,6 +186,31 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currents = tableView.indexPathsForVisibleRows!
+        var current: UITableViewCell!
+        
+        for current_ in currents {
+            let cellRect = tableView.rectForRow(at: current_)
+            let isVisible = tableView.bounds.contains(cellRect)
+            
+            if isVisible {
+                current = tableView.cellForRow(at: current_)
+                break
+            }
+        }
+        
+        if current.reuseIdentifier == "0" || current.reuseIdentifier == "1" { // Sale
+            title = "Sale"
+        } else if current.reuseIdentifier == "2" { // Programs
+            title = "Programs"
+        } else if current.reuseIdentifier == "3" { // Challenges
+            title = "Challenges"
+        } else if current.reuseIdentifier == "4" { // Leaderboard
+            title = "Leaderboard"
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if canMakePayments {
             return 6
@@ -286,6 +311,10 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             name.text = self.leaderboard[indexPath.row].name
             
             cell.backgroundColor = AppDelegate.shared.theme.color
+        
+            if self.leaderboard[indexPath.row].name == AccountManager.shared.username { // Is current user
+                cell.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+            }
             
             let button = cell.viewWithTag(5) as! UIButton
             button.backgroundColor = .clear

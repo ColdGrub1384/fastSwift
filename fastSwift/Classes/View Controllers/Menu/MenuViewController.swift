@@ -109,14 +109,6 @@ class MenuViewController: UIViewController {
         scroll.contentSize = CGSize(width: scroll.contentSize.width, height: fileBrowser.view.frame.height)
         
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if AppDelegate.shared.isFirstLaunch {
-            
-        }
-    }
     
     func reloadStore() {
         let frame = vcs[3].view.frame

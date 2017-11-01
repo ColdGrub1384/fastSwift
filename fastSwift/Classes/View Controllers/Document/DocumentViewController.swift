@@ -279,7 +279,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         toolbar.barTintColor = self.view.backgroundColor
         
         let toolbar2 = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width*2, height: 50))
-        toolbar2.items = items(from: ["readLine","readPass","formatted text","print","var","let","func","if","else", "else if", "↹"], separator: " ")
+        toolbar2.items = items(from: ["↹","print","var","let","func","if","else", "else if","readLine","readPass","formatted text"], separator: " ")
         toolbar2.barTintColor = self.view.backgroundColor
         
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))

@@ -10,7 +10,7 @@
 import UIKit
 import NMSSH
 
-class PublishToStoreViewController: UIActivity {
+class PublishToStoreActivity: UIActivity {
     var delegate: DocumentViewController?
     var fileURL: URL?
     

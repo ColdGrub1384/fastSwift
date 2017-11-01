@@ -30,7 +30,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     var open = true
     var selectedFiles = [URL]()
     var dismissState = dismissStates.none
-    
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -114,7 +114,9 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         alert.addTextField { (textfield) in
             textfield.placeholder = "File's name"
         }
-        alert.addAction(AlertManager.shared.cancel)
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
+            importHandler(nil, .none)
+        }))
         alert.view.tintColor = AppDelegate.shared.theme.tintColor
         
         self.present(alert, animated: true, completion: nil)
