@@ -18,8 +18,8 @@ class LaunchScreenViewController: UIViewController {
         super.viewDidLoad()
         
         menu = AppViewControllers().menu
-        self.addChildViewController(menu)
-        self.view.addSubview(menu.view)
+        addChildViewController(menu)
+        view.addSubview(menu.view)
         menu.view.isHidden = true
     }
     
@@ -36,9 +36,21 @@ class LaunchScreenViewController: UIViewController {
             }
         }
         
+        let orientation = UIDevice.current.orientation
+        
+        if orientation == .landscapeLeft || orientation == .landscapeRight {
+            menu.view.removeFromSuperview()
+            menu.removeFromParentViewController()
+            menu = AppViewControllers().menu
+            addChildViewController(menu)
+            view.addSubview(menu.view)
+            menu.view.isHidden = true
+        }
+        
         if AppDelegate.shared.isFirstLaunch {
             self.present(GuideViewController.pages.first!, animated: true, completion: nil)
         }
+        
     }
     
     func animWhite(timer: Timer) {
