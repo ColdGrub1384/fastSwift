@@ -11,7 +11,6 @@ import UIKit
 extension AppDelegate {
     var isFirstLaunch: Bool {
         let value = UserDefaults.standard.bool(forKey: "launched")
-        UserDefaults.standard.set(true, forKey: "launched")
         
         for argument in CommandLine.arguments {
             if argument == "firstLaunch" {

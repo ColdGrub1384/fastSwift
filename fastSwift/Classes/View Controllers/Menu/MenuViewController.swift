@@ -104,7 +104,9 @@ class MenuViewController: UIViewController {
         self.scroll.setContentOffset(origin, animated: false)
         
         news.doneBtn.isEnabled = false
-        loadingStore.doneBtn.isEnabled = false
+        if let doneBtn = loadingStore.doneBtn {
+            doneBtn.isEnabled = false
+        }
         
         scroll.contentSize = CGSize(width: scroll.contentSize.width, height: fileBrowser.view.frame.height)
         
@@ -125,6 +127,7 @@ class MenuViewController: UIViewController {
         vc.mainVCIndex = mainVCIndex
         vc.loadedStore = loadedStore
         AppDelegate.shared.window?.rootViewController = vc
+        view.isHidden = true
     }
     
     func showSettings() {

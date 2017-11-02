@@ -63,8 +63,8 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                         if cameraAuthorizationStatus == .denied  || cameraAuthorizationStatus == .restricted {
                             timer.invalidate()
                         } else {
-                            AppDelegate.shared.menu.reload()
                             timer.invalidate()
+                            AppDelegate.shared.window?.rootViewController = AppViewControllers().launchScreen
                         }
                     }
                 })
