@@ -16,6 +16,8 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     var session = AVCaptureSession()
     @IBOutlet weak var denied: UILabel!
     
+    static var relaunched = false
+    
     func showCam() {
         let output = AVCaptureMetadataOutput()
         session.addOutput(output)
@@ -59,13 +61,16 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 let _ = Repea.t(all: 0.2, seconds: { (timer) in
                     if cameraAuthorizationStatus == .notDetermined {
                         cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
-                    } else {
-                        if cameraAuthorizationStatus == .denied  || cameraAuthorizationStatus == .restricted {
-                            timer.invalidate()
-                        } else {
-                            timer.invalidate()
-                            AppDelegate.shared.window?.rootViewController = AppViewControllers().launchScreen
-                        }
+                    } else if !QRScanViewController.relaunched {
+                        
+                        let launchScreen = AppViewControllers().launchScreen
+                        launchScreen.menu = AppViewControllers().menu
+                        launchScreen.menu.loadedStore = AppDelegate.shared.menu.loadedStore
+                        launchScreen.menu.mainVCIndex = AppDelegate.shared.menu.mainVCIndex
+                        
+                        QRScanViewController.relaunched = true
+                        
+                        AppDelegate.shared.window?.rootViewController = launchScreen
                     }
                 })
             }

@@ -122,6 +122,7 @@ class MenuViewController: UIViewController {
         vcs[3].view.frame = frame
     }
     
+    
     func reload() {
         let vc = AppViewControllers().menu
         vc.mainVCIndex = mainVCIndex

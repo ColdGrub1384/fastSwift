@@ -7,17 +7,21 @@
 //
 
 import UIKit
+import AVFoundation
 
 class LaunchScreenViewController: UIViewController {
     @IBOutlet weak var whiteLbl: UILabel!
     @IBOutlet weak var blackLbl: UILabel!
-    
+
     var menu: MenuViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menu = AppViewControllers().menu
+        if menu == nil {
+            menu = AppViewControllers().menu
+        }
+        
         addChildViewController(menu)
         view.addSubview(menu.view)
         menu.view.isHidden = true
@@ -47,7 +51,7 @@ class LaunchScreenViewController: UIViewController {
             menu.view.isHidden = true
         }
         
-        if AppDelegate.shared.isFirstLaunch {
+        if AppDelegate.shared.isFirstLaunch && AVCaptureDevice.authorizationStatus(for: AVMediaType.video) != .notDetermined {
             self.present(GuideViewController.pages.first!, animated: true, completion: nil)
         }
         
