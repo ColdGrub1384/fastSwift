@@ -21,6 +21,16 @@ class SetupServerViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var setupBtn: UIButton!
     @IBOutlet weak var doneBtn: UIButton!
     
+    func showStatus(_ text:String, with color:UIColor) {
+        DispatchQueue.main.async {
+            self.status.textColor = color
+            self.status.text = text
+        }
+    }
+    
+    // -------------------------------------------------------------------------
+    // MARK: UIViewController
+    // -------------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,18 +50,27 @@ class SetupServerViewController: UIViewController, UITextFieldDelegate {
 
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return AppDelegate.shared.theme.statusBarStyle
+    }
+    
+    // -------------------------------------------------------------------------
+    // MARK: UITextFieldDelegate
+    // -------------------------------------------------------------------------
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    func showStatus(_ text:String, with color:UIColor) {
-        DispatchQueue.main.async {
-            self.status.textColor = color
-            self.status.text = text
-        }
+    // -------------------------------------------------------------------------
+    // MARK: Buttons
+    // -------------------------------------------------------------------------
+    
+    @IBAction func done(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
-        
+
     @IBAction func setup(sender: Any) {
         
         activity.isHidden = false
@@ -125,13 +144,6 @@ class SetupServerViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @IBAction func done(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
-    }
     
     
 }

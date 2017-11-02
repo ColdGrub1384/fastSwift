@@ -15,6 +15,22 @@ class LaunchScreenViewController: UIViewController {
 
     var menu: MenuViewController!
     
+    // -------------------------------------------------------------------------
+    // MARK: UIViewController
+    // -------------------------------------------------------------------------
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return AppDelegate.shared.theme.statusBarStyle
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,6 +73,10 @@ class LaunchScreenViewController: UIViewController {
         
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: Animations
+    // -------------------------------------------------------------------------
+    
     func animWhite(timer: Timer) {
         
         if self.whiteLbl.frame.width >= self.view.frame.width {
@@ -89,17 +109,5 @@ class LaunchScreenViewController: UIViewController {
             
             self.whiteLbl.frame.origin.x -= 1
         }
-    }
-    
-    override var prefersStatusBarHidden: Bool {
-        return false
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
-    }
-    
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.portrait
     }
 }

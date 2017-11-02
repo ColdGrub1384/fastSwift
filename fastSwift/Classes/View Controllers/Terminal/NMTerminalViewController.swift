@@ -30,8 +30,20 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     var reopen = false
     var consoleHTML = ""
     var plainTerminal = TerminalTextView()
+    var downloadExec = false
     
+    var terminalHTML: String {
+        return try! String(contentsOfFile: Bundle.main.path(forResource: "terminal", ofType: "html")!).replacingOccurrences(of: "$BACKGROUNDCOLOR", with:"#"+AppDelegate.shared.theme.color.hexString).replacingOccurrences(of: "$TEXTCOLOR", with: "#"+AppDelegate.shared.theme.textColor.hexString)
+        
+    }
     
+    func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
+    // -------------------------------------------------------------------------
+    // MARK: UIViewController
+    // -------------------------------------------------------------------------
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -41,12 +53,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         }
         
     }
-    
-    var terminalHTML: String {
-        return try! String(contentsOfFile: Bundle.main.path(forResource: "terminal", ofType: "html")!).replacingOccurrences(of: "$BACKGROUNDCOLOR", with:"#"+AppDelegate.shared.theme.color.hexString).replacingOccurrences(of: "$TEXTCOLOR", with: "#"+AppDelegate.shared.theme.textColor.hexString)
-        
-    }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,6 +132,21 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return AppDelegate.shared.theme.statusBarStyle
+    }
+    
+    // -------------------------------------------------------------------------
+    // MARK: NMSSHChannelDelegate
+    // -------------------------------------------------------------------------
+    
+    func channelShellDidClose(_ channel: NMSSHChannel!) {
+        DispatchQueue.main.async {
+            print("Shell closed!")
+            self.terminal.resignFirstResponder()
+            self.terminal.isEditable = false
+            self.activity.stopAnimating()
+            self.terminal.isSelectable = true
+            self.terminal.tintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        }
     }
     
     func channel(_ channel: NMSSHChannel!, didReadData message: String!) {
@@ -269,23 +290,13 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 let inCurrentVC = self.terminal.text.contains("DownloadBinaryFileNowInCurrentVC")
                 self.terminal.text = self.terminal.text.replacingOccurrences(of: "DownloadBinaryFileNow", with: "")
                 
+                let file = try! self.session.channel.execute("ls /home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main")
                 
-                self.session.sftp.connect()
-                if self.session.sftp.fileExists(atPath: "/home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main") {
+                let fileExists = (file.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: "") == "/home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main")
+                
+                if fileExists {
                     self.terminal.text = "Downloading executable file..."
-                    try! self.session.channel.execute("zip \(UIDevice.current.identifierForVendor!.uuidString)/main.zip \(UIDevice.current.identifierForVendor!.uuidString)/main")
-                    let zipFile = self.session.sftp.contents(atPath: "/home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main.zip")
-                    
-                    let defaultSession = NMSSHSession.connect(toHost: Server.default.host, withUsername: Server.default.user)
-                    if defaultSession!.isConnected {
-                        defaultSession?.authenticate(byPassword: Server.default.password)
-                        if defaultSession!.isAuthorized {
-                            defaultSession?.sftp.connect()
-                            defaultSession?.sftp.createDirectory(atPath: "/home/\(Server.default.user)/\(UIDevice.current.identifierForVendor!.uuidString)")
-                            try! defaultSession?.channel.execute("touch /home/\(Server.default.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main.zip")
-                            defaultSession?.sftp.writeContents(zipFile, toFileAtPath: "/home/\(Server.default.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main.zip")
-                        }
-                    }
+                    _ = try? self.session.channel.execute("zip \(UIDevice.current.identifierForVendor!.uuidString)/main.zip \(UIDevice.current.identifierForVendor!.uuidString)/main")
                     
                     let fileURL = URL(string:"http://\(Server.default.host)/dl.php?f=/home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)/main.zip")!
                     print(fileURL)
@@ -320,14 +331,17 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                                     
                                     let activityVC = UIActivityViewController(activityItems: [destURL], applicationActivities: [publish])
                                     
-                                    try! defaultSession?.channel.execute("rm -rf /home/\(Server.default.user)/\(UIDevice.current.identifierForVendor!.uuidString)")
-                                    try! self.session.channel.execute("rm -rf /home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)")
-                                    self.session.disconnect()
-                                    defaultSession?.disconnect()
+                                    _ = try? self.session.channel.execute("rm -rf /home/\(Server.user)/\(UIDevice.current.identifierForVendor!.uuidString)")
                                     
                                     if !inCurrentVC {
                                         self.dismiss(animated: true, completion: {
                                             self.delegate?.present(activityVC, animated: true, completion: nil)
+                                            self.session.disconnect()
+                                            
+                                            if self.downloadExec {
+                                                AccountManager.shared.compilations = AccountManager.shared.compilations-1
+                                                self.delegate?.compilations.title = "\(AccountManager.shared.compilations) 🐧"
+                                            }
                                         })
                                     } else {
                                         self.present(activityVC, animated: true, completion: nil)
@@ -354,6 +368,10 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: TextView
+    // -------------------------------------------------------------------------
+    
     @objc func keyboardWillShow(_ notification:Notification) {
         let d = notification.userInfo!
         var r = d[UIKeyboardFrameEndUserInfoKey] as! CGRect
@@ -375,22 +393,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         self.plainTerminal.contentInset = .zero
         self.plainTerminal.scrollIndicatorInsets = .zero
     }
-    
-    func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
-        return .portrait
-    }
-    
-    func channelShellDidClose(_ channel: NMSSHChannel!) {
-        DispatchQueue.main.async {
-            print("Shell closed!")
-            self.terminal.resignFirstResponder()
-            self.terminal.isEditable = false
-            self.activity.stopAnimating()
-            self.terminal.isSelectable = true
-            self.terminal.tintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        }
-    }
-    
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         

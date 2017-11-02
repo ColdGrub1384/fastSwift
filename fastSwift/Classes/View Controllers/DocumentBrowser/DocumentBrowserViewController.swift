@@ -13,13 +13,6 @@ import Zip
 import NMSSH
 
 class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocumentBrowserViewControllerDelegate, QLPreviewControllerDataSource {
-    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
-        return selectedFiles.count
-    }
-    
-    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        return selectedFiles[index] as QLPreviewItem
-    }
     
     enum dismissStates: Int {
         case none = 0
@@ -30,7 +23,10 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     var open = true
     var selectedFiles = [URL]()
     var dismissState = dismissStates.none
-
+    
+    // -------------------------------------------------------------------------
+    // MARK: UIViewController
+    // -------------------------------------------------------------------------
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -91,8 +87,21 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         })]
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: QLPreviewControllerDelegate & QLPreviewControllerDataSource
+    // -------------------------------------------------------------------------
     
-    // MARK: UIDocumentBrowserViewControllerDelegate
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        return selectedFiles.count
+    }
+    
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        return selectedFiles[index] as QLPreviewItem
+    }
+    
+    // -------------------------------------------------------------------------
+    // MARK: UIDocumentBrowserViewController
+    // -------------------------------------------------------------------------
     
     func documentBrowser(_ controller: UIDocumentBrowserViewController, didRequestDocumentCreationWithHandler importHandler: @escaping (URL?, UIDocumentBrowserViewController.ImportMode) -> Void) {
         let docURL: URL? = Bundle.main.url(forResource: "Samples", withExtension: "")?.appendingPathComponent("Untitled.swift")
@@ -139,7 +148,9 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
     }
     
+    // -------------------------------------------------------------------------
     // MARK: Document Presentation
+    // -------------------------------------------------------------------------
     
     func compile(urls: [URL], withState state:AppDelegate.autoCompilationState) {
         let documentViewController = AppViewControllers().document

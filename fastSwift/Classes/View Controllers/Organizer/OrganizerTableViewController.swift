@@ -81,9 +81,34 @@ class OrganizerTableViewController: UITableViewController {
         self.tableView.backgroundColor = AppDelegate.shared.theme.color
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: UITableViewDataSource
+    // -------------------------------------------------------------------------
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "file")
+        (cell?.viewWithTag(1) as! UILabel).text = delegate?.files[indexPath.row].deletingPathExtension().lastPathComponent
+        (cell?.viewWithTag(1) as! UILabel).textColor = AppDelegate.shared.theme.textColor
+        cell?.backgroundColor = AppDelegate.shared.theme.color
+        
+        if delegate?.files[indexPath.row] == delegate?.files.first! {
+            if !(delegate?.firstLaunch)! {
+                cell?.accessoryType = .checkmark
+            }
+        } else {
+            cell?.accessoryType = .none
+        }
+        
+        return cell!
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (delegate?.files.count)!
     }
+    
+    // -------------------------------------------------------------------------
+    // MARK: UITableViewDelegate
+    // -------------------------------------------------------------------------
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         for cell in tableView.visibleCells {
@@ -151,28 +176,5 @@ class OrganizerTableViewController: UITableViewController {
         
         self.tableView.reloadData()
     }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "file")
-        (cell?.viewWithTag(1) as! UILabel).text = delegate?.files[indexPath.row].deletingPathExtension().lastPathComponent
-     (cell?.viewWithTag(1) as! UILabel).textColor = AppDelegate.shared.theme.textColor
-        cell?.backgroundColor = AppDelegate.shared.theme.color
-        
-        if delegate?.files[indexPath.row] == delegate?.files.first! {
-            if !(delegate?.firstLaunch)! {
-                cell?.accessoryType = .checkmark
-            }
-        } else {
-            cell?.accessoryType = .none
-        }
-        
-        return cell!
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "xcode" {
-            let vc = segue.destination as! ExportToXcodeViewController
-            vc.delegate = self
-        }
-    }
+
 }

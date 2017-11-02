@@ -16,9 +16,26 @@ class ErrorLoadingStoreViewController: UIViewController {
     var delegate: DocumentViewController?
     @IBOutlet weak var errorText: UITextView!
     
+    
+    func reload() {
+        AppDelegate.shared.window?.rootViewController = AppViewControllers().launchScreen
+        _ = Afte.r(1, seconds: { (timer) in
+            AppDelegate.shared.applicationWillTerminate(UIApplication.shared)
+            _ = AppDelegate.shared.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
+            self.view.backgroundColor = .black
+            for subview in self.view.subviews {
+                subview.removeFromSuperview()
+            }
+        })
+    }
+    
     func reloadError() {
         errorText.text = AppDelegate.shared.loadingStoreError
     }
+    
+    // -------------------------------------------------------------------------
+    // MARK: UIViewController
+    // -------------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,17 +52,14 @@ class ErrorLoadingStoreViewController: UIViewController {
         errorText.textColor = AppDelegate.shared.theme.textColor
     }
     
-    func reload() {
-        AppDelegate.shared.window?.rootViewController = AppViewControllers().launchScreen
-        _ = Afte.r(1, seconds: { (timer) in
-            AppDelegate.shared.applicationWillTerminate(UIApplication.shared)
-            _ = AppDelegate.shared.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
-            self.view.backgroundColor = .black
-            for subview in self.view.subviews {
-                subview.removeFromSuperview()
-            }
-        })
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return AppDelegate.shared.theme.statusBarStyle
     }
+    
+    
+    // -------------------------------------------------------------------------
+    // MARK: Buttons
+    // -------------------------------------------------------------------------
     
     @IBAction func retry(_ sender: Any) {
         if isSaved {
@@ -72,8 +86,5 @@ class ErrorLoadingStoreViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
-    }
     
 }

@@ -18,20 +18,9 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     static var relaunched = false
     
-    func showCam() {
-        let output = AVCaptureMetadataOutput()
-        session.addOutput(output)
-        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.init(label: "qr"))
-        output.metadataObjectTypes = [AVMetadataMachineReadableCodeObject.ObjectType.qr]
-        
-        video = AVCaptureVideoPreviewLayer(session: session)
-        video.frame = view.layer.frame
-        view.layer.addSublayer(video)
-        
-        session.startRunning()
-        
-        view.bringSubview(toFront: view.viewWithTag(1)!)
-    }
+    // -------------------------------------------------------------------------
+    // MARK: UIViewController
+    // -------------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +67,25 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
         view.backgroundColor = AppDelegate.shared.theme.color
         denied.textColor = AppDelegate.shared.theme.textColor
+    }
+    
+    // -------------------------------------------------------------------------
+    // MARK: Camera
+    // -------------------------------------------------------------------------
+    
+    func showCam() {
+        let output = AVCaptureMetadataOutput()
+        session.addOutput(output)
+        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.init(label: "qr"))
+        output.metadataObjectTypes = [AVMetadataMachineReadableCodeObject.ObjectType.qr]
+        
+        video = AVCaptureVideoPreviewLayer(session: session)
+        video.frame = view.layer.frame
+        view.layer.addSublayer(video)
+        
+        session.startRunning()
+        
+        view.bringSubview(toFront: view.viewWithTag(1)!)
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {

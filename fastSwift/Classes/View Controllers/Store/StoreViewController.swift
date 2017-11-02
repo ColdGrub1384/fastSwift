@@ -14,7 +14,7 @@ import NMSSH
 import Zip
 
 
-class StoreViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, GADRewardBasedVideoAdDelegate, UITableViewDelegate, GADBannerViewDelegate {
+class StoreViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, GADRewardBasedVideoAdDelegate, UITableViewDelegate {
     
     var currentPurchase: SKProduct?
     @IBOutlet weak var compilations: UILabel!
@@ -34,6 +34,9 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     @IBOutlet weak var bannerSuperView: UIView!
     @IBOutlet weak var bannerView: GADBannerView!
     
+    // -------------------------------------------------------------------------
+    // MARK: CollectionViewCells buttons
+    // -------------------------------------------------------------------------
     
     @objc func viewProfile(_ sender: UIButton) {
         let webViewController = AppViewControllers().web
@@ -172,22 +175,53 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView.tag == 1 {
-            return 4
-        } else if collectionView.tag == 2 {
-            if self.filesCollectionView != nil {
-                return files.count
-            } else {
-                return 1
+    // -------------------------------------------------------------------------
+    // MARK: UITableViewDataSource
+    // -------------------------------------------------------------------------
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if canMakePayments {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row)")!
+            cell.backgroundColor = AppDelegate.shared.theme.color
+            
+            for subview in cell.contentView.subviews {
+                if let collectionView = subview as? UICollectionView {
+                    print("Collectionview found!")
+                    collectionView.backgroundColor = AppDelegate.shared.theme.color
+                    collectionView.backgroundColor = AppDelegate.shared.theme.color
+                }
             }
-        } else if collectionView.tag == 7 {
-            return challenges.count
-        } else if collectionView.tag == 8 {
-            return leaderboard.count
+            
+            return cell
         } else {
-            return 1
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row+1)")!
+            cell.backgroundColor = AppDelegate.shared.theme.color
+            
+            for subview in cell.contentView.subviews {
+                if let collectionView = subview as? UICollectionView {
+                    print("Collectionview found!")
+                    collectionView.backgroundColor = AppDelegate.shared.theme.color
+                    collectionView.backgroundColor = AppDelegate.shared.theme.color
+                }
+            }
+            return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if canMakePayments {
+            return 6
+        } else {
+            return 5
+        }
+    }
+    
+    // -------------------------------------------------------------------------
+    // MARK: UITableViewDelegate
+    // -------------------------------------------------------------------------
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -215,16 +249,26 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if canMakePayments {
-            return 6
-        } else {
-            return 5
-        }
-    }
+    // -------------------------------------------------------------------------
+    // MARK: UICollectionViewDataSource
+    // -------------------------------------------------------------------------
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView.tag == 1 {
+            return 4
+        } else if collectionView.tag == 2 {
+            if self.filesCollectionView != nil {
+                return files.count
+            } else {
+                return 1
+            }
+        } else if collectionView.tag == 7 {
+            return challenges.count
+        } else if collectionView.tag == 8 {
+            return leaderboard.count
+        } else {
+            return 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -337,35 +381,13 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         return cell
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if canMakePayments {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row)")!
-            cell.backgroundColor = AppDelegate.shared.theme.color
-            
-            for subview in cell.contentView.subviews {
-                if let collectionView = subview as? UICollectionView {
-                    print("Collectionview found!")
-                    collectionView.backgroundColor = AppDelegate.shared.theme.color
-                    collectionView.backgroundColor = AppDelegate.shared.theme.color
-                }
-            }
-            
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row+1)")!
-            cell.backgroundColor = AppDelegate.shared.theme.color
-            
-            for subview in cell.contentView.subviews {
-                if let collectionView = subview as? UICollectionView {
-                    print("Collectionview found!")
-                    collectionView.backgroundColor = AppDelegate.shared.theme.color
-                    collectionView.backgroundColor = AppDelegate.shared.theme.color
-                }
-            }
-            return cell
-        }
-    }
+    // -------------------------------------------------------------------------
+    // MARK: UIViewController
+    // -------------------------------------------------------------------------
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return AppDelegate.shared.theme.statusBarStyle
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -382,7 +404,6 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
         // Ads
         bannerSuperView.backgroundColor = AppDelegate.shared.theme.color
-        bannerView.delegate = self
         bannerView.adSize = kGADAdSizeBanner
         bannerView.adUnitID = "ca-app-pub-9214899206650515/9138245460"
         bannerView.rootViewController = self
@@ -512,9 +533,9 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
     }
     
-    @IBAction func done(sender: Any) {
-        self.dismiss(animated: true, completion:nil)
-    }
+    // -------------------------------------------------------------------------
+    // MARK: Buy compilations
+    // -------------------------------------------------------------------------
     
     func buy(_ product: SKProduct) {
         print("Buy "+product.localizedTitle)
@@ -522,6 +543,10 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         currentPurchase = product
         AppDelegate.shared.currentPurchase = currentPurchase
         SKPaymentQueue.default().add(pay)
+    }
+    
+    @IBAction func done(sender: Any) {
+        self.dismiss(animated: true, completion:nil)
     }
     
     @IBAction func buyPendrive(_ sender: Any) {
@@ -565,6 +590,10 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         }
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: Watch videos
+    // -------------------------------------------------------------------------
+    
     @IBAction func watchVideo(_ sender: Any) {
         print("Watch video")
         
@@ -596,20 +625,18 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         }
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: Buttons
+    // -------------------------------------------------------------------------
+    
     @IBAction func account(_ sender: Any) {
         AccountManager.shared.presentAccountInfo(inside: self)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
-    }
     
     @IBAction func setupServer(_ sender: Any) {
         self.present(AppViewControllers().setupServer, animated: true, completion: nil)
     }
     
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print("Failed to show ad: \(error.localizedDescription)")
-    }
     
 }

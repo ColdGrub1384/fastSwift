@@ -22,6 +22,11 @@ class GuideViewController: UIViewController {
     var text = ""
     var willBePresented = false
     
+    
+    // -------------------------------------------------------------------------
+    // MARK: Static values
+    // -------------------------------------------------------------------------
+    
     private static var sharedVC = UIViewController()
 
     static func initPages() {
@@ -76,6 +81,11 @@ class GuideViewController: UIViewController {
     static var pages: [GuideViewController]!
     
     static var index = 0
+    
+    
+    // -------------------------------------------------------------------------
+    // MARK: Guide loading
+    // -------------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()

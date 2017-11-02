@@ -40,6 +40,10 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: UIViewController
+    // -------------------------------------------------------------------------
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,10 +63,18 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
         return AppDelegate.shared.theme.statusBarStyle
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: UITextFieldDelegate
+    // -------------------------------------------------------------------------
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
+    // -------------------------------------------------------------------------
+    // MARK: Buttons
+    // -------------------------------------------------------------------------
     
     @IBAction func done(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

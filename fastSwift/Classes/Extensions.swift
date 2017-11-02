@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import NMSSH
+
 
 extension AppDelegate {
     var isFirstLaunch: Bool {

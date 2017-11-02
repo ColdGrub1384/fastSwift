@@ -23,6 +23,10 @@ import StoreKit
     
     static var shared = AppDelegate()
     
+    // -------------------------------------------------------------------------
+    // MARK: Helpers
+    // -------------------------------------------------------------------------
+    
     enum autoCompilationState {
         case userActionNeed
         case ready
@@ -93,6 +97,10 @@ import StoreKit
         }
         return base
     }
+    
+    // -------------------------------------------------------------------------
+    // MARK: In App purchases
+    // -------------------------------------------------------------------------
     
     func paymentQueue(_ queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction]) {
         print("Remove transaction")
@@ -170,7 +178,9 @@ import StoreKit
         }
     }
     
-    
+    // -------------------------------------------------------------------------
+    // MARK: Delegate
+    // -------------------------------------------------------------------------
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -259,6 +269,9 @@ import StoreKit
         return true
     }
 
+    // -------------------------------------------------------------------------
+    // MARK: Theming
+    // -------------------------------------------------------------------------
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         print("The user has selected a theme")

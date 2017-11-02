@@ -13,6 +13,10 @@ class ConnectionErrorViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var errorText: UITextView!
     
+    // -------------------------------------------------------------------------
+    // MARK: UIViewController
+    // -------------------------------------------------------------------------
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +27,10 @@ class ConnectionErrorViewController: UIViewController, UITextViewDelegate {
             errorText.text = "There is a problem connecting to \(Server.host). Please check for your internet connection or retry later if you think is a server problem."
         }
     }
+    
+    // -------------------------------------------------------------------------
+    // MARK: Buttons
+    // -------------------------------------------------------------------------
     
     @IBAction func retry(sender:Any) {
         dismiss(animated: true, completion: nil)

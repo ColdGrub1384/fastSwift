@@ -19,6 +19,9 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var doneBtn: UIBarButtonItem!
     @IBOutlet weak var titleBar: UINavigationBar!
     
+    // -------------------------------------------------------------------------
+    // MARK: UIViewController
+    // -------------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +43,10 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return AppDelegate.shared.theme.statusBarStyle
     }
+    
+    // -------------------------------------------------------------------------
+    // MARK: UIWebViewDelegate
+    // -------------------------------------------------------------------------
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         print(request.url!.absoluteString)

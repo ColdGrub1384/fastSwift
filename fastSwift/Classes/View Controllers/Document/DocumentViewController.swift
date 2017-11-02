@@ -12,29 +12,6 @@ import NMSSH
 
 class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopoverPresentationControllerDelegate, DocumentDelegate, UITextViewDelegate {
     
-    func document(didClose document: Document) {
-        print("\(document.fileURL.deletingPathExtension().lastPathComponent) closed!")
-        for file in files {
-            if file != document.fileURL {
-                let document = Document(fileURL: file)
-                document.close(completionHandler: nil)
-            }
-        }
-    }
-    
-    func document(_ document: Document, didLoadContents contents: String) {
-        print("Returned content for \(document.fileURL.deletingPathExtension().lastPathComponent): \(contents)")
-    }
-    
-    func document(willOpen document: Document) {
-        print("\(document.fileURL.deletingPathExtension().lastPathComponent) will be opened!")
-    }
-    
-    func document(_ document: Document, didLoadContentsWithError error: Error) {
-        print("Error returning content for \(document.fileURL.deletingPathExtension().lastPathComponent): \(error.localizedDescription)")
-    }
-    
-    
     var document: Document?
     
     @IBOutlet weak var titleBar: UINavigationBar!
@@ -75,6 +52,10 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             }
         }
     }
+    
+    // -------------------------------------------------------------------------
+    // MARK: UIViewController
+    // -------------------------------------------------------------------------
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         if firstLaunch {
@@ -188,43 +169,6 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         
     }
     
-    @IBAction func dismissDocumentViewController() {
-        
-        if challenge != nil { // Is a challenge
-            self.dismiss(animated: true, completion: nil)
-        }
-        
-        code.resignFirstResponder()
-        
-        if code.text.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "") != document?.code.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "") {
-            AlertManager.shared.presentAlert(withTitle: "Do you want to save the file", message: "If you select \"Don't save\", all changes will be erased!", style: .alert, actions:
-                [
-                    UIAlertAction.init(title: "Don't save", style: .destructive, handler: { (action) in
-                        self.dismiss(animated: true, completion: {
-                            self.document?.close(completionHandler: nil)
-                        })
-                    }),
-                    UIAlertAction.init(title: "Save", style: .default, handler: { (action) in
-                        self.dismiss(animated: true, completion: {
-                            do {
-                                try self.code.text.write(to: (self.document?.fileURL)!, atomically: true, encoding: String.Encoding.utf8)
-                            } catch let error {
-                                AlertManager.shared.present(error: error, withTitle: "Error saving file!", inside: self)
-                            }
-                            self.document?.close(completionHandler: nil)
-                        })
-                    }),
-                    AlertManager.shared.cancel
-                ]
-                , inside: self, animated: true, completion: nil)
-        } else {
-            self.dismiss(animated: true, completion: {
-                self.document?.close(completionHandler: nil)
-            })
-        }
-        
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return AppDelegate.shared.theme.statusBarStyle
     }
@@ -242,6 +186,9 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         return highlightr?.highlight(code, as: lang.lowercased(), fastRender: true)
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: TextView insertions
+    // -------------------------------------------------------------------------
     
     func CodeToolBar() {
         
@@ -546,6 +493,9 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         insertText(sender: button)
     }
 
+    // -------------------------------------------------------------------------
+    // MARK: Keyboard
+    // -------------------------------------------------------------------------
     
     @IBAction func dismissKeyboard(_ sender: Any) {
         self.code.resignFirstResponder()
@@ -569,6 +519,10 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         
         dismissKeyboard.isEnabled = false
     }
+    
+    // -------------------------------------------------------------------------
+    // MARK: Compile
+    // -------------------------------------------------------------------------
     
     func checkCode() { // Check if code is correct for challenge
         if let codeForParams = self.code.text.addingPercentEncodingForURLQueryValue() {
@@ -632,8 +586,8 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         }
         print(files)
         
-        if  let _ = sender as? Bool {
-            additionalCommand = "downloadExecutable";
+        if let _ = sender as? Bool {
+            additionalCommand = "downloadExecutable"
         }
         
         let alert = ActivityViewController(message: "Uploading...")
@@ -648,8 +602,10 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                 if (session?.isAuthorized)! {
                     
                     // Spend compilation
-                    AccountManager.shared.compilations = AccountManager.shared.compilations-1
-                    self.compilations.title = "\(AccountManager.shared.compilations) 🐧"
+                    if let _ = sender as? Bool {} else {
+                        AccountManager.shared.compilations = AccountManager.shared.compilations-1
+                        self.compilations.title = "\(AccountManager.shared.compilations) 🐧"
+                    }
                     
                     print("Authorized session!")
                     
@@ -701,6 +657,10 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                                     terminal.command = terminal.command+secondPart
                                 }
                                 
+                                if let _ = sender as? Bool {
+                                    terminal.downloadExec = true
+                                }
+                                
                                 self.present(terminal, animated:true, completion: nil)
                             })
                         }
@@ -727,6 +687,46 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: Buttons
+    // -------------------------------------------------------------------------
+    
+    @IBAction func dismissDocumentViewController() {
+        
+        if challenge != nil { // Is a challenge
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        code.resignFirstResponder()
+        
+        if code.text.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "") != document?.code.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "") {
+            AlertManager.shared.presentAlert(withTitle: "Do you want to save the file", message: "If you select \"Don't save\", all changes will be erased!", style: .alert, actions:
+                [
+                    UIAlertAction.init(title: "Don't save", style: .destructive, handler: { (action) in
+                        self.dismiss(animated: true, completion: {
+                            self.document?.close(completionHandler: nil)
+                        })
+                    }),
+                    UIAlertAction.init(title: "Save", style: .default, handler: { (action) in
+                        self.dismiss(animated: true, completion: {
+                            do {
+                                try self.code.text.write(to: (self.document?.fileURL)!, atomically: true, encoding: String.Encoding.utf8)
+                            } catch let error {
+                                AlertManager.shared.present(error: error, withTitle: "Error saving file!", inside: self)
+                            }
+                            self.document?.close(completionHandler: nil)
+                        })
+                    }),
+                    AlertManager.shared.cancel
+                ]
+                , inside: self, animated: true, completion: nil)
+        } else {
+            self.dismiss(animated: true, completion: {
+                self.document?.close(completionHandler: nil)
+            })
+        }
+        
+    }
     
     @IBAction func Templates(_ sender: UIBarButtonItem) {
         
@@ -920,6 +920,10 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         }
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: UITextViewDelegate
+    // -------------------------------------------------------------------------
+    
     func textViewDidChange(_ textView: UITextView) {
         self.pause = false
     }
@@ -1025,5 +1029,30 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         return true
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: DocumentDelegate
+    // -------------------------------------------------------------------------
+    
+    func document(didClose document: Document) {
+        print("\(document.fileURL.deletingPathExtension().lastPathComponent) closed!")
+        for file in files {
+            if file != document.fileURL {
+                let document = Document(fileURL: file)
+                document.close(completionHandler: nil)
+            }
+        }
+    }
+    
+    func document(_ document: Document, didLoadContents contents: String) {
+        print("Returned content for \(document.fileURL.deletingPathExtension().lastPathComponent): \(contents)")
+    }
+    
+    func document(willOpen document: Document) {
+        print("\(document.fileURL.deletingPathExtension().lastPathComponent) will be opened!")
+    }
+    
+    func document(_ document: Document, didLoadContentsWithError error: Error) {
+        print("Error returning content for \(document.fileURL.deletingPathExtension().lastPathComponent): \(error.localizedDescription)")
+    }
 }
 

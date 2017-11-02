@@ -21,6 +21,14 @@ class MenuViewController: UIViewController {
     
     var barSize: CGFloat = 20
     
+    // -------------------------------------------------------------------------
+    // MARK: UIViewController
+    // -------------------------------------------------------------------------
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return AppDelegate.shared.theme.statusBarStyle
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,6 +120,10 @@ class MenuViewController: UIViewController {
         
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: Reload
+    // -------------------------------------------------------------------------
+    
     func reloadStore() {
         let frame = vcs[3].view.frame
         vcs[3].view.removeFromSuperview()
@@ -136,10 +148,6 @@ class MenuViewController: UIViewController {
         vc.mainVCIndex = 4
         vc.loadedStore = loadedStore
         AppDelegate.shared.window?.rootViewController = vc
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
     }
 
     
