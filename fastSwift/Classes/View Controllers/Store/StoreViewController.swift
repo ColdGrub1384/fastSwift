@@ -14,7 +14,7 @@ import NMSSH
 import Zip
 
 
-class StoreViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, GADRewardBasedVideoAdDelegate, UITableViewDelegate {
+class StoreViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, GADRewardBasedVideoAdDelegate, UITableViewDelegate, GADBannerViewDelegate {
     
     var currentPurchase: SKProduct?
     @IBOutlet weak var compilations: UILabel!
@@ -30,6 +30,10 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     @IBOutlet weak var doneBtn: UIBarButtonItem!
     var challenges = [Challenge]()
     var leaderboard = [Player]()
+    
+    @IBOutlet weak var bannerSuperView: UIView!
+    @IBOutlet weak var bannerView: GADBannerView!
+    
     
     @objc func viewProfile(_ sender: UIButton) {
         let webViewController = AppViewControllers().web
@@ -376,6 +380,17 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
         tableView.delegate = self
         
+        // Ads
+        bannerSuperView.backgroundColor = AppDelegate.shared.theme.color
+        bannerView.delegate = self
+        bannerView.adSize = kGADAdSizeBanner
+        bannerView.adUnitID = "ca-app-pub-9214899206650515/9138245460"
+        bannerView.rootViewController = self
+        let request = GADRequest()
+        request.keywords = ["code","Swift","compile"]
+        request.contentURL = "https://github.com/ColdGrub1384/fastSwift"
+        bannerView.load(request)
+        
         URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/dir.php?dir=/mnt/FFSwift/\(Server.user)@\(Server.host)/files")!) { (data, response, error) in // Fetch store programs
             if error == nil {
                 if data != nil {
@@ -420,7 +435,12 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             view.backgroundColor = #colorLiteral(red: 0.9627815673, green: 0.9627815673, blue: 0.9627815673, alpha: 1)
         }
         
-        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/challenges.php?viewChallenges")!) { (data, response, error) in // Fetch challenges
+        var challengesURL = URL(string:"http://\(Server.default.host)/challenges.php?viewChallenges")!
+        if let username = AccountManager.shared.username?.addingPercentEncodingForURLQueryValue() {
+            challengesURL = URL(string: challengesURL.absoluteString+"&user=\(username)")!
+        }
+        
+        URLSession.shared.dataTask(with: challengesURL) { (data, response, error) in // Fetch challenges
             if let data = data {
                 if let str = String(data: data, encoding: .utf8) {
                     let challenges = str.components(separatedBy: ";")
@@ -586,6 +606,10 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     
     @IBAction func setupServer(_ sender: Any) {
         self.present(AppViewControllers().setupServer, animated: true, completion: nil)
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("Failed to show ad: \(error.localizedDescription)")
     }
     
 }
