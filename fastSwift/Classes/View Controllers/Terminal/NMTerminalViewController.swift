@@ -29,7 +29,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     var console = ""
     var reopen = false
     var consoleHTML = ""
-    var plainTerminal = TerminalTextView()
     var downloadExec = false
     
     var terminalHTML: String {
@@ -57,8 +56,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        plainTerminal.isHidden = true
-        view.addSubview(plainTerminal)
         terminal.layoutManager.allowsNonContiguousLayout = false
         terminal.isSelectable = false
         terminal.delegate = self
@@ -75,11 +72,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         navBar.barTintColor = AppDelegate.shared.theme.color
         view.backgroundColor = AppDelegate.shared.theme.color
         view.tintColor = AppDelegate.shared.theme.tintColor
-        
-        plainTerminal.frame = terminal.frame
-        plainTerminal.textColor = terminal.textColor
-        plainTerminal.backgroundColor = terminal.backgroundColor
-        plainTerminal.font = terminal.font
         
         // Update text view size
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -151,28 +143,19 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     
     func channel(_ channel: NMSSHChannel!, didReadData message: String!) {
         DispatchQueue.main.async {
-                        
-            self.consoleHTML = ((self.consoleHTML+message).replacingOccurrences(of: self.terminalHTML, with: "").replacingOccurrences(of: "\n", with: "</br>"))+self.terminalHTML // terminal works with HTML, so replace \n by </br>
             
-
-            self.plainTerminal.isHidden = false
+            self.terminal.text = (self.terminal.text+message).replacingOccurrences(of: "\n", with: "<br/>")
             
-            self.terminal.text = self.consoleHTML
-            self.plainTerminal.text = self.console
-            
-            if let html = self.terminal.text.attributedStringFromHTML {
+            if let html = (self.terminal.text+self.terminalHTML).attributedStringFromHTML {
                 self.terminal.attributedText = html
             }
             
             print(self.terminal.text)
             
-            self.plainTerminal.isHidden = true
-            
             if self.terminal.text.contains("Program output") { // Clear shell
                 let newString = self.terminal.text.components(separatedBy: "Program output")
                 self.activity.stopAnimating()
-                self.terminal.text = newString[1]+self.terminalHTML
-                self.consoleHTML = newString[1]+self.terminalHTML
+                self.terminal.text = newString[1]
                 self.console = self.terminal.text
             }
             
@@ -273,9 +256,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                     self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "<theme>", with: "")
                     self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "</theme>", with: "")
                     
-                    self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: self.consoleHTML.slice(from: "<theme>", to: "</theme>")!, with: "")
-                    self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: "<theme>", with: "")
-                    self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: "</theme>", with: "")
                     
                 }
                 
@@ -285,7 +265,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 self.activity.startAnimating()
                 self.terminal.text = self.terminal.text.replacingOccurrences(of: "Show activity", with: "")
                 self.console = self.terminal.text
-                self.consoleHTML = self.consoleHTML.replacingOccurrences(of: "Show activity", with: "")
             }
             
             if self.terminal.text.contains("Hide activity") {
@@ -293,7 +272,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 self.terminal.text = self.terminal.text.replacingOccurrences(of: "Hide activity", with: "")
                 self.console = self.terminal.text
                 
-                self.consoleHTML = self.consoleHTML.replacingOccurrences(of: "Hide activity", with: "")
             }
             
             if self.terminal.text.contains("DownloadBinaryFileNow") {
@@ -375,7 +353,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
             self.console = self.terminal.text
         }
         
-        
     }
     
     // -------------------------------------------------------------------------
@@ -389,19 +366,11 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         r = self.terminal.convert(r, from:nil)
         self.terminal.contentInset.bottom = r.size.height+50
         self.terminal.scrollIndicatorInsets.bottom = r.size.height+50
-        
-        r = self.plainTerminal.convert(r, from:nil)
-        self.plainTerminal.contentInset.bottom = r.size.height+50
-        self.plainTerminal.scrollIndicatorInsets.bottom = r.size.height+50
-        
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
         self.terminal.contentInset = .zero
         self.terminal.scrollIndicatorInsets = .zero
-        
-        self.plainTerminal.contentInset = .zero
-        self.plainTerminal.scrollIndicatorInsets = .zero
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
