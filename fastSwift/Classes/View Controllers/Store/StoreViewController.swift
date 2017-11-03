@@ -458,7 +458,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
         var challengesURL = URL(string:"http://\(Server.default.host)/challenges.php?viewChallenges")!
         if let username = AccountManager.shared.username?.addingPercentEncodingForURLQueryValue() {
-            challengesURL = URL(string: challengesURL.absoluteString+"&user=\(username)")!
+            challengesURL = URL(string: challengesURL.absoluteString+"&username=\(username)")!
         }
         
         URLSession.shared.dataTask(with: challengesURL) { (data, response, error) in // Fetch challenges
@@ -467,7 +467,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                     let challenges = str.components(separatedBy: ";")
                     
                     for challenge in challenges {
-                        let properties = challenge.components(separatedBy: ":")
+                        let properties = challenge.components(separatedBy: "->")
                         
                         if properties.count <= 1 { // Break if challenge is empty, always the last
                             break
@@ -475,6 +475,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                         
                         let name = properties[0]
                         let code = properties[1]
+                        
                         
                         let challenge_ = Challenge(name: name, code: code)
                         self.challenges.append(challenge_)
