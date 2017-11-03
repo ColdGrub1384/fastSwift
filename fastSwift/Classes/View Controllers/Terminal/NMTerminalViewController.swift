@@ -164,11 +164,9 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 self.terminal.attributedText = html
             }
             
-            self.plainTerminal.isHidden = true
-            
-            
             print(self.terminal.text)
             
+            self.plainTerminal.isHidden = true
             
             if self.terminal.text.contains("Program output") { // Clear shell
                 let newString = self.terminal.text.components(separatedBy: "Program output")
@@ -214,6 +212,10 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: self.terminal.text.slice(from: "<showAlert>", to: "</showAlert>")!, with: "")
                 self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "<showAlert>", with: "")
                 self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "</showAlert>", with: "")
+                
+                self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: self.consoleHTML.slice(from: "&lt;showAlert&gt;", to: "&lt;/showAlert&gt;")!, with: "")
+                self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: "&lt;showAlert&gt;", with: "")
+                self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: "&lt;/showAlert&gt;", with: "")
             }
             
             if self.terminal.text.contains("<theme>") {
@@ -270,6 +272,11 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                     self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: self.terminal.text.slice(from: "<theme>", to: "</theme>")!, with: "")
                     self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "<theme>", with: "")
                     self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "</theme>", with: "")
+                    
+                    self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: self.consoleHTML.slice(from: "<theme>", to: "</theme>")!, with: "")
+                    self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: "<theme>", with: "")
+                    self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: "</theme>", with: "")
+                    
                 }
                 
             }
@@ -278,12 +285,15 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 self.activity.startAnimating()
                 self.terminal.text = self.terminal.text.replacingOccurrences(of: "Show activity", with: "")
                 self.console = self.terminal.text
+                self.consoleHTML = self.consoleHTML.replacingOccurrences(of: "Show activity", with: "")
             }
             
             if self.terminal.text.contains("Hide activity") {
                 self.activity.stopAnimating()
                 self.terminal.text = self.terminal.text.replacingOccurrences(of: "Hide activity", with: "")
                 self.console = self.terminal.text
+                
+                self.consoleHTML = self.consoleHTML.replacingOccurrences(of: "Hide activity", with: "")
             }
             
             if self.terminal.text.contains("DownloadBinaryFileNow") {
@@ -396,7 +406,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
-        if (textView.text as NSString).replacingCharacters(in: range, with: text).characters.count >= console.characters.count {
+        if (textView.text as NSString).replacingCharacters(in: range, with: text).count >= console.count {
             if text.contains("\n") {
                 let newConsole = textView.text+text
                 let console = self.console
