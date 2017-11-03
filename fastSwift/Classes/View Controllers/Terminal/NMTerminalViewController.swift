@@ -28,7 +28,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     var browserVC: DocumentBrowserViewController?
     var console = ""
     var reopen = false
-    var consoleHTML = ""
     var downloadExec = false
     
     var terminalHTML: String {
@@ -195,10 +194,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: self.terminal.text.slice(from: "<showAlert>", to: "</showAlert>")!, with: "")
                 self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "<showAlert>", with: "")
                 self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "</showAlert>", with: "")
-                
-                self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: self.consoleHTML.slice(from: "&lt;showAlert&gt;", to: "&lt;/showAlert&gt;")!, with: "")
-                self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: "&lt;showAlert&gt;", with: "")
-                self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: "&lt;/showAlert&gt;", with: "")
             }
             
             if self.terminal.text.contains("<theme>") {
