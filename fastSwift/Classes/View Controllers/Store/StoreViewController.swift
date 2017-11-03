@@ -34,6 +34,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     @IBOutlet weak var bannerSuperView: UIView!
     @IBOutlet weak var bannerView: GADBannerView!
     
+    
     // -------------------------------------------------------------------------
     // MARK: CollectionViewCells buttons
     // -------------------------------------------------------------------------
@@ -275,7 +276,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
         var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath)
         
-        if collectionView.tag != 2 && collectionView.tag != 8 {
+        if collectionView.tag != 2 && collectionView.tag != 8 && collectionView.tag != 7 {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(indexPath.row)", for: indexPath)
         }
         
@@ -480,7 +481,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                         let challenge_ = Challenge(name: name, code: code)
                         self.challenges.append(challenge_)
                     }
-                    
+                                        
                     for challenge in self.challenges {
                         print("Challenge found: \(challenge.name)")
                     }
