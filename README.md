@@ -12,16 +12,22 @@ An iOS client for Swift compiler
 <br/>
 <br/>
 
-fastSwift is an app that thanks of an SSH server sends, compiles and runs Swift files.
+fastSwift is a Swift IDE for your iPhone and iPad.
+Program Swift and run it directly from your device.
+
+Write your code in a editor with syntax highlighting, keyboard shortcuts and organise your project with multiple files.
+
+Supports currently Swift 3.
+
 
 ## Features
-- [x] Custom servers
-- [x] User input
-- [x] Command line arguments (From FFShell)
-- [x] Multiple files
-- [x] UIDocumentBrowserViewController
-- [x] Syntax highlighting
-- [x] {}, (). [], "" Auto completion
+- [x] Edit code with syntax highlighting and with shortcuts
+
+- [x] Organise code into multiple files and compile as one   program
+
+- [x] Run code in real time and with input
+
+- [x] Publish scripts to be executed by other people
 
 ## Preview
 <a href="http://coldg.ddns.net:83/test.html"><img src="https://raw.githubusercontent.com/ColdGrub1384/fastSwift/master/preview.png" width="100px"></a><br/>
