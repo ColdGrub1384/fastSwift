@@ -146,11 +146,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         DispatchQueue.main.async {
             
             self.terminal.text = (self.terminal.text+message).replacingOccurrences(of: "\n", with: "<br/>")
-            self.consoleHTML = self.consoleHTML+message.replacingOccurrences(of: "\n", with: "<br/>")
-            
-            if let html = (self.consoleHTML+self.terminalHTML).attributedStringFromHTML {
-                self.terminal.attributedText = html
-            }
+            self.consoleHTML = (self.consoleHTML+message).replacingOccurrences(of: "\n", with: "<br/>")
             
             print(self.terminal.text)
             
@@ -162,11 +158,8 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 self.terminal.text = newString[1]
                 self.consoleHTML = newHTML[1]
                 self.console = self.terminal.text
-                
-                if let html = (self.consoleHTML+self.terminalHTML).attributedStringFromHTML {
-                    self.terminal.attributedText = html
-                }                
             }
+            
             
             if self.terminal.text.contains("<showAlert>") { // Show an alert
                 if let text = self.terminal.text.slice(from: "<showAlert>", to: "</showAlert>") {
@@ -205,9 +198,23 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "<showAlert>", with: "")
                 self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "</showAlert>", with: "")
                 
-                self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: self.consoleHTML.slice(from: "&lt;showAlert&gt;", to: "&lt;/showAlert&gt;")!, with: "")
-                self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: "&lt;showAlert&gt;", with: "")
-                self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: "&lt;/showAlert&gt;", with: "")
+                self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: self.consoleHTML.slice(from: "<showAlert>", to: "</showAlert>")!, with: "")
+                self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: "<showAlert>", with: "")
+                self.consoleHTML = self.consoleHTML.replacingFirstOccurrence(of: "</showAlert>", with: "")
+            }
+            
+            if self.terminal.text.contains("Show activity") {
+                self.activity.startAnimating()
+                self.terminal.text = self.terminal.text.replacingOccurrences(of: "Show activity", with: "")
+                self.console = self.terminal.text
+                self.consoleHTML = self.consoleHTML.replacingOccurrences(of: "Show activity", with: "")
+            }
+            
+            if self.terminal.text.contains("Hide activity") {
+                self.activity.stopAnimating()
+                self.terminal.text = self.terminal.text.replacingOccurrences(of: "Hide activity", with: "")
+                self.console = self.terminal.text
+                self.consoleHTML = self.consoleHTML.replacingOccurrences(of: "Hide activity", with: "")
             }
             
             if self.terminal.text.contains("<theme>") {
@@ -222,6 +229,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                     let codeEditorBackground = theme.slice(from: "<codeEditorBackground>", to: "</codeEditorBackground>")
                     let codeEditorTheme = theme.slice(from: "<codeEditorTheme>", to: "</codeEditorTheme>")
                     let alternateIcon = theme.slice(from: "<alternateIcon>", to: "</alternateIcon>")
+
                     
                     self.present(AlertManager.shared.alert(withTitle: "Available theme!", message: "This program want to install a theme", style: .alert, actions: [UIAlertAction.init(title: "Install", style: .default, handler: { (action) in
                         
@@ -265,24 +273,10 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                     self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "<theme>", with: "")
                     self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "</theme>", with: "")
                     
-                    
                 }
                 
             }
             
-            if self.terminal.text.contains("Show activity") {
-                self.activity.startAnimating()
-                self.terminal.text = self.terminal.text.replacingOccurrences(of: "Show activity", with: "")
-                self.console = self.terminal.text
-                self.consoleHTML = self.consoleHTML.replacingOccurrences(of: "Show activity", with: "")
-            }
-            
-            if self.terminal.text.contains("Hide activity") {
-                self.activity.stopAnimating()
-                self.terminal.text = self.terminal.text.replacingOccurrences(of: "Hide activity", with: "")
-                self.console = self.terminal.text
-                self.consoleHTML = self.consoleHTML.replacingOccurrences(of: "Show activity", with: "")
-            }
             
             if self.terminal.text.contains("DownloadBinaryFileNow") {
                 let inCurrentVC = self.terminal.text.contains("DownloadBinaryFileNowInCurrentVC")
@@ -357,6 +351,10 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 } else {
                     self.session.disconnect()
                 }
+            }
+            
+            if let html = (self.consoleHTML+self.terminalHTML).attributedStringFromHTML {
+                self.terminal.attributedText = html
             }
             
             self.terminal.scrollToBotom()
