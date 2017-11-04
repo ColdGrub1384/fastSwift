@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GYU-Id-fTP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GYU-Id-fTP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -41,11 +41,23 @@
                                                 </connections>
                                             </barButtonItem>
                                         </leftBarButtonItems>
-                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="EKK-bo-FAd">
-                                            <connections>
-                                                <action selector="dismissDocumentViewController" destination="GYU-Id-fTP" id="Z36-RP-KGD"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem style="done" systemItem="done" id="EKK-bo-FAd">
+                                                <connections>
+                                                    <action selector="dismissDocumentViewController" destination="GYU-Id-fTP" id="Z36-RP-KGD"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Paste" id="flt-FN-gVa">
+                                                <connections>
+                                                    <action selector="pasteText:" destination="GYU-Id-fTP" id="qec-ZQ-HQd"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Copy" id="rcV-5S-ALa">
+                                                <connections>
+                                                    <action selector="copyText:" destination="GYU-Id-fTP" id="g11-Tn-PBT"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

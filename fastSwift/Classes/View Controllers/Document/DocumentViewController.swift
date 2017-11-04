@@ -107,7 +107,6 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                         self.code.attributedText = self.highlight("swift", code: self.code.text)
                         self.code.selectedTextRange = self.cursorPos
                         self.code.scrollRangeToVisible(self.range!)
-                        
                     }
                     
                     self.pause = true
@@ -690,6 +689,19 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     // -------------------------------------------------------------------------
     // MARK: Buttons
     // -------------------------------------------------------------------------
+    
+    @IBAction func copyText(_ sender: Any) {
+        guard let selected = self.code.selectedTextRange else { return }
+        guard let text = self.code.text(in: selected) else { return }
+        
+        UIPasteboard.general.string = text
+    }
+    
+    @IBAction func pasteText(_ sender: Any) {
+        if let text = UIPasteboard.general.string {
+            self.insert(text: text)
+        }
+    }
     
     @IBAction func dismissDocumentViewController() {
         

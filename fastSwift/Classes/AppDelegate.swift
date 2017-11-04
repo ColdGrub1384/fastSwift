@@ -185,7 +185,7 @@ import StoreKit
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         AppDelegate.shared = self
-        
+                
         GuideViewController.initPages()
                 
         loadingStoreError = ""
