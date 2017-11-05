@@ -485,9 +485,14 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         }
     }
     
-    func insert(text: String) {
+    func insert(text: String, withSpaces spaces: Bool = false) {
         let button = UIButton()
         button.setTitle(text, for: .normal)
+        
+        if spaces {
+            self.code.replace(self.code.selectedTextRange!, withText: text)
+            return
+        }
         
         insertText(sender: button)
     }
@@ -699,7 +704,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     @IBAction func pasteText(_ sender: Any) {
         if let text = UIPasteboard.general.string {
-            self.insert(text: text)
+            self.insert(text: text, withSpaces: true)
         }
     }
     
