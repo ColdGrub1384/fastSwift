@@ -8,9 +8,10 @@
 
 import UIKit
 import StoreKit
+import SwiftyStoreKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
+class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate {
     
     var window: UIWindow?
     var prices = [String]()
@@ -102,9 +103,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
     // MARK: In App purchases
     // -------------------------------------------------------------------------
     
-    func paymentQueue(_ queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction]) {
-        print("Remove transaction")
-    }
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         print("Received products!")
@@ -133,50 +131,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         (self.menu.vcs[3] as! ErrorLoadingStoreViewController).reloadError()
     }
     
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        for transaction in transactions {
-            let trans = transaction as SKPaymentTransaction
-            var continuePurchase = false
-            
-            print(trans.payment.productIdentifier)
-            
-            switch trans.transactionState {
-            case .purchased:
-                print("Purchased!")
-                continuePurchase = true
-                SKPaymentQueue.default().finishTransaction(trans)
-            case .purchasing:
-                print("Purchasing")
-            case .failed:
-                if let vc = AccountManager.shared.storeViewController {
-                    AlertManager.shared.present(error: trans.error!, withTitle: "Error!", inside: vc)
-                }
-                print("Error! \(trans.error!)")
-            case .restored:
-                print("Restored")
-            case .deferred:
-                print("Deferred")
-            }
-            
-            if continuePurchase {
-                if currentPurchase != nil {
-                    switch currentPurchase!.productIdentifier {
-                    case "ch.marcela.ada.fastSwift.purchases.pendrive":
-                        AccountManager.shared.buy(product: .pendrive)
-                    case "ch.marcela.ada.fastSwift.purchases.sd":
-                        AccountManager.shared.buy(product: .sdCard)
-                    case "ch.marcela.ada.fastSwift.purchases.cd":
-                        AccountManager.shared.buy(product: .cd)
-                    case "ch.marcela.ada.fastSwift.purchases.hd":
-                        AccountManager.shared.buy(product: .hardDrive)
-                    default:
-                        print("Unknown purchase!")
+    func completeTransactions() {
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            for purchase in purchases {
+                if purchase.transaction.transactionState == .purchased || purchase.transaction.transactionState == .restored {
+                    if purchase.needsFinishTransaction {
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
                     }
+                    print("purchased: \(purchase)")
                 }
             }
-            
         }
     }
+    
     
     // -------------------------------------------------------------------------
     // MARK: Delegate
@@ -185,7 +152,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         AppDelegate.shared = self
-                
+                        
         GuideViewController.initPages()
                 
         loadingStoreError = ""
@@ -194,7 +161,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         request.delegate = self
         request.start()
         print("Start request!")
-        SKPaymentQueue.default().add(self)
         
         clearCaches()
         
@@ -224,6 +190,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
             
             index += 1
         }
+        
+        completeTransactions()
+        
         
         return true
     }

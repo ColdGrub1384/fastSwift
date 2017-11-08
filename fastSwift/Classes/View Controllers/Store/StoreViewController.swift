@@ -12,7 +12,7 @@ import AdSupport
 import GoogleMobileAds
 import NMSSH
 import Zip
-
+import SwiftyStoreKit
 
 class StoreViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, GADRewardBasedVideoAdDelegate, UITableViewDelegate {
     
@@ -541,10 +541,33 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     
     func buy(_ product: SKProduct) {
         print("Buy "+product.localizedTitle)
-        let pay = SKPayment(product: product)
         currentPurchase = product
         AppDelegate.shared.currentPurchase = currentPurchase
-        SKPaymentQueue.default().add(pay)
+        
+        SwiftyStoreKit.purchaseProduct(product) { (result) in
+            switch result {
+            case .success:
+                print("Purchased!")
+                
+                switch product.productIdentifier.components(separatedBy: ".").last {
+                case "pendrive"?:
+                    AccountManager.shared.buy(product: .pendrive)
+                case "sd"?:
+                    AccountManager.shared.buy(product: .sdCard)
+                case "cd"?:
+                    AccountManager.shared.buy(product: .cd)
+                case "hd"?:
+                    AccountManager.shared.buy(product: .hardDrive)
+                default:
+                    print("Unknown purchase!")
+                }
+            case .error(error: let error):
+                if let vc = AccountManager.shared.storeViewController {
+                    AlertManager.shared.present(error: error, withTitle: "Error!", inside: vc)
+                }
+                print("Error! \(error)")
+            }
+        }
     }
     
     @IBAction func done(sender: Any) {

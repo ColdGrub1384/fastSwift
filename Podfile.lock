@@ -2,20 +2,23 @@ PODS:
   - Highlightr (1.1.0)
   - InAppSettingsKit (2.8.1)
   - NMSSH (2.2.7)
+  - SwiftyStoreKit (0.10.7)
   - Zip (0.7.0)
 
 DEPENDENCIES:
   - Highlightr
   - InAppSettingsKit
   - NMSSH
+  - SwiftyStoreKit
   - Zip
 
 SPEC CHECKSUMS:
   Highlightr: 519911a0a9a040d76e591f6fe58bb5177c8bdaa3
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
   NMSSH: dbe527b7eda5a90f55f487d4d44e527c317d55e8
+  SwiftyStoreKit: b13badd58fe138e258d04dec7bc1c9b092351af6
   Zip: e34513299ac38c0686d5b24504da7ce343799ab9
 
-PODFILE CHECKSUM: 987a13ab34d7b2325d69cb92b348af48cedded24
+PODFILE CHECKSUM: c0bea1bdd4abf56e90389264b097992790c9023b
 
 COCOAPODS: 1.2.1

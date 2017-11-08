@@ -10,4 +10,5 @@ target 'fastSwift' do
   pod 'NMSSH'
   pod 'Zip'
   pod 'InAppSettingsKit'
+  pod 'SwiftyStoreKit'
 end

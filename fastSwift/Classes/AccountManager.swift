@@ -174,7 +174,7 @@ class AccountManager {
     }
     
     
-    func buy(product: products) {
+    func buy(product: Products) {
         compilations = compilations+product.rawValue
         if let store = self.storeViewController {
             store.compilations.text = "\(AccountManager.shared.compilations) 🐧"
@@ -182,7 +182,7 @@ class AccountManager {
     }
     
     
-    public enum products: Int {
+    public enum Products: Int {
         case pendrive = 32
         case sdCard = 64
         case cd = 128
@@ -190,7 +190,7 @@ class AccountManager {
     }
     
     var productPrices: [String] {
-        return (UIApplication.shared.delegate as! AppDelegate).prices
+        return AppDelegate.shared.prices
     }
     
     var shop: [SKProduct]!
