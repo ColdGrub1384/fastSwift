@@ -331,7 +331,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                                             self.session.disconnect()
                                             
                                             if self.downloadExec {
-                                                AccountManager.shared.compilations = AccountManager.shared.compilations-1
+                                                AccountManager.shared.compilations.substract(1)
                                                 self.delegate?.compilations.title = "\(AccountManager.shared.compilations) 🐧"
                                             }
                                         })

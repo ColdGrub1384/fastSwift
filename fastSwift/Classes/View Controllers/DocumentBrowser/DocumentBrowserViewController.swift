@@ -73,7 +73,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         
         self.customActions = [UIDocumentBrowserAction.init(identifier: "compile", localizedTitle: "🔨", availability: .navigationBar, handler: { (urls) in
             
-            if AccountManager.shared.compilations <= 0 {
+            if AccountManager.shared.compilations.amount <= 0 {
                 AlertManager.shared.presentAlert(withTitle: "No enough 🐧", message: "You need more 🐧", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: self, animated: true, completion: nil)
                 return
             }

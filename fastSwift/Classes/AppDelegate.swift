@@ -144,6 +144,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         }
     }
     
+    func verifyReceipt(service: AppleReceiptValidator.VerifyReceiptURLType) {
+        var service_ = ""
+        
+        if service == .production {
+            service_ = "production"
+        } else {
+            service_ = "sandbox"
+        }
+        
+        let validator = AppleReceiptValidator(service: service)
+        SwiftyStoreKit.verifyReceipt(using: validator, password: "296d19f7ee7745fc801bb05fbbe441b0") { (result) in
+            switch result {
+            case .success(receipt: let info):
+                print("Successfully verified receipt for \(service_): \(info)")
+            case .error(error: let error):
+                print("Error verifying receipt for \(service_): \(error.localizedDescription)\nRetry for sandbox")
+            }
+        }
+    }
+    
     
     // -------------------------------------------------------------------------
     // MARK: Delegate
@@ -156,6 +176,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         GuideViewController.initPages()
                 
         loadingStoreError = ""
+        
+        verifyReceipt(service: .production)
         
         let request = SKProductsRequest(productIdentifiers: ["ch.marcela.ada.fastSwift.purchases.pendrive","ch.marcela.ada.fastSwift.purchases.sd","ch.marcela.ada.fastSwift.purchases.cd","ch.marcela.ada.fastSwift.purchases.hd"])
         request.delegate = self
@@ -183,16 +205,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
             if argument == "setCompilations" {
                 if arguments.count >= index+1 {
                     if let num = Int(arguments[index+1]) {
-                        AccountManager.shared.compilations = num
+                        AccountManager.shared.compilations.amount = num
+                    } else {
+                        if arguments[index+1] == "infinite" {
+                            AccountManager.shared.compilations = .infinite()
+                        }
                     }
                 }
             }
             
             index += 1
         }
-        
-        completeTransactions()
-        
         
         return true
     }

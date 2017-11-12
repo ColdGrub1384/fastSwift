@@ -69,7 +69,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "9999"
+            argument = "infinite"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

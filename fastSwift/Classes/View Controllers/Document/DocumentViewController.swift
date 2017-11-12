@@ -80,7 +80,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             }
         }
         
-        if AccountManager.shared.compilations != 0 {
+        if AccountManager.shared.compilations.amount != 0 {
             compileBTN.isEnabled = true
         } else {
             compileBTN.isEnabled = false
@@ -607,7 +607,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                     
                     // Spend compilation
                     if let _ = sender as? Bool {} else {
-                        AccountManager.shared.compilations = AccountManager.shared.compilations-1
+                        AccountManager.shared.compilations.substract(1)
                         self.compilations.title = "\(AccountManager.shared.compilations) 🐧"
                     }
                     

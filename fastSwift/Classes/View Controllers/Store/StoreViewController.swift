@@ -523,7 +523,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
         print("viewDidAppear!")
         
-        compilations.text = "\(AccountManager.shared.compilations) 🐧"
+        compilations.text = "\(AccountManager.shared.compilations.description) 🐧"
         if plusOne {
             print("+1")
             let alert = AlertManager.shared.alert(withTitle: "+1 🐧", message: "You have now \(AccountManager.shared.compilations)🐧", style: .alert, actions: [AlertManager.shared.ok(handler: nil)])
@@ -546,8 +546,12 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
         SwiftyStoreKit.purchaseProduct(product) { (result) in
             switch result {
-            case .success:
+            case .success(let purchase):
                 print("Purchased!")
+                
+                if purchase.needsFinishTransaction {
+                    SwiftyStoreKit.finishTransaction(purchase.transaction)
+                }
                 
                 switch product.productIdentifier.components(separatedBy: ".").last {
                 case "pendrive"?:
@@ -631,7 +635,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     }
     
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didRewardUserWith reward: GADAdReward) {
-        AccountManager.shared.compilations = AccountManager.shared.compilations+1
+        AccountManager.shared.compilations.add(1)
         plusOne = true
     }
     

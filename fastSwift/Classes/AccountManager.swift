@@ -15,6 +15,56 @@ class AccountManager {
     private init() {
     }
     
+    class Compilations {
+        
+        var didSetHandler: ((_ value:Compilations) -> Void)?
+        
+        private func didSet(_ value: Compilations) {
+            if didSetHandler != nil {
+                didSetHandler!(value)
+            }
+        }
+        
+        enum CompilationsType {
+            case amount
+            case infinite
+        }
+        
+        func substract(_ int: Int) {
+            self.amount = self.amount-int
+            self.didSet(self)
+        }
+        
+        func add(_ int: Int) {
+            self.amount = self.amount+int
+            self.didSet(self)
+        }
+        
+        static private var infinite_ = Compilations(withAmount: 0)
+        
+        var amount: Int
+        var type: CompilationsType
+        
+        var description: String {
+            if self.type == .amount {
+                return "\(amount)"
+            } else {
+                return "∞"
+            }
+        }
+        
+        init(withAmount amount: Int) {
+            self.amount = amount
+            self.type = .amount
+        }
+        
+        static func infinite() -> Compilations {
+            infinite_.type = .infinite
+            
+            return infinite_
+        }
+    }
+    
     var username: String? {
         get {
             return  UserDefaults.standard.string(forKey: "accountUser")
@@ -157,27 +207,41 @@ class AccountManager {
         return UserDefaults.standard.bool(forKey: "custom_server")
     }
     
-    var compilations: Int {
+    var compilations: Compilations {
+        
         get {
-                        
+            
             if !UserDefaults.standard.bool(forKey: "firstReward") {
                 UserDefaults.standard.set(true, forKey: "firstReward")
                 UserDefaults.standard.set(1, forKey: "compilations")
             }
-            return UserDefaults.standard.integer(forKey: "compilations")
+            
+            var value = Compilations(withAmount: UserDefaults.standard.integer(forKey: "compilations"))
+            
+            if UserDefaults.standard.bool(forKey: "infinite") {
+                value = .infinite()
+            }
+            
+            value.didSetHandler = { value in
+                UserDefaults.standard.set((value.type == .infinite), forKey: "infinite")
+                UserDefaults.standard.set(value.amount, forKey: "compilations")
+            }
+            
+            return value
         }
         
         set(value) {
-            UserDefaults.standard.set(value, forKey: "compilations")
+            UserDefaults.standard.set((value.type == .infinite), forKey: "infinite")
+            UserDefaults.standard.set(value.amount, forKey: "compilations")
         }
         
     }
     
     
     func buy(product: Products) {
-        compilations = compilations+product.rawValue
+        compilations.add(product.rawValue)
         if let store = self.storeViewController {
-            store.compilations.text = "\(AccountManager.shared.compilations) 🐧"
+            store.compilations.text = "\(AccountManager.shared.compilations.description) 🐧"
         }
     }
     
