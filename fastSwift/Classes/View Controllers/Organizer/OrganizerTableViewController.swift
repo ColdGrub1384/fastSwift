@@ -15,7 +15,7 @@ class OrganizerTableViewController: UITableViewController {
     
     func downloadBinary() {
         self.dismiss(animated: true) {
-            if AccountManager.shared.compilations.amount <= 0 {
+            if AccountManager.shared.compilations.amount <= 0 && !UserDefaults.standard.bool(forKey: "infinite") {
                 AlertManager.shared.presentAlert(withTitle: "No enough 🐧", message: "Buy 🐧 to compile scripts", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: self.delegate!, animated: true, completion: nil)
             } else {
                 self.delegate?.Compile(true)

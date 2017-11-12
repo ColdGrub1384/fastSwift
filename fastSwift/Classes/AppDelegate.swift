@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
     var qrScanner: QRScanViewController!
     var theme = Theme.black
     var loadingStoreError = ""
+    let iapPrefix = "ch.marcela.ada.fastSwift.purchases"
     
     static var shared = AppDelegate()
     
@@ -103,7 +104,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
     // MARK: In App purchases
     // -------------------------------------------------------------------------
     
-    
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         print("Received products!")
         var prices_ = [Double]()
@@ -179,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         
         verifyReceipt(service: .production)
         
-        let request = SKProductsRequest(productIdentifiers: ["ch.marcela.ada.fastSwift.purchases.pendrive","ch.marcela.ada.fastSwift.purchases.sd","ch.marcela.ada.fastSwift.purchases.cd","ch.marcela.ada.fastSwift.purchases.hd"])
+        let request = SKProductsRequest(productIdentifiers: ["\(iapPrefix).pendrive","\(iapPrefix).sd","\(iapPrefix).cd","\(iapPrefix).hd", "\(iapPrefix).unlimited"])
         request.delegate = self
         request.start()
         print("Start request!")
@@ -210,11 +210,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
                         if arguments[index+1] == "infinite" {
                             AccountManager.shared.compilations = .infinite()
                         }
+                        
+                        if arguments[index+1] == "!infinite" {
+                            UserDefaults.standard.set(false, forKey: "infinite")
+                        }
                     }
                 }
             }
             
             index += 1
+        }
+        
+        SwiftyStoreKit.shouldAddStorePaymentHandler = { payment, product in
+            if product.productIdentifier.components(separatedBy: ".").last == "unlimited" {
+                return true
+            } else {
+                return false
+            }
         }
         
         return true

@@ -66,11 +66,11 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "setCompilations"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "infinite"
-            isEnabled = "YES">
+            argument = "!infinite"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "firstLaunch"

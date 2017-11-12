@@ -214,6 +214,7 @@ class AccountManager {
             if !UserDefaults.standard.bool(forKey: "firstReward") {
                 UserDefaults.standard.set(true, forKey: "firstReward")
                 UserDefaults.standard.set(1, forKey: "compilations")
+                UserDefaults.standard.synchronize()
             }
             
             var value = Compilations(withAmount: UserDefaults.standard.integer(forKey: "compilations"))
@@ -225,6 +226,7 @@ class AccountManager {
             value.didSetHandler = { value in
                 UserDefaults.standard.set((value.type == .infinite), forKey: "infinite")
                 UserDefaults.standard.set(value.amount, forKey: "compilations")
+                UserDefaults.standard.synchronize()
             }
             
             return value
@@ -233,6 +235,7 @@ class AccountManager {
         set(value) {
             UserDefaults.standard.set((value.type == .infinite), forKey: "infinite")
             UserDefaults.standard.set(value.amount, forKey: "compilations")
+            UserDefaults.standard.synchronize()
         }
         
     }

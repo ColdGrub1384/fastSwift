@@ -80,13 +80,9 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             }
         }
         
-        if AccountManager.shared.compilations.amount != 0 {
-            compileBTN.isEnabled = true
-        } else {
-            compileBTN.isEnabled = false
-        }
+        compileBTN.isEnabled = (AccountManager.shared.compilations.amount != 0 || AccountManager.shared.compilations.type == .infinite)
         
-        compilations.title = "\(AccountManager.shared.compilations) 🐧"
+        compilations.title = "\(AccountManager.shared.compilations.description) 🐧"
         
         if autoCompilationState == .ready {
             autoCompilationState = .compiled
@@ -608,7 +604,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                     // Spend compilation
                     if let _ = sender as? Bool {} else {
                         AccountManager.shared.compilations.substract(1)
-                        self.compilations.title = "\(AccountManager.shared.compilations) 🐧"
+                        self.compilations.title = "\(AccountManager.shared.compilations.description) 🐧"
                     }
                     
                     print("Authorized session!")

@@ -181,6 +181,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     // -------------------------------------------------------------------------
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if canMakePayments {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row)")!
             cell.backgroundColor = AppDelegate.shared.theme.color
@@ -195,6 +196,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             
             return cell
         } else {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row+1)")!
             cell.backgroundColor = AppDelegate.shared.theme.color
             
@@ -215,12 +217,25 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         } else {
             return 5
         }
+        
     }
     
     // -------------------------------------------------------------------------
     // MARK: UITableViewDelegate
     // -------------------------------------------------------------------------
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Hide store if infinite compilations is bought
+        
+        if UserDefaults.standard.bool(forKey: "infinite") {
+            if indexPath.row == 0 || indexPath.row == 1 {
+                return 0
+            }
+        }
+        
+        return 200
+    }
+        
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -256,7 +271,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
-            return 4
+            return 5
         } else if collectionView.tag == 2 {
             if self.filesCollectionView != nil {
                 return files.count
@@ -286,6 +301,12 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                 button.setTitle(prices[indexPath.row], for: .normal)
                 button.backgroundColor = .clear
                 cell.backgroundColor = AppDelegate.shared.theme.color
+                
+                if let restore = cell.viewWithTag(4) as? UIButton {
+                    restore.backgroundColor = .clear
+                    restore.backgroundColor = AppDelegate.shared.theme.color
+                }
+                
                 
                 let iconView = cell.viewWithTag(6) as! UIImageView
                 let icon = iconView.image!
@@ -533,6 +554,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
         AccountManager.shared.storeViewController = self
         
+        bannerView.isHidden = UserDefaults.standard.bool(forKey: "infinite")
     }
     
     // -------------------------------------------------------------------------
@@ -562,6 +584,11 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                     AccountManager.shared.buy(product: .cd)
                 case "hd"?:
                     AccountManager.shared.buy(product: .hardDrive)
+                case "unlimited"?:
+                    UserDefaults.standard.set(true, forKey: "infinite")
+                    UserDefaults.standard.synchronize()
+                    AppDelegate.shared.window?.rootViewController = AppViewControllers().launchScreen
+                    _ = AppDelegate.shared.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
                 default:
                     print("Unknown purchase!")
                 }
@@ -582,7 +609,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         print("Buy pendrive")
         
         for item in AccountManager.shared.shop {
-            if item.productIdentifier == "ch.marcela.ada.fastSwift.purchases.pendrive" {
+            if item.productIdentifier.components(separatedBy: ".").last == "pendrive" {
                 buy(item)
                 break
             }
@@ -592,7 +619,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     @IBAction func buySDCard(_ sender: Any) {
         print("Buy SD Card")
         for item in AccountManager.shared.shop {
-            if item.productIdentifier == "ch.marcela.ada.fastSwift.purchases.sd" {
+            if item.productIdentifier.components(separatedBy: ".").last == "sd" {
                 buy(item)
                 break
             }
@@ -602,7 +629,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     @IBAction func buyCD(_ sender: Any) {
         print("Buy CD")
         for item in AccountManager.shared.shop {
-            if item.productIdentifier == "ch.marcela.ada.fastSwift.purchases.cd" {
+            if item.productIdentifier.components(separatedBy: ".").last == "cd" {
                 buy(item)
                 break
             }
@@ -612,12 +639,47 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     @IBAction func buyHD(_ sender: Any) {
         print("Buy hard drive")
         for item in AccountManager.shared.shop {
-            if item.productIdentifier == "ch.marcela.ada.fastSwift.purchases.hd" {
+            if item.productIdentifier.components(separatedBy: ".").last == "hd" {
                 buy(item)
                 break
             }
         }
     }
+    
+    @IBAction func buyUnlimited(_ sender: Any) {
+        print("Buy unlimited")
+        for item in AccountManager.shared.shop {
+            if item.productIdentifier.components(separatedBy: ".").last == "unlimited" {
+                if UserDefaults.standard.bool(forKey: "infinite") {
+                    AlertManager.shared.presentAlert(withTitle: "You already purchase this product", message: "You already purchased unlimited compilations, you can now compile all scripts you want.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: self, animated: true, completion: nil)
+                } else {
+                    buy(item)
+                }
+                break
+            }
+        }
+    }
+    
+    @IBAction func restorePurchases(_ sender: Any) {
+        SwiftyStoreKit.restorePurchases { (results) in
+            if results.restoredPurchases.count > 0 {
+                for result in results.restoredPurchases {
+                    if result.productId.components(separatedBy: ".").last == "unlimited" {
+                        
+                        AlertManager.shared.presentAlert(withTitle: "Restored product!", message: "Unlimited compilations product was restored", style: .alert, actions: [AlertManager.shared.ok(handler: { (action) in
+                            UserDefaults.standard.set(true, forKey: "infinite")
+                            AppDelegate.shared.window?.rootViewController = AppViewControllers().launchScreen
+                            _ = AppDelegate.shared.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
+                            UserDefaults.standard.synchronize()
+                        })], inside: self, animated: true, completion: nil)
+                    }
+                }
+            } else {
+                AlertManager.shared.presentAlert(withTitle: "You never purchased this product", message: "Purchase Unlimited to unlock unlimited compilations", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: self, animated: true, completion: nil)
+            }
+        }
+    }
+    
     
     // -------------------------------------------------------------------------
     // MARK: Watch videos
