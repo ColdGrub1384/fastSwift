@@ -35,7 +35,7 @@ Supports currently Swift 3.
 <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple118/v4/8d/bf/de/8dbfdef5-97d9-8e0b-2df4-8b30b5b6d65e/pr_source.png/0x0ss.jpg" width="35%" style="display: inline"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple128/v4/89/1e/94/891e948b-7e59-dc4d-50b0-d79b0cf5cac3/pr_source.png/0x0ss.jpg" width="35%" style="display: inline"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple118/v4/d3/0c/d4/d30cd4e6-753d-6457-4df2-e04a5d2a276e/pr_source.png/0x0ss.jpg" width="35%" style="display: inline"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple128/v4/03/c9/05/03c905b7-e47a-14f1-c3c1-953a42188aac/pr_source.png/0x0ss.jpg" width="35%" style="display: inline">
 
 # App menu
-WHen you open the app you have a ```UIDocumentBrowserViewController```, you can open and create Swift files or, sroll to the right or to the left, to the left, there are a WebView with an HTML file provided by fastSwift server and a QR Code scanner to open scripts. To the left, there are a store and a settings View Controller.
+When you open the app you have a ```UIDocumentBrowserViewController```, you can open and create Swift files or, sroll to the right or to the left, to the left, there are a WebView with an HTML file provided by fastSwift server and a QR Code scanner to open scripts. To the left, there are a store and a settings View Controller.
 
 ## Menu's hierarchy
 
