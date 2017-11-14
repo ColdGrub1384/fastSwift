@@ -71,7 +71,7 @@ The [code editor](https://github.com/ColdGrub1384/fastSwift/blob/master/fastSwif
 The [terminal](https://github.com/ColdGrub1384/fastSwift/blob/master/fastSwift/Classes/View%20Controllers/Document/DocumentViewController.swift) is opened when a Swift project is compiled, it support real time output and input and HtML.
 
 # Store
-In the [store](https://github.com/ColdGrub1384/fastSwift/blob/master/fastSwift/Classes/View%20Controllers/Store/StoreViewController.swift), you can buy [In App Purchases](#In%20App%20Purchases), download scripts made by other people and play [challenges](#Challenges).
+In the [store](https://github.com/ColdGrub1384/fastSwift/blob/master/fastSwift/Classes/View%20Controllers/Store/StoreViewController.swift), you can buy [In App Purchases](#in-app-purchases), download scripts made by other people and play [challenges](#challenges).
 
 # Challenges
 To play a challenge, go to store and select the challenge, write code to do, and if is correct the first time, you win a point.
