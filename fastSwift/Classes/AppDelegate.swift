@@ -11,7 +11,7 @@ import StoreKit
 import SwiftyStoreKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     
     var window: UIWindow?
     var prices = [String]()
@@ -144,22 +144,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         }
     }
     
-    func verifyReceipt(service: AppleReceiptValidator.VerifyReceiptURLType) {
-        var service_ = ""
-        
-        if service == .production {
-            service_ = "production"
+    func paymentQueue(_ queue: SKPaymentQueue, shouldAddStorePayment payment: SKPayment, for product: SKProduct) -> Bool {
+        if product.productIdentifier.components(separatedBy: ".").last == "unlimited" {
+            return true
         } else {
-            service_ = "sandbox"
+            return false
         }
-        
-        let validator = AppleReceiptValidator(service: service)
-        SwiftyStoreKit.verifyReceipt(using: validator, password: "296d19f7ee7745fc801bb05fbbe441b0") { (result) in
-            switch result {
-            case .success(receipt: let info):
-                print("Successfully verified receipt for \(service_): \(info)")
-            case .error(error: let error):
-                print("Error verifying receipt for \(service_): \(error.localizedDescription)\nRetry for sandbox")
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            if transaction.payment.productIdentifier.components(separatedBy: ".").last == "unlimited" {
+                switch transaction.transactionState {
+                case .purchased:
+                    UserDefaults.standard.set(true, forKey: "unlimited")
+                    UserDefaults.standard.synchronize()
+                    
+                    self.window?.rootViewController = AppViewControllers().menu
+                case .failed:
+                    guard let error = transaction.error else { return }
+                    AlertManager.shared.present(error: error, withTitle: "Error purchasing Unlimited Compilations", inside: (self.window?.rootViewController)!)
+                default:
+                    break
+                }
             }
         }
     }
@@ -176,8 +183,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         GuideViewController.initPages()
                 
         loadingStoreError = ""
-        
-        verifyReceipt(service: .production)
         
         let request = SKProductsRequest(productIdentifiers: ["\(iapPrefix).pendrive","\(iapPrefix).sd","\(iapPrefix).cd","\(iapPrefix).hd", "\(iapPrefix).unlimited"])
         request.delegate = self
@@ -219,14 +224,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
             }
             
             index += 1
-        }
-        
-        SwiftyStoreKit.shouldAddStorePaymentHandler = { payment, product in
-            if product.productIdentifier.components(separatedBy: ".").last == "unlimited" {
-                return true
-            } else {
-                return false
-            }
         }
         
         return true
