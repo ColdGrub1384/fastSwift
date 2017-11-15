@@ -30,6 +30,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     @IBOutlet weak var doneBtn: UIBarButtonItem!
     var challenges = [Challenge]()
     var leaderboard = [Player]()
+    var areProgramsFetched = false
     
     @IBOutlet weak var bannerSuperView: UIView!
     @IBOutlet weak var bannerView: GADBannerView!
@@ -241,6 +242,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
         let currents = tableView.indexPathsForVisibleRows!
         var current: UITableViewCell!
         
@@ -262,6 +264,11 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             title = "Challenges"
         } else if current.reuseIdentifier == "4" { // Leaderboard
             title = "Leaderboard"
+        }
+        
+        
+        UIView.animate(withDuration: 1) {
+            self.navigationController?.navigationBar.prefersLargeTitles = scrollView.isAtTop
         }
     }
     
@@ -319,7 +326,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             }
         } else if collectionView.tag == 2 { // Programs
             
-            if let _ = self.filesCollectionView {
+            if self.filesCollectionView != nil {
                 
                 cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath)
                 cell.backgroundColor = AppDelegate.shared.theme.color
@@ -343,7 +350,21 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                 buttonSource.addTarget(self, action: #selector(showSourceFromStore(_:)), for: .touchUpInside)
             } else {
                 self.filesCollectionView = collectionView
-                return cell
+                
+                if self.areProgramsFetched {
+                    _ = Afte.r(0.5, seconds: { (timer) in
+                        collectionView.reloadData()
+                    })
+                }
+                
+                let loadingCell = collectionView.dequeueReusableCell(withReuseIdentifier: "1", for: indexPath)
+                for subview in loadingCell.contentView.subviews {
+                    if let activity = subview as? UIActivityIndicatorView {
+                        activity.tintColor = AppDelegate.shared.theme.tintColor
+                    }
+                }
+                
+                return loadingCell
             }
         } else if collectionView.tag == 3 { // View video
             let label = cell.viewWithTag(2) as! UILabel
@@ -449,7 +470,8 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                     self.files = processed
                     
                     DispatchQueue.main.async {
-                        self.filesCollectionView!.reloadData()
+                        self.filesCollectionView?.reloadData()
+                        self.areProgramsFetched = true
                     }
                     
                     print(self.files)
@@ -536,7 +558,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                     }
                 }
             }
-            }.resume()
+        }.resume()
     }
     
     override func viewDidAppear(_ animated: Bool) {
