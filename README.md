@@ -68,7 +68,7 @@ Price: Tier 5
 The [code editor](https://github.com/ColdGrub1384/fastSwift/blob/master/fastSwift/Classes/View%20Controllers/Document/DocumentViewController.swift) is opened to edit a Swift script. It includes syntax highlighting and shortcuts for special characters. You can add another file to be part of the project and compile them with the hammer button. The output is shown.
 
 # Terminal
-The [terminal](https://github.com/ColdGrub1384/fastSwift/blob/master/fastSwift/Classes/View%20Controllers/Document/DocumentViewController.swift) is opened when a Swift project is compiled, it support real time output and input and HtML.
+The [terminal](https://github.com/ColdGrub1384/fastSwift/blob/master/fastSwift/Classes/View%20Controllers/Terminal/TerminalViewController.swift) is opened when a Swift project is compiled, it support real time output and input and HTML.
 
 # Store
 In the [store](https://github.com/ColdGrub1384/fastSwift/blob/master/fastSwift/Classes/View%20Controllers/Store/StoreViewController.swift), you can buy [In App Purchases](#in-app-purchases), download scripts made by other people and play [challenges](#challenges).
