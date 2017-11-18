@@ -563,8 +563,8 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             view.backgroundColor = #colorLiteral(red: 0.9627815673, green: 0.9627815673, blue: 0.9627815673, alpha: 1)
         }
         
-        if UserDefaults.standard.bool(forKey: "unlimited") {
-            title = "Programsr"
+        if UserDefaults.standard.bool(forKey: "infinite") {
+            title = "Programs"
         }
     }
     
@@ -622,6 +622,13 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                     print("Unknown purchase!")
                 }
             case .error(error: let error):
+                
+                let skError = SKError(_nsError: error as NSError)
+                
+                if skError.code == .paymentCancelled {
+                    return
+                }
+                
                 if let vc = AccountManager.shared.storeViewController {
                     AlertManager.shared.present(error: error, withTitle: "Error!", inside: vc)
                 }
