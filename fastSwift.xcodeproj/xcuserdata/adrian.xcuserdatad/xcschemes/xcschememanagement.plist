@@ -28,7 +28,7 @@
 			<key>isShown</key>
 			<true/>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>3</integer>
 		</dict>
 		<key>fastSwift.xcscheme</key>
 		<dict>

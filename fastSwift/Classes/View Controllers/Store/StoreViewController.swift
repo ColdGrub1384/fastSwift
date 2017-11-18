@@ -35,6 +35,96 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     @IBOutlet weak var bannerSuperView: UIView!
     @IBOutlet weak var bannerView: GADBannerView!
     
+    func fetchData() {
+        var challengesURL = URL(string:"http://\(Server.default.host)/challenges.php?viewChallenges")!
+        if let username = AccountManager.shared.username?.addingPercentEncodingForURLQueryValue() {
+            challengesURL = URL(string: challengesURL.absoluteString+"&username=\(username)")!
+        }
+        
+        URLSession.shared.dataTask(with: challengesURL) { (data, response, error) in // Fetch challenges
+            if let data = data {
+                if let str = String(data: data, encoding: .utf8) {
+                    let challenges = str.components(separatedBy: ";")
+                    
+                    for challenge in challenges {
+                        let properties = challenge.components(separatedBy: "->")
+                        
+                        if properties.count <= 1 { // Break if challenge is empty, always the last
+                            break
+                        }
+                        
+                        let name = properties[0]
+                        let code = properties[1]
+                        
+                        
+                        let challenge_ = Challenge(name: name, code: code)
+                        self.challenges.append(challenge_)
+                    }
+                    
+                    for challenge in self.challenges {
+                        print("Challenge found: \(challenge.name)")
+                    }
+                }
+            }
+            }.resume()
+        
+        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/leaderboard.php")!) { (data, response, error) in // Fetch leaderboard
+            if let data = data {
+                if let str = String(data: data, encoding: .utf8) {
+                    let users = str.components(separatedBy: ";")
+                    
+                    for user in users {
+                        let properties = user.components(separatedBy: ":")
+                        
+                        if properties.count <= 1 {
+                            break
+                        }
+                        
+                        let name = properties[0]
+                        let points_ = properties[1]
+                        
+                        if let points = Int(points_) {
+                            let player = Player(name: name, points: points)
+                            self.leaderboard.append(player)
+                        }
+                    }
+                    
+                    for player in self.leaderboard {
+                        print("Player found: \(player.name)")
+                    }
+                }
+            }
+            }.resume()
+        
+        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/dir.php?dir=/mnt/FFSwift/\(Server.user)@\(Server.host)/files")!) { (data, response, error) in // Fetch store programs
+            if error == nil {
+                if data != nil {
+                    let string = String.init(data: data!, encoding: .utf8)!
+                    var processed = string.components(separatedBy: "\n")
+                    
+                    for element in processed {
+                        if element == "" {
+                            processed.remove(at: processed.index(of: element)!)
+                        }
+                    }
+                    
+                    self.files = processed
+                    
+                    DispatchQueue.main.async {
+                        self.filesCollectionView?.reloadData()
+                        self.areProgramsFetched = true
+                    }
+                    
+                    print(self.files)
+                } else {
+                    AlertManager.shared.present(error: error!, withTitle: "Error fetching store content!", inside: self)
+                }
+            } else {
+                AlertManager.shared.present(error: error!, withTitle: "Error fetching store content!", inside: self)
+            }
+            }.resume()
+    }
+    
     
     // -------------------------------------------------------------------------
     // MARK: CollectionViewCells buttons
@@ -250,13 +340,15 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             let cellRect = tableView.rectForRow(at: current_)
             let isVisible = tableView.bounds.contains(cellRect)
             
-            if isVisible {
+            if isVisible && cellRect.height != 0 {
                 current = tableView.cellForRow(at: current_)
                 break
             }
         }
         
-        if current.reuseIdentifier == "0" || current.reuseIdentifier == "1" { // Sale
+        print("Current cell reuse identifier: \(current.reuseIdentifier ?? "nil")")
+        
+        if (current.reuseIdentifier == "0" || current.reuseIdentifier == "1") { // Sale
             title = "Sale"
         } else if current.reuseIdentifier == "2" { // Programs
             title = "Programs"
@@ -280,11 +372,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         if collectionView.tag == 1 {
             return 5
         } else if collectionView.tag == 2 {
-            if self.filesCollectionView != nil {
-                return files.count
-            } else {
-                return 1
-            }
+            return files.count
         } else if collectionView.tag == 7 {
             return challenges.count
         } else if collectionView.tag == 8 {
@@ -335,8 +423,8 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                 label.text = (files[indexPath.row] as NSString).deletingPathExtension
                 label.textColor = AppDelegate.shared.theme.textColor
                 
-                let buttonRun = cell.viewWithTag(5) as! UIButton
-                let buttonSource = cell.viewWithTag(6) as! UIButton
+                guard let buttonRun = cell.viewWithTag(5) as? UIButton else { return cell}
+                guard let buttonSource = cell.viewWithTag(6) as? UIButton else { return cell}
                 
                 buttonSource.backgroundColor = .clear
                 buttonRun.backgroundColor = .clear
@@ -365,6 +453,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                 }
                 
                 return loadingCell
+                
             }
         } else if collectionView.tag == 3 { // View video
             let label = cell.viewWithTag(2) as! UILabel
@@ -435,6 +524,8 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchData()
+        
         canMakePayments = SKPaymentQueue.canMakePayments()
         
         prices = AccountManager.shared.productPrices
@@ -454,35 +545,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         request.keywords = ["code","Swift","compile"]
         request.contentURL = "https://github.com/ColdGrub1384/fastSwift"
         bannerView.load(request)
-        
-        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/dir.php?dir=/mnt/FFSwift/\(Server.user)@\(Server.host)/files")!) { (data, response, error) in // Fetch store programs
-            if error == nil {
-                if data != nil {
-                    let string = String.init(data: data!, encoding: .utf8)!
-                    var processed = string.components(separatedBy: "\n")
-                    
-                    for element in processed {
-                        if element == "" {
-                            processed.remove(at: processed.index(of: element)!)
-                        }
-                    }
-                    
-                    self.files = processed
-                    
-                    DispatchQueue.main.async {
-                        self.filesCollectionView?.reloadData()
-                        self.areProgramsFetched = true
-                    }
-                    
-                    print(self.files)
-                } else {
-                    AlertManager.shared.present(error: error!, withTitle: "Error fetching store content!", inside: self)
-                }
-            } else {
-                AlertManager.shared.present(error: error!, withTitle: "Error fetching store content!", inside: self)
-            }
-        }.resume()
-        
+
         tableView.reloadData()
         
         tableView.backgroundColor = AppDelegate.shared.theme.color
@@ -500,65 +563,9 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             view.backgroundColor = #colorLiteral(red: 0.9627815673, green: 0.9627815673, blue: 0.9627815673, alpha: 1)
         }
         
-        var challengesURL = URL(string:"http://\(Server.default.host)/challenges.php?viewChallenges")!
-        if let username = AccountManager.shared.username?.addingPercentEncodingForURLQueryValue() {
-            challengesURL = URL(string: challengesURL.absoluteString+"&username=\(username)")!
+        if UserDefaults.standard.bool(forKey: "unlimited") {
+            title = "Programsr"
         }
-        
-        URLSession.shared.dataTask(with: challengesURL) { (data, response, error) in // Fetch challenges
-            if let data = data {
-                if let str = String(data: data, encoding: .utf8) {
-                    let challenges = str.components(separatedBy: ";")
-                    
-                    for challenge in challenges {
-                        let properties = challenge.components(separatedBy: "->")
-                        
-                        if properties.count <= 1 { // Break if challenge is empty, always the last
-                            break
-                        }
-                        
-                        let name = properties[0]
-                        let code = properties[1]
-                        
-                        
-                        let challenge_ = Challenge(name: name, code: code)
-                        self.challenges.append(challenge_)
-                    }
-                                        
-                    for challenge in self.challenges {
-                        print("Challenge found: \(challenge.name)")
-                    }
-                }
-            }
-        }.resume()
-        
-        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/leaderboard.php")!) { (data, response, error) in // Fetch leaderboard
-            if let data = data {
-                if let str = String(data: data, encoding: .utf8) {
-                    let users = str.components(separatedBy: ";")
-                    
-                    for user in users {
-                        let properties = user.components(separatedBy: ":")
-                        
-                        if properties.count <= 1 {
-                            break
-                        }
-                        
-                        let name = properties[0]
-                        let points_ = properties[1]
-                        
-                        if let points = Int(points_) {
-                            let player = Player(name: name, points: points)
-                            self.leaderboard.append(player)
-                        }
-                    }
-                    
-                    for player in self.leaderboard {
-                        print("Player found: \(player.name)")
-                    }
-                }
-            }
-        }.resume()
     }
     
     override func viewDidAppear(_ animated: Bool) {
