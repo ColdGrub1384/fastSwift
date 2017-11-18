@@ -163,6 +163,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
                     self.window?.rootViewController = AppViewControllers().menu
                 case .failed:
                     guard let error = transaction.error else { return }
+                    let skError = SKError(_nsError: error as NSError)
+                    
+                    if skError.code == .paymentCancelled {
+                        return
+                    }
+                    
                     AlertManager.shared.present(error: error, withTitle: "Error purchasing Unlimited Compilations", inside: (self.window?.rootViewController)!)
                 default:
                     break
