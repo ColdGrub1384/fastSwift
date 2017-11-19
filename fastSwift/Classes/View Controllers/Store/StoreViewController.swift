@@ -370,14 +370,19 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
+            print("1: 5")
             return 5
         } else if collectionView.tag == 2 {
+            print("2: \(files.count)")
             return files.count
         } else if collectionView.tag == 7 {
+            print("7: \(challenges.count)")
             return challenges.count
         } else if collectionView.tag == 8 {
+            print("8: \(leaderboard.count)")
             return leaderboard.count
         } else {
+            print("1")
             return 1
         }
     }

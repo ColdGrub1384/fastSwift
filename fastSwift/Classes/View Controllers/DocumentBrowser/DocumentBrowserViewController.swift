@@ -239,6 +239,9 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                             
                             let filePath = "/home/\(Server.user)/bin/\(UIDevice.current.identifierForVendor!.uuidString)/\(urls.first!.lastPathComponent)"
                             session?.sftp.connect()
+                            
+                            let screenSizePath = "/home/\(Server.user)/bin/\(UIDevice.current.identifierForVendor!.uuidString)/screenSize"
+                            
                             do {
                                 let fileData = try Data.init(contentsOf: urls.first!)
                                 try session?.channel.execute("touch '\(filePath)'")
@@ -254,7 +257,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                             
                             alert.dismiss(animated: true, completion: {
                                 let terminalViewController = AppViewControllers().terminal
-                                terminalViewController.command = "'\(filePath)'; rm '\(filePath)'; logout"
+                                terminalViewController.command = "touch \(screenSizePath); echo \"\(UIScreen.main.bounds.width)\" >> \(screenSizePath); echo \"\(UIScreen.main.bounds.height)\" >> \(screenSizePath); '\(filePath)'; rm '\(filePath)'; logout"
                                 terminalViewController.user = Server.user
                                 terminalViewController.host = Server.host
                                 terminalViewController.password = Server.password

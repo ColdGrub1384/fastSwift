@@ -645,7 +645,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                                 
                                 let terminal = AppViewControllers().terminal
                                 let secondPart = "./main; cd ~; rm -rf \((UIDevice.current.identifierForVendor!.uuidString)); logout"
-                                terminal.command = "cd '\((UIDevice.current.identifierForVendor!.uuidString))'; mv '\(self.document!.fileURL.lastPathComponent)' main.swift; swiftc *; \(additionalCommand)"
+                                terminal.command = "cd '\((UIDevice.current.identifierForVendor!.uuidString))'; mv '\(self.document!.fileURL.lastPathComponent)' main.swift; swiftc *; touch screenSize; echo \"\(UIScreen.main.bounds.width)\" >> screenSize; echo \"\(UIScreen.main.bounds.height)\" >> screenSize; \(additionalCommand)"
                                 print(terminal.command)
                                 terminal.host = Server.host
                                 terminal.user = Server.user

@@ -29,6 +29,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     var console = ""
     var reopen = false
     var downloadExec = false
+    var guiViewController: UIViewController?
     
     var terminalHTML: String {
         return try! String(contentsOfFile: Bundle.main.path(forResource: "terminal", ofType: "html")!).replacingOccurrences(of: "$BACKGROUNDCOLOR", with:"#"+AppDelegate.shared.theme.color.hexString).replacingOccurrences(of: "$TEXTCOLOR", with: "#"+AppDelegate.shared.theme.textColor.hexString)
@@ -37,13 +38,20 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     
     var consoleHTML = ""
     
-    func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
-        return .portrait
+    @objc func closeGUIViewController() {
+        guiViewController?.dismiss(animated: true, completion: {
+            do { try self.session.channel.write("closeWindow\n") } catch _ {}
+            self.guiViewController = nil
+        })
     }
     
     // -------------------------------------------------------------------------
     // MARK: UIViewController
     // -------------------------------------------------------------------------
+    
+    func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+        return .portrait
+    }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -190,7 +198,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                             msg = msg_
                         }
                         
-                        self.present(AlertManager.shared.alert(withTitle: title, message: msg, style: .alert, actions: actions), animated: true, completion: nil)
+                        AppDelegate.shared.topViewController()?.present(AlertManager.shared.alert(withTitle: title, message: msg, style: .alert, actions: actions), animated: true, completion: nil)
                     }
                 }
                 
@@ -215,6 +223,368 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 self.terminal.text = self.terminal.text.replacingOccurrences(of: "Hide activity", with: "")
                 self.console = self.terminal.text
                 self.consoleHTML = self.consoleHTML.replacingOccurrences(of: "Hide activity", with: "")
+            }
+            
+            if self.terminal.text.contains("closeWindow") {
+                self.closeGUIViewController()
+                self.terminal.text = self.terminal.text.replacingOccurrences(of: "closeWindow", with: "")
+            }
+            
+            if self.terminal.text.contains("<GUI>") { // Show GUI
+                if let gui = self.terminal.text.slice(from: "<GUI>", to: "</GUI>") {
+                    
+                    class FFViewController: UIViewController {
+                        
+                        var navBar: UINavigationBar!
+                        var items = [UIBarButtonItem]()
+                        var terminal: NMTerminalViewController!
+                        
+                        override var preferredStatusBarStyle: UIStatusBarStyle {
+                            return AppDelegate.shared.theme.statusBarStyle
+                        }
+                        
+                        override func viewDidAppear(_ animated: Bool) {
+                            super.viewDidAppear(animated)
+                            
+                            print("Title: \(title ?? "nil")")
+                            
+                            navBar.setItems([UINavigationItem(title: title ?? "")], animated: true)
+                            navBar.topItem?.setRightBarButtonItems(items, animated: true)
+                        }
+                    }
+                    
+                    class FFButton: UIButton {
+                        var id: String?
+                        var terminal: NMTerminalViewController!
+                        
+                        @objc func sendData() {
+                            do { try self.terminal.session.channel.write("button;\(id ?? "")\n") } catch _ {}
+                        }
+                        
+                    }
+                    
+                    class FFTextField: UITextField, UITextFieldDelegate {
+                        var id: String?
+                        var terminal: NMTerminalViewController!
+                        
+                        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+                            textField.resignFirstResponder()
+                            sendData()
+                            
+                            return true
+                        }
+                        
+                        func sendData() {
+                            do { try self.terminal.session.channel.write("textfield;\(id ?? "");\(self.text ?? "")\n") } catch _ {}
+                        }
+                        
+                    }
+                    
+                    func color(fromString string: String) -> UIColor? {
+                        guard let redString = string.slice(from: "<red>", to: "</red>") else { return nil }
+                        guard let red = Float(redString) else { return nil }
+                        
+                        guard let greenString = string.slice(from: "<green>", to: "</green>") else { return nil }
+                        guard let green = Float(greenString) else { return nil }
+                        
+                        guard let blueString = string.slice(from: "<blue>", to: "</blue>") else { return nil }
+                        guard let blue = Float(blueString) else { return nil }
+                        
+                        guard let alphaString = string.slice(from: "<alpha>", to: "</alpha>") else { return nil }
+                        guard let alpha = Float(alphaString) else { return nil }
+                        
+                        return UIColor(displayP3Red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
+                    }
+                    
+                    func frame(fromString string: String) -> CGRect? {
+                        guard let xString = string.slice(from: "<x>", to: "</x>") else { return nil }
+                        guard let x = Float(xString) else { return nil }
+                        
+                        guard let yString = string.slice(from: "<y>", to: "</y>") else { return nil }
+                        guard let y = Float(yString) else { return nil }
+                        
+                        guard let widthString = string.slice(from: "<width>", to: "</width>") else { return nil }
+                        guard let width = Float(widthString) else { return nil }
+                        
+                        guard let heigthString = string.slice(from: "<height>", to: "</height>") else { return nil }
+                        guard let heigth = Float(heigthString) else { return nil }
+                        
+                        return CGRect(x: CGFloat(x), y: CGFloat(y), width: CGFloat(width), height: CGFloat(heigth))
+                    }
+                    
+                    
+                    self.guiViewController = FFViewController()
+                    
+                    guard let vc = self.guiViewController as? FFViewController else { return }
+                    
+                    vc.terminal = self
+                    
+                    vc.view.backgroundColor = .white
+                    
+                    // Set background color
+                    if let backgroundColorString = gui.slice(from: "<backgroundColor>", to: "</backgroundColor>") {
+                        if let color = color(fromString: backgroundColorString) {
+                            vc.view.backgroundColor = color
+                        }
+                    }
+                    
+                    if vc.view.backgroundColor == .clear || vc.view.backgroundColor == UIColor(red: 0, green: 0, blue: 0, alpha: 0) {
+                        vc.view.backgroundColor = AppDelegate.shared.theme.color
+                    }
+                    
+                    let navBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: UIScreen.main.bounds.width, height:44))
+                    navBar.barStyle = self.navBar.barStyle
+                    navBar.barTintColor = self.navBar.barTintColor
+                    navBar.tintColor = self.navBar.tintColor
+                    
+                    let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height:20))
+                    statusBar.backgroundColor = AppDelegate.shared.theme.color
+                    
+                    // Set title
+                    if let title = self.terminal.text.slice(from: "<title>", to: "</title>") {
+                        vc.title = title
+                    }
+                    
+                    vc.view.addSubview(navBar)
+                    vc.view.addSubview(statusBar)
+                    
+                    vc.navBar = navBar
+                    
+                    vc.view.tintColor = self.view.tintColor
+                    
+                    let close = UIBarButtonItem.init(barButtonSystemItem: .stop, target: self, action: #selector(self.closeGUIViewController))
+                    vc.items.append(close)
+                    
+                    var views = [UIView]()
+                    
+                    var gui_ = gui
+                    
+                    var currentView = gui_.slice(from: "<FFView>",to: "</FFView>") // FFView
+                    if currentView != nil {
+                        while true {
+                            if let frameString = currentView?.slice(from: "<frame>", to: "</frame>") {
+                                if let frame = frame(fromString: frameString) {
+                                    
+                                    if let backgroundColorString = currentView?.slice(from: "<backgroundColor>", to: "</backgroundColor>") {
+                                        if let backgroundColor = color(fromString: backgroundColorString) {
+                                            
+                                            let newView = UIView(frame: frame)
+                                            newView.backgroundColor = backgroundColor
+                                            
+                                            views.append(newView)
+                                        }
+                                    }
+                                }
+                            }
+                                
+                            
+                            if let currentView_ = gui_.slice(from: "<FFView>",to: "</FFView>") {
+                                gui_ = gui_.replacingFirstOccurrence(of: currentView!, with: "")
+                                gui_ = gui_.replacingFirstOccurrence(of: "<FFView>", with: "")
+                                gui_ = gui_.replacingFirstOccurrence(of: "</FFView>", with: "")
+                                currentView = currentView_
+                            } else {
+                                break
+                            }
+                        }
+                    }
+                    
+                    currentView = gui_.slice(from: "<FFLabel>",to: "</FFLabel>") // FFLabel
+                    if currentView != nil {
+                        while true {
+                            if let frameString = currentView?.slice(from: "<frame>", to: "</frame>") {
+                                if let frame = frame(fromString: frameString) {
+                                    
+                                    if let backgroundColorString = currentView?.slice(from: "<backgroundColor>", to: "</backgroundColor>") {
+                                        if let backgroundColor = color(fromString: backgroundColorString) {
+                                            
+                                            if let text = currentView?.slice(from: "<text>", to: "</text>") {
+                                                
+                                                if let textColorString = currentView?.slice(from: "<textColor>", to: "</textColor>") {
+                                                    if let textColor = color(fromString: textColorString) {
+                                                        if let font = currentView?.slice(from: "<font>", to: "</font>") {
+                                                            if let fontName = font.slice(from: "<name>", to: "</name>") {
+                                                                if let fontSizeString = font.slice(from: "<size>", to: "</size>") {
+                                                                    if let fontSize = Float(fontSizeString) {
+                                                                        if let alignment = currentView?.slice(from: "<alignment>", to: "</alignment>") {
+                                                                            let newView = UILabel(frame: frame)
+                                                                            newView.backgroundColor = backgroundColor
+                                                                            newView.text = text
+                                                                            newView.textColor = textColor
+                                                                            newView.font = UIFont(name: fontName, size: CGFloat(fontSize))
+                                                                            
+                                                                            if newView.textColor == .clear || newView.textColor == UIColor(red: 0, green: 0, blue: 0, alpha: 0) {
+                                                                                newView.textColor = AppDelegate.shared.theme.textColor
+                                                                            }
+                                                                            
+                                                                            switch alignment {
+                                                                            case "left":
+                                                                                newView.textAlignment = .left
+                                                                            case "right":
+                                                                                newView.textAlignment = .right
+                                                                            default:
+                                                                                newView.textAlignment = .center
+                                                                            }
+                                                                            
+                                                                            views.append(newView)
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            if let currentView_ = gui_.slice(from: "<FFLabel>",to: "</FFLabel>") {
+                                gui_ = gui_.replacingFirstOccurrence(of: currentView!, with: "")
+                                gui_ = gui_.replacingFirstOccurrence(of: "<FFLabel>", with: "")
+                                gui_ = gui_.replacingFirstOccurrence(of: "</FFLabel>", with: "")
+                                currentView = currentView_
+                            } else {
+                                break
+                            }
+                        }
+                    }
+                            
+                    currentView = gui_.slice(from: "<FFButton>",to: "</FFButton>") // FFButton
+                    if currentView != nil {
+                        while true {
+                            if let frameString = currentView?.slice(from: "<frame>", to: "</frame>") {
+                                if let frame = frame(fromString: frameString) {
+                                    
+                                    if let backgroundColorString = currentView?.slice(from: "<backgroundColor>", to: "</backgroundColor>") {
+                                        if let backgroundColor = color(fromString: backgroundColorString) {
+                                            
+                                            if let text = currentView?.slice(from: "<text>", to: "</text>") {
+                                                
+                                                if let textColorString = currentView?.slice(from: "<textColor>", to: "</textColor>") {
+                                                    if let textColor = color(fromString: textColorString) {
+                                                        if let font = currentView?.slice(from: "<font>", to: "</font>") {
+                                                            if let fontName = font.slice(from: "<name>", to: "</name>") {
+                                                                if let fontSizeString = font.slice(from: "<size>", to: "</size>") {
+                                                                    if let fontSize = Float(fontSizeString) {
+                                                                        if let id = currentView?.slice(from: "<id>", to: "</id>") {
+                                                                            let newView = FFButton(frame: frame)
+                                                                            newView.backgroundColor = backgroundColor
+                                                                            newView.setTitle(text, for: .normal)
+                                                                            
+                                                                            if textColor == .clear || textColor == UIColor(red: 0, green: 0, blue: 0, alpha: 0) {
+                                                                                newView.setTitleColor(vc.view.tintColor, for: .normal)
+                                                                            } else {
+                                                                                newView.setTitleColor(textColor, for: .normal)
+                                                                            }
+                                                                            
+                                                                            newView.titleLabel?.font = UIFont(name: fontName, size: CGFloat(fontSize))
+                                                                            
+                                                                            newView.id = id
+                                                                            newView.addTarget(newView, action: #selector(newView.sendData), for: .touchUpInside)
+                                                                            
+                                                                            newView.terminal = self
+                                                                            views.append(newView)
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if let currentView_ = gui_.slice(from: "<FFButton>",to: "</FFButton>") {
+                                gui_ = gui_.replacingFirstOccurrence(of: currentView!, with: "")
+                                gui_ = gui_.replacingFirstOccurrence(of: "<FFButton>", with: "")
+                                gui_ = gui_.replacingFirstOccurrence(of: "</FFButton>", with: "")
+                                currentView = currentView_
+                            } else {
+                                break
+                            }
+                        }
+                    }
+                    
+                    currentView = gui_.slice(from: "<FFTextField>",to: "</FFTextField>") // FFTextField
+                    if currentView != nil {
+                        while true {
+                            if let frameString = currentView?.slice(from: "<frame>", to: "</frame>") {
+                                if let frame = frame(fromString: frameString) {
+                                    
+                                    if let backgroundColorString = currentView?.slice(from: "<backgroundColor>", to: "</backgroundColor>") {
+                                        if let backgroundColor = color(fromString: backgroundColorString) {
+                                            
+                                            if let text = currentView?.slice(from: "<text>", to: "</text>") {
+                                                
+                                                if let textColorString = currentView?.slice(from: "<textColor>", to: "</textColor>") {
+                                                    if let textColor = color(fromString: textColorString) {
+                                                        if let alignment = currentView?.slice(from: "<alignment>", to: "</alignment>") {
+                                                            if let placeholder = currentView?.slice(from: "<placeholder>", to: "</placeholder>") {
+                                                                if let id = currentView?.slice(from: "<id>", to: "</id>") {
+                                                                    let newView = FFTextField(frame: frame)
+                                                                    newView.backgroundColor = backgroundColor
+                                                                    newView.placeholder = placeholder
+                                                                    newView.text = text
+                                                                    newView.textColor = textColor
+                                                                    newView.isSecureTextEntry = (currentView?.contains("</isSecure>") ?? false)
+                                                                    
+                                                                    switch alignment {
+                                                                    case "left":
+                                                                        newView.textAlignment = .left
+                                                                    case "right":
+                                                                        newView.textAlignment = .right
+                                                                    default:
+                                                                        newView.textAlignment = .center
+                                                                    }
+                                                                    
+                                                                    newView.id = id
+                                                                    
+                                                                    newView.terminal = self
+                                                                    newView.delegate = newView
+                                                                    views.append(newView)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            if let currentView_ = gui_.slice(from: "<FFTextField>",to: "</FFTextField>") {
+                                gui_ = gui_.replacingFirstOccurrence(of: currentView!, with: "")
+                                gui_ = gui_.replacingFirstOccurrence(of: "<FFTextField>", with: "")
+                                gui_ = gui_.replacingFirstOccurrence(of: "</FFTextField>", with: "")
+                                currentView = currentView_
+                            } else {
+                                break
+                            }
+                        }
+                    }
+                            
+                            
+                    for view in views {
+                        vc.view.addSubview(view)
+                    }
+                    
+                    if let currentGUIState = AppDelegate.shared.topViewController() as? FFViewController {
+                        currentGUIState.dismiss(animated: false, completion: {
+                            self.present(vc, animated: false, completion: nil)
+                        })
+                    } else {
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                    
+                    self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: gui, with: "")
+                    self.terminal.text = self.terminal.text.replacingOccurrences(of: "<GUI>", with: "")
+                    self.terminal.text = self.terminal.text.replacingOccurrences(of: "</GUI>", with: "")
+                }
             }
             
             if self.terminal.text.contains("<theme>") {
@@ -269,7 +639,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                         
                     }), AlertManager.shared.cancel]), animated: true, completion: nil)
                     
-                    self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: self.terminal.text.slice(from: "<theme>", to: "</theme>")!, with: "")
+                    self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: theme, with: "")
                     self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "<theme>", with: "")
                     self.terminal.text = self.terminal.text.replacingFirstOccurrence(of: "</theme>", with: "")
                     
@@ -412,5 +782,4 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         let textHeight = textView.contentSize.height
         return textHeight > textView.bounds.height
     }
-
 }
