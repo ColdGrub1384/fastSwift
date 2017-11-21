@@ -33,7 +33,6 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     
     var terminalHTML: String {
         return try! String(contentsOfFile: Bundle.main.path(forResource: "terminal", ofType: "html")!).replacingOccurrences(of: "$BACKGROUNDCOLOR", with:"#"+AppDelegate.shared.theme.color.hexString).replacingOccurrences(of: "$TEXTCOLOR", with: "#"+AppDelegate.shared.theme.textColor.hexString)
-        
     }
     
     var consoleHTML = ""
@@ -72,6 +71,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         terminal.keyboardAppearance = AppDelegate.shared.theme.keyboardAppearance
         terminal.tintColor = AppDelegate.shared.theme.textColor
         terminal.text = "\n"
+        terminal.isHidden = true
         if needsUserInput {
             terminal.becomeFirstResponder()
         }
@@ -166,6 +166,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                 self.terminal.text = newString[1]
                 self.consoleHTML = newHTML[1]
                 self.console = self.terminal.text
+                self.terminal.isHidden = false
             }
             
             
