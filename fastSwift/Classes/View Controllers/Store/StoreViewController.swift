@@ -620,6 +620,8 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                     if let reward_ = Int(reward) {
                         AccountManager.shared.compilations.add(reward_)
                         
+                        AccountManager.shared.redeemed.append(code)
+                        
                         AlertManager.shared.presentAlert(withTitle: "Added \(reward) 🐧!", message: "You have now \(AccountManager.shared.compilations.description) 🐧", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: self, animated: true, completion: nil)
                     } else {
                         AlertManager.shared.presentAlert(withTitle: "Error redeeming code!", message: "The code is not valid or was already redeemed.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: self, animated: true, completion: nil)
