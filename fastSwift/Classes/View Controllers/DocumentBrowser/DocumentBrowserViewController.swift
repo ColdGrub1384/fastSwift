@@ -247,14 +247,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                             
                             let screenSizePath = "/home/\(Server.user)/bin/\(UIDevice.current.identifierForVendor!.uuidString)/screenSize"
                             
-                            do {
-                                let fileData = try Data.init(contentsOf: urls.first!)
-                                try session?.channel.execute("touch '\(filePath)'")
-                                session?.sftp.appendContents(fileData, toFileAtPath: filePath)
-                            } catch let error {
-                                print("Error copying file! \(error)")
-                            }
-                            
+                            session?.channel.uploadFile(urls.first!.path, to: filePath)
                             
                             do {
                                 try session?.channel.execute("chmod +x '\(filePath)'")

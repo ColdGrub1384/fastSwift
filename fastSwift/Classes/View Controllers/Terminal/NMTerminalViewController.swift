@@ -703,7 +703,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                                             
                                             if self.downloadExec {
                                                 AccountManager.shared.compilations.substract(1)
-                                                self.delegate?.compilations.title = "\(AccountManager.shared.compilations) 🐧"
+                                                self.delegate?.compilations.title = "\(AccountManager.shared.compilations.description) 🐧"
                                             }
                                         })
                                     } else {
