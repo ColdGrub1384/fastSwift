@@ -115,7 +115,12 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
             let fileName = alert.textFields![0].text!
             let tmp = URL(fileURLWithPath:NSTemporaryDirectory())
             newDocumentURL = tmp.appendingPathComponent(fileName+".swift")
-            try! FileManager.default.copyItem(at: docURL!, to: newDocumentURL!)
+            do {
+                try FileManager.default.copyItem(at: docURL!, to: newDocumentURL!)
+            } catch let error {
+                AlertManager.shared.present(error: error, withTitle: "Error creating file!", inside: self)
+                importHandler(nil, .none)
+            }
             
             importHandler(newDocumentURL, .copy)
         }))

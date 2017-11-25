@@ -581,7 +581,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         compilations.text = "\(AccountManager.shared.compilations.description) 🐧"
         if plusOne {
             print("+1")
-            let alert = AlertManager.shared.alert(withTitle: "+1 🐧", message: "You have now \(AccountManager.shared.compilations)🐧", style: .alert, actions: [AlertManager.shared.ok(handler: nil)])
+            let alert = AlertManager.shared.alert(withTitle: "+1 🐧", message: "You have now \(AccountManager.shared.compilations.description)🐧", style: .alert, actions: [AlertManager.shared.ok(handler: nil)])
             self.present(alert, animated: true, completion: nil)
             plusOne = false
         }
@@ -594,6 +594,54 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     // -------------------------------------------------------------------------
     // MARK: Buy compilations
     // -------------------------------------------------------------------------
+    
+    func redeem_(code: String) {
+        
+        var valid = true
+        
+        for redeemed in AccountManager.shared.redeemed {
+            
+            if redeemed == code {
+                valid = false
+                AlertManager.shared.presentAlert(withTitle: "Error redeeming code!", message: "The code is not valid or was already redeemed.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: self, animated: true, completion: nil)
+                break
+            }
+        }
+        
+        if !valid {
+            return
+        }
+        
+        func redeem(data: Data?, response: URLResponse?, error: Error?) {
+            if let error = error {
+                AlertManager.shared.present(error: error, withTitle: "Error redeeming code!", inside: self)
+            } else if let data = data {
+                if let reward = String(data: data, encoding: .utf8)?.slice(from: "Reward(", to: ")") {
+                    if let reward_ = Int(reward) {
+                        AccountManager.shared.compilations.add(reward_)
+                        
+                        AlertManager.shared.presentAlert(withTitle: "Added \(reward) 🐧!", message: "You have now \(AccountManager.shared.compilations.description) 🐧", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: self, animated: true, completion: nil)
+                    } else {
+                        AlertManager.shared.presentAlert(withTitle: "Error redeeming code!", message: "The code is not valid or was already redeemed.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: self, animated: true, completion: nil)
+                    }
+                    
+                } else {
+                    AlertManager.shared.presentAlert(withTitle: "Error redeeming code!", message: "The code is not valid or was already redeemed.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: self, animated: true, completion: nil)
+                }
+            } else {
+                AlertManager.shared.presentAlert(withTitle: "Error redeeming code!", message: "The code is not valid or was already redeemed.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: self, animated: true, completion: nil)
+            }
+        }
+        
+        if AccountManager.shared.compilations.type != .infinite {
+            URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/redeem.php?code=\(code)")!, completionHandler: { (data, response, error) in
+                redeem(data: data, response: response, error: error)
+            }).resume()
+        } else {
+            AlertManager.shared.presentAlert(withTitle: "Error redeeming code", message: "You cannot add 🐧 because you have infinites 🐧.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: self, animated: true, completion: nil)
+        }
+    }
+    
     
     func buy(_ product: SKProduct) {
         print("Buy "+product.localizedTitle)
@@ -768,6 +816,26 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     
     @IBAction func setupServer(_ sender: Any) {
         self.present(AppViewControllers().setupServer, animated: true, completion: nil)
+    }
+    
+    @IBAction func redeem(_ sender: Any) {
+        let alert = UIAlertController(title: "Redeem code", message: "Type a valid 8 digits code", preferredStyle: .alert)
+        alert.addAction(AlertManager.shared.cancel)
+        alert.addAction(UIAlertAction(title: "Redeem", style: .default, handler: { (action) in
+            if let textfield = alert.textFields?.first {
+                if let text = textfield.text {
+                    self.redeem_(code: text)
+                }
+            }
+        }))
+        
+        alert.addTextField { (textfield) in
+            textfield.placeholder = "Promo code"
+        }
+        
+        alert.view.tintColor = AppDelegate.shared.theme.tintColor
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     

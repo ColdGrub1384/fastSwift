@@ -26,14 +26,16 @@ class AlertManager {
     
     func presentAlert(withTitle title:String, message:String, style: UIAlertControllerStyle, actions: [UIAlertAction], inside viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         
-        let alert = UIAlertController(title: title, message: message, preferredStyle: style)
-        alert.view.tintColor = AppDelegate.shared.theme.tintColor
-        
-        for action in actions {
-            alert.addAction(action)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: style)
+            alert.view.tintColor = AppDelegate.shared.theme.tintColor
+            
+            for action in actions {
+                alert.addAction(action)
+            }
+            
+            viewController.present(alert, animated: animated, completion: completion)
         }
-        
-        viewController.present(alert, animated: animated, completion: completion)
     }
     
     
@@ -54,12 +56,14 @@ class AlertManager {
     let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
     
     func present(error: Error, withTitle title:String, inside viewController: UIViewController) {
-        let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
-        alert.view.tintColor = AppDelegate.shared.theme.tintColor
-        
-        alert.addAction(ok(handler: nil))
-        
-        viewController.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+            alert.view.tintColor = AppDelegate.shared.theme.tintColor
+            
+            alert.addAction(self.ok(handler: nil))
+            
+            viewController.present(alert, animated: true, completion: nil)
+        }
     }
 }
 

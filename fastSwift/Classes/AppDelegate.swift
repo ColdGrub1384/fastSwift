@@ -86,6 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
     }
     
     func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        
         if let nav = base as? UINavigationController {
             return topViewController(base: nav.visibleViewController)
         }
@@ -257,11 +258,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
     }
 
     func application(_ app: UIApplication, open inputURL: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
         // Reveal / import the document at the URL
         let documentBrowserViewController = AppViewControllers().documentBrowser
         // Present the Document View Controller for the revealed URL
         documentBrowserViewController.dismissState = .ready
-        
+            
         self.topViewController()?.present(documentBrowserViewController, animated: true, completion: {
             documentBrowserViewController.revealDocument(at: inputURL, importIfNeeded: true, completion: { (revealedDocumentURL, error) in
                 if error == nil {
@@ -272,9 +274,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
             })
         })
         
-        
         return true
     }
+    
 
     // -------------------------------------------------------------------------
     // MARK: Theming

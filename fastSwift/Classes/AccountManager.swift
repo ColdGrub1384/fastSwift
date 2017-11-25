@@ -15,6 +15,20 @@ class AccountManager {
     private init() {
     }
     
+    var redeemed: [String] {
+        get {
+            if let redeemed_ = UserDefaults.standard.string(forKey: "redeemed") {
+                return redeemed_.components(separatedBy: ";")
+            }
+            return []
+        }
+        
+        set(value) {
+            let raw = value.joined(separator: ";")
+            UserDefaults.standard.set(raw, forKey: "redeemed")
+        }
+    }
+    
     class Compilations {
         
         var didSetHandler: ((_ value:Compilations) -> Void)?
