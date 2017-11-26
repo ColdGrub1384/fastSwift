@@ -1,5 +1,5 @@
 //
-//  Launch Screen.swift
+//  LaunchScreen.swift
 //  fastSwift
 //
 //  Created by Adrian on 07.10.17.

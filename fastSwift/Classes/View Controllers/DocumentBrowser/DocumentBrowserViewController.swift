@@ -233,34 +233,46 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
                 let alert = ActivityViewController(message: "Uploading...")
                 self.present(alert, animated: true, completion: nil)
                 
+                let file = FileManager.default.urls(for: .cachesDirectory, in: .allDomainsMask).first!.appendingPathComponent(urls.first!.lastPathComponent)
+                
                 let _ = Afte.r(1, seconds: { (timer) in
                     let session = NMSSHSession.connect(toHost: Server.host, withUsername: Server.user)
                     if (session?.isConnected)! {
                         session?.authenticate(byPassword: Server.password)
                         if (session?.isAuthorized)! {
-                            do {
-                                try session?.channel.execute("mkdir bin; rm -rf bin/\(UIDevice.current.identifierForVendor!.uuidString); mkdir bin/\(UIDevice.current.identifierForVendor!.uuidString)")
-                            } catch _ {}
-                            
-                            let filePath = "/home/\(Server.user)/bin/\(UIDevice.current.identifierForVendor!.uuidString)/\(urls.first!.lastPathComponent)"
-                            session?.sftp.connect()
-                            
-                            let screenSizePath = "/home/\(Server.user)/bin/\(UIDevice.current.identifierForVendor!.uuidString)/screenSize"
-                            
-                            session?.channel.uploadFile(urls.first!.path, to: filePath)
-                            
-                            do {
-                                try session?.channel.execute("chmod +x '\(filePath)'")
-                            } catch _ {}
-                            
-                            alert.dismiss(animated: true, completion: {
-                                let terminalViewController = AppViewControllers().terminal
-                                terminalViewController.command = "touch \(screenSizePath); echo \"\(UIScreen.main.bounds.width)\" >> \(screenSizePath); echo \"\(UIScreen.main.bounds.height)\" >> \(screenSizePath); '\(filePath)'; rm '\(filePath)'; logout"
-                                terminalViewController.user = Server.user
-                                terminalViewController.host = Server.host
-                                terminalViewController.password = Server.password
-                                terminalViewController.browserVC = self
-                                self.present(terminalViewController, animated: true, completion: nil)
+                            Document(fileURL: urls.first!).open(completionHandler: { (success) in
+                                if success {
+                                    do {
+                                        try FileManager.default.copyItem(at: urls.first!, to: file)
+                                        try session?.channel.execute("mkdir bin; rm -rf bin/\(UIDevice.current.identifierForVendor!.uuidString); mkdir bin/\(UIDevice.current.identifierForVendor!.uuidString)")
+                                    } catch _ {}
+                                    
+                                    let filePath = "/home/\(Server.user)/bin/\(UIDevice.current.identifierForVendor!.uuidString)/\(file.lastPathComponent)"
+                                    
+                                    let screenSizePath = "/home/\(Server.user)/bin/\(UIDevice.current.identifierForVendor!.uuidString)/screenSize"
+                                    
+                                    
+                                    session?.channel.uploadFile(file.path, to: filePath)
+                                    
+                                    do {
+                                        try session?.channel.execute("chmod +x '\(filePath)'")
+                                        try FileManager.default.removeItem(at: file)
+                                    } catch _ {}
+                                    
+                                    session?.disconnect()
+                                    
+                                    alert.dismiss(animated: true, completion: {
+                                        let terminalViewController = AppViewControllers().terminal
+                                        terminalViewController.command = "touch \(screenSizePath); echo \"\(UIScreen.main.bounds.width)\" >> \(screenSizePath); echo \"\(UIScreen.main.bounds.height)\" >> \(screenSizePath); '\(filePath)'; rm '\(filePath)'; logout"
+                                        terminalViewController.user = Server.user
+                                        terminalViewController.host = Server.host
+                                        terminalViewController.password = Server.password
+                                        terminalViewController.browserVC = self
+                                        self.present(terminalViewController, animated: true, completion: nil)
+                                    })
+                                } else {
+                                    self.dismiss(animated: true, completion: nil)
+                                }
                             })
                             
                         } else {
