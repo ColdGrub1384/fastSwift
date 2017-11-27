@@ -15,12 +15,12 @@ class ExportToXcodeHelpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textView.backgroundColor = AppDelegate.shared.theme.color
-        view.backgroundColor = AppDelegate.shared.theme.color
-        textView.textColor = AppDelegate.shared.theme.textColor
-        view.tintColor = AppDelegate.shared.theme.tintColor
-        navBar.barStyle = AppDelegate.shared.theme.barStyle
-        navBar.barTintColor = AppDelegate.shared.theme.color
+        textView.backgroundColor = Theme.current.color
+        view.backgroundColor = Theme.current.color
+        textView.textColor = Theme.current.textColor
+        view.tintColor = Theme.current.tintColor
+        navBar.barStyle = Theme.current.barStyle
+        navBar.barTintColor = Theme.current.color
     }
     
     @IBAction func done(_ sender:Any) {
@@ -28,6 +28,6 @@ class ExportToXcodeHelpViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
+        return Theme.current.statusBarStyle
     }
 }

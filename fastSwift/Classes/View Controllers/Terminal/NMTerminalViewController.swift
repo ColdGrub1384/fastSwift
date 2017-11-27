@@ -32,7 +32,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     var guiViewController: UIViewController?
     
     var terminalHTML: String {
-        return try! String(contentsOfFile: Bundle.main.path(forResource: "terminal", ofType: "html")!).replacingOccurrences(of: "$BACKGROUNDCOLOR", with:"#"+AppDelegate.shared.theme.color.hexString).replacingOccurrences(of: "$TEXTCOLOR", with: "#"+AppDelegate.shared.theme.textColor.hexString)
+        return try! String(contentsOfFile: Bundle.main.path(forResource: "terminal", ofType: "html")!).replacingOccurrences(of: "$BACKGROUNDCOLOR", with:"#"+Theme.current.color.hexString).replacingOccurrences(of: "$TEXTCOLOR", with: "#"+Theme.current.textColor.hexString)
     }
     
     var consoleHTML = ""
@@ -68,19 +68,19 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
         terminal.isSelectable = false
         terminal.delegate = self
         terminal.isEditable = true
-        terminal.keyboardAppearance = AppDelegate.shared.theme.keyboardAppearance
-        terminal.tintColor = AppDelegate.shared.theme.textColor
+        terminal.keyboardAppearance = Theme.current.keyboardAppearance
+        terminal.tintColor = Theme.current.textColor
         terminal.text = "\n"
         terminal.isHidden = true
         if needsUserInput {
             terminal.becomeFirstResponder()
         }
-        terminal.backgroundColor = AppDelegate.shared.theme.color
+        terminal.backgroundColor = Theme.current.color
         terminal.textColor = terminal.tintColor
-        navBar.barStyle = AppDelegate.shared.theme.barStyle
-        navBar.barTintColor = AppDelegate.shared.theme.color
-        view.backgroundColor = AppDelegate.shared.theme.color
-        view.tintColor = AppDelegate.shared.theme.tintColor
+        navBar.barStyle = Theme.current.barStyle
+        navBar.barTintColor = Theme.current.color
+        view.backgroundColor = Theme.current.color
+        view.tintColor = Theme.current.tintColor
         
         // Update text view size
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -132,7 +132,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
+        return Theme.current.statusBarStyle
     }
     
     // -------------------------------------------------------------------------
@@ -241,7 +241,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                         var terminal: NMTerminalViewController!
                         
                         override var preferredStatusBarStyle: UIStatusBarStyle {
-                            return AppDelegate.shared.theme.statusBarStyle
+                            return Theme.current.statusBarStyle
                         }
                         
                         override func viewDidAppear(_ animated: Bool) {
@@ -330,7 +330,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                     }
                     
                     if vc.view.backgroundColor == .clear || vc.view.backgroundColor == UIColor(red: 0, green: 0, blue: 0, alpha: 0) {
-                        vc.view.backgroundColor = AppDelegate.shared.theme.color
+                        vc.view.backgroundColor = Theme.current.color
                     }
                     
                     let navBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: UIScreen.main.bounds.width, height:44))
@@ -339,7 +339,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                     navBar.tintColor = self.navBar.tintColor
                     
                     let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height:20))
-                    statusBar.backgroundColor = AppDelegate.shared.theme.color
+                    statusBar.backgroundColor = Theme.current.color
                     
                     // Set title
                     if let title = self.terminal.text.slice(from: "<title>", to: "</title>") {
@@ -415,7 +415,7 @@ class NMTerminalViewController: UIViewController, NMSSHSessionDelegate, NMSSHCha
                                                                             newView.font = UIFont(name: fontName, size: CGFloat(fontSize))
                                                                             
                                                                             if newView.textColor == .clear || newView.textColor == UIColor(red: 0, green: 0, blue: 0, alpha: 0) {
-                                                                                newView.textColor = AppDelegate.shared.theme.textColor
+                                                                                newView.textColor = Theme.current.textColor
                                                                             }
                                                                             
                                                                             switch alignment {

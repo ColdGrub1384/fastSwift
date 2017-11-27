@@ -26,7 +26,7 @@ class MenuViewController: UIViewController {
     // -------------------------------------------------------------------------
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
+        return Theme.current.statusBarStyle
     }
     
     override func viewDidLoad() {
@@ -65,9 +65,9 @@ class MenuViewController: UIViewController {
             vcs[3] = AppViewControllers().store
         }
         
-        scroll.backgroundColor = AppDelegate.shared.theme.color
+        scroll.backgroundColor = Theme.current.color
         
-        self.view.backgroundColor = AppDelegate.shared.theme.color
+        self.view.backgroundColor = Theme.current.color
         
         let screenBounds = UIScreen.main.bounds
         

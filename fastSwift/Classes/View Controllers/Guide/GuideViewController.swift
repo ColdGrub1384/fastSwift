@@ -92,13 +92,13 @@ class GuideViewController: UIViewController {
         
         if !willBePresented {
             
-            pageTitle.textColor = AppDelegate.shared.theme.textColor
-            textView.textColor = AppDelegate.shared.theme.textColor
-            loading.textColor = AppDelegate.shared.theme.textColor
-            view.tintColor = AppDelegate.shared.theme.tintColor
+            pageTitle.textColor = Theme.current.textColor
+            textView.textColor = Theme.current.textColor
+            loading.textColor = Theme.current.textColor
+            view.tintColor = Theme.current.tintColor
             nextbtn.layer.cornerRadius = 8
             nextbtn.layer.borderWidth = 1
-            nextbtn.backgroundColor = AppDelegate.shared.theme.color
+            nextbtn.backgroundColor = Theme.current.color
             nextbtn.layer.borderColor = nextbtn.backgroundColor?.cgColor
             
             

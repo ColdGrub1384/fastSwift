@@ -24,7 +24,7 @@ class LaunchScreenViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
+        return Theme.current.statusBarStyle
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -48,7 +48,7 @@ class LaunchScreenViewController: UIViewController {
         
         let _ = Afte.r(0.1) { (timer) in
             let _ = Repea.t(all: 0.001) { (timer) in
-                if AppDelegate.shared.theme.browserUserInterfaceStyle == .dark { // Animation for black theme
+                if Theme.current.browserUserInterfaceStyle == .dark { // Animation for black theme
                     self.animBlack(timer: timer)
                 } else { // Animation for white theme
                     self.animWhite(timer: timer)

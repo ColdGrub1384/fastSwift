@@ -48,19 +48,19 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         displayName.placeholder = delegate!.delegate!.document!.fileURL.deletingPathExtension().lastPathComponent
-        view.backgroundColor = AppDelegate.shared.theme.color
-        navBar.barTintColor = AppDelegate.shared.theme.color
-        navBar.barStyle = AppDelegate.shared.theme.barStyle
-        view.tintColor = AppDelegate.shared.theme.tintColor
+        view.backgroundColor = Theme.current.color
+        navBar.barTintColor = Theme.current.color
+        navBar.barStyle = Theme.current.barStyle
+        view.tintColor = Theme.current.tintColor
         
         let labels = [displayNameLabel, bundleIDLabel, VersionLabel, buildLabel, note]
         for label in labels {
-            label?.textColor = AppDelegate.shared.theme.textColor
+            label?.textColor = Theme.current.textColor
         }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
+        return Theme.current.statusBarStyle
     }
     
     // -------------------------------------------------------------------------

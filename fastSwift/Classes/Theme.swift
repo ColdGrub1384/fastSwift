@@ -24,6 +24,10 @@ class Theme {
     var browserUserInterfaceStyle: UIDocumentBrowserViewController.BrowserUserInterfaceStyle
     var alternateIcon: String?
     
+    static var current: Theme {
+        return AppDelegate.shared.theme
+    }
+    
     init(name:String = "") {
         
         self.name = name

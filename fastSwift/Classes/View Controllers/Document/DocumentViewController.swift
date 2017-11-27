@@ -121,11 +121,11 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     override func viewDidLoad() {
         super.viewDidLoad()
             
-        view.tintColor = AppDelegate.shared.theme.tintColor
-        titleBar.barStyle = AppDelegate.shared.theme.barStyle
-        titleBar.barTintColor = AppDelegate.shared.theme.color
-        view.backgroundColor = AppDelegate.shared.theme.color
-        toolbar.barTintColor = AppDelegate.shared.theme.color
+        view.tintColor = Theme.current.tintColor
+        titleBar.barStyle = Theme.current.barStyle
+        titleBar.barTintColor = Theme.current.color
+        view.backgroundColor = Theme.current.color
+        toolbar.barTintColor = Theme.current.color
         
         CodeToolBar()
         dismissKeyboard.isEnabled = false
@@ -135,8 +135,8 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         
         document?.delegate = self
         
-        code.backgroundColor = AppDelegate.shared.theme.codeEditorTheme.backgroundColor
-        code.keyboardAppearance = AppDelegate.shared.theme.keyboardAppearance
+        code.backgroundColor = Theme.current.codeEditorTheme.backgroundColor
+        code.keyboardAppearance = Theme.current.keyboardAppearance
         
         // Access the document
         if document != nil {
@@ -165,7 +165,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
+        return Theme.current.statusBarStyle
     }
     
     func highlight(_ language:String, code:String) -> NSAttributedString? {
@@ -173,7 +173,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         let lang = language.lowercased()
         
         let highlightr = Highlightr()
-        highlightr?.setTheme(to: AppDelegate.shared.theme.codeEditorTheme.name)
+        highlightr?.setTheme(to: Theme.current.codeEditorTheme.name)
         
         self.code.autocorrectionType = .no
         self.code.autocapitalizationType = .none
@@ -194,7 +194,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                 button.setTitle("\(string)", for: .normal)
                 button.addTarget(self, action: #selector(insertText(sender:)), for: UIControlEvents.touchUpInside)
                 button.setTitleColor(self.view.tintColor, for: .normal)
-                if AppDelegate.shared.theme.keyboardAppearance == .dark {
+                if Theme.current.keyboardAppearance == .dark {
                     button.backgroundColor = .black
                 } else {
                     button.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -277,7 +277,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             }))
             alert.addAction(AlertManager.shared.cancel)
             
-            alert.view.tintColor = AppDelegate.shared.theme.tintColor
+            alert.view.tintColor = Theme.current.tintColor
             
             self.present(alert, animated: true, completion: nil)
         } else if text == "else" { // else
@@ -307,7 +307,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             }))
             alert.addAction(AlertManager.shared.cancel)
             
-            alert.view.tintColor = AppDelegate.shared.theme.tintColor
+            alert.view.tintColor = Theme.current.tintColor
             
             self.present(alert, animated: true, completion: nil)
         } else if text == "elseif" { // else if
@@ -329,7 +329,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             }))
             alert.addAction(AlertManager.shared.cancel)
             
-            alert.view.tintColor = AppDelegate.shared.theme.tintColor
+            alert.view.tintColor = Theme.current.tintColor
             
             self.present(alert, animated: true, completion: nil)
         } else if text == "readLine" { // readLine
@@ -363,7 +363,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                         self.present(alert, animated: true, completion: nil)
                     }))
                     
-                    alert_.view.tintColor = AppDelegate.shared.theme.tintColor
+                    alert_.view.tintColor = Theme.current.tintColor
                     
                     for formatting_ in formatting {
                         alert_.addAction(UIAlertAction(title: formatting_, style: .default, handler: { (action) in
@@ -382,7 +382,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                         self.present(alert, animated: true, completion: nil)
                     }))
                     
-                    alert_.view.tintColor = AppDelegate.shared.theme.tintColor
+                    alert_.view.tintColor = Theme.current.tintColor
                     
                     for color in foregroundColors {
                         alert_.addAction(UIAlertAction(title: color, style: .default, handler: { (action) in
@@ -401,7 +401,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                         self.present(alert, animated: true, completion: nil)
                     }))
                     
-                    alert_.view.tintColor = AppDelegate.shared.theme.tintColor
+                    alert_.view.tintColor = Theme.current.tintColor
                     
                     for color in backgroundColors {
                         alert_.addAction(UIAlertAction(title: color, style: .default, handler: { (action) in
@@ -467,7 +467,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             }))
             alert.addAction(AlertManager.shared.cancel)
             
-            alert.view.tintColor = AppDelegate.shared.theme.tintColor
+            alert.view.tintColor = Theme.current.tintColor
             
             self.present(alert, animated: true, completion: nil)
         } else if text == "var" || text == "let" {
@@ -559,7 +559,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                                     alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: nil))
                                 }
                                 
-                                alert.view.tintColor = AppDelegate.shared.theme.tintColor
+                                alert.view.tintColor = Theme.current.tintColor
                                 self.present(alert, animated: true, completion: nil)
                             }
                         }
@@ -905,7 +905,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         nav.modalPresentationStyle = .popover
         nav.navigationBar.prefersLargeTitles = true
         nav.navigationBar.barTintColor = self.titleBar.barTintColor
-        nav.navigationBar.barStyle = AppDelegate.shared.theme.barStyle
+        nav.navigationBar.barStyle = Theme.current.barStyle
         vc.delegate = self
         
         

@@ -64,8 +64,8 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         allowsPickingMultipleItems = true
         
         // Update the style of the UIDocumentBrowserViewController
-        browserUserInterfaceStyle = AppDelegate.shared.theme.browserUserInterfaceStyle
-        view.tintColor = AppDelegate.shared.theme.tintColor
+        browserUserInterfaceStyle = Theme.current.browserUserInterfaceStyle
+        view.tintColor = Theme.current.tintColor
         
         // Specify the allowed content types of your application via the Info.plist.
         
@@ -131,7 +131,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
             importHandler(nil, .none)
         }))
-        alert.view.tintColor = AppDelegate.shared.theme.tintColor
+        alert.view.tintColor = Theme.current.tintColor
         
         self.present(alert, animated: true, completion: nil)
         

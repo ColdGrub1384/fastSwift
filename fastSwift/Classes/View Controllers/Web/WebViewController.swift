@@ -35,13 +35,13 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         }
         
         webview.delegate = self
-        titleBar.barTintColor = AppDelegate.shared.theme.color
-        titleBar.tintColor = AppDelegate.shared.theme.tintColor
-        view.backgroundColor = AppDelegate.shared.theme.color
+        titleBar.barTintColor = Theme.current.color
+        titleBar.tintColor = Theme.current.tintColor
+        view.backgroundColor = Theme.current.color
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
+        return Theme.current.statusBarStyle
     }
     
     // -------------------------------------------------------------------------

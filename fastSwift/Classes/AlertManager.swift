@@ -28,7 +28,7 @@ class AlertManager {
         
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: message, preferredStyle: style)
-            alert.view.tintColor = AppDelegate.shared.theme.tintColor
+            alert.view.tintColor = Theme.current.tintColor
             
             for action in actions {
                 alert.addAction(action)
@@ -41,7 +41,7 @@ class AlertManager {
     
     func alert(withTitle title:String, message:String, style: UIAlertControllerStyle, actions: [UIAlertAction]) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
-        alert.view.tintColor = AppDelegate.shared.theme.tintColor
+        alert.view.tintColor = Theme.current.tintColor
         
         for action in actions {
             alert.addAction(action)
@@ -58,7 +58,7 @@ class AlertManager {
     func present(error: Error, withTitle title:String, inside viewController: UIViewController) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
-            alert.view.tintColor = AppDelegate.shared.theme.tintColor
+            alert.view.tintColor = Theme.current.tintColor
             
             alert.addAction(self.ok(handler: nil))
             

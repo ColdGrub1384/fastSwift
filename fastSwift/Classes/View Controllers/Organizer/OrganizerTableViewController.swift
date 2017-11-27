@@ -77,8 +77,8 @@ class OrganizerTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .action, target: self, action: #selector(share))
-        self.navigationItem.rightBarButtonItem?.tintColor = AppDelegate.shared.theme.tintColor
-        self.tableView.backgroundColor = AppDelegate.shared.theme.color
+        self.navigationItem.rightBarButtonItem?.tintColor = Theme.current.tintColor
+        self.tableView.backgroundColor = Theme.current.color
     }
     
     // -------------------------------------------------------------------------
@@ -88,8 +88,8 @@ class OrganizerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "file")
         (cell?.viewWithTag(1) as! UILabel).text = delegate?.files[indexPath.row].deletingPathExtension().lastPathComponent
-        (cell?.viewWithTag(1) as! UILabel).textColor = AppDelegate.shared.theme.textColor
-        cell?.backgroundColor = AppDelegate.shared.theme.color
+        (cell?.viewWithTag(1) as! UILabel).textColor = Theme.current.textColor
+        cell?.backgroundColor = Theme.current.color
         
         if delegate?.files[indexPath.row] == delegate?.files.first! {
             if !(delegate?.firstLaunch)! {

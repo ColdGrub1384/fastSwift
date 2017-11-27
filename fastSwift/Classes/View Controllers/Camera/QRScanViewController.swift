@@ -65,8 +65,8 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             }
         }
         
-        view.backgroundColor = AppDelegate.shared.theme.color
-        denied.textColor = AppDelegate.shared.theme.textColor
+        view.backgroundColor = Theme.current.color
+        denied.textColor = Theme.current.textColor
     }
     
     // -------------------------------------------------------------------------

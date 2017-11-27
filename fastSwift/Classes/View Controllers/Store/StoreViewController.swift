@@ -35,6 +35,9 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     @IBOutlet weak var bannerSuperView: UIView!
     @IBOutlet weak var bannerView: GADBannerView!
     
+    @IBOutlet weak var redeemBtn: UIBarButtonItem!
+    
+    
     func fetchData() {
         var challengesURL = URL(string:"http://\(Server.default.host)/challenges.php?viewChallenges")!
         if let username = AccountManager.shared.username?.addingPercentEncodingForURLQueryValue() {
@@ -275,13 +278,13 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
         if canMakePayments {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row)")!
-            cell.backgroundColor = AppDelegate.shared.theme.color
+            cell.backgroundColor = Theme.current.color
             
             for subview in cell.contentView.subviews {
                 if let collectionView = subview as? UICollectionView {
                     print("Collectionview found!")
-                    collectionView.backgroundColor = AppDelegate.shared.theme.color
-                    collectionView.backgroundColor = AppDelegate.shared.theme.color
+                    collectionView.backgroundColor = Theme.current.color
+                    collectionView.backgroundColor = Theme.current.color
                 }
             }
             
@@ -289,13 +292,13 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         } else {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row+1)")!
-            cell.backgroundColor = AppDelegate.shared.theme.color
+            cell.backgroundColor = Theme.current.color
             
             for subview in cell.contentView.subviews {
                 if let collectionView = subview as? UICollectionView {
                     print("Collectionview found!")
-                    collectionView.backgroundColor = AppDelegate.shared.theme.color
-                    collectionView.backgroundColor = AppDelegate.shared.theme.color
+                    collectionView.backgroundColor = Theme.current.color
+                    collectionView.backgroundColor = Theme.current.color
                 }
             }
             return cell
@@ -348,8 +351,11 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         
         print("Current cell reuse identifier: \(current.reuseIdentifier ?? "nil")")
         
+        self.navigationController?.navigationBar.topItem?.setRightBarButtonItems([doneBtn], animated: true)
+        
         if (current.reuseIdentifier == "0" || current.reuseIdentifier == "1") { // Sale
             title = "Sale"
+             self.navigationController?.navigationBar.topItem?.setRightBarButtonItems([doneBtn, redeemBtn], animated: true)
         } else if current.reuseIdentifier == "2" { // Programs
             title = "Programs"
         } else if current.reuseIdentifier == "3" { // Challenges
@@ -357,7 +363,6 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         } else if current.reuseIdentifier == "4" { // Leaderboard
             title = "Leaderboard"
         }
-        
         
         UIView.animate(withDuration: 1) {
             self.navigationController?.navigationBar.prefersLargeTitles = scrollView.isAtTop
@@ -400,11 +405,11 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                 let button = cell.viewWithTag(5) as! UIButton
                 button.setTitle(prices[indexPath.row], for: .normal)
                 button.backgroundColor = .clear
-                cell.backgroundColor = AppDelegate.shared.theme.color
+                cell.backgroundColor = Theme.current.color
                 
                 if let restore = cell.viewWithTag(4) as? UIButton {
                     restore.backgroundColor = .clear
-                    restore.backgroundColor = AppDelegate.shared.theme.color
+                    restore.backgroundColor = Theme.current.color
                 }
                 
                 
@@ -412,21 +417,21 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                 let icon = iconView.image!
                 let icon_ = icon.withRenderingMode(.alwaysTemplate)
                 iconView.image = icon_
-                iconView.tintColor = AppDelegate.shared.theme.textColor
+                iconView.tintColor = Theme.current.textColor
                 
                 let label = cell.viewWithTag(7) as! UILabel
-                label.textColor = AppDelegate.shared.theme.textColor
+                label.textColor = Theme.current.textColor
             }
         } else if collectionView.tag == 2 { // Programs
             
             if self.filesCollectionView != nil {
                 
                 cell = collectionView.dequeueReusableCell(withReuseIdentifier: "0", for: indexPath)
-                cell.backgroundColor = AppDelegate.shared.theme.color
+                cell.backgroundColor = Theme.current.color
                 
                 let label = cell.viewWithTag(4) as! UILabel
                 label.text = (files[indexPath.row] as NSString).deletingPathExtension
-                label.textColor = AppDelegate.shared.theme.textColor
+                label.textColor = Theme.current.textColor
                 
                 guard let buttonRun = cell.viewWithTag(5) as? UIButton else { return cell}
                 guard let buttonSource = cell.viewWithTag(6) as? UIButton else { return cell}
@@ -453,7 +458,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                 let loadingCell = collectionView.dequeueReusableCell(withReuseIdentifier: "1", for: indexPath)
                 for subview in loadingCell.contentView.subviews {
                     if let activity = subview as? UIActivityIndicatorView {
-                        activity.tintColor = AppDelegate.shared.theme.tintColor
+                        activity.tintColor = Theme.current.tintColor
                     }
                 }
                 
@@ -462,9 +467,9 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             }
         } else if collectionView.tag == 3 { // View video
             let label = cell.viewWithTag(2) as! UILabel
-            label.textColor = AppDelegate.shared.theme.textColor
+            label.textColor = Theme.current.textColor
             
-            cell.backgroundColor = AppDelegate.shared.theme.color
+            cell.backgroundColor = Theme.current.color
             
             let button = cell.viewWithTag(4) as! UIButton
             button.backgroundColor = .clear
@@ -473,13 +478,13 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             let icon = iconView.image
             let icon_ = icon?.withRenderingMode(.alwaysTemplate)
             iconView.image = icon_
-            iconView.tintColor = AppDelegate.shared.theme.textColor
+            iconView.tintColor = Theme.current.textColor
         } else if collectionView.tag == 7 { // Challenges
             let label = cell.viewWithTag(4) as! UILabel
-            label.textColor = AppDelegate.shared.theme.textColor
+            label.textColor = Theme.current.textColor
             label.text = self.challenges[indexPath.row].name
             
-            cell.backgroundColor = AppDelegate.shared.theme.color
+            cell.backgroundColor = Theme.current.color
             
             let button = cell.viewWithTag(5) as! UIButton
             button.backgroundColor = .clear
@@ -488,14 +493,14 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             
         } else if collectionView.tag == 8 { // Leaderboard
             let points = cell.viewWithTag(3) as! UILabel
-            points.textColor = AppDelegate.shared.theme.textColor
+            points.textColor = Theme.current.textColor
             points.text = "\(self.leaderboard[indexPath.row].points) Points"
             
             let name = cell.viewWithTag(4) as! UILabel
-            name.textColor = AppDelegate.shared.theme.textColor
+            name.textColor = Theme.current.textColor
             name.text = self.leaderboard[indexPath.row].name
             
-            cell.backgroundColor = AppDelegate.shared.theme.color
+            cell.backgroundColor = Theme.current.color
         
             if self.leaderboard[indexPath.row].name == AccountManager.shared.username { // Is current user
                 cell.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
@@ -510,7 +515,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             let icon = iconView.image!
             let icon_ = icon.withRenderingMode(.alwaysTemplate)
             iconView.image = icon_
-            iconView.tintColor = AppDelegate.shared.theme.textColor
+            iconView.tintColor = Theme.current.textColor
             
         }
 
@@ -523,7 +528,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     // -------------------------------------------------------------------------
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
+        return Theme.current.statusBarStyle
     }
     
     override func viewDidLoad() {
@@ -542,7 +547,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         tableView.delegate = self
         
         // Ads
-        bannerSuperView.backgroundColor = AppDelegate.shared.theme.color
+        bannerSuperView.backgroundColor = Theme.current.color
         bannerView.adSize = kGADAdSizeBanner
         bannerView.adUnitID = "ca-app-pub-9214899206650515/9138245460"
         bannerView.rootViewController = self
@@ -553,18 +558,18 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
 
         tableView.reloadData()
         
-        tableView.backgroundColor = AppDelegate.shared.theme.color
-        view.backgroundColor = AppDelegate.shared.theme.color
-        view.tintColor = AppDelegate.shared.theme.tintColor
-        compilations.backgroundColor = AppDelegate.shared.theme.color
-        compilations.textColor = AppDelegate.shared.theme.textColor
-        navigationController?.navigationBar.barTintColor = AppDelegate.shared.theme.color
-        navigationController?.navigationBar.tintColor = AppDelegate.shared.theme.tintColor
-        navigationController?.navigationBar.barStyle = AppDelegate.shared.theme.barStyle
+        tableView.backgroundColor = Theme.current.color
+        view.backgroundColor = Theme.current.color
+        view.tintColor = Theme.current.tintColor
+        compilations.backgroundColor = Theme.current.color
+        compilations.textColor = Theme.current.textColor
+        navigationController?.navigationBar.barTintColor = Theme.current.color
+        navigationController?.navigationBar.tintColor = Theme.current.tintColor
+        navigationController?.navigationBar.barStyle = Theme.current.barStyle
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
-        view.backgroundColor = AppDelegate.shared.theme.color
-        if AppDelegate.shared.theme.isEqual(to: Theme.white) {
+        view.backgroundColor = Theme.current.color
+        if Theme.current.isEqual(to: Theme.white) {
             view.backgroundColor = #colorLiteral(red: 0.9627815673, green: 0.9627815673, blue: 0.9627815673, alpha: 1)
         }
         
@@ -835,7 +840,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             textfield.placeholder = "Promo code"
         }
         
-        alert.view.tintColor = AppDelegate.shared.theme.tintColor
+        alert.view.tintColor = Theme.current.tintColor
         
         self.present(alert, animated: true, completion: nil)
     }

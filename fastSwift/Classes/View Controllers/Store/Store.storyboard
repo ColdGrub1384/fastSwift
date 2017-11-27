@@ -610,6 +610,7 @@
                         <outlet property="bannerView" destination="gJQ-jd-Hct" id="8ah-g6-i9A"/>
                         <outlet property="compilations" destination="CkF-9U-2vn" id="8wF-Lw-4kU"/>
                         <outlet property="doneBtn" destination="d3C-IJ-XMp" id="p3P-CM-ie2"/>
+                        <outlet property="redeemBtn" destination="cSa-nR-T69" id="xun-Pf-W2e"/>
                         <outlet property="tableView" destination="b51-lz-KWZ" id="8nh-1E-mhE"/>
                     </connections>
                 </viewController>

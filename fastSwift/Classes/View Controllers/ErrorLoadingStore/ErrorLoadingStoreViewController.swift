@@ -40,20 +40,20 @@ class ErrorLoadingStoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        retryBtn.tintColor = AppDelegate.shared.theme.tintColor
-        doneBtn.tintColor = AppDelegate.shared.theme.tintColor
+        retryBtn.tintColor = Theme.current.tintColor
+        doneBtn.tintColor = Theme.current.tintColor
         if let error = view.viewWithTag(1) as? UILabel {
-            error.textColor = AppDelegate.shared.theme.textColor
+            error.textColor = Theme.current.textColor
         }
         
-        view.backgroundColor = AppDelegate.shared.theme.color
+        view.backgroundColor = Theme.current.color
         
         reloadError()
-        errorText.textColor = AppDelegate.shared.theme.textColor
+        errorText.textColor = Theme.current.textColor
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
+        return Theme.current.statusBarStyle
     }
     
     

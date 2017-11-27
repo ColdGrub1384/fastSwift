@@ -42,16 +42,16 @@ class SetupServerViewController: UIViewController, UITextFieldDelegate {
         
         activity.isHidden = true
         
-        view.backgroundColor = AppDelegate.shared.theme.color
-        titleLbl.textColor = AppDelegate.shared.theme.textColor
-        text.textColor = AppDelegate.shared.theme.textColor
-        setupBtn.tintColor = AppDelegate.shared.theme.tintColor
-        doneBtn.tintColor = AppDelegate.shared.theme.tintColor
+        view.backgroundColor = Theme.current.color
+        titleLbl.textColor = Theme.current.textColor
+        text.textColor = Theme.current.textColor
+        setupBtn.tintColor = Theme.current.tintColor
+        doneBtn.tintColor = Theme.current.tintColor
 
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppDelegate.shared.theme.statusBarStyle
+        return Theme.current.statusBarStyle
     }
     
     // -------------------------------------------------------------------------
