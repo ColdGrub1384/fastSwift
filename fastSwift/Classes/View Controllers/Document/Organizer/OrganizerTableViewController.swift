@@ -136,7 +136,7 @@ class OrganizerTableViewController: UITableViewController {
         
         
         if delegate?.code.text.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "") != delegate?.document?.code.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "") {
-            AlertManager.shared.presentAlert(withTitle: "Do you want to save the file", message: "If you select \"Don't save\", all changes will be erased!", style: .alert, actions:
+            AlertManager.shared.presentAlert(withTitle: "Do you want to save the file?", message: "If you select \"Don't save\", all changes will be erased!", style: .alert, actions:
                 [
                     UIAlertAction.init(title: "Don't save", style: .destructive, handler: { (action) in
                         self.delegate?.document?.close(completionHandler: nil)

@@ -105,7 +105,7 @@ class AccountManager {
             }), UIAlertAction.init(title: "Logout", style: .default, handler: { (action) in
                 self.username = nil
                 self.password = nil
-                
+                                
                 self.login(inside: vc, completion: nil)
             }), AlertManager.shared.cancel])
             
