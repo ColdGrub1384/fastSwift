@@ -36,7 +36,7 @@ class ExportToBinaryActivity: UIActivity {
         if let delegate = self.delegate {
             
             if Server.host != Server.default.host && Server.user != Server.default.user {
-                AlertManager.shared.presentAlert(withTitle: "Can't download binary!", message: "Binaries download are only allowed for default server", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
+                AlertManager.shared.presentAlert(withTitle: "Can't download binary!", message: "Binaries downloads are only allowed for default server", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
                 
                 return
             }

@@ -122,7 +122,7 @@ class PublishToStoreActivity: UIActivity {
                     }
                 } else {
                     delegate.dismiss(animated: true, completion: {
-                        AlertManager.shared.present(error: error!, withTitle: "Error creating database for server!", inside: delegate)
+                        AlertManager.shared.present(error: error!, withTitle: "Error publishing project!", inside: delegate)
                     })
                 }
             }).resume()

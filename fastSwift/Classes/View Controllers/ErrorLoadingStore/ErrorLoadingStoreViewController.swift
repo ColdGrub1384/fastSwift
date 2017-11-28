@@ -65,7 +65,7 @@ class ErrorLoadingStoreViewController: UIViewController {
         if isSaved {
             reload()
         } else {
-            AlertManager.shared.presentAlert(withTitle: "Unsaved changes!", message: "You made changes to your file\nretrying opening the store requiere to reload the app\nDo you want to save changes?", style: .alert, actions: [UIAlertAction.init(title: "Save", style: .default, handler: { (action) in
+            AlertManager.shared.presentAlert(withTitle: "Unsaved changes!", message: "You made changes to your file\nRetrying opening the store requiere to reload the app\nDo you want to save changes?", style: .alert, actions: [UIAlertAction.init(title: "Save", style: .default, handler: { (action) in
                 if let delegate = self.delegate {
                     do {
                         try delegate.code.text.write(to: (delegate.document?.fileURL)!, atomically: true, encoding: String.Encoding.utf8)

@@ -273,6 +273,29 @@
 			path = "White icon";
 			sourceTree = "<group>";
 		};
+		3AC472C01FCDFBCC006BE05F /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				3AD72C521EEC90EC000C80A9 /* AppDelegate.swift */,
+				3A579F741EFEB70700B4D209 /* AccountManager.swift */,
+				3AFB1E871EEDA18000FBCF73 /* AlertManager.swift */,
+				3A4681DE1F89499D001FE6D4 /* Theme.swift */,
+				3AB1A9ED1F1BE6CC000455F5 /* Server.swift */,
+			);
+			path = Singletons;
+			sourceTree = "<group>";
+		};
+		3AC472C11FCDFBFC006BE05F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3A4074861F9A903A00FBC728 /* Extensions.swift */,
+				3AB5845B1F8BB5630005A690 /* AppViewControllers.swift */,
+				3A0FF2AE1F1EEB4600AF2D7A /* Timers.swift */,
+				3A092F8E1FA8F412000D7893 /* UIImage+Gif.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		3AD72C461EEC90EC000C80A9 = {
 			isa = PBXGroup;
 			children = (
@@ -309,20 +332,13 @@
 		3AF458121F8BBED7006F9048 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3AD72C521EEC90EC000C80A9 /* AppDelegate.swift */,
-				3A45EF9A1FCCADF300ABCC52 /* Strings.swift */,
-				3A579F741EFEB70700B4D209 /* AccountManager.swift */,
-				3AB1A9ED1F1BE6CC000455F5 /* Server.swift */,
-				3A0FF2AE1F1EEB4600AF2D7A /* Timers.swift */,
-				3AFB1E871EEDA18000FBCF73 /* AlertManager.swift */,
-				3A4681DE1F89499D001FE6D4 /* Theme.swift */,
-				3AB5845B1F8BB5630005A690 /* AppViewControllers.swift */,
 				3AD72C581EEC90ED000C80A9 /* Document.swift */,
 				3A09B3BE1F23BC010045CAA1 /* TerminalTextView.swift */,
-				3A4074861F9A903A00FBC728 /* Extensions.swift */,
-				3A092F8E1FA8F412000D7893 /* UIImage+Gif.swift */,
 				3A5A90A11FA67721005F143D /* Challenge.swift */,
 				3A5A90A31FA7B68F005F143D /* Player.swift */,
+				3A45EF9A1FCCADF300ABCC52 /* Strings.swift */,
+				3AC472C01FCDFBCC006BE05F /* Singletons */,
+				3AC472C11FCDFBFC006BE05F /* Helpers */,
 				3AF458241F8BC0D3006F9048 /* Activities */,
 				3AF458131F8BBEFC006F9048 /* View Controllers */,
 			);
