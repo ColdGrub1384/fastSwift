@@ -18,16 +18,16 @@ class Strings {
     static let no = NSLocalizedString("no", comment: "")
     static let cancel = NSLocalizedString("cancel", comment: "")
     
-    static let retry = NSLocalizedString("retry", comment: "Retry button")
+    static let retry = NSLocalizedString("retry", comment: "")
     
     static let errorPurchasingUnlimited = NSLocalizedString("errorPurchasingUnlimited", comment: "Title for error purchasing unlimited compilations")
     
-    static let save = NSLocalizedString("save", comment: "Button to save file")
-    static let dontSave = NSLocalizedString("dontSave", comment: "Button to not save file")
+    static let save = NSLocalizedString("save", comment: "")
+    static let dontSave = NSLocalizedString("dontSave", comment: "")
     
     class NoMoreCompilationsAlert {
-        static let title = NSLocalizedString("noMoreCompilations.title", comment: "Error title saying: No enough 🐧")
-        static let message = NSLocalizedString("noMoreCompilations.message", comment: "Error message saying: Buy 🐧 to compile scripts")
+        static let title = NSLocalizedString("noMoreCompilations.title", comment: "No more compilations alert title")
+        static let message = NSLocalizedString("noMoreCompilations.message", comment: "No more compilations alert message")
     }
     
     static let compressing = NSLocalizedString("compressing", comment: "Title for alert shown when compressing file")
@@ -57,7 +57,7 @@ class Strings {
         private init() {}
         
         static let title = NSLocalizedString("noMainFile.title", comment: "Title for alert saying that is not main file selected in the organizer")
-        static let message = NSLocalizedString("noMainFile.title", comment: "Message for alert saying that is not main file selected in the organizer")
+        static let message = NSLocalizedString("noMainFile.message", comment: "Message for alert saying that is not main file selected in the organizer")
     }
     
     class CantDownloadBinaryAlert {
@@ -140,7 +140,9 @@ class Strings {
             private init() {}
             
             static let title = NSLocalizedString("camera.detectedServerAlert.title", comment: "Title for alert shown when a server is detected")
-            static let message = NSLocalizedString("camera.detectedServerAlert.message", comment: "Message for alert shown when a server is detected")
+            static func message(withUsername username: String, host: String, password: String) -> String {
+                return String(format: NSLocalizedString("camera.detectedServerAlert.message", comment: "Message for alert shown when a server is detected"), username, host, password)
+            }
         }
         
         class DetectedScriptAlert {

@@ -1,0 +1,298 @@
+/* 
+  Localizable.strings
+  fastSwift
+
+  Created by Adrian on 28.11.17.
+  Copyright © 2017 Adrian. All rights reserved.
+*/
+
+/* Title for error creating an account */
+"account.errorCreatingAccount" = "Error creating account!";
+
+/* Title for error loging in */
+"account.errorLogingIn" = "Error loging in!";
+
+/* The string for alert saying You are logged as 'user' */
+"account.loggedAs" = "You are logged as %@";
+
+/* Login */
+"account.login" = "Login";
+
+/* The message for the login alert message */
+"account.loginAlertMessage" = "You need an account to publish projects to the store and play challenges";
+
+/* Logout button */
+"account.logout" = "Logout";
+
+/* Register */
+"account.register" = "Register";
+
+/* Button to view account */
+"account.view" = "View Account";
+
+/* Message for alert shown when trying to download a binary from custom server */
+"binaryDownloadError.message" = "Binaries downloads are only allowed for default server";
+
+/* Title for alert shown when trying to download a binary from custom server */
+"binaryDownloadError.title" = "Can't download binary!";
+
+/* Error downloading file */
+"camera.detectedScriptAlert.errors.errorDownloadingFile" = "Error downloading file!";
+
+/* Error moving file */
+"camera.detectedScriptAlert.errors.errorMovingFile" = "Error moving file!";
+
+/* Message for alert shown when a script is detected */
+"camera.detectedScriptAlert.message" = "Do you want to run this script?";
+
+/* Title for alert shown when a script is detected */
+"camera.detectedScriptAlert.title" = "Detected script!";
+
+/* Message for alert shown when a server is detected */
+"camera.detectedServerAlert.message" = "Do you want to use server '%@@%@' with password %@?";
+
+/* Title for alert shown when a server is detected */
+"camera.detectedServerAlert.title" = "Detected Server!";
+
+/* No comment provided by engineer. */
+"cancel" = "Dancel";
+
+/* Title for alert shown when compressing file */
+"compressing" = "Compressing...";
+
+/* Error connecting to the default server */
+"connectionError.defaultServer" = "There is a problem connecting to %@. Please check for your internet connection or retry later if you think is a server problem.";
+
+/* Error connecting to the custom server */
+"connectionError.errorCustomServer" = "There is a problem connecting to %@. Please check for your internet connection or check your server's host, user, password and availabilty.";
+
+/* Open server settings */
+"connectionError.settings" = "Server settings";
+
+/* Connection error title */
+"connectionError.title" = "Connection Error";
+
+/* No comment provided by engineer. */
+"dontSave" = "Don't Save";
+
+/* Copy button in editor */
+"editor.copy" = "Copy";
+
+/* Title for the organizer inside the editor */
+"editor.organizer.title" = "Select main file";
+
+/* Paste button in editor */
+"editor.paste" = "Paste";
+
+/* Alert message asking if the user wants to save the file */
+"editor.saveFile.message" = "If you select \"Don't save\", all changes will be erased!";
+
+/* Alert title asking if the user wants to save the file */
+"editor.saveFile.title" = "Do you want to save the file";
+
+/* Templates button in editor */
+"editor.templates" = "Templates";
+
+/* Empty data error */
+"emptyData" = "Returned data is empty";
+
+/* Message for alert shown when a file was changed and need to be saved before reload the app */
+"errorLoadingStore.saveFileAlert.message" = "You made changes to your file\nRetrying opening the store requiere to reload the app\nDo you want to save changes?";
+
+/* Title for alert shown when a file was changed and need to be saved before reload the app */
+"errorLoadingStore.saveFileAlert.title" = "Unsaved changes!";
+
+/* Title for ErrorLoadingStoreViewController */
+"errorLoadingStore.title" = "Error loading store";
+
+/* Title for error purchasing unlimited compilations */
+"errorPurchasingUnlimited" = "Error purchasing Unlimited Compilations";
+
+/* Title for Export to Xcode activity */
+"exportToXcode.title" = "Export to Xcode";
+
+/* Title for Export to Xcode Help */
+"exportToXcodeHelp.title" = "How to compile?";
+
+/* Build field */
+"exportToXcodeVC.build" = "Build";
+
+/* Bundle ID field */
+"exportToXcodeVC.bundleID" = "Bundle ID";
+
+/* Display name field */
+"exportToXcodeVC.displayName" = "Display Name";
+
+/* Export button */
+"exportToXcodeVC.export" = "Export";
+
+/* Note saying what file open */
+"exportToXcodeVC.note" = "Note: Open the \"fastSwift App.xcworkspace\" file instead of \"fastSwift App.xcodeproj\".";
+
+/* Title for ExportToXcodeViewController */
+"exportToXcodeVC.title" = "Export to iOS Xcode project";
+
+/* Version field */
+"exportToXcodeVC.version" = "Version";
+
+/* Text for Browser guide */
+"guides.browser.text" = "The file browser is the first section in fastSwift.\nYou can create and open Swift files.";
+
+/* Title for Browser guide */
+"guides.browser.title" = "File Browser";
+
+/* Text for Challenges guide */
+"guides.challenges.text" = "In the shop, if you scroll down, you can play challenges.\nYou need a fastSwift account.\nWhen you play a challenge you have to write the program that the challenge says. When you complete a challenge at first attempt, you earn points (not 🐧).";
+
+/* Title for Challenges guide */
+"guides.challenges.title" = "Challenges";
+
+/* Text for Editor guide */
+"guides.editor.text" = "When you open a file from the file browser, a code editor is opened. You can write code. You can also work with multiple files clicking the \"+\" button and adding a file. Switch file clicking in the organizer button. You can compile code clicking the hammer. The current opened file will be compiled as main file and other files can only declare variables, functions, classes etc. When you compile, a 🐧 is spended and a terminal is opened with the output code.";
+
+/* Title for Editor guide */
+"guides.editor.title" = "Editor";
+
+/* Text for Editor Features guide */
+"guides.editorFeatures.text" = "In the code editor, there are two tool bars, buttons are shortcuts. Scroll tool bars to see more shortcuts.\nAlso, when you put: '{', '\"', '(' or '[', the editor auto complete it and puts the cursor the middle.";
+
+/* Title for Editor Features guide */
+"guides.editorFeatures.title" = "Editor features";
+
+/* Text for Sections guide */
+"guides.sections.text" = "Scroll to the left or to the right to switch section";
+
+/* Title for Sections guide */
+"guides.sections.title" = "Sections";
+
+/* Text for Shop guide */
+"guides.shop.text" = "If you scroll to the right, in the shop you can buy 🐧, download programs coded with fastSwift by other persons and play challenges.";
+
+/* Title for Shop guide */
+"guides.shop.title" = "Shop";
+
+/* No comment provided by engineer. */
+"language" = "en";
+
+/* No comment provided by engineer. */
+"no" = "No";
+
+/* Message for alert saying that is not main file selected in the organizer */
+"noMainFile.message" = "Please select a main file before export to binary.";
+
+/* Title for alert saying that is not main file selected in the organizer */
+"noMainFile.title" = "No main file!";
+
+/* No more compilations alert message */
+"noMoreCompilations.message" = "You need more 🐧";
+
+/* No more compilations alert title */
+"noMoreCompilations.title" = "No enough 🐧";
+
+/* Error publishing project */
+"publishToStore.error" = "Error publishing project!";
+
+/* Error adding script to database */
+"publishToStore.errorAddingToDatabase" = "Error adding script to the database!";
+
+/* Title for Publish to Store activity */
+"publishToStore.title" = "Publish to Store";
+
+/* No comment provided by engineer. */
+"retry" = "Retry";
+
+/* No comment provided by engineer. */
+"save" = "Save";
+
+/* Message for alert shown when the server was created */
+"setupServer.createServerAlert.message" = "'swiftexec@%@' with password 'swift'";
+
+/* Title for alert shown when the server was created */
+"setupServer.createServerAlert.title" = "Created server";
+
+/* IP field */
+"setupServer.ip" = "setupServer.ip";
+
+/* Password field */
+"setupServer.password" = "setupServer.password";
+
+/* Requisites to setup server */
+"setupServer.requisites" = "setupServer.requisites";
+
+/* Setup button */
+"setupServer.setup" = "setupServer.setup";
+
+/* Failed to create /home/swiftexec */
+"setupServer.states.failedToCreateHomeSwiftexec" = "setupServer.states.failedToCreateHomeSwiftexec";
+
+/* Logged in */
+"setupServer.states.loggedIn" = "setupServer.states.loggedIn";
+
+/* Title for SetupServerViewController */
+"setupServer.title" = "setupServer.title";
+
+/* Username field */
+"setupServer.username" = "setupServer.username";
+
+/* Cant connect */
+"setuptServer.states.cantConnect" = "setuptServer.states.cantConnect";
+
+/* Cant Login */
+"setuptServer.states.cantLogin" = "setuptServer.states.cantLogin";
+
+/* Connected */
+"setuptServer.states.connected" = "setuptServer.states.connected";
+
+/* Failed to create user swiftexec */
+"setuptServer.states.failedToCreateSwiftexec" = "setuptServer.states.failedToCreateSwiftexec";
+
+/* Installed */
+"setuptServer.states.installed" = "setuptServer.states.installed";
+
+/* Installing */
+"setuptServer.states.installing" = "setuptServer.states.installing";
+
+/* Ready to install */
+"setuptServer.states.ready" = "setuptServer.states.ready";
+
+/* Swift is not installed */
+"setuptServer.states.swiftNotFound" = "setuptServer.states.swiftNotFound";
+
+/* Title for button to view account in the store */
+"store.account" = "store.account";
+
+/* Title for store in the challenges section */
+"store.challenges" = "store.challenges";
+
+/* Title for store in the leaderboard section */
+"store.leaderboard" = "store.leaderboard";
+
+/* Title for store in the programs section */
+"store.programs" = "store.programs";
+
+/* Title for button to run a program */
+"store.run" = "store.run";
+
+/* Title for store in the sale section */
+"store.sale" = "store.sale";
+
+/* Title for Setup a server button in the store */
+"store.setupServer" = "store.setupServer";
+
+/* Title for button to view the source code of a project */
+"store.source" = "store.source";
+
+/* Title for button to try a challenge */
+"store.try" = "store.try";
+
+/* Unlimited product */
+"store.unlimited" = "store.unlimited";
+
+/* Title for button to watch a video */
+"store.watchVideo" = "store.watchVideo";
+
+/* Title shown in Terminal */
+"terminal.output" = "terminal.output";
+
+/* No comment provided by engineer. */
+"yes" = "yes";

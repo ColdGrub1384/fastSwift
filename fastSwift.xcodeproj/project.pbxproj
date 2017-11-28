@@ -65,6 +65,7 @@
 		3AB9AE7E1EFDD0B3005B4BBE /* OrganizerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9AE7D1EFDD0B3005B4BBE /* OrganizerTableViewController.swift */; };
 		3ABE08221F69A162009EDB16 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABE08211F69A162009EDB16 /* MenuViewController.swift */; };
 		3AC2FBC41F2BCE7C00170AEE /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC2FBC31F2BCE7C00170AEE /* WebViewController.swift */; };
+		3AC472C51FCE10E9006BE05F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AC472C71FCE10E9006BE05F /* Localizable.strings */; };
 		3ACFA2EA1F74484B000EC9C5 /* Pods_fastSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFB78DBF98A6DA978BBD92B /* Pods_fastSwift.framework */; };
 		3AD07F631F1BF769003C47B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD07F621F1BF769003C47B2 /* SettingsViewController.swift */; };
 		3AD509C61F12845F007C79C4 /* ExportToXcodeHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD509C51F12845E007C79C4 /* ExportToXcodeHelpViewController.swift */; };
@@ -175,6 +176,8 @@
 		3AB9AE7D1EFDD0B3005B4BBE /* OrganizerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizerTableViewController.swift; sourceTree = "<group>"; };
 		3ABE08211F69A162009EDB16 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		3AC2FBC31F2BCE7C00170AEE /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		3AC472C61FCE10E9006BE05F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3AC472C81FCE10F8006BE05F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3AD07F621F1BF769003C47B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3AD509C51F12845E007C79C4 /* ExportToXcodeHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToXcodeHelpViewController.swift; sourceTree = "<group>"; };
 		3AD72C4F1EEC90EC000C80A9 /* fastSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fastSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +241,8 @@
 		3A17D8F81F8BC26000ADA0AA /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				3AC472C71FCE10E9006BE05F /* Localizable.strings */,
+				3A706E211F701D8300EE16B7 /* GoogleService-Info.plist */,
 				3AC472C21FCE1030006BE05F /* Guides Screenshots */,
 				3A2B90141F881884001130D5 /* White icon */,
 				3AD72C5D1EEC90ED000C80A9 /* Assets.xcassets */,
@@ -328,7 +333,6 @@
 		3AD72C511EEC90EC000C80A9 /* fastSwift */ = {
 			isa = PBXGroup;
 			children = (
-				3A706E211F701D8300EE16B7 /* GoogleService-Info.plist */,
 				3A1267D61F00207900049F6E /* GoogleMobileAds.framework */,
 				3AF458121F8BBED7006F9048 /* Classes */,
 				3A17D8F81F8BC26000ADA0AA /* Ressources */,
@@ -605,6 +609,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 3AD72C461EEC90EC000C80A9;
 			productRefGroup = 3AD72C501EEC90EC000C80A9 /* Products */;
@@ -642,6 +647,7 @@
 				3AB584541F8BB4AB0005A690 /* Camera.storyboard in Resources */,
 				3AB584461F8BB3750005A690 /* Web.storyboard in Resources */,
 				3AB584421F8BB3130005A690 /* Menu.storyboard in Resources */,
+				3AC472C51FCE10E9006BE05F /* Localizable.strings in Resources */,
 				3A62AA541FA12D42003750D5 /* terminal.html in Resources */,
 				3A092F9D1FA91056000D7893 /* editor.gif in Resources */,
 				3AB584581F8BB4E40005A690 /* Settings.storyboard in Resources */,
@@ -775,6 +781,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3AC472C71FCE10E9006BE05F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3AC472C61FCE10E9006BE05F /* en */,
+				3AC472C81FCE10F8006BE05F /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		3AD72C5A1EEC90ED000C80A9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -838,6 +853,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -894,6 +910,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
