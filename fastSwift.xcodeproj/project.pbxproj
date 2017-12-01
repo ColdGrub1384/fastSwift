@@ -287,6 +287,7 @@
 		3AC472C11FCDFBFC006BE05F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3A45EF9A1FCCADF300ABCC52 /* Strings.swift */,
 				3A4074861F9A903A00FBC728 /* Extensions.swift */,
 				3AB5845B1F8BB5630005A690 /* AppViewControllers.swift */,
 				3A0FF2AE1F1EEB4600AF2D7A /* Timers.swift */,
@@ -348,7 +349,6 @@
 				3A09B3BE1F23BC010045CAA1 /* TerminalTextView.swift */,
 				3A5A90A11FA67721005F143D /* Challenge.swift */,
 				3A5A90A31FA7B68F005F143D /* Player.swift */,
-				3A45EF9A1FCCADF300ABCC52 /* Strings.swift */,
 				3AC472C01FCDFBCC006BE05F /* Singletons */,
 				3AC472C11FCDFBFC006BE05F /* Helpers */,
 				3AF458241F8BC0D3006F9048 /* Activities */,

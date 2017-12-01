@@ -170,7 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
                         return
                     }
                     
-                    AlertManager.shared.present(error: error, withTitle: "Error purchasing Unlimited Compilations", inside: (self.window?.rootViewController)!)
+                    AlertManager.shared.present(error: error, withTitle: Strings.errorPurchasingUnlimited, inside: (self.window?.rootViewController)!)
                 default:
                     break
                 }

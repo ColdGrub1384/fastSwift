@@ -20,6 +20,10 @@ class Strings {
     
     static let retry = NSLocalizedString("retry", comment: "")
     
+    static let uploading = NSLocalizedString("uploading", comment: "")
+    
+    static let errorSavingFile = NSLocalizedString("errorSavingFile", comment: "")
+    
     static let errorPurchasingUnlimited = NSLocalizedString("errorPurchasingUnlimited", comment: "Title for error purchasing unlimited compilations")
     
     static let save = NSLocalizedString("save", comment: "")
@@ -60,11 +64,17 @@ class Strings {
         static let message = NSLocalizedString("noMainFile.message", comment: "Message for alert saying that is not main file selected in the organizer")
     }
     
-    class CantDownloadBinaryAlert {
-        private init () {}
+    class ExportToBinaryActivity {
+        private init() {}
         
-        static let title = NSLocalizedString("binaryDownloadError.title", comment: "Title for alert shown when trying to download a binary from custom server")
-        static let message = NSLocalizedString("binaryDownloadError.message", comment: "Message for alert shown when trying to download a binary from custom server")
+        static let title = NSLocalizedString("exportToBinary.title", comment: "Title for export to binary activity")
+        
+        class CantDownloadBinaryAlert {
+            private init () {}
+            
+            static let title = NSLocalizedString("binaryDownloadError.title", comment: "Title for alert shown when trying to download a binary from custom server")
+            static let message = NSLocalizedString("binaryDownloadError.message", comment: "Message for alert shown when trying to download a binary from custom server")
+        }
     }
     
     class ExportToXcodeActivity {
@@ -79,8 +89,19 @@ class Strings {
         static let title = NSLocalizedString("publishToStore.title", comment: "Title for Publish to Store activity")
         
         class Errors {
+            private init() {}
+            
             static let errorPublishing = NSLocalizedString("publishToStore.error", comment: "Error publishing project")
             static let errorAddingToDatabase = NSLocalizedString("publishToStore.errorAddingToDatabase", comment: "Error adding script to database")
+        }
+        
+        class PublishedAlert {
+            private init() {}
+            
+            static let title = NSLocalizedString("publishToStore.published.title", comment: "Title for alert shown when a script was published")
+            static func message(withHost host: String) -> String {
+                return String(format: NSLocalizedString("publishToStore.published.message", comment: "Message for alert shown when a script was published"), host)
+            }
         }
     }
     
@@ -287,6 +308,8 @@ class Strings {
         static let paste = NSLocalizedString("editor.paste", comment: "Paste button in editor")
         
         static let templates = NSLocalizedString("editor.templates", comment: "Templates button in editor")
+        
+        static let chooseTemplate = NSLocalizedString("editor.chooseTemplate", comment: "Choose template title alert")
         
         class SaveFileAlert {
             

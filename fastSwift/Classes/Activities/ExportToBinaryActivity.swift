@@ -16,7 +16,7 @@ class ExportToBinaryActivity: UIActivity {
     }
     
     override var activityTitle: String? {
-        return "Export to binary"
+        return Strings.ExportToBinaryActivity.title
     }
     
     override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
@@ -36,7 +36,7 @@ class ExportToBinaryActivity: UIActivity {
         if let delegate = self.delegate {
             
             if Server.host != Server.default.host && Server.user != Server.default.user {
-                AlertManager.shared.presentAlert(withTitle: "Can't download binary!", message: "Binaries downloads are only allowed for default server", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
+                AlertManager.shared.presentAlert(withTitle: Strings.ExportToBinaryActivity.CantDownloadBinaryAlert.title, message: Strings.ExportToBinaryActivity.CantDownloadBinaryAlert.message, style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
                 
                 return
             }
@@ -44,7 +44,7 @@ class ExportToBinaryActivity: UIActivity {
             if !delegate.delegate!.firstLaunch {
                 delegate.downloadBinary()
             } else {
-                AlertManager.shared.presentAlert(withTitle: "No main file!", message: "Please select a main file before export to binary.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
+                AlertManager.shared.presentAlert(withTitle: Strings.ExportToBinaryActivity.CantDownloadBinaryAlert.title, message: Strings.ExportToBinaryActivity.CantDownloadBinaryAlert.message, style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
             }
         }
     }

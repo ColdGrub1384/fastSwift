@@ -100,9 +100,9 @@ class AccountManager {
     
     func presentAccountInfo(inside vc: UIViewController) {
         func info() {
-            let alert = AlertManager.shared.alert(withTitle: self.username!, message: "You are logged as \(self.username!)", style: .alert, actions: [UIAlertAction.init(title: "View account", style: .default, handler: { (action) in
+            let alert = AlertManager.shared.alert(withTitle: self.username!, message: Strings.AccountManager.loggedAs(user: self.username!), style: .alert, actions: [UIAlertAction.init(title: Strings.AccountManager.viewAccount, style: .default, handler: { (action) in
                 AlertManager.shared.openWebView(withURL: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php?user=\(self.username!.addingPercentEncodingForURLQueryValue()!)&password=\(self.password!.addingPercentEncodingForURLQueryValue()!)&server=\(Server.user)@\(Server.host)&action=uiLogin")!, inside: vc)
-            }), UIAlertAction.init(title: "Logout", style: .default, handler: { (action) in
+            }), UIAlertAction.init(title: Strings.AccountManager.logout, style: .default, handler: { (action) in
                 self.username = nil
                 self.password = nil
                                 
@@ -126,7 +126,7 @@ class AccountManager {
         var userTextField = UITextField()
         var passTextField = UITextField()
         
-        let alert = AlertManager.shared.alert(withTitle: "Login / Register", message: "You need an account to publish projects to the store and play challenges", style: .alert, actions: [UIAlertAction.init(title: "Login", style: .default, handler: { (action) in
+        let alert = AlertManager.shared.alert(withTitle: "\(Strings.AccountManager.login) / \(Strings.AccountManager.register)", message: Strings.AccountManager.loginAlertMessage, style: .alert, actions: [UIAlertAction.init(title: Strings.AccountManager.login, style: .default, handler: { (action) in
             // Login
             let params = "user=\(userTextField.text!.addingPercentEncodingForURLQueryValue()!)&password=\(passTextField.text!.addingPercentEncodingForURLQueryValue()!)&action=login"
             URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php?\(params)")!, completionHandler: { (data, response, error) in
@@ -148,22 +148,22 @@ class AccountManager {
                             }
                         } else {
                             DispatchQueue.main.async {
-                                AlertManager.shared.presentAlert(withTitle: "Error loging in!", message: str, style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
+                                AlertManager.shared.presentAlert(withTitle: Strings.AccountManager.errorLogingIn, message: str, style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
                             }
                         }
                     } else {
                         DispatchQueue.main.async {
-                            AlertManager.shared.presentAlert(withTitle: "Error loging in!", message: "Returned data is empty!", style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
+                            AlertManager.shared.presentAlert(withTitle: Strings.AccountManager.errorLogingIn, message: Strings.emptyData, style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
                         }
                     }
                 } else {
                     DispatchQueue.main.async {
-                        AlertManager.shared.present(error: error!, withTitle: "Error loging in!", inside: vc)
+                        AlertManager.shared.present(error: error!, withTitle: Strings.AccountManager.errorLogingIn, inside: vc)
                     }
                 }
             }).resume()
             
-        }), UIAlertAction.init(title: "Register", style: .default, handler: { (action) in
+        }), UIAlertAction.init(title: Strings.AccountManager.register, style: .default, handler: { (action) in
             // Register
             let params = "user=\(userTextField.text!.addingPercentEncodingForURLQueryValue()!)&password=\(passTextField.text!.addingPercentEncodingForURLQueryValue()!)&action=register"
             URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php?\(params)")!, completionHandler: { (data, response, error) in
@@ -186,17 +186,17 @@ class AccountManager {
                             }
                         } else {
                             DispatchQueue.main.async {
-                                AlertManager.shared.presentAlert(withTitle: "Error creating account!", message: str, style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
+                                AlertManager.shared.presentAlert(withTitle: Strings.AccountManager.errorCreatingAccount, message: str, style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
                             }
                         }
                     } else {
                         DispatchQueue.main.async {
-                            AlertManager.shared.presentAlert(withTitle: "Error creating account!", message: "Returned data is empty!", style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
+                            AlertManager.shared.presentAlert(withTitle: Strings.AccountManager.errorCreatingAccount, message: Strings.emptyData, style: .alert, actions: [AlertManager.shared.cancel], inside: vc, animated: true, completion: nil)
                         }
                     }
                 } else {
                     DispatchQueue.main.async {
-                        AlertManager.shared.present(error: error!, withTitle: "Error creating account!", inside: vc)
+                        AlertManager.shared.present(error: error!, withTitle: Strings.AccountManager.errorCreatingAccount, inside: vc)
                     }
                 }
             }).resume()

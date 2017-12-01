@@ -109,8 +109,11 @@
                         <outlet property="code" destination="aYj-Lc-ZcK" id="fnl-dX-Uuz"/>
                         <outlet property="compilations" destination="Xap-jj-ouR" id="w13-jh-U0V"/>
                         <outlet property="compileBTN" destination="R1s-bU-FBs" id="kk6-UT-6Da"/>
+                        <outlet property="copyBtn" destination="rcV-5S-ALa" id="bub-ji-peF"/>
                         <outlet property="dismissKeyboard" destination="VeN-IC-vrE" id="8nd-Bx-gas"/>
                         <outlet property="organizeBTN" destination="3aG-w0-vPe" id="C6v-bC-uFP"/>
+                        <outlet property="pasteBtn" destination="flt-FN-gVa" id="NLW-5H-dWy"/>
+                        <outlet property="templatesBtn" destination="4v9-Sl-6Ts" id="idY-as-Zb7"/>
                         <outlet property="titleBar" destination="Pem-lL-FEU" id="unL-2r-eF4"/>
                         <outlet property="toolbar" destination="liF-4r-zkQ" id="aZA-z5-8Ne"/>
                     </connections>

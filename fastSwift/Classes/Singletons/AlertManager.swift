@@ -53,7 +53,7 @@ class AlertManager {
         return UIAlertAction(title: "Ok", style: .default, handler: handler)
     }
     
-    let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    let cancel = UIAlertAction(title: Strings.cancel, style: .cancel, handler: nil)
     
     func present(error: Error, withTitle title:String, inside viewController: UIViewController) {
         DispatchQueue.main.async {

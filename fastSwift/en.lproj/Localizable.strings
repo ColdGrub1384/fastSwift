@@ -75,6 +75,9 @@
 /* No comment provided by engineer. */
 "dontSave" = "Don't Save";
 
+/* Choose template title alert */
+"editor.chooseTemplate" = "Choose a template";
+
 /* Copy button in editor */
 "editor.copy" = "Copy";
 
@@ -107,6 +110,12 @@
 
 /* Title for error purchasing unlimited compilations */
 "errorPurchasingUnlimited" = "Error purchasing Unlimited Compilations";
+
+/* No comment provided by engineer. */
+"errorSavingFile" = "Error saving file!";
+
+/* Title for export to binary activity */
+"exportToBinary.title" = "Export to binary";
 
 /* Title for Export to Xcode activity */
 "exportToXcode.title" = "Export to Xcode";
@@ -178,7 +187,7 @@
 "no" = "No";
 
 /* Message for alert saying that is not main file selected in the organizer */
-"noMainFile.message" = "Please select a main file before export to binary.";
+"noMainFile.message" = "Please select a main file.";
 
 /* Title for alert saying that is not main file selected in the organizer */
 "noMainFile.title" = "No main file!";
@@ -198,6 +207,12 @@
 /* Title for Publish to Store activity */
 "publishToStore.title" = "Publish to Store";
 
+/* Message for alert shown when a script was published */
+"publishToStore.published.message" = "People connected to %@ can now download your project via the store!\nIf you want to update the project, simplely publish it another time and if you want to delete the project go to Store > Account > View Account.";
+
+/* Title for alert shown when a script was published */
+"publishToStore.published.title" = "Published!";
+
 /* No comment provided by engineer. */
 "retry" = "Retry";
 
@@ -208,91 +223,94 @@
 "setupServer.createServerAlert.message" = "'swiftexec@%@' with password 'swift'";
 
 /* Title for alert shown when the server was created */
-"setupServer.createServerAlert.title" = "Created server";
+"setupServer.createServerAlert.title" = "Created server!";
 
 /* IP field */
-"setupServer.ip" = "setupServer.ip";
+"setupServer.ip" = "Server's IP";
 
 /* Password field */
-"setupServer.password" = "setupServer.password";
+"setupServer.password" = "Password";
 
 /* Requisites to setup server */
-"setupServer.requisites" = "setupServer.requisites";
+"setupServer.requisites" = "User must be able to run sudo and Swift must be installed in the computer.\nThe server can only be installed in Linux.";
 
 /* Setup button */
-"setupServer.setup" = "setupServer.setup";
+"setupServer.setup" = "Setup";
 
 /* Failed to create /home/swiftexec */
-"setupServer.states.failedToCreateHomeSwiftexec" = "setupServer.states.failedToCreateHomeSwiftexec";
+"setupServer.states.failedToCreateHomeSwiftexec" = "Failed to create /home/swiftexec";
 
 /* Logged in */
-"setupServer.states.loggedIn" = "setupServer.states.loggedIn";
+"setupServer.states.loggedIn" = "Logged in!";
 
 /* Title for SetupServerViewController */
-"setupServer.title" = "setupServer.title";
+"setupServer.title" = "Setup your own server";
 
 /* Username field */
-"setupServer.username" = "setupServer.username";
+"setupServer.username" = "Server's username";
 
 /* Cant connect */
-"setuptServer.states.cantConnect" = "setuptServer.states.cantConnect";
+"setuptServer.states.cantConnect" = "Can't connect";
 
 /* Cant Login */
-"setuptServer.states.cantLogin" = "setuptServer.states.cantLogin";
+"setuptServer.states.cantLogin" = "Can't login";
 
 /* Connected */
-"setuptServer.states.connected" = "setuptServer.states.connected";
+"setuptServer.states.connected" = "Connected!";
 
 /* Failed to create user swiftexec */
-"setuptServer.states.failedToCreateSwiftexec" = "setuptServer.states.failedToCreateSwiftexec";
+"setuptServer.states.failedToCreateSwiftexec" = "Failed to create user swiftexec";
 
 /* Installed */
-"setuptServer.states.installed" = "setuptServer.states.installed";
+"setuptServer.states.installed" = "Installed!";
 
 /* Installing */
-"setuptServer.states.installing" = "setuptServer.states.installing";
+"setuptServer.states.installing" = "Installing..";
 
 /* Ready to install */
-"setuptServer.states.ready" = "setuptServer.states.ready";
+"setuptServer.states.ready" = "Ready to install!";
 
 /* Swift is not installed */
-"setuptServer.states.swiftNotFound" = "setuptServer.states.swiftNotFound";
+"setuptServer.states.swiftNotFound" = "Swift is not installed";
 
 /* Title for button to view account in the store */
-"store.account" = "store.account";
+"store.account" = "View Account";
 
 /* Title for store in the challenges section */
-"store.challenges" = "store.challenges";
+"store.challenges" = "Challenges";
 
 /* Title for store in the leaderboard section */
-"store.leaderboard" = "store.leaderboard";
+"store.leaderboard" = "Leaderboard";
 
 /* Title for store in the programs section */
-"store.programs" = "store.programs";
+"store.programs" = "Programs";
 
 /* Title for button to run a program */
-"store.run" = "store.run";
+"store.run" = "Run";
 
 /* Title for store in the sale section */
-"store.sale" = "store.sale";
+"store.sale" = "Sale";
 
 /* Title for Setup a server button in the store */
-"store.setupServer" = "store.setupServer";
+"store.setupServer" = "Setup server";
 
 /* Title for button to view the source code of a project */
-"store.source" = "store.source";
+"store.source" = "Source";
 
 /* Title for button to try a challenge */
-"store.try" = "store.try";
+"store.try" = "Try";
 
 /* Unlimited product */
-"store.unlimited" = "store.unlimited";
+"store.unlimited" = "Unlimited";
 
 /* Title for button to watch a video */
-"store.watchVideo" = "store.watchVideo";
+"store.watchVideo" = "Watch video";
 
 /* Title shown in Terminal */
-"terminal.output" = "terminal.output";
+"terminal.output" = "Output";
 
 /* No comment provided by engineer. */
-"yes" = "yes";
+"uploading" = "Uploading...";
+
+/* No comment provided by engineer. */
+"yes" = "Yes";

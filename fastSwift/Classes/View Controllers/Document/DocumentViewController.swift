@@ -26,6 +26,11 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
     
     @IBOutlet weak var toolbar: UIToolbar!
     
+    @IBOutlet weak var copyBtn: UIBarButtonItem!
+    @IBOutlet weak var pasteBtn: UIBarButtonItem!
+    
+    @IBOutlet weak var templatesBtn: UIBarButtonItem!
+    
     
     var firstLaunch = false
     
@@ -162,6 +167,9 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             toolbar.setItems([compile!], animated: true)
         }
         
+        copyBtn.title = Strings.Editor.copy
+        pasteBtn.title = Strings.Editor.paste
+        templatesBtn.title = Strings.Editor.templates
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -713,19 +721,19 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         code.resignFirstResponder()
         
         if code.text.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "") != document?.code.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "") {
-            AlertManager.shared.presentAlert(withTitle: "Do you want to save the file", message: "If you select \"Don't save\", all changes will be erased!", style: .alert, actions:
+            AlertManager.shared.presentAlert(withTitle: Strings.Editor.SaveFileAlert.title, message: Strings.Editor.SaveFileAlert.message, style: .alert, actions:
                 [
-                    UIAlertAction.init(title: "Don't save", style: .destructive, handler: { (action) in
+                    UIAlertAction.init(title: Strings.dontSave, style: .destructive, handler: { (action) in
                         self.dismiss(animated: true, completion: {
                             self.document?.close(completionHandler: nil)
                         })
                     }),
-                    UIAlertAction.init(title: "Save", style: .default, handler: { (action) in
+                    UIAlertAction.init(title: Strings.save, style: .default, handler: { (action) in
                         self.dismiss(animated: true, completion: {
                             do {
                                 try self.code.text.write(to: (self.document?.fileURL)!, atomically: true, encoding: String.Encoding.utf8)
                             } catch let error {
-                                AlertManager.shared.present(error: error, withTitle: "Error saving file!", inside: self)
+                                AlertManager.shared.present(error: error, withTitle: Strings.errorSavingFile, inside: self)
                             }
                             self.document?.close(completionHandler: nil)
                         })
@@ -751,7 +759,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             
         }
         
-        let alert = AlertManager.shared.alert(withTitle: "Choose a template", message: "", style: .actionSheet, actions: [UIAlertAction.init(title: "Hello World", style: .default, handler: { (alert) in
+        let alert = AlertManager.shared.alert(withTitle: Strings.Editor.chooseTemplate, message: "", style: .actionSheet, actions: [UIAlertAction.init(title: "Hello World", style: .default, handler: { (alert) in
             setTemplate("""
             //
             //  Swift script

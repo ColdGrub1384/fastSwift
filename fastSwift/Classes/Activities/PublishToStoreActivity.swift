@@ -40,7 +40,7 @@ class PublishToStoreActivity: UIActivity {
         let delegate = self.delegate!
         
         func publish() {
-            let vc = ActivityViewController(message: "Uploading...")
+            let vc = ActivityViewController(message: Strings.uploading)
             delegate.present(vc, animated: true, completion: nil)
             
             URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/createDirAtShop.php/?server=\("\(Server.user)@\(Server.host)".addingPercentEncodingForURLQueryValue()!)")!, completionHandler: { (data, response, error) in
@@ -74,7 +74,7 @@ class PublishToStoreActivity: UIActivity {
                                         if let error = String(data:data!, encoding: String.Encoding.utf8) {
                                             if error != "" {
                                                 delegate.dismiss(animated: true, completion: {
-                                                     AlertManager.shared.presentAlert(withTitle: "Error publishing project!", message: error, style: .alert, actions: [AlertManager.shared.cancel], inside: delegate, animated: true, completion: nil)
+                                                     AlertManager.shared.presentAlert(withTitle: Strings.PublishToStoreActivity.Errors.errorPublishing, message: error, style: .alert, actions: [AlertManager.shared.cancel], inside: delegate, animated: true, completion: nil)
                                                 })
                                             } else {
                                                 URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php/?action=registerScript&user=\(AccountManager.shared.username!.addingPercentEncodingForURLQueryValue()!)&password=\(AccountManager.shared.password!.addingPercentEncodingForURLQueryValue()!)&script=\(self.fileURL!.lastPathComponent.addingPercentEncodingForURLQueryValue()!)")!, completionHandler: { (data, response, error) in
@@ -82,14 +82,14 @@ class PublishToStoreActivity: UIActivity {
                                                     if error == nil {
                                                         if data != nil {
                                                             delegate.dismiss(animated: true, completion: {
-                                                                AlertManager.shared.presentAlert(withTitle: "Published!", message: "People connected to \(Server.host) can now download your project via the store!\nIf you want to update the project, simplely publish it another time and if you want to delete the project go to Store > Account > View Account.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
+                                                                AlertManager.shared.presentAlert(withTitle: Strings.PublishToStoreActivity.PublishedAlert.title, message: Strings.PublishToStoreActivity.PublishedAlert.message(withHost: Server.host), style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
                                                             })
                                                         } else {
-                                                            AlertManager.shared.presentAlert(withTitle: "Error adding script to the database!", message: "Returned data is empty.", style: .alert, actions: [AlertManager.shared.cancel], inside: delegate, animated: true, completion: nil)
+                                                            AlertManager.shared.presentAlert(withTitle: Strings.PublishToStoreActivity.Errors.errorAddingToDatabase, message: Strings.emptyData, style: .alert, actions: [AlertManager.shared.cancel], inside: delegate, animated: true, completion: nil)
                                                         }
                                                     } else {
                                                         delegate.dismiss(animated: true, completion: {
-                                                            AlertManager.shared.present(error: error!, withTitle: "Error adding script to the database!", inside: delegate)
+                                                            AlertManager.shared.present(error: error!, withTitle: Strings.PublishToStoreActivity.Errors.errorAddingToDatabase, inside: delegate)
                                                         })
                                                     }
                                                     
@@ -122,7 +122,7 @@ class PublishToStoreActivity: UIActivity {
                     }
                 } else {
                     delegate.dismiss(animated: true, completion: {
-                        AlertManager.shared.present(error: error!, withTitle: "Error publishing project!", inside: delegate)
+                        AlertManager.shared.present(error: error!, withTitle: Strings.PublishToStoreActivity.Errors.errorPublishing, inside: delegate)
                     })
                 }
             }).resume()

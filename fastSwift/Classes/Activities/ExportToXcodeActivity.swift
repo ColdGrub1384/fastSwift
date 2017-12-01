@@ -17,7 +17,7 @@ class ExportToXcodeActivty: UIActivity {
     }
     
     override var activityTitle: String? {
-        return "Export to Xcode"
+        return Strings.ExportToXcodeActivity.title
     }
     
     override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
@@ -40,7 +40,7 @@ class ExportToXcodeActivty: UIActivity {
                 vc.delegate = delegate
                 delegate.present(vc, animated: true, completion: nil)
             } else {
-                AlertManager.shared.presentAlert(withTitle: "No main file!", message: "Please select a main file before export to Xcode project.", style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
+                AlertManager.shared.presentAlert(withTitle: Strings.noMainFileAlert.title, message: Strings.noMainFileAlert.message, style: .alert, actions: [AlertManager.shared.ok(handler: nil)], inside: delegate, animated: true, completion: nil)
             }
         }
     }

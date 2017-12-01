@@ -80,16 +80,16 @@ class SetupServerViewController: UIViewController, UITextFieldDelegate {
             let session = NMSSHSession.connect(toHost: self.ip.text!, withUsername: self.username.text!)
             if session!.isConnected {
                 
-                self.showStatus("Connected!", with: .green)
+                self.showStatus(Strings.SetupServer.States.connected, with: .green)
                 
                 session?.authenticate(byPassword: self.password.text!)
                 if session!.isAuthorized {
                     
-                    self.showStatus("Logged in!", with: .green)
+                    self.showStatus(Strings.SetupServer.States.loggedIn, with: .green)
                     
                     _ = Afte.r(0.1, seconds: { (timer) in
                         
-                        self.showStatus("Installing..", with: .yellow)
+                        self.showStatus(Strings.SetupServer.States.installing, with: .yellow)
                         
                         _ = Afte.r(0.1, seconds: { (timer) in
                             do {                                
@@ -97,27 +97,27 @@ class SetupServerViewController: UIViewController, UITextFieldDelegate {
                                 
                                 if swift!.contains("swiftc: command not found") {
                                     // Swift is not installed
-                                    self.showStatus("Swift is not installed!", with: .red)
+                                    self.showStatus(Strings.SetupServer.States.swiftNotInstalled, with: .red)
                                 } else {
                                     let _ = try session?.channel.execute("echo \(self.password.text!) | sudo -S wait; curl -s -L http://goo.gl/hPvdsn | sudo bash -s swiftexec swift; logout")
                                     
-                                    self.showStatus("Installed!", with: .green)
+                                    self.showStatus(Strings.SetupServer.States.installed, with: .green)
                                     var installed = true
                                     
                                     let newUserFolder = try session?.channel.execute("ls /home/swiftexec")
                                     if newUserFolder!.contains("No such file or directory") {
-                                        self.showStatus("Failed to create /home/swiftexec", with: .red)
+                                        self.showStatus(Strings.SetupServer.States.failedToCreateHomeSwiftexec, with: .red)
                                         installed = false
                                     }
                                     
                                     let userID = try session?.channel.execute("id -u swiftexec")
                                     if userID!.contains("no such user") {
-                                        self.showStatus("Failed to create user swiftexec", with: .red)
+                                        self.showStatus(Strings.SetupServer.States.failedToCreateSwiftexec, with: .red)
                                         installed = false
                                     }
                                     
                                     if installed {
-                                        let alert = AlertManager.shared.alert(withTitle: "Created server", message: "'swiftexec@\(self.ip.text!)' with password 'swift'", style: .alert, actions: [AlertManager.shared.ok(handler: nil)])
+                                        let alert = AlertManager.shared.alert(withTitle: Strings.SetupServer.CreatedServerAlert.title, message: Strings.SetupServer.CreatedServerAlert.message(forHost: self.ip.text!), style: .alert, actions: [AlertManager.shared.ok(handler: nil)])
                                         self.present(alert, animated: true, completion: nil)
                                     }
                                 }
@@ -130,11 +130,11 @@ class SetupServerViewController: UIViewController, UITextFieldDelegate {
                     })
                     
                 } else {
-                    self.showStatus("Can't login!", with: .red)
+                    self.showStatus(Strings.SetupServer.States.cantLogin, with: .red)
                     session?.disconnect()
                 }
             } else {
-                self.showStatus("Can't connect!", with: .red)
+                self.showStatus(Strings.SetupServer.States.cantConnect, with: .red)
             }
             
             self.activity.stopAnimating()
