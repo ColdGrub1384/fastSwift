@@ -207,7 +207,7 @@ class Strings {
         static let shop = LocalizedGuide(title: NSLocalizedString("guides.shop.title", comment: "Title for Shop guide"), message: NSLocalizedString("guides.shop.text", comment: "Text for Shop guide"))
         
         
-        static let challlenges = LocalizedGuide(title: NSLocalizedString("guides.challenges.title", comment: "Title for Challenges guide"), message: NSLocalizedString("guides.challenges.text", comment: "Text for Challenges guide")
+        static let challlenges = LocalizedGuide(title: NSLocalizedString("guides.challenges.title", comment: "Title for Challenges guide"), message: NSLocalizedString("guides.challenges.text", comment: "Text for Challenges guide"))
     }
     
     class SetupServer {
