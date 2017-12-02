@@ -19,7 +19,7 @@ class PublishToStoreActivity: UIActivity {
     }
     
     override var activityTitle: String? {
-        return "Publish to store"
+        return Strings.PublishToStoreActivity.title
     }
     
     override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
