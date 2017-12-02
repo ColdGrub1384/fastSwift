@@ -167,7 +167,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         let file = files[sender.tag]
         let fileURL = URL(string:"http://\(Server.default.host)/dl.php?f=/mnt/FFSwift/\(Server.user)@\(Server.host)/files/\(file.addingPercentEncodingForURLQueryValue()!)")!
         
-        let activityVC = ActivityViewController(message: "Downloading...")
+        let activityVC = ActivityViewController(message: Strings.downloading)
         self.present(activityVC, animated: true, completion: nil)
         
         URLSession.shared.dataTask(with: fileURL, completionHandler: { (data, response, error) in
@@ -199,7 +199,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         let file = files[sender.tag]
         let docs = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first!
         
-        let vc = ActivityViewController(message: "Downloading...")
+        let vc = ActivityViewController(message: Strings.downloading)
         self.present(vc, animated: true, completion: nil)
         
         let session = NMSSHSession.connect(toHost: Server.default.host, withUsername: Server.default.user)
@@ -354,14 +354,14 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         self.navigationController?.navigationBar.topItem?.setRightBarButtonItems([doneBtn], animated: true)
         
         if (current.reuseIdentifier == "0" || current.reuseIdentifier == "1") { // Sale
-            title = "Sale"
+            title = Strings.Store.sale
              self.navigationController?.navigationBar.topItem?.setRightBarButtonItems([doneBtn, redeemBtn], animated: true)
         } else if current.reuseIdentifier == "2" { // Programs
-            title = "Programs"
+            title = Strings.Store.programs
         } else if current.reuseIdentifier == "3" { // Challenges
-            title = "Challenges"
+            title = Strings.Store.challenges
         } else if current.reuseIdentifier == "4" { // Leaderboard
-            title = "Leaderboard"
+            title = Strings.Store.leaderboard
         }
         
         UIView.animate(withDuration: 1) {
@@ -407,12 +407,6 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                 button.backgroundColor = .clear
                 cell.backgroundColor = Theme.current.color
                 
-                if let restore = cell.viewWithTag(4) as? UIButton {
-                    restore.backgroundColor = .clear
-                    restore.backgroundColor = Theme.current.color
-                }
-                
-                
                 let iconView = cell.viewWithTag(6) as! UIImageView
                 let icon = iconView.image!
                 let icon_ = icon.withRenderingMode(.alwaysTemplate)
@@ -421,6 +415,12 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                 
                 let label = cell.viewWithTag(7) as! UILabel
                 label.textColor = Theme.current.textColor
+                
+                if let restore = cell.viewWithTag(4) as? UIButton {
+                    restore.backgroundColor = .clear
+                    restore.backgroundColor = Theme.current.color
+                    label.text = Strings.Store.unlimited
+                }
             }
         } else if collectionView.tag == 2 { // Programs
             
@@ -446,6 +446,9 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                 buttonSource.tag = higherSourceButtonTag
                 higherSourceButtonTag += 1
                 buttonSource.addTarget(self, action: #selector(showSourceFromStore(_:)), for: .touchUpInside)
+                
+                buttonRun.setTitle(Strings.Store.run, for: .normal)
+                buttonSource.setTitle(Strings.Store.source, for: .normal)
             } else {
                 self.filesCollectionView = collectionView
                 
@@ -479,6 +482,8 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             let icon_ = icon?.withRenderingMode(.alwaysTemplate)
             iconView.image = icon_
             iconView.tintColor = Theme.current.textColor
+            
+            button.setTitle(Strings.Store.watchVideo, for: .normal)
         } else if collectionView.tag == 7 { // Challenges
             let label = cell.viewWithTag(4) as! UILabel
             label.textColor = Theme.current.textColor
@@ -490,6 +495,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             button.backgroundColor = .clear
             button.setTitle("\(indexPath.row)", for: .disabled)
             button.addTarget(self, action: #selector(tryChallenge(_:)), for: .touchUpInside)
+            button.setTitle(Strings.Store.try, for: .normal)
             
         } else if collectionView.tag == 8 { // Leaderboard
             let points = cell.viewWithTag(3) as! UILabel
@@ -510,6 +516,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             button.backgroundColor = .clear
             button.setTitle("\(indexPath.row)", for: .disabled)
             button.addTarget(self, action: #selector(viewProfile(_:)), for: .touchUpInside)
+            button.setTitle(Strings.Store.account, for: .normal)
             
             let iconView = cell.viewWithTag(1) as! UIImageView
             let icon = iconView.image!
@@ -690,7 +697,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
                 }
                 
                 if let vc = AccountManager.shared.storeViewController {
-                    AlertManager.shared.present(error: error, withTitle: "Error!", inside: vc)
+                    AlertManager.shared.present(error: error, withTitle: Strings.error, inside: vc)
                 }
                 print("Error! \(error)")
             }

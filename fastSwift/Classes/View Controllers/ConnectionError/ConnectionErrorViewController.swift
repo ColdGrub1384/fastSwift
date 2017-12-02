@@ -12,6 +12,7 @@ import NMSSH
 class ConnectionErrorViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var errorText: UITextView!
+    @IBOutlet weak var settingBtn: UIButton!
     
     // -------------------------------------------------------------------------
     // MARK: UIViewController
@@ -20,11 +21,14 @@ class ConnectionErrorViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = Strings.ConnectionError.title
+        settingBtn.setTitle(Strings.ConnectionError.serverSettings, for: .normal)
+        
         if AccountManager.shared.customServerEnabled {
-            errorText.text = "There is a problem connecting to \(Server.host). Please check for your internet connection or check your server's host, user, password and availabilty."
+            errorText.text = Strings.ConnectionError.Errors.errorForCustomServer
             errorText.delegate = self
         } else {
-            errorText.text = "There is a problem connecting to \(Server.host). Please check for your internet connection or retry later if you think is a server problem."
+            errorText.text = Strings.ConnectionError.Errors.errorForDefaultServer
         }
     }
     

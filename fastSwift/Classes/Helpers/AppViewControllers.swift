@@ -28,5 +28,11 @@ class AppViewControllers {
     var errorLoadingStore: ErrorLoadingStoreViewController = viewController(from: "ErrorLoadingStore") as! ErrorLoadingStoreViewController
     var settings: UINavigationController = viewController(from: "Settings") as! UINavigationController
     var connectionError: UINavigationController = viewController(from: "ConnectionError") as! UINavigationController
-    var guide: GuideViewController = viewController(from: "Guide") as! GuideViewController
+    func guide(withPage page: LocalizedGuide) -> GuideViewController {
+        let vc = AppViewControllers.viewController(from: "Guide") as! GuideViewController
+        vc.titlePage = page.title
+        vc.text = page.message
+        
+        return vc
+    }
 }

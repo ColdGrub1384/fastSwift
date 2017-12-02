@@ -166,6 +166,7 @@
                         <outlet property="displayName" destination="igq-qN-cGh" id="eBg-zA-M0p"/>
                         <outlet property="displayNameLabel" destination="Zsa-HB-HfM" id="BEH-rX-de8"/>
                         <outlet property="doneBtn" destination="QdI-QK-0Ur" id="JDt-oZ-7fu"/>
+                        <outlet property="exportBtn" destination="xPR-Za-pFl" id="4yf-x4-MUP"/>
                         <outlet property="info" destination="U7V-fi-kzm" id="jFn-at-j73"/>
                         <outlet property="navBar" destination="Nbx-eQ-H7g" id="8S0-K7-0nj"/>
                         <outlet property="note" destination="Nhr-Wa-SI7" id="DTb-hJ-SZ9"/>

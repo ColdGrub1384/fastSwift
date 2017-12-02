@@ -130,7 +130,7 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                             if let address = server.components(separatedBy: "@").last?.components(separatedBy: ";").first {
                                 if let password = server.components(separatedBy: ";").last {
                                     DispatchQueue.main.async {
-                                        AlertManager.shared.presentAlert(withTitle: "Detected Server!", message: "Do you want to use server '\(userName)@\(address)' with password '\(password)'?", style: .alert, actions: [UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
+                                        AlertManager.shared.presentAlert(withTitle: Strings.Camera.DetectedServerAlert.title, message: Strings.Camera.DetectedServerAlert.message(withUsername: userName, host: address, password: password), style: .alert, actions: [UIAlertAction.init(title: Strings.cancel, style: .cancel, handler: { (action) in
                                             self.session.startRunning()
                                         }), AlertManager.shared.ok(handler: { (action) in
                                             UserDefaults.standard.set(address, forKey: "hostname")
@@ -149,9 +149,9 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                         let script = str.replacingOccurrences(of: "$CODE=", with: "")
                         if let url = URL(string:script) {
                             DispatchQueue.main.async {
-                                AlertManager.shared.presentAlert(withTitle: "Detected script!", message: "Do you want to run this script?", style: .alert, actions: [UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
+                                AlertManager.shared.presentAlert(withTitle: Strings.Camera.DetectedScriptAlert.title, message: Strings.Camera.DetectedScriptAlert.message, style: .alert, actions: [UIAlertAction.init(title: Strings.cancel, style: .cancel, handler: { (action) in
                                 }), UIAlertAction.init(title: "Ok", style: .default, handler: { (alert) in
-                                    let activity = ActivityViewController(message: "Downloading...")
+                                    let activity = ActivityViewController(message: Strings.downloading)
                                     self.present(activity, animated: true, completion: nil)
                                     URLSession.shared.downloadTask(with: url, completionHandler: { (url, response, error) in
                                         if error == nil {
@@ -164,17 +164,17 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                                                     })
                                                 } catch let error {
                                                     self.dismiss(animated: true, completion: {
-                                                        AlertManager.shared.presentAlert(withTitle: "Error moving file!", message: error.localizedDescription, style: .alert, actions: [AlertManager.shared.cancel], inside: self, animated: true, completion: nil)
+                                                        AlertManager.shared.presentAlert(withTitle: Strings.Camera.DetectedScriptAlert.Errors.errorMovingFile, message: error.localizedDescription, style: .alert, actions: [AlertManager.shared.cancel], inside: self, animated: true, completion: nil)
                                                     })
                                                 }
                                             } else {
                                                 self.dismiss(animated: true, completion: {
-                                                    AlertManager.shared.presentAlert(withTitle: "Error downloading file!", message: "Returned data is empty", style: .alert, actions: [AlertManager.shared.cancel], inside: self, animated: true, completion: nil)
+                                                    AlertManager.shared.presentAlert(withTitle: Strings.Camera.DetectedScriptAlert.Errors.errorDownloadingFile, message: Strings.emptyData, style: .alert, actions: [AlertManager.shared.cancel], inside: self, animated: true, completion: nil)
                                                 })
                                             }
                                         } else {
                                             self.dismiss(animated: true, completion: {
-                                                AlertManager.shared.present(error: error!, withTitle: "Error downloading file!", inside: self)
+                                                AlertManager.shared.present(error: error!, withTitle: Strings.Camera.DetectedScriptAlert.Errors.errorDownloadingFile, inside: self)
                                             })
                                         }
                                     }).resume()

@@ -564,7 +564,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                                         })
                                     }))
                                 } else {
-                                    alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: nil))
+                                    alert.addAction(UIAlertAction(title: Strings.retry, style: .default, handler: nil))
                                 }
                                 
                                 alert.view.tintColor = Theme.current.tintColor
@@ -590,7 +590,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
         do {
             try self.code.text.write(to: (self.document?.fileURL)!, atomically: true, encoding: String.Encoding.utf8)
         } catch let error {
-            AlertManager.shared.present(error: error, withTitle: "Error saving file!", inside: self)
+            AlertManager.shared.present(error: error, withTitle: Strings.errorSavingFile, inside: self)
         }
         print(files)
         
@@ -598,7 +598,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
             additionalCommand = "downloadExecutable"
         }
         
-        let alert = ActivityViewController(message: "Uploading...")
+        let alert = ActivityViewController(message: Strings.uploading)
         self.present(alert, animated: true, completion: nil)
         
         DispatchQueue.global(qos: .background).async {

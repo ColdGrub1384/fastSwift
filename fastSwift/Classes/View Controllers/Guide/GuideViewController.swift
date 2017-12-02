@@ -34,35 +34,22 @@ class GuideViewController: UIViewController {
             return
         }
         
-        let sections = AppViewControllers().guide
-        sections.titlePage = "Sections"
-        sections.text = "Scroll to the left or to the right to switch section"
+        let sections = AppViewControllers().guide(withPage: Strings.Guides.sections)
         sections.gif = "menu"
         
-        let browser = AppViewControllers().guide
-        browser.titlePage = "File Browser"
-        browser.text = "The file browser is the first section in fastSwift.\nYou can create and open Swift files."
+        let browser = AppViewControllers().guide(withPage: Strings.Guides.browser)
         browser.image = #imageLiteral(resourceName: "file browser.jpeg")
         
-        let editor = AppViewControllers().guide
-        editor.titlePage = "Code editor"
-        editor.text = "When you open a file from the file browser, a code editor is opened. You can write code. You can also work with multiple files clicking the \"+\" button and adding a file. Switch file clicking in the organizer button. You can compile code clicking the hammer. The current opened file will be compiled as main file and other files can only declare variables, functions, classes etc. When you compile, a 🐧 is spended and a terminal is opened with the output code."
+        let editor = AppViewControllers().guide(withPage: Strings.Guides.editor)
         editor.gif = "editor"
         
-        let editorFeatures = AppViewControllers().guide
-        editorFeatures.titlePage = "Editor features"
-        editorFeatures.text = ""
+        let editorFeatures = AppViewControllers().guide(withPage: Strings.Guides.editorFeatures)
         editorFeatures.gif = "editor features"
-        editorFeatures.text = "In the code editor, there are two tool bars, buttons are shortcuts. Scroll tool bars to see more shortcuts.\nAlso, when you put: '{', '\"', '(' or '[', the editor auto complete it and puts the cursor the middle."
         
-        let shop = AppViewControllers().guide
-        shop.titlePage = "Shop"
-        shop.text = "If you scroll to the right, in the shop you can buy 🐧, download programs coded with fastSwift by other persons and play challenges."
+        let shop = AppViewControllers().guide(withPage: Strings.Guides.shop)
         shop.gif = "shop"
         
-        let challenges = AppViewControllers().guide
-        challenges.titlePage = "Challenges"
-        challenges.text = "In the shop, if you scroll down, you can play challenges.\nYou need a fastSwift account.\nWhen you play a challenge you have to write the program that the challenge says. When you complete a challenge at first attempt, you earn points (not 🐧)."
+        let challenges = AppViewControllers().guide(withPage: Strings.Guides.challlenges)
         challenges.gif = "challenges"
         
         let guides = [sections, browser, editor, editorFeatures, shop, challenges]

@@ -8,6 +8,16 @@
 
 import UIKit
 
+class LocalizedGuide {
+    var title: String
+    var message: String
+    
+    init(title: String, message: String) {
+        self.title = title
+        self.message = message
+    }
+}
+
 class Strings {
     
     private init() {}
@@ -28,6 +38,10 @@ class Strings {
     
     static let save = NSLocalizedString("save", comment: "")
     static let dontSave = NSLocalizedString("dontSave", comment: "")
+    
+    static let downloading = NSLocalizedString("downloading", comment: "Downloading file")
+    
+    static let error = NSLocalizedString("error", comment: "Error")
     
     class NoMoreCompilationsAlert {
         static let title = NSLocalizedString("noMoreCompilations.title", comment: "No more compilations alert title")
@@ -182,47 +196,18 @@ class Strings {
     class Guides {
         private init() {}
         
-        class Sections {
-            private init() {}
-            
-            static let title = NSLocalizedString("guides.sections.title", comment: "Title for Sections guide")
-            static let text = NSLocalizedString("guides.sections.text", comment: "Text for Sections guide")
-        }
+        static let sections = LocalizedGuide(title: NSLocalizedString("guides.sections.title", comment: "Title for Sections guide"), message: NSLocalizedString("guides.sections.text", comment: "Text for Sections guide"))
         
-        class Browser {
-            private init() {}
-            
-            static let title = NSLocalizedString("guides.browser.title", comment: "Title for Browser guide")
-            static let text = NSLocalizedString("guides.browser.text", comment: "Text for Browser guide")
-        }
+        static let browser = LocalizedGuide(title: NSLocalizedString("guides.browser.title", comment: "Title for Browser guide"), message: NSLocalizedString("guides.browser.text", comment: "Text for Browser guide"))
         
-        class Editor {
-            private init() {}
-            
-            static let title = NSLocalizedString("guides.editor.title", comment: "Title for Editor guide")
-            static let text = NSLocalizedString("guides.editor.text", comment: "Text for Editor guide")
-        }
+        static let editor = LocalizedGuide(title: NSLocalizedString("guides.editor.title", comment: "Title for Editor guide"), message: NSLocalizedString("guides.editor.text", comment: "Text for Editor guide"))
         
-        class EditorFeatures {
-            private init() {}
-            
-            static let title = NSLocalizedString("guides.editorFeatures.title", comment: "Title for Editor Features guide")
-            static let text = NSLocalizedString("guides.editorFeatures.text", comment: "Text for Editor Features guide")
-        }
+        static let editorFeatures = LocalizedGuide(title: NSLocalizedString("guides.editorFeatures.title", comment: "Title for Editor Features guide"), message: NSLocalizedString("guides.editorFeatures.text", comment: "Text for Editor Features guide"))
         
-        class Shop {
-            private init() {}
-            
-            static let title = NSLocalizedString("guides.shop.title", comment: "Title for Shop guide")
-            static let text = NSLocalizedString("guides.shop.text", comment: "Text for Shop guide")
-        }
+        static let shop = LocalizedGuide(title: NSLocalizedString("guides.shop.title", comment: "Title for Shop guide"), message: NSLocalizedString("guides.shop.text", comment: "Text for Shop guide"))
         
-        class Challenges {
-            private init() {}
-            
-            static let title = NSLocalizedString("guides.challenges.title", comment: "Title for Challenges guide")
-            static let text = NSLocalizedString("guides.challenges.text", comment: "Text for Challenges guide")
-        }
+        
+        static let challlenges = LocalizedGuide(title: NSLocalizedString("guides.challenges.title", comment: "Title for Challenges guide"), message: NSLocalizedString("guides.challenges.text", comment: "Text for Challenges guide")
     }
     
     class SetupServer {

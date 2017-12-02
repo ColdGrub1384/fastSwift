@@ -50,6 +50,7 @@ class ErrorLoadingStoreViewController: UIViewController {
         
         reloadError()
         errorText.textColor = Theme.current.textColor
+        errorText.text = Strings.ErrorLoadingStore.title
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -65,18 +66,18 @@ class ErrorLoadingStoreViewController: UIViewController {
         if isSaved {
             reload()
         } else {
-            AlertManager.shared.presentAlert(withTitle: "Unsaved changes!", message: "You made changes to your file\nRetrying opening the store requiere to reload the app\nDo you want to save changes?", style: .alert, actions: [UIAlertAction.init(title: "Save", style: .default, handler: { (action) in
+            AlertManager.shared.presentAlert(withTitle: Strings.ErrorLoadingStore.SaveFileAlert.title, message: Strings.ErrorLoadingStore.SaveFileAlert.message, style: .alert, actions: [UIAlertAction.init(title: Strings.save, style: .default, handler: { (action) in
                 if let delegate = self.delegate {
                     do {
                         try delegate.code.text.write(to: (delegate.document?.fileURL)!, atomically: true, encoding: String.Encoding.utf8)
                         self.reload()
                     } catch let error {
-                        AlertManager.shared.present(error: error, withTitle: "Error saving file!", inside: self)
+                        AlertManager.shared.present(error: error, withTitle: Strings.errorSavingFile, inside: self)
                     }
                     delegate.document?.close(completionHandler: nil)
                     
                 }
-            }), UIAlertAction.init(title: "Don't save", style: .destructive, handler: { (action) in
+            }), UIAlertAction.init(title: Strings.dontSave, style: .destructive, handler: { (action) in
                 self.reload()
             }), AlertManager.shared.cancel], inside: self, animated: true, completion: nil)
         }

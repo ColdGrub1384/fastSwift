@@ -75,6 +75,9 @@
 /* No comment provided by engineer. */
 "dontSave" = "Don't Save";
 
+/* Downloading file*/
+"downloading" = "downloading";
+
 /* Choose template title alert */
 "editor.chooseTemplate" = "Choose a template";
 
@@ -98,6 +101,9 @@
 
 /* Empty data error */
 "emptyData" = "Returned data is empty";
+
+/* Error */
+"error" = "Error!";
 
 /* Message for alert shown when a file was changed and need to be saved before reload the app */
 "errorLoadingStore.saveFileAlert.message" = "You made changes to your file\nRetrying opening the store requiere to reload the app\nDo you want to save changes?";

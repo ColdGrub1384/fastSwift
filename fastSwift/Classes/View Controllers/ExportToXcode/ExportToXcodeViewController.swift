@@ -28,6 +28,7 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var note: UILabel!
     @IBOutlet weak var navBar: UINavigationBar!
     
+    @IBOutlet weak var exportBtn: UIButton!
     
     func text(forTextField textField:UITextField) -> String {
         let text = textField.text
@@ -53,10 +54,14 @@ class ExportToXcodeViewController: UIViewController, UITextFieldDelegate {
         navBar.barStyle = Theme.current.barStyle
         view.tintColor = Theme.current.tintColor
         
-        let labels = [displayNameLabel, bundleIDLabel, VersionLabel, buildLabel, note]
-        for label in labels {
-            label?.textColor = Theme.current.textColor
+        let labels = [displayNameLabel: Strings.ExportToXcode.displayName, bundleIDLabel: Strings.ExportToXcode.bundleID, VersionLabel: Strings.ExportToXcode.version, buildLabel: Strings.ExportToXcode.note]
+        for (label, text) in labels {
+            label.textColor = Theme.current.textColor
+            label.text = text
         }
+        
+        navBar.topItem?.title = Strings.ExportToXcode.title
+        exportBtn.setTitle(Strings.ExportToXcode.export, for: .normal)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
