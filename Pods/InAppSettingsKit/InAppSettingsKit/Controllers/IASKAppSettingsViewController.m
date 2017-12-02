@@ -518,6 +518,7 @@ CGRect IASKCGRectSwap(CGRect rect);
 	else if ([identifier hasPrefix:kIASKPSTextFieldSpecifier]) {
 		cell = [[IASKPSTextFieldSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIASKPSTextFieldSpecifier];
 		[((IASKPSTextFieldSpecifierViewCell*)cell).textField addTarget:self action:@selector(_textChanged:) forControlEvents:UIControlEventEditingChanged];
+        ((IASKPSTextFieldSpecifierViewCell*)cell).textField.textColor = textColor;
 	}
 	else if ([identifier hasPrefix:kIASKTextViewSpecifier]) {
         cell = [[IASKTextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIASKTextViewSpecifier];
