@@ -649,7 +649,7 @@ class DocumentViewController: UIViewController, UIDocumentPickerDelegate, UIPopo
                                 for file in self.files {
                                     if file.lastPathComponent == "Package.swift" {
                                         secondPart = "cd ~; rm -rf \((UIDevice.current.identifierForVendor!.uuidString)); logout"
-                                        compileCommand = "mv Package.swift .Package.swift; swift package init --type executable; mv *.swift Sources/; mv .Package.swift Package.swift; rm Sources/Package.swift; swift build; mv ./.build/debug/* ./; echo 'Progra\\m output; 'for file in ./*; do $file 2>/dev/null; done" // Compile with packages
+                                        compileCommand = "mv Package.swift .Package.swift; swift package init --type executable; mv *.swift Sources/; mv .Package.swift Package.swift; rm Sources/Package.swift; swift build; mv ./.build/debug/* ./; echo Progra\\m output; for file in ./*; do $file 2>/dev/null; done" // Compile with packages
                                         break
                                     }
                                 }
