@@ -43,7 +43,7 @@ class PublishToStoreActivity: UIActivity {
             let vc = ActivityViewController(message: "Uploading...")
             delegate.present(vc, animated: true, completion: nil)
             
-            URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/createDirAtShop.php/?server=\("\(Server.user)@\(Server.host)".addingPercentEncodingForURLQueryValue()!)")!, completionHandler: { (data, response, error) in
+            URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastswift/createDirAtShop.php/?server=\("\(Server.user)@\(Server.host)".addingPercentEncodingForURLQueryValue()!)")!, completionHandler: { (data, response, error) in
                 if error == nil {
                     let session = NMSSHSession.connect(toHost: Server.default.host, withUsername: Server.default.user)
                     if session!.isConnected {
@@ -61,7 +61,7 @@ class PublishToStoreActivity: UIActivity {
                                 session?.channel.uploadFile(file.path, to: "/home/swiftexec/store/\(Server.user)@\(Server.host)/source/\(self.fileURL!.lastPathComponent)/\(file.lastPathComponent)")
                             }
                             
-                            let url = URL(string:"http://\(Server.default.host)/moveScriptsToShop.php/?atServer=\("\(Server.user)@\(Server.host)")&script=\(self.fileURL!.lastPathComponent.addingPercentEncodingForURLQueryValue()!)&user=\(AccountManager.shared.username!.addingPercentEncodingForURLQueryValue()!)&password=\(AccountManager.shared.password!.addingPercentEncodingForURLQueryValue()!)")!
+                            let url = URL(string:"http://\(Server.default.host)/fastswift/moveScriptsToShop.php/?atServer=\("\(Server.user)@\(Server.host)")&script=\(self.fileURL!.lastPathComponent.addingPercentEncodingForURLQueryValue()!)&user=\(AccountManager.shared.username!.addingPercentEncodingForURLQueryValue()!)&password=\(AccountManager.shared.password!.addingPercentEncodingForURLQueryValue()!)")!
                             print(url.absoluteString)
                             URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                                 
@@ -77,7 +77,7 @@ class PublishToStoreActivity: UIActivity {
                                                      AlertManager.shared.presentAlert(withTitle: "Error publishing project!", message: error, style: .alert, actions: [AlertManager.shared.cancel], inside: delegate, animated: true, completion: nil)
                                                 })
                                             } else {
-                                                URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php/?action=registerScript&user=\(AccountManager.shared.username!.addingPercentEncodingForURLQueryValue()!)&password=\(AccountManager.shared.password!.addingPercentEncodingForURLQueryValue()!)&script=\(self.fileURL!.lastPathComponent.addingPercentEncodingForURLQueryValue()!)")!, completionHandler: { (data, response, error) in
+                                                URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastswift/fastSwiftAccount.php/?action=registerScript&user=\(AccountManager.shared.username!.addingPercentEncodingForURLQueryValue()!)&password=\(AccountManager.shared.password!.addingPercentEncodingForURLQueryValue()!)&script=\(self.fileURL!.lastPathComponent.addingPercentEncodingForURLQueryValue()!)")!, completionHandler: { (data, response, error) in
                                                     
                                                     if error == nil {
                                                         if data != nil {

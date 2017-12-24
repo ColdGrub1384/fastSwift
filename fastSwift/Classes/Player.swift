@@ -13,9 +13,9 @@ class Player {
     var points: Int
     var profile: URL {
         if name == AccountManager.shared.username { // Is current user, so login when click View Profile
-            return URL(string:"http://coldg.ddns.net/fastSwiftAccount.php?action=uiLogin&user=\(name.addingPercentEncodingForURLQueryValue()!)&password=\(AccountManager.shared.password!.addingPercentEncodingForURLQueryValue()!)")!
+            return URL(string:"http://coldg.ddns.net/fastswift/fastSwiftAccount.php?action=uiLogin&user=\(name.addingPercentEncodingForURLQueryValue()!)&password=\(AccountManager.shared.password!.addingPercentEncodingForURLQueryValue()!)")!
         }
-        return URL(string:"http://coldg.ddns.net/fastSwiftAccount.php?action=uiLogin&user=\(name.addingPercentEncodingForURLQueryValue()!)")!
+        return URL(string:"http://coldg.ddns.net/fastswift/fastSwiftAccount.php?action=uiLogin&user=\(name.addingPercentEncodingForURLQueryValue()!)")!
     }
     
     init(name: String, points: Int) {

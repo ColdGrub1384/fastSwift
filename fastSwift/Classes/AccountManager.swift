@@ -101,7 +101,7 @@ class AccountManager {
     func presentAccountInfo(inside vc: UIViewController) {
         func info() {
             let alert = AlertManager.shared.alert(withTitle: self.username!, message: "You are logged as \(self.username!)", style: .alert, actions: [UIAlertAction.init(title: "View account", style: .default, handler: { (action) in
-                AlertManager.shared.openWebView(withURL: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php?user=\(self.username!.addingPercentEncodingForURLQueryValue()!)&password=\(self.password!.addingPercentEncodingForURLQueryValue()!)&server=\(Server.user)@\(Server.host)&action=uiLogin")!, inside: vc)
+                AlertManager.shared.openWebView(withURL: URL(string:"http://\(Server.default.host)/fastswif/fastSwiftAccount.php?user=\(self.username!.addingPercentEncodingForURLQueryValue()!)&password=\(self.password!.addingPercentEncodingForURLQueryValue()!)&server=\(Server.user)@\(Server.host)&action=uiLogin")!, inside: vc)
             }), UIAlertAction.init(title: "Logout", style: .default, handler: { (action) in
                 self.username = nil
                 self.password = nil
@@ -129,7 +129,7 @@ class AccountManager {
         let alert = AlertManager.shared.alert(withTitle: "Login / Register", message: "You need an account to publish projects to the store and play challenges", style: .alert, actions: [UIAlertAction.init(title: "Login", style: .default, handler: { (action) in
             // Login
             let params = "user=\(userTextField.text!.addingPercentEncodingForURLQueryValue()!)&password=\(passTextField.text!.addingPercentEncodingForURLQueryValue()!)&action=login"
-            URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php?\(params)")!, completionHandler: { (data, response, error) in
+            URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastswift/fastSwiftAccount.php?\(params)")!, completionHandler: { (data, response, error) in
                 
                 print("URL: \(response!.url!)")
                 
@@ -166,7 +166,7 @@ class AccountManager {
         }), UIAlertAction.init(title: "Register", style: .default, handler: { (action) in
             // Register
             let params = "user=\(userTextField.text!.addingPercentEncodingForURLQueryValue()!)&password=\(passTextField.text!.addingPercentEncodingForURLQueryValue()!)&action=register"
-            URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastSwiftAccount.php?\(params)")!, completionHandler: { (data, response, error) in
+            URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastswift/fastSwiftAccount.php?\(params)")!, completionHandler: { (data, response, error) in
                 
                 print("URL: \(response!.url!)")
                 

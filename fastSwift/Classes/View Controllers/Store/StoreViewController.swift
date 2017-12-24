@@ -36,7 +36,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
     @IBOutlet weak var bannerView: GADBannerView!
     
     func fetchData() {
-        var challengesURL = URL(string:"http://\(Server.default.host)/challenges.php?viewChallenges")!
+        var challengesURL = URL(string:"http://\(Server.default.host)/fastswift/challenges.php?viewChallenges")!
         if let username = AccountManager.shared.username?.addingPercentEncodingForURLQueryValue() {
             challengesURL = URL(string: challengesURL.absoluteString+"&username=\(username)")!
         }
@@ -68,7 +68,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
             }
             }.resume()
         
-        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/leaderboard.php")!) { (data, response, error) in // Fetch leaderboard
+        URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastswift/leaderboard.php")!) { (data, response, error) in // Fetch leaderboard
             if let data = data {
                 if let str = String(data: data, encoding: .utf8) {
                     let users = str.components(separatedBy: ";")
@@ -636,7 +636,7 @@ class StoreViewController: UIViewController, UICollectionViewDataSource, UITable
         }
         
         if AccountManager.shared.compilations.type != .infinite {
-            URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/redeem.php?code=\(code)")!, completionHandler: { (data, response, error) in
+            URLSession.shared.dataTask(with: URL(string:"http://\(Server.default.host)/fastswift/redeem.php?code=\(code)")!, completionHandler: { (data, response, error) in
                 redeem(data: data, response: response, error: error)
             }).resume()
         } else {
