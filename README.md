@@ -8,9 +8,10 @@ An iOS client for Swift compiler
 ![Version](https://img.shields.io/badge/iOS-11.0%2B-blue.svg?style=flat) 
 ![Xcode](https://img.shields.io/badge/Xcode-9-blue.svg?style=flat)
 ![Swift](https://img.shields.io/badge/Swift-4-blue.svg?style=flat)
-![Release](https://img.shields.io/badge/Release-Coming%20soon%20in%20App%20Store-orange.svg?style=flat)
 <br/>
 <br/>
+
+# THIS APP WILL NEVER BE RELEASED TO THE APP STORE DUE TO MULTIPLE REJECTIONS AND THE PROJECT IS DEPRECATED, USE PISTH TO RUN YOUR CODE FROM AND SSH SERVER.
 
 fastSwift is a Swift IDE for your iPhone and iPad.
 Program Swift and run it directly from your device.
